@@ -24,11 +24,11 @@ public class Ability_Movement : MonoBehaviour
         rb.velocity = new Vector2(value.x * playerSpeed, rb.velocity.y);
         rb.velocity.Normalize();
 
-        if(rb.velocity.x > 0 || rb.velocity.x < 0)
-        { core.controlState = PlayerCore.ControlState.walking; }
+        if ((rb.velocity.x > 0 || rb.velocity.x < 0) && core.isGrounded)
+        { core.WalkingStatus(); }
 
-        else if(rb.velocity.x == 0)
-        { core.controlState = PlayerCore.ControlState.idle; }
+        else if (rb.velocity.x == 0 && core.isGrounded)
+        { core.IdleStatus(); }
 
     }
 }

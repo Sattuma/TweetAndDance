@@ -23,7 +23,6 @@ public class Ability_Airborne : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(rb.velocity.y);
         GroundCheck();
     }
 
@@ -44,16 +43,17 @@ public class Ability_Airborne : MonoBehaviour
 
     public void JumpAction()
     {
-        if(core.isGrounded)
+        if(core.isGrounded == true)
         {
             rb.AddForce(transform.up * jumpPower);
+
             Debug.Log("PELAAJA HYPPÄÄ");
         }
     }
 
     public void FlyAction()
     {
-        if(!core.isGrounded)
+        if(core.isGrounded == false)
         {
             rb.AddForce(transform.up * flyPower);
             if(rb.velocity.y <= -0.5)

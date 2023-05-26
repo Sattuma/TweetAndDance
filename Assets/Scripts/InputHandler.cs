@@ -91,7 +91,6 @@ public class InputHandler : MonoBehaviour
         //tieto kulkeutuu napin painautuessa interactscriptiin ja siellä olevaan functioon
         interactScript.InteractActionTwo();
     }
-
     private void InteractInputTwo(InputAction.CallbackContext obj)
     {
         //tieto kulkeutuu napin painautuessa interactscriptiin ja siellä olevaan functioon

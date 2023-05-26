@@ -20,13 +20,18 @@ public class PlayerCore : MonoBehaviour
     }
 
     public bool isGrounded;
-
-    void Start()
+    
+    public void IdleStatus()
     {
+        controlState = PlayerCore.ControlState.idle;
+    }
+    public void WalkingStatus()
+    {
+        controlState = PlayerCore.ControlState.walking;
+    }
+    public void AirborneStatus()
+    {
+        controlState = PlayerCore.ControlState.airborne;
     }
 
-    void Update()
-    {
-        
-    }
 }
