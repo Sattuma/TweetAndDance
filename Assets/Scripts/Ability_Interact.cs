@@ -47,6 +47,7 @@ public class Ability_Interact : MonoBehaviour
         if(canCollect)
         {
             collectableObj.GetComponent<BoxCollider2D>().enabled = false;
+            collectableObj.gameObject.tag = "Untagged";
             collectableObj.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             collectableObj.gameObject.transform.parent = transform; // if canCollect bool is active when collect button is pressed, player pick that collectable
             collectableObj.transform.position = gameObject.transform.position;
@@ -57,6 +58,8 @@ public class Ability_Interact : MonoBehaviour
         {
             collectableObj.gameObject.transform.parent = null; // if collectable is already picked up in Collect button is pressed again, player drops the collectable object
             collectableObj.GetComponent<BoxCollider2D>().enabled = true;
+            //collectableObj.gameObject.tag = "Collectable";
+            collectableObj.GetComponent<CircleCollider2D>().enabled = true;
             collectableObj.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             collectableObj.transform.position = dropPoint.position;
             collectableObj = null;

@@ -46,8 +46,6 @@ public class Ability_Airborne : MonoBehaviour
         if(core.isGrounded == true)
         {
             rb.AddForce(transform.up * jumpPower);
-
-            Debug.Log("PELAAJA HYPPÄÄ");
         }
     }
 
@@ -60,7 +58,6 @@ public class Ability_Airborne : MonoBehaviour
             {
                 rb.AddForce(transform.up * jumpPower);
             }
-            Debug.Log("PELAAJA LENTÄÄ");
         }
     }
 }

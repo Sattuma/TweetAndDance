@@ -10,23 +10,15 @@ public class NestCollider : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Placeable"))
+        if (collision.gameObject.CompareTag("Collectable"))
         {
             partComplete = true;
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Placeable") && partComplete == false)
-        {
-            nestBase.LevelCompleteCheck(1);
-        }
-    }
-
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Placeable"))
+        if (collision.gameObject.CompareTag("Collectable"))
         {
             partComplete = false;
 
