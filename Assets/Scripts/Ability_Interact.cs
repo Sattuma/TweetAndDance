@@ -7,6 +7,7 @@ using UnityEngine;
 public class Ability_Interact : MonoBehaviour
 {
     public PlayerCore core;
+    public Transform dropPoint;
     public Transform collectableObj;
     public bool canCollect;
     public bool pickedUp;
@@ -19,7 +20,7 @@ public class Ability_Interact : MonoBehaviour
             {
                 canCollect = true;
                 collectableObj = collision.gameObject.transform; // on triggerstay collectable object is collision which player collides
-            } 
+            }
         }
     }
 
@@ -45,6 +46,8 @@ public class Ability_Interact : MonoBehaviour
     {
         if(canCollect)
         {
+            collectableObj.GetComponent<BoxCollider2D>().enabled = false;
+            collectableObj.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             collectableObj.gameObject.transform.parent = transform; // if canCollect bool is active when collect button is pressed, player pick that collectable
             collectableObj.transform.position = gameObject.transform.position;
             canCollect = false;
@@ -53,6 +56,9 @@ public class Ability_Interact : MonoBehaviour
         else if(pickedUp)
         {
             collectableObj.gameObject.transform.parent = null; // if collectable is already picked up in Collect button is pressed again, player drops the collectable object
+            collectableObj.GetComponent<BoxCollider2D>().enabled = true;
+            collectableObj.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            collectableObj.transform.position = dropPoint.position;
             collectableObj = null;
             pickedUp = false;
         }
