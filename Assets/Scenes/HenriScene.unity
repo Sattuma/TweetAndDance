@@ -1340,7 +1340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelComplete: 0
-  nesCol:
+  nestCol:
   - {fileID: 1271362473}
   - {fileID: 22485634}
   - {fileID: 1426382898}

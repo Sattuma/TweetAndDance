@@ -13,7 +13,7 @@ public class NestScript : MonoBehaviour
     public bool completeLevel_three;
     public bool completeLevel_four;
     public bool completeLevel_five;
-    public bool completeLevel_six;
+    public bool completeLevelFinal;
 
     private void Update()
     {
