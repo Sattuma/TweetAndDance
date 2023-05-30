@@ -12,6 +12,8 @@ public class PlayerCore : MonoBehaviour
     public Rigidbody2D rb;
     public ControlState controlState;
 
+    public GameObject level2Pos;
+
     public enum ControlState
     {
         idle,
@@ -32,6 +34,11 @@ public class PlayerCore : MonoBehaviour
     public void AirborneStatus()
     {
         controlState = PlayerCore.ControlState.airborne;
+    }
+
+    public void PlayerPosLevel2()
+    {
+        gameObject.transform.position = level2Pos.transform.position;
     }
 
 }

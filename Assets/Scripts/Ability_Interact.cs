@@ -9,6 +9,7 @@ public class Ability_Interact : MonoBehaviour
     public PlayerCore core;
     public Transform dropPoint;
     public Transform collectableObj;
+    public Transform collectableChildObj;
     public bool canCollect;
     public bool pickedUp;
 
@@ -20,6 +21,7 @@ public class Ability_Interact : MonoBehaviour
             {
                 canCollect = true;
                 collectableObj = collision.gameObject.transform; // on triggerstay collectable object is collision which player collides
+                collectableChildObj = collectableObj.transform.GetChild(0).gameObject.transform;
             }
         }
     }
@@ -32,6 +34,7 @@ public class Ability_Interact : MonoBehaviour
             {
                 canCollect = false;
                 collectableObj = null;
+                collectableChildObj = null;
             }
         }
     }
@@ -44,26 +47,34 @@ public class Ability_Interact : MonoBehaviour
 
     public void InteractActionOne()
     {
-        if(canCollect)
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1)
         {
-            collectableObj.GetComponent<BoxCollider2D>().enabled = false;
-            collectableObj.gameObject.tag = "Untagged";
-            collectableObj.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-            collectableObj.gameObject.transform.parent = transform; // if canCollect bool is active when collect button is pressed, player pick that collectable
-            collectableObj.transform.position = gameObject.transform.position;
-            canCollect = false;
-            pickedUp = true;
+            if (canCollect)
+            {
+                collectableChildObj.GetComponent<BoxCollider2D>().enabled = false;
+                collectableObj.GetComponent<BoxCollider2D>().enabled = false;
+                collectableObj.gameObject.tag = "Untagged";
+
+                collectableObj.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+                collectableObj.gameObject.transform.parent = transform; // if canCollect bool is active when collect button is pressed, player pick that collectable
+                collectableObj.transform.position = gameObject.transform.position;
+                canCollect = false;
+                pickedUp = true;
+            }
+            else if (pickedUp)
+            {
+                collectableObj.gameObject.transform.parent = null; // if collectable is already picked up in Collect button is pressed again, player drops the collectable object
+                collectableObj.GetComponent<BoxCollider2D>().enabled = true;
+                collectableObj.GetComponent<CircleCollider2D>().enabled = true;
+                collectableObj.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+                collectableObj.transform.position = dropPoint.position;
+                collectableObj = null;
+                pickedUp = false;
+            }
         }
-        else if(pickedUp)
+        else
         {
-            collectableObj.gameObject.transform.parent = null; // if collectable is already picked up in Collect button is pressed again, player drops the collectable object
-            collectableObj.GetComponent<BoxCollider2D>().enabled = true;
-            //collectableObj.gameObject.tag = "Collectable";
-            collectableObj.GetComponent<CircleCollider2D>().enabled = true;
-            collectableObj.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-            collectableObj.transform.position = dropPoint.position;
-            collectableObj = null;
-            pickedUp = false;
+            Debug.Log("PELAAJA INTERACT ONE");
         }
     }
 

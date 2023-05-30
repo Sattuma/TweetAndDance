@@ -11,12 +11,6 @@ public class MainMenu : MonoBehaviour
     public GameObject settingButton;
     public GameObject quitButton;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     public void StartGame(int index)
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + index);

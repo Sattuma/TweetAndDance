@@ -43,21 +43,37 @@ public class Ability_Airborne : MonoBehaviour
 
     public void JumpAction()
     {
-        if(core.isGrounded == true)
+        if(GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1)
         {
-            rb.AddForce(transform.up * jumpPower);
-        }
-    }
-
-    public void FlyAction()
-    {
-        if(core.isGrounded == false)
-        {
-            rb.AddForce(transform.up * flyPower);
-            if(rb.velocity.y <= -0.5)
+            if (core.isGrounded == true)
             {
                 rb.AddForce(transform.up * jumpPower);
             }
         }
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
+
+    }
+
+    public void FlyAction()
+    {
+        if(GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1)
+        {
+            if (core.isGrounded == false)
+            {
+                rb.AddForce(transform.up * flyPower);
+                if (rb.velocity.y <= -0.5)
+                {
+                    rb.AddForce(transform.up * jumpPower);
+                }
+            }
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
+
     }
 }

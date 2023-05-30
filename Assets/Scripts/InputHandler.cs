@@ -36,7 +36,7 @@ public class InputHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        //enabloidaan input action movement
+
         abilityMovement.Enable();
 
         //enabloidaan input action Airborne Input assetista ja laitetaan komento kun se painetaan => functio JumpInput alempana

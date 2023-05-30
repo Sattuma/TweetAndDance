@@ -21,14 +21,26 @@ public class Ability_Movement : MonoBehaviour
 
     public void Movement(Vector2 value)
     {
-        rb.velocity = new Vector2(value.x * playerSpeed, rb.velocity.y);
-        rb.velocity.Normalize();
+        //enabloidaan input action movement
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1)
+        {
+            rb.velocity = new Vector2(value.x * playerSpeed, rb.velocity.y);
+            rb.velocity.Normalize();
 
-        if ((rb.velocity.x > 0 || rb.velocity.x < 0) && core.isGrounded)
-        { core.WalkingStatus(); }
+            if ((rb.velocity.x > 0 || rb.velocity.x < 0) && core.isGrounded)
+            { core.WalkingStatus(); }
 
-        else if (rb.velocity.x == 0 && core.isGrounded)
-        { core.IdleStatus(); }
+            else if (rb.velocity.x == 0 && core.isGrounded)
+            { core.IdleStatus(); }
+        }
+
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
+
 
     }
+
+
 }

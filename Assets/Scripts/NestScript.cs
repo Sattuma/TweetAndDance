@@ -6,17 +6,6 @@ public class NestScript : MonoBehaviour
 {
     public NestCollider nestCol;
     public bool completeLevelFinal;
+    public HudScript hud;
 
-    private void Update()
-    {
-        if(nestCol.partComplete == true)
-        {
-            completeLevelFinal = true;
-
-        }
-        else
-        {
-            completeLevelFinal = false;
-        }
-    }
 }
