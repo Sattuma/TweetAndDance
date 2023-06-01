@@ -10,6 +10,7 @@ public class Ability_Movement : MonoBehaviour
 
     public PlayerCore core;
     public Rigidbody2D rb;
+    public bool facingRight;
 
     [SerializeField] private float playerSpeed;
 
@@ -27,6 +28,15 @@ public class Ability_Movement : MonoBehaviour
             rb.velocity = new Vector2(value.x * playerSpeed, rb.velocity.y);
             rb.velocity.Normalize();
 
+            if(value.x > 0 && !facingRight)
+            {
+                FlipCharacter();
+            }
+            if(value.x < 0 && facingRight)
+            {
+                FlipCharacter();
+            }
+
             if ((rb.velocity.x > 0 || rb.velocity.x < 0) && core.isGrounded)
             { core.WalkingStatus(); }
 
@@ -38,9 +48,14 @@ public class Ability_Movement : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
         }
-
-
     }
+
+    void FlipCharacter()
+    {
+        facingRight = !facingRight;
+        transform.Rotate(0, 180, 0);
+    }
+
 
 
 }

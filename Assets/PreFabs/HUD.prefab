@@ -374,6 +374,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0373aace47b0d3946bc23319963038c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerText: {fileID: 6577216066310150106}
+  timerCountText: {fileID: 6577216067437786067}
   countDown:
   - {fileID: 6577216066587687284}
   - {fileID: 6577216065744497222}

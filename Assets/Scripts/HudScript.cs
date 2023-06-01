@@ -5,7 +5,8 @@ using UnityEngine;
 public class HudScript : MonoBehaviour
 {
 
-
+    public GameObject timerText;
+    public GameObject timerCountText;
     public GameObject[] countDown = new GameObject[4];
     public GameObject levelClearOne;
     public NestScript nest;
@@ -54,6 +55,9 @@ public class HudScript : MonoBehaviour
     public void LevelChangeMenu2off()
     {
         levelClearOne.SetActive(false);
+        countDown[3].SetActive(false);
+        timerText.SetActive(false);
+        timerCountText.SetActive(false);
         core.PlayerPosLevel2();
     }
 

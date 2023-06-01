@@ -7,11 +7,7 @@ using UnityEngine;
 
 public class PlayerCore : MonoBehaviour
 {
-    //public static delegate Event StateCheck();
-
-    //public Rigidbody2D rb;
     public ControlState controlState;
-
     public GameObject level2Pos;
 
     public enum ControlState
