@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class GameModeManager : MonoBehaviour
 {
-    /*
-    public delegate void GameActions();
-    public static event GameActions GameEnd;
-    public static event GameActions GameModeSelect;
-    */
 
     public static GameModeManager instance;
     public GameMode activeGameMode;
@@ -29,14 +24,24 @@ public class GameModeManager : MonoBehaviour
         else
         {
             instance = this;
-            DontDestroyOnLoad(instance); // not destroyed between scenes
+            DontDestroyOnLoad(instance);
         }
     }
 
-    public void EndGameFunction()
+    public void LevelOneCleared()
     {
-        Debug.Log("KENTTÄ LÄPI");
         activeGameMode = GameMode.level2;
+    }
+
+    public void AddScore()
+    {
+        //kenttien Scoret
+    }
+
+    public void LevelFailed()
+    {
+        //pelaaja fail anim
+        //level pisteet
     }
 
 }
