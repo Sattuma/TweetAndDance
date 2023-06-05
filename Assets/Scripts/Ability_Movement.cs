@@ -37,6 +37,12 @@ public class Ability_Movement : MonoBehaviour
                 FlipCharacter();
             }
 
+            if (core.isGrounded)
+            {
+                core.myAnim.SetFloat("x", value.x);
+                core.myAnim.SetBool("OnGround", true);
+            }
+
             if ((rb.velocity.x > 0 || rb.velocity.x < 0) && core.isGrounded)
             { core.WalkingStatus(); }
 

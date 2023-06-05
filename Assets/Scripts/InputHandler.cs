@@ -67,7 +67,7 @@ public class InputHandler : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // inputvector muuttuja alussa lukee inputACtion ablilitymovement arvoa Vector 2
+        // inputvector muuttuja alussa lukee inputAction ablilitymovement arvoa Vector 2
         inputVector = abilityMovement.ReadValue<Vector2>();
         // k‰ytet‰‰n t‰t‰ arvoa ja tietoa eri scriptiin functioon movescriptiss‰
         moveScript.Movement(inputVector);

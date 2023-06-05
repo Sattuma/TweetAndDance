@@ -28,17 +28,20 @@ public class Ability_Airborne : MonoBehaviour
 
     void GroundCheck()
     {
-        core.isGrounded = Physics2D.OverlapCircle
+       core.isGrounded = Physics2D.OverlapCircle
             (groundCheckObj.transform.position, groundDetectRadius, groundMask);
 
         if(rb.velocity.y > 0 && !core.isGrounded)
         {
             rb.gravityScale = 0.5f;
+            core.AirborneStatus();
+            core.myAnim.SetBool("OnGround", false);
         }
         else
         {
             rb.gravityScale = 1f;
         }
+
     }
 
     public void JumpAction()
@@ -48,6 +51,7 @@ public class Ability_Airborne : MonoBehaviour
             if (core.isGrounded == true)
             {
                 rb.AddForce(transform.up * jumpPower);
+                core.myAnim.SetTrigger("JumpStart");
             }
         }
         else
@@ -68,6 +72,8 @@ public class Ability_Airborne : MonoBehaviour
                 {
                     rb.AddForce(transform.up * jumpPower);
                 }
+                core.myAnim.SetTrigger("FlyStart");
+                core.myAnim.SetFloat("y", rb.velocity.y);
             }
         }
         else
@@ -76,4 +82,5 @@ public class Ability_Airborne : MonoBehaviour
         }
 
     }
+
 }
