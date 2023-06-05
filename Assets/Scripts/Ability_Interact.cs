@@ -8,6 +8,7 @@ public class Ability_Interact : MonoBehaviour
 {
     public PlayerCore core;
     public Transform dropPoint;
+    public Transform collectPoint;
     public Transform collectableObj;
     public Transform collectableChildObj;
     public bool canCollect;
@@ -57,7 +58,7 @@ public class Ability_Interact : MonoBehaviour
 
                 collectableObj.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
                 collectableObj.gameObject.transform.parent = transform; // if canCollect bool is active when collect button is pressed, player pick that collectable
-                collectableObj.transform.position = gameObject.transform.position;
+                collectableObj.transform.position = collectPoint.transform.position;
                 canCollect = false;
                 pickedUp = true;
             }

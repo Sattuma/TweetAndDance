@@ -1204,6 +1204,7 @@ MonoBehaviour:
   - {fileID: 6577216066669178904}
   levelClearOne: {fileID: 6577216066456405156}
   gameOverHud: {fileID: 3289069212460107630}
+  retryLevelButton: {fileID: 0}
   nest: {fileID: 0}
   core: {fileID: 0}
 --- !u!1 &6577216065919407713
@@ -2451,7 +2452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f46b261ce893d04ebfefbb2710f3d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeValue: 5
+  timeValue: 300
   timerCountdown: {fileID: 6577216067437786065}
   hud: {fileID: 6577216065897322140}
 --- !u!1 &7223519793853882319

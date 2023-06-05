@@ -45,8 +45,6 @@ public class PlayerCore : MonoBehaviour
         controlState = PlayerCore.ControlState.landing;
     }
 
-    //ANIMATIONS
-
     //LEVEL 2 POSITION CHANGE
     public void PlayerPosLevel2()
     {

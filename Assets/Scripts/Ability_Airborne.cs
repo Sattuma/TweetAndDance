@@ -35,11 +35,21 @@ public class Ability_Airborne : MonoBehaviour
         {
             rb.gravityScale = 0.5f;
             core.AirborneStatus();
-            core.myAnim.SetBool("OnGround", false);
+            core.myAnim.SetFloat("y", rb.velocity.y);
+        }
+        else if(rb.velocity.y < 0 && !core.isGrounded)
+        {
+            rb.gravityScale = 1f;
+        }
+
+        if(core.isGrounded)
+        {
+            rb.gravityScale = 1f;
+            core.myAnim.SetBool("OnGround", true);
         }
         else
         {
-            rb.gravityScale = 1f;
+            core.myAnim.SetBool("OnGround", false);
         }
 
     }
@@ -52,6 +62,7 @@ public class Ability_Airborne : MonoBehaviour
             {
                 rb.AddForce(transform.up * jumpPower);
                 core.myAnim.SetTrigger("JumpStart");
+
             }
         }
         else
