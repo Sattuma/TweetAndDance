@@ -14,6 +14,8 @@ public class MainMenu : MonoBehaviour
     public void StartGame(int index)
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + index);
+
+        GameModeManager.instance.level1Over = false;
     }
 
     public void OpenLevels()

@@ -25,6 +25,7 @@ public class Ability_Interact : MonoBehaviour
                 collectableChildObj = collectableObj.transform.GetChild(0).gameObject.transform;
             }
         }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -48,13 +49,15 @@ public class Ability_Interact : MonoBehaviour
 
     public void InteractActionOne()
     {
-        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1)
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1 && GameModeManager.instance.level1Over != true)
         {
             if (canCollect)
             {
-                collectableChildObj.GetComponent<BoxCollider2D>().enabled = false;
-                collectableObj.GetComponent<BoxCollider2D>().enabled = false;
+                //collectableChildObj.GetComponent<BoxCollider2D>().enabled = false;
+                //collectableObj.GetComponentInChildren<CapsuleCollider2D>().enabled = false;
                 collectableObj.gameObject.tag = "Untagged";
+
+                core.myAnim.SetTrigger("Pickup");
 
                 collectableObj.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
                 collectableObj.gameObject.transform.parent = transform; // if canCollect bool is active when collect button is pressed, player pick that collectable
@@ -65,8 +68,8 @@ public class Ability_Interact : MonoBehaviour
             else if (pickedUp)
             {
                 collectableObj.gameObject.transform.parent = null; // if collectable is already picked up in Collect button is pressed again, player drops the collectable object
-                collectableObj.GetComponent<BoxCollider2D>().enabled = true;
-                collectableObj.GetComponent<CircleCollider2D>().enabled = true;
+                //collectableObj.GetComponentInChildren<CapsuleCollider2D>().enabled = true;
+                //collectableObj.GetComponent<CircleCollider2D>().enabled = true;
                 collectableObj.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                 collectableObj.transform.position = dropPoint.position;
                 collectableObj = null;

@@ -8,6 +8,10 @@ public class GameModeManager : MonoBehaviour
     public static GameModeManager instance;
     public GameMode activeGameMode;
 
+    public bool level1Over;
+    public bool level2Over;
+    public bool level3Over;
+
     public enum GameMode
     {
         level1,
@@ -30,7 +34,11 @@ public class GameModeManager : MonoBehaviour
 
     public void LevelOneCleared()
     {
-        activeGameMode = GameMode.level2;
+        level1Over = true;
+        //put this active when start to do level 2
+
+
+        //activeGameMode = GameMode.level2;
     }
 
     public void AddScore()

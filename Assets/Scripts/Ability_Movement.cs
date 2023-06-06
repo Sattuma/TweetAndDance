@@ -23,7 +23,7 @@ public class Ability_Movement : MonoBehaviour
     public void Movement(Vector2 value)
     {
         //enabloidaan input action movement
-        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1)
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1 && GameModeManager.instance.level1Over != true)
         {
             rb.velocity = new Vector2(value.x * playerSpeed, rb.velocity.y);
             rb.velocity.Normalize();

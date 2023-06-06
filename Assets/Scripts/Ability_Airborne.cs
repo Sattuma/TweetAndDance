@@ -56,7 +56,7 @@ public class Ability_Airborne : MonoBehaviour
 
     public void JumpAction()
     {
-        if(GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1)
+        if(GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1 && GameModeManager.instance.level1Over != true)
         {
             if (core.isGrounded == true)
             {
