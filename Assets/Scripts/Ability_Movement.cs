@@ -11,6 +11,10 @@ public class Ability_Movement : MonoBehaviour
     public PlayerCore core;
     public Rigidbody2D rb;
     public bool facingRight;
+    public bool cantMove;
+    public GameObject level2Pos;
+
+    Vector2 movement;
 
     [SerializeField] private float playerSpeed;
 
@@ -49,9 +53,27 @@ public class Ability_Movement : MonoBehaviour
             { core.IdleStatus(); }
         }
 
-        else
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level2)
         {
+
             rb.velocity = Vector2.zero;
+            value.x = 0;
+            core.myAnim.SetFloat("x", value.x);
+            if (!cantMove)
+            {
+                PlayerPosLevel2();
+            }
+            else
+            {
+                StopLevel2Pos();
+                if(facingRight)
+                {
+                    facingRight = !facingRight;
+                    transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+                }
+
+            }
+
         }
     }
 
@@ -61,6 +83,26 @@ public class Ability_Movement : MonoBehaviour
         transform.Rotate(0, 180, 0);
     }
 
-
+    //LEVEL 2 POSITION CHANGE
+    public void PlayerPosLevel2()
+    {
+        Vector2 direction = level2Pos.transform.position - transform.position;
+        direction.Normalize();
+        movement = direction;
+        MoveLevel2Pos2(movement);
+    }
+    public void MoveLevel2Pos2(Vector2 direction)
+    {
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        core.myAnim.SetBool("JumpStart", true);
+        rb.MovePosition((Vector2)transform.position + (playerSpeed* 2 * Time.deltaTime * direction));
+    }
+    public void StopLevel2Pos()
+    {
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        core.myAnim.SetBool("Reset",true);
+        rb.gravityScale = 50;
+        rb.velocity = Vector2.zero;
+    }
 
 }

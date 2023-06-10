@@ -8,6 +8,7 @@ TagManager:
   - Placeable
   - Goal
   - CollectableBox
+  - LevelTwo
   layers:
   - Default
   - TransparentFX

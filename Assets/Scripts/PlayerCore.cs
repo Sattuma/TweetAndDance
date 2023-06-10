@@ -9,7 +9,7 @@ public class PlayerCore : MonoBehaviour
 {
 
     public ControlState controlState;
-    public GameObject level2Pos;
+
     public Animator myAnim;
 
     private void Start()
@@ -45,10 +45,6 @@ public class PlayerCore : MonoBehaviour
         controlState = PlayerCore.ControlState.landing;
     }
 
-    //LEVEL 2 POSITION CHANGE
-    public void PlayerPosLevel2()
-    {
-        gameObject.transform.position = level2Pos.transform.position;
-    }
+
 
 }

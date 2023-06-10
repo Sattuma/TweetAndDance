@@ -8,7 +8,9 @@ public class HudScript : MonoBehaviour
 {
 
     public GameObject timerText;
+    public GameObject pointsText;
     public GameObject timerCountText;
+    public GameObject pointsCountText;
     public GameObject[] countDown = new GameObject[3];
     public GameObject levelClearOne;
     public GameObject gameOverHud;
@@ -39,6 +41,7 @@ public class HudScript : MonoBehaviour
             DisplayTime(timeValue);
         }
     }
+
 
     void DisplayTime(float timeToDisplay)
     {
@@ -71,8 +74,6 @@ public class HudScript : MonoBehaviour
         countDown[2].SetActive(true);
         yield return new WaitForSecondsRealtime(1f);
         countDown[2].SetActive(false);
-        GameModeManager.instance.level1Over = true;
-        //GameModeManager.instance.LevelOneCleared();     thi active when level2 is on progress?
         LevelChangeMenu2On();
     }
 
@@ -87,6 +88,7 @@ public class HudScript : MonoBehaviour
     public void LevelChangeMenu2On()
     {
         levelClearOne.SetActive(true);
+        GameModeManager.instance.level1Over = true;
     }
 
     public void LevelChangeMenu2off()
@@ -94,9 +96,9 @@ public class HudScript : MonoBehaviour
         levelClearOne.SetActive(false);
         timerText.SetActive(false);
         timerCountText.SetActive(false);
-        SceneManager.LoadScene("GameLevel");
-        GameModeManager.instance.level1Over = false;
-        //core.PlayerPosLevel2();
+        pointsText.SetActive(true);
+        pointsCountText.SetActive(true);
+        GameModeManager.instance.LevelOneCleared();
     }
 
     public void FailedHud()
@@ -110,6 +112,7 @@ public class HudScript : MonoBehaviour
         {
             gameOverHud.SetActive(false);
         }
+
     }
 
     public void Retry()
@@ -124,12 +127,12 @@ public class HudScript : MonoBehaviour
 
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level2)
         {
-            //retry level2
+            //retry level2 
             gameOverHud.SetActive(false);
         }
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level3)
         {
-            //retry level3
+            //retry level3 
             gameOverHud.SetActive(false);
         }
     }
