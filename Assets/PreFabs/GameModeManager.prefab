@@ -45,3 +45,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeGameMode: 0
+  level1Over: 0
+  level2Over: 0
+  level3Over: 0
+  noteLine: {fileID: 0}
+  noteObj: {fileID: 4951291525002950425, guid: d1a2cf3a10f3a3749aee6229c59a9525, type: 3}
+  button: {fileID: 0}
+  button2: {fileID: 0}
+  button3: {fileID: 0}
+  startPos: {fileID: 0}
+  startPos2: {fileID: 0}
+  startPos3: {fileID: 0}
+  scoreLevel2: 0
+  scoreLevel3: 0
