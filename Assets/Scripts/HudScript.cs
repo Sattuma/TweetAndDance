@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 using TMPro;
 
 public class HudScript : MonoBehaviour
@@ -14,18 +15,39 @@ public class HudScript : MonoBehaviour
     public GameObject[] countDown = new GameObject[3];
     public GameObject levelClearOne;
     public GameObject gameOverHud;
-    public GameObject retryLevelButton;
     public NestScript nest;
     public PlayerCore core;
+
+    public GameObject level1Info;
+    public GameObject levle2Info;
 
     public float timeValue = 10f;
     public TextMeshProUGUI timerCountdown;
     public HudScript hud;
     public GameObject aSync;
 
+    public bool gameActive = false;
+
+    public InputActionReference skipFunction;
+
+
+    private void Start()
+    {
+        level1Info.SetActive(true);
+        timerText.SetActive(false);
+        timerCountText.SetActive(false);
+    }
     void Update()
     {
-        if (timeValue > 0 && GameModeManager.instance.level1Over != true) 
+        if (skipFunction.action.IsPressed() && !gameActive)
+        {
+            level1Info.SetActive(false);
+            timerText.SetActive(true);
+            timerCountText.SetActive(true);
+            gameActive = true;
+        }
+
+        if (timeValue > 0 && GameModeManager.instance.level1Over != true && gameActive) 
         { timeValue -= Time.deltaTime; }
 
         if (timeValue <= 0)

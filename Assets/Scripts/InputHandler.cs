@@ -45,6 +45,9 @@ public class InputHandler : MonoBehaviour
 
         //enabloidaan input action Interact_One Input assetista ja laitetaan komento kun se painetaan => functio InteractInputOne alempana
         abilityInteract_one.performed += InteractInputOne;
+        abilityInteract_one.canceled += InteractInputCancel;
+        abilityInteract_two.canceled += InteractInputCancel;
+        abilityInteract_three.canceled += InteractInputCancel;
         abilityInteract_one.Enable();
 
         //enabloidaan input action Interact_Two Input assetista ja laitetaan komento kun se painetaan => functio InteractInputTwo alempana
@@ -85,13 +88,18 @@ public class InputHandler : MonoBehaviour
         //tieto kulkeutuu napin painautuessa interactscriptiin ja siellä olevaan functioon
         interactScript.InteractActionOne();
     }
+    private void InteractInputCancel(InputAction.CallbackContext obj)
+    {
+        //tieto kulkeutuu napin painautuessa interactscriptiin ja siellä olevaan functioon
+        interactScript.InteractActionCancel();
+    }
 
-    private void InteractInputThree(InputAction.CallbackContext obj)
+    private void InteractInputTwo(InputAction.CallbackContext obj)
     {
         //tieto kulkeutuu napin painautuessa interactscriptiin ja siellä olevaan functioon
         interactScript.InteractActionTwo();
     }
-    private void InteractInputTwo(InputAction.CallbackContext obj)
+    private void InteractInputThree(InputAction.CallbackContext obj)
     {
         //tieto kulkeutuu napin painautuessa interactscriptiin ja siellä olevaan functioon
         interactScript.InteractActionThree();

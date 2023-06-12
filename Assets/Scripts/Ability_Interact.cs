@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Ability_Interact : MonoBehaviour
 {
+    [Header("Level 1 Actions")]
     public PlayerCore core;
     public Transform dropPoint;
     public Transform collectPoint;
@@ -13,6 +14,13 @@ public class Ability_Interact : MonoBehaviour
     public Transform collectableChildObj;
     public bool canCollect;
     public bool pickedUp;
+
+    [Header("Level 2 Actions")]
+    public GameObject button1;
+    public GameObject button2;
+    public GameObject button3;
+    //[Header("Level 3 Actions")]
+    
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -76,19 +84,37 @@ public class Ability_Interact : MonoBehaviour
                 pickedUp = false;
             }
         }
-        else
+        if(GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level2)
         {
-            Debug.Log("PELAAJA INTERACT ONE");
+            button1.GetComponent<CircleCollider2D>().enabled = true;
         }
     }
 
     public void InteractActionTwo()
     {
-        Debug.Log("PELAAJA INTERACT TWO");
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level2)
+        {
+            button2.GetComponent<CircleCollider2D>().enabled = true;
+        }
+
     }
 
     public void InteractActionThree()
     {
-        Debug.Log("PELAAJA INTERACT THREE");
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level2)
+        {
+            button3.GetComponent<CircleCollider2D>().enabled = true;
+        }
+
+    }
+
+    public void InteractActionCancel()
+    {
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level2)
+        {
+            button1.GetComponent<CircleCollider2D>().enabled = false;
+            button2.GetComponent<CircleCollider2D>().enabled = false;
+            button3.GetComponent<CircleCollider2D>().enabled = false;
+        }
     }
 }

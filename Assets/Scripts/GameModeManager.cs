@@ -17,14 +17,13 @@ public class GameModeManager : MonoBehaviour
     public GameObject noteLine;
     public GameObject noteObj;
 
-    public GameObject button;
-    public GameObject button2;
-    public GameObject button3;
     public GameObject startPos;
     public GameObject startPos2;
     public GameObject startPos3;
+    public GameObject noteDestroyer;
 
     public int scoreLevel2 = 0;
+    public int scoreEndCount = 0;
     public int scoreLevel3 = 0;
 
     public enum GameMode
@@ -59,17 +58,26 @@ public class GameModeManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         noteLine.SetActive(true);
         yield return new WaitForSeconds(2f);
-        InvokeRepeating("NoteSpawn", 2f, 4f);
+        InvokeStartLevel2();
     }
-    void NoteSpawn()
+
+    void InvokeStartLevel2()
     {
-        Instantiate(noteObj, startPos.transform.position, startPos.transform.rotation);
+        InvokeRepeating("NoteSpawn1", 2f, 4f);
+        InvokeRepeating("NoteSpawn2", 1f, 4f);
+        InvokeRepeating("NoteSpawn3", 1.5f, 2f);
     }
+    void NoteSpawn1()
+    { Instantiate(noteObj, startPos2.transform.position, startPos2.transform.rotation);}
+    void NoteSpawn2()
+    { Instantiate(noteObj, startPos.transform.position, startPos.transform.rotation);}
+    void NoteSpawn3()
+    { Instantiate(noteObj, startPos3.transform.position, startPos3.transform.rotation);}
 
     public void AddScore(int score)
     {
         scoreLevel2 += score;
-        Level2Score.Invoke();
+        //Level2Score.Invoke();
     }
 
     public void LevelTwoCleared()

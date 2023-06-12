@@ -9,6 +9,10 @@ TagManager:
   - Goal
   - CollectableBox
   - LevelTwo
+  - Note
+  - Early
+  - Perfect
+  - Late
   layers:
   - Default
   - TransparentFX
