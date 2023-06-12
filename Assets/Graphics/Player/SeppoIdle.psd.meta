@@ -363,10 +363,10 @@ TextureImporter:
       name: WingDown
       rect:
         serializedVersion: 2
-        x: 1003
-        y: 1624
-        width: 169
-        height: 192
+        x: 830
+        y: 1617
+        width: 278
+        height: 230
       alignment: 1
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -386,8 +386,8 @@ TextureImporter:
         serializedVersion: 2
         x: 1114
         y: 1361
-        width: 122
-        height: 221
+        width: 189
+        height: 276
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -397,6 +397,279 @@ TextureImporter:
       bones: []
       spriteID: ef81d636a03c5894184aac2f6472950f
       internalID: -1645596769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beakSing
+      rect:
+        serializedVersion: 2
+        x: 1712
+        y: 1664
+        width: 176
+        height: 106
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4c8d46192947d1439840ac9c13c4f17
+      internalID: 1077027627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eyesSing
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 783
+        width: 207
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 594fe8e193dd7a747a806a68ba6ebc27
+      internalID: 1151481288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eyebrows
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 880
+        width: 229
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb1cbe8b410e2e8479f0d243a2c8200a
+      internalID: 924208086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeakScream
+      rect:
+        serializedVersion: 2
+        x: 1684
+        y: 1413
+        width: 218
+        height: 163
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15338a6a547c7c34799d20a39f4c9a6a
+      internalID: 533470426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WingScream
+      rect:
+        serializedVersion: 2
+        x: 1687
+        y: 985
+        width: 245
+        height: 340
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29ecc0a40c16e5246b5acb55736bb3fb
+      internalID: -1753128397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LeftWingWinning
+      rect:
+        serializedVersion: 2
+        x: 1468
+        y: 1018
+        width: 157
+        height: 281
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1a5b42f11c981e4d9cf9fbd292e0c06
+      internalID: -852123988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HairScream
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 1025
+        width: 187
+        height: 280
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b65407fa97846754ea0570dd861b2b43
+      internalID: -313159400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EyesScream
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 364
+        width: 230
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37721e647dd65894885492acfbc36c01
+      internalID: -2000957481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RightWingWinning
+      rect:
+        serializedVersion: 2
+        x: 1383
+        y: 1299
+        width: 223
+        height: 242
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 367358ebd2775154eb8287cf0ea458b8
+      internalID: 1864778636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailScream
+      rect:
+        serializedVersion: 2
+        x: 1142
+        y: 1718
+        width: 132
+        height: 106
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc8791a5b47c3574bb6a8b75af226d9f
+      internalID: 1488915959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeakRightNoteSing
+      rect:
+        serializedVersion: 2
+        x: 658
+        y: 1492
+        width: 225
+        height: 180
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e58d2cb31d8ea44db75614fb35f1849
+      internalID: -1476931967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeakSad
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 1322
+        width: 174
+        height: 91
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16915d39ddfb92e48a999699b4e89636
+      internalID: 60075827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EyesSad
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 552
+        width: 232
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b034a52bb0c17394db763f24f39593b2
+      internalID: -1536920502
       vertices: []
       indices: 
       edges: []
@@ -412,21 +685,34 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      BeakRightNoteSing: -1476931967
+      BeakSad: 60075827
+      BeakScream: 533470426
       Body: 37524157
       Eyes2: -909274222
+      EyesSad: -1536920502
+      EyesScream: -2000957481
       EyesShut: 1278545193
       Hair: 826947609
       Hair2: -1444614533
+      HairScream: -313159400
       LeftLeg: -848178375
+      LeftWingWinning: -852123988
       Leftwing: 1062502364
       RightLeg: 359543003
+      RightWingWinning: 1864778636
       SeppoIdle_8: -338295806
       SeppoIdle_9: 952789644
       Tail: -1898527735
+      TailScream: 1488915959
       WingDown: 1383903961
+      WingScream: -1753128397
       WingUp: -1645596769
       beak: -400895694
+      beakSing: 1077027627
+      eyebrows: 924208086
       eyes: 142690442
+      eyesSing: 1151481288
       z: 1646897257
   spritePackingTag: 
   pSDRemoveMatte: 1

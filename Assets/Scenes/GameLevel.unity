@@ -3790,6 +3790,26 @@ PrefabInstance:
       propertyPath: level2Pos
       value: 
       objectReference: {fileID: 2056194947}
+    - target: {fileID: 8592164340270394753, guid: 6e3821135acdd7d4a9bbd6450771342e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.5677362
+      objectReference: {fileID: 0}
+    - target: {fileID: 8592164340270394753, guid: 6e3821135acdd7d4a9bbd6450771342e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.689829
+      objectReference: {fileID: 0}
+    - target: {fileID: 8592164340270394753, guid: 6e3821135acdd7d4a9bbd6450771342e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8592164340270394753, guid: 6e3821135acdd7d4a9bbd6450771342e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8592164340270394753, guid: 6e3821135acdd7d4a9bbd6450771342e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8802684005347655585, guid: 6e3821135acdd7d4a9bbd6450771342e, type: 3}
       propertyPath: m_Enabled
       value: 1
