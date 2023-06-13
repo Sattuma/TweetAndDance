@@ -709,7 +709,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -12.199982}
+  m_AnchoredPosition: {x: 0, y: -12.199951}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &566322225
@@ -3421,6 +3421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0373aace47b0d3946bc23319963038c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noteLineImage: {fileID: 0}
   timerText: {fileID: 6577216066310150106}
   pointsText: {fileID: 566322222}
   timerCountText: {fileID: 6577216067437786067}
@@ -3437,9 +3438,9 @@ MonoBehaviour:
   level2Info: {fileID: 1364631590}
   timeValue: 180
   timerCountdown: {fileID: 6577216067437786065}
-  hud: {fileID: 0}
+  hud: {fileID: 6577216065897322140}
   aSync: {fileID: 0}
-  skipFunction: {fileID: -9093081648745045058, guid: f6a856ce2dcaa134e87e8ebdd9375769, type: 3}
+  noteLine: {fileID: 0}
 --- !u!1 &6577216065919407713
 GameObject:
   m_ObjectHideFlags: 0

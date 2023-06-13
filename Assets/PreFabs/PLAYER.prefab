@@ -217,6 +217,7 @@ GameObject:
   - component: {fileID: 7344619329279733089}
   - component: {fileID: 7344619329279733088}
   - component: {fileID: 1559851027}
+  - component: {fileID: 4257683049536101924}
   m_Layer: 3
   m_Name: PLAYER
   m_TagString: Player
@@ -466,7 +467,23 @@ MonoBehaviour:
   collectableChildObj: {fileID: 0}
   canCollect: 0
   pickedUp: 0
+  button1: {fileID: 0}
+  button2: {fileID: 0}
+  button3: {fileID: 0}
 --- !u!114 &1559851027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7344619329279733094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6631923d9efb3ed4eb45220cc1389b09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  move: {fileID: 0}
+--- !u!114 &4257683049536101924
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
