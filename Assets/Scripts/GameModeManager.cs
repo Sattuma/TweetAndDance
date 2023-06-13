@@ -4,23 +4,19 @@ using UnityEngine;
 
 public class GameModeManager : MonoBehaviour
 {
-    public delegate void GameScore();
-    public static event GameScore Level2Score;
+    public delegate void GameAction();
+    public static event GameAction Level2Score;
+    public static event GameAction Level2End;
+    public static event GameAction Success;
+    public static event GameAction Fail;
 
     public static GameModeManager instance;
+
     public GameMode activeGameMode;
 
-    public bool level1Over;
-    public bool level2Over;
-    public bool level3Over;
+    public bool levelActive;
 
-    public GameObject noteLine;
-    public GameObject noteObj;
 
-    public GameObject startPos;
-    public GameObject startPos2;
-    public GameObject startPos3;
-    public GameObject noteDestroyer;
 
     public int scoreLevel2 = 0;
     public int scoreEndCount = 0;
@@ -46,50 +42,43 @@ public class GameModeManager : MonoBehaviour
         }
     }
 
+    //TÄHÄN JOKU PAREMPI SYSTEEMI SAISKO UPDATESTA CHECKIN POIS JA MUUTA KAUTTA?
+    private void Update()
+    {
+        if (scoreEndCount >= 5)
+        {
+            levelActive = false;
+            Level2End?.Invoke();
+        }
+    }
     public void LevelOneCleared()
     {
-        level1Over = true;
-        activeGameMode = GameMode.level2;
-        StartCoroutine(GameMode2Start());
-    }
+        Success?.Invoke();
 
-    public IEnumerator GameMode2Start()
-    {
-        yield return new WaitForSeconds(2f);
-        noteLine.SetActive(true);
-        yield return new WaitForSeconds(2f);
-        InvokeStartLevel2();
     }
-
-    void InvokeStartLevel2()
-    {
-        InvokeRepeating("NoteSpawn1", 2f, 4f);
-        InvokeRepeating("NoteSpawn2", 1f, 4f);
-        InvokeRepeating("NoteSpawn3", 1.5f, 2f);
-    }
-    void NoteSpawn1()
-    { Instantiate(noteObj, startPos2.transform.position, startPos2.transform.rotation);}
-    void NoteSpawn2()
-    { Instantiate(noteObj, startPos.transform.position, startPos.transform.rotation);}
-    void NoteSpawn3()
-    { Instantiate(noteObj, startPos3.transform.position, startPos3.transform.rotation);}
+    
 
     public void AddScore(int score)
     {
         scoreLevel2 += score;
-        //Level2Score.Invoke();
+        Level2Score?.Invoke();
     }
 
     public void LevelTwoCleared()
     {
-        level2Over = true;
+        Success?.Invoke();
+        levelActive = false;
         activeGameMode = GameMode.level3;
+    }
+
+    public void LevelThreeCleared()
+    {
+        levelActive = false;
     }
 
     public void LevelFailed()
     {
-        //pelaaja fail anim
-        //level pisteet
+        Fail?.Invoke();
     }
 
 }

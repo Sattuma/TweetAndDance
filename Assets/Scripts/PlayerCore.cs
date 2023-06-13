@@ -15,6 +15,8 @@ public class PlayerCore : MonoBehaviour
     private void Start()
     {
         myAnim = GetComponentInChildren<Animator>();
+        GameModeManager.Success += Success;
+        GameModeManager.Fail += LevelFail;
     }
 
     public enum ControlState
@@ -43,6 +45,16 @@ public class PlayerCore : MonoBehaviour
     public void LandingStatus()
     {
         controlState = PlayerCore.ControlState.landing;
+    }
+
+    public void Success()
+    {
+        Debug.Log("ANIM PYÖRIMÄÄN koska voitto");
+    }
+
+    public void LevelFail()
+    {
+        Debug.Log("ANIM PYÖRIMÄÄN koska kuolit");
     }
 
 

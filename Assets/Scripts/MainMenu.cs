@@ -15,7 +15,8 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + index);
 
-        GameModeManager.instance.level1Over = false;
+        GameModeManager.instance.levelActive = false;
+        GameModeManager.instance.activeGameMode = GameModeManager.GameMode.level1;
     }
 
     public void OpenLevels()

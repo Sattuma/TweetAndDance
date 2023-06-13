@@ -19,6 +19,7 @@ public class Ability_Interact : MonoBehaviour
     public GameObject button1;
     public GameObject button2;
     public GameObject button3;
+
     //[Header("Level 3 Actions")]
     
 
@@ -57,7 +58,7 @@ public class Ability_Interact : MonoBehaviour
 
     public void InteractActionOne()
     {
-        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1 && GameModeManager.instance.level1Over != true)
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1 && GameModeManager.instance.levelActive == true)
         {
             if (canCollect)
             {

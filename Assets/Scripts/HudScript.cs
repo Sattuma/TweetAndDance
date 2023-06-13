@@ -7,29 +7,33 @@ using TMPro;
 
 public class HudScript : MonoBehaviour
 {
-
+    public GameObject noteLineImage;
     public GameObject timerText;
     public GameObject pointsText;
     public GameObject timerCountText;
     public GameObject pointsCountText;
     public GameObject[] countDown = new GameObject[3];
-    public GameObject levelClearOne;
+    public GameObject levelClear;
     public GameObject gameOverHud;
     public NestScript nest;
     public PlayerCore core;
 
     public GameObject level1Info;
-    public GameObject levle2Info;
+    public GameObject level2Info;
 
     public float timeValue = 10f;
     public TextMeshProUGUI timerCountdown;
     public HudScript hud;
     public GameObject aSync;
 
-    public bool gameActive = false;
+    public NoteLineScript noteLine;
 
-    public InputActionReference skipFunction;
-
+    private void Awake()
+    {
+        GameModeManager.Level2Score += UpdateScore;
+        GameModeManager.Level2End += UpdateHud;
+        GameModeManager.Success += LevelOneCleared;
+    }
 
     private void Start()
     {
@@ -39,22 +43,21 @@ public class HudScript : MonoBehaviour
     }
     void Update()
     {
-        if (skipFunction.action.IsPressed() && !gameActive)
+
+        if (GameModeManager.instance.levelActive)
         {
-            level1Info.SetActive(false);
-            timerText.SetActive(true);
-            timerCountText.SetActive(true);
-            gameActive = true;
+            LevelInfoOff();
         }
 
-        if (timeValue > 0 && GameModeManager.instance.level1Over != true && gameActive) 
+        if (timeValue > 0 && GameModeManager.instance.levelActive == true && GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1) 
         { timeValue -= Time.deltaTime; }
 
-        if (timeValue <= 0)
+
+        if (timeValue <= 0 && GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1)
         {
-            GameModeManager.instance.level1Over = true;
+            GameModeManager.instance.levelActive = false;
             FailedHud();
-            levelClearOne.SetActive(false);
+            levelClear.SetActive(false);
             CancelEndGameHud();
         }
 
@@ -64,7 +67,29 @@ public class HudScript : MonoBehaviour
         }
     }
 
+    //ALL LEVELS - LEVELINFO IN THE BEGINNING
+    public void LevelInfoOff()
+    {
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1)
+        {
+            level1Info.SetActive(false);
+            timerText.SetActive(true);
+            timerCountText.SetActive(true);
+        }
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level2)
+        {
+            level2Info.SetActive(false);
+            pointsText.SetActive(true);
+            pointsCountText.SetActive(true);
+        }
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level3)
+        {
+            //level 3 hudihommat wtf
+        }
 
+    }
+
+    //LEVEL1 - DISPLAY TIMECOUNT TO HUD
     void DisplayTime(float timeToDisplay)
     {
         if (timeToDisplay < 0)
@@ -78,11 +103,11 @@ public class HudScript : MonoBehaviour
         timerCountdown.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
+    //LEVEL1 - COUNT TO SUCCESS & FAILED HUD
     public void StartEndGame()
     {
         StartCoroutine(LevelEndCountOne());
     }
-
     public IEnumerator LevelEndCountOne()
     {
 
@@ -96,9 +121,8 @@ public class HudScript : MonoBehaviour
         countDown[2].SetActive(true);
         yield return new WaitForSecondsRealtime(1f);
         countDown[2].SetActive(false);
-        LevelChangeMenu2On();
+        SuccessMenuOnLevel1();
     }
-
     public void CancelEndGameHud()
     {
         StopAllCoroutines();
@@ -106,35 +130,61 @@ public class HudScript : MonoBehaviour
         countDown[1].SetActive(false);
         countDown[2].SetActive(false);
     }
-
-    public void LevelChangeMenu2On()
+    public void SuccessMenuOnLevel1()
     {
-        levelClearOne.SetActive(true);
-        GameModeManager.instance.level1Over = true;
+        levelClear.SetActive(true);
+        GameModeManager.instance.levelActive = false;
     }
-
-    public void LevelChangeMenu2off()
-    {
-        levelClearOne.SetActive(false);
-        timerText.SetActive(false);
-        timerCountText.SetActive(false);
-        pointsText.SetActive(true);
-        pointsCountText.SetActive(true);
-        GameModeManager.instance.LevelOneCleared();
-    }
-
     public void FailedHud()
     {
-        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1)
-        {
+        gameOverHud.SetActive(true);
+    }
 
-            gameOverHud.SetActive(true);
+    //LEVEL2 - EVENT CALLS
+    public void UpdateScore()
+    {
+        pointsCountText.GetComponent<TextMeshProUGUI>().text = GameModeManager.instance.scoreLevel2.ToString();
+    }
+    public void UpdateHud()
+    {
+        if (GameModeManager.instance.scoreLevel2 >= 50 && GameModeManager.instance.scoreEndCount >= 5)
+        {
+            levelClear.SetActive(true);
         }
         else
         {
-            gameOverHud.SetActive(false);
+            gameOverHud.SetActive(true);
         }
 
+    }
+
+    // BUTTON CALLS
+    public void Continue()
+    {
+        //tänne kaikki continue napin toiminnat ja ehdot - siirtele kun jaksat muista kaikki
+
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1)
+        {
+            levelClear.SetActive(false);
+            level2Info.SetActive(true);
+            timerText.SetActive(false);
+            timerCountText.SetActive(false);
+            GameModeManager.instance.LevelOneCleared();
+
+        }
+
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level2)
+        {
+            levelClear.SetActive(false);
+            level2Info.SetActive(true);
+            timerText.SetActive(false);
+            timerCountText.SetActive(false);
+        }
+
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level3)
+        {
+
+        }
     }
 
     public void Retry()
@@ -142,19 +192,27 @@ public class HudScript : MonoBehaviour
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1)
         {
             SceneManager.LoadScene("GameLevel");
-            levelClearOne.SetActive(false);
+            levelClear.SetActive(false);
             gameOverHud.SetActive(false);
-            GameModeManager.instance.level1Over = false;
+            GameModeManager.instance.levelActive = false;
         }
 
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level2)
         {
-            //retry level2 
+            levelClear.SetActive(false);
             gameOverHud.SetActive(false);
+            level2Info.SetActive(true);
+            noteLineImage.SetActive(false);
+            timerText.SetActive(false);
+            timerCountText.SetActive(false);
+            StartCoroutineLevel2();
+            GameModeManager.instance.scoreLevel2 = 0;
+            UpdateScore();
         }
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level3)
         {
-            //retry level3 
+            //retry level3
+            levelClear.SetActive(false);
             gameOverHud.SetActive(false);
         }
     }
@@ -162,6 +220,33 @@ public class HudScript : MonoBehaviour
     public void ToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void NoteImageActive()
+    {
+        noteLineImage.SetActive(true);
+    }
+
+    public void LevelOneCleared()
+    {
+        GameModeManager.instance.levelActive = true;
+        GameModeManager.instance.activeGameMode = GameModeManager.GameMode.level2;
+        StartCoroutineLevel2();
+    }
+
+    public void StartCoroutineLevel2()
+    {
+        StartCoroutine(GameMode2Start());
+    }
+    public IEnumerator GameMode2Start()
+    {
+
+        yield return new WaitUntil(() => GameModeManager.instance.levelActive == true);
+
+        yield return new WaitForSeconds(2f);
+        hud.noteLineImage.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        noteLine.InvokeStartLevel2();
     }
 
 }

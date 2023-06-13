@@ -79,8 +79,17 @@ public class InputHandler : MonoBehaviour
     private void JumpInput(InputAction.CallbackContext obj)
     {
         //tieto kulkeutuu napin painautuessa airbornescriptiin ja siellä olevaan functioon
-        airborneScript.JumpAction();
-        airborneScript.FlyAction();
+        if (GameModeManager.instance.levelActive != true)
+        {
+            
+            GameModeManager.instance.levelActive = true;
+        }
+        else
+        {
+            airborneScript.JumpAction();
+            airborneScript.FlyAction();
+        }
+
     }
 
     private void InteractInputOne(InputAction.CallbackContext obj)
