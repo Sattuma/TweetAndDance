@@ -10,6 +10,9 @@ public class InputHandler : MonoBehaviour
     [SerializeField]private PlayerController playerController;
     [SerializeField]private Vector2 inputVector;
 
+    public delegate void UiAnim();
+    public static UiAnim InfoBoxAnim;
+
     [Header("Input Actions")]
     public InputAction abilityMovement;
     public InputAction abilityJump;
@@ -81,15 +84,35 @@ public class InputHandler : MonoBehaviour
         //tieto kulkeutuu napin painautuessa airbornescriptiin ja siellä olevaan functioon
         if (GameModeManager.instance.levelActive != true)
         {
-            
-            GameModeManager.instance.levelActive = true;
+            if(GameModeManager.instance.activeGameMode == GameModeManager.GameMode.cutScene1)
+            {
+                GameObject.Find("TextBox1").GetComponent<Animator>().SetTrigger("Fade");
+                GameModeManager.instance.levelActive = true;
+                GameModeManager.instance.Level1Active();
+                InfoBoxAnim?.Invoke();
+            }
+            if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.cutScene2)
+            {
+                GameObject.Find("TextBox2").GetComponent<Animator>().SetTrigger("Fade");
+                GameModeManager.instance.Level2Active();
+                GameModeManager.instance.InvokeLevel1End();
+                InfoBoxAnim?.Invoke();
+
+
+            }
+            if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.cutScene3)
+            {
+                GameObject.Find("TextBox3").GetComponent<Animator>().SetTrigger("Fade");
+                GameModeManager.instance.levelActive = true;
+                GameModeManager.instance.Level3Active();
+                InfoBoxAnim?.Invoke();
+            }
         }
         else
         {
             airborneScript.JumpAction();
             airborneScript.FlyAction();
         }
-
     }
 
     private void InteractInputOne(InputAction.CallbackContext obj)

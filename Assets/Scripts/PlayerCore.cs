@@ -49,7 +49,7 @@ public class PlayerCore : MonoBehaviour
 
     public void Success()
     {
-        Debug.Log("ANIM PYÖRIMÄÄN koska voitto");
+        myAnim.SetTrigger("WinTrig");
     }
 
     public void LevelFail()

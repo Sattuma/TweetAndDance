@@ -18,6 +18,11 @@ public class Ability_Movement : MonoBehaviour
 
     [SerializeField] private float playerSpeed;
 
+    private void Awake()
+    {
+        //GameModeManager.Level1End += PlayerPosLevel2;
+    }
+
     void Start()
     {
         core = GetComponent<PlayerCore>();
@@ -83,19 +88,20 @@ public class Ability_Movement : MonoBehaviour
         transform.Rotate(0, 180, 0);
     }
 
-    //LEVEL 2 POSITION CHANGE
+    //LEVEL 2 CUTSCENE
     public void PlayerPosLevel2()
     {
         Vector2 direction = level2Pos.transform.position - transform.position;
         direction.Normalize();
         movement = direction;
         MoveLevel2Pos2(movement);
+
     }
     public void MoveLevel2Pos2(Vector2 direction)
     {
         rb.bodyType = RigidbodyType2D.Kinematic;
         core.myAnim.SetBool("JumpStart", true);
-        rb.MovePosition((Vector2)transform.position + (playerSpeed* 2 * Time.deltaTime * direction));
+        rb.MovePosition((Vector2)transform.position + (playerSpeed * 2 * Time.deltaTime * direction));
     }
     public void StopLevel2Pos()
     {

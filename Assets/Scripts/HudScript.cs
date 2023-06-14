@@ -30,9 +30,11 @@ public class HudScript : MonoBehaviour
 
     private void Awake()
     {
+
         GameModeManager.Level2Score += UpdateScore;
         GameModeManager.Level2End += UpdateHud;
-        GameModeManager.Success += LevelOneCleared;
+        GameModeManager.Level1End += LevelOneCleared;
+        InputHandler.InfoBoxAnim += StartCountForLevelInfoOff;
     }
 
     private void Start()
@@ -43,12 +45,6 @@ public class HudScript : MonoBehaviour
     }
     void Update()
     {
-
-        if (GameModeManager.instance.levelActive)
-        {
-            LevelInfoOff();
-        }
-
         if (timeValue > 0 && GameModeManager.instance.levelActive == true && GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1) 
         { timeValue -= Time.deltaTime; }
 
@@ -67,6 +63,15 @@ public class HudScript : MonoBehaviour
         }
     }
 
+    public void StartCountForLevelInfoOff()
+    {
+        StartCoroutine(InfoOffCount());
+    }
+    public IEnumerator InfoOffCount()
+    {
+        yield return new WaitForSecondsRealtime(1f);
+        LevelInfoOff();
+    }
     //ALL LEVELS - LEVELINFO IN THE BEGINNING
     public void LevelInfoOff()
     {
@@ -86,7 +91,6 @@ public class HudScript : MonoBehaviour
         {
             //level 3 hudihommat wtf
         }
-
     }
 
     //LEVEL1 - DISPLAY TIMECOUNT TO HUD
@@ -110,7 +114,6 @@ public class HudScript : MonoBehaviour
     }
     public IEnumerator LevelEndCountOne()
     {
-
         yield return new WaitForSecondsRealtime(0.2f);
         countDown[0].SetActive(true);
         yield return new WaitForSecondsRealtime(1f);
@@ -134,6 +137,7 @@ public class HudScript : MonoBehaviour
     {
         levelClear.SetActive(true);
         GameModeManager.instance.levelActive = false;
+        GameModeManager.instance.LevelOneCleared();
     }
     public void FailedHud()
     {
@@ -155,13 +159,11 @@ public class HudScript : MonoBehaviour
         {
             gameOverHud.SetActive(true);
         }
-
     }
 
     // BUTTON CALLS
     public void Continue()
     {
-        //tänne kaikki continue napin toiminnat ja ehdot - siirtele kun jaksat muista kaikki
 
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1)
         {
@@ -169,8 +171,8 @@ public class HudScript : MonoBehaviour
             level2Info.SetActive(true);
             timerText.SetActive(false);
             timerCountText.SetActive(false);
-            GameModeManager.instance.LevelOneCleared();
-
+            GameModeManager.instance.CutScene2Active();
+            core.myAnim.SetTrigger("ResetTrig");
         }
 
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level2)
@@ -179,6 +181,7 @@ public class HudScript : MonoBehaviour
             level2Info.SetActive(true);
             timerText.SetActive(false);
             timerCountText.SetActive(false);
+            GameModeManager.instance.CutScene3Active();
         }
 
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level3)
@@ -194,7 +197,9 @@ public class HudScript : MonoBehaviour
             SceneManager.LoadScene("GameLevel");
             levelClear.SetActive(false);
             gameOverHud.SetActive(false);
+            level1Info.SetActive(true);
             GameModeManager.instance.levelActive = false;
+            GameModeManager.instance.CutScene1Active();
         }
 
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level2)
@@ -208,6 +213,7 @@ public class HudScript : MonoBehaviour
             StartCoroutineLevel2();
             GameModeManager.instance.scoreLevel2 = 0;
             UpdateScore();
+            GameModeManager.instance.CutScene2Active();
         }
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level3)
         {
@@ -229,8 +235,7 @@ public class HudScript : MonoBehaviour
 
     public void LevelOneCleared()
     {
-        GameModeManager.instance.levelActive = true;
-        GameModeManager.instance.activeGameMode = GameModeManager.GameMode.level2;
+        noteLineImage.SetActive(false);
         StartCoroutineLevel2();
     }
 
@@ -244,7 +249,7 @@ public class HudScript : MonoBehaviour
         yield return new WaitUntil(() => GameModeManager.instance.levelActive == true);
 
         yield return new WaitForSeconds(2f);
-        hud.noteLineImage.SetActive(true);
+        noteLineImage.SetActive(true);
         yield return new WaitForSeconds(2f);
         noteLine.InvokeStartLevel2();
     }
