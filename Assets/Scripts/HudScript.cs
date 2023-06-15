@@ -30,9 +30,8 @@ public class HudScript : MonoBehaviour
 
     private void Awake()
     {
-
         GameModeManager.Level2Score += UpdateScore;
-        GameModeManager.Level2End += UpdateHud;
+        GameModeManager.Level2End += LevelTwoCleared;
         GameModeManager.Level1End += LevelOneCleared;
         InputHandler.InfoBoxAnim += StartCountForLevelInfoOff;
     }
@@ -149,7 +148,7 @@ public class HudScript : MonoBehaviour
     {
         pointsCountText.GetComponent<TextMeshProUGUI>().text = GameModeManager.instance.scoreLevel2.ToString();
     }
-    public void UpdateHud()
+    public void LevelTwoCleared()
     {
         if (GameModeManager.instance.scoreLevel2 >= 50 && GameModeManager.instance.scoreEndCount >= 5)
         {

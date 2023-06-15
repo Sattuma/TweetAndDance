@@ -7,9 +7,6 @@ public class CloudScript : MonoBehaviour
     private float _speed;
     private float _endPosX;
 
-
-   
-
     public void StartFloating(float speed, float endPosX)
     {
         _speed = speed;
@@ -19,7 +16,7 @@ public class CloudScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.right * (Time.deltaTime));
+        transform.Translate(Vector2.right * _speed * (Time.deltaTime));
 
         if(transform.position.x > _endPosX)
         {

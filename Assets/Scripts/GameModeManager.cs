@@ -18,7 +18,6 @@ public class GameModeManager : MonoBehaviour
 
     public bool levelActive;
 
-
     public float timerLevel1;
     public int scoreLevel2 = 0;
     public int scoreEndCount = 0;
@@ -102,7 +101,6 @@ public class GameModeManager : MonoBehaviour
     {
         Success?.Invoke();
         levelActive = false;
-        activeGameMode = GameMode.level3;
     }
 
     public void LevelThreeCleared()

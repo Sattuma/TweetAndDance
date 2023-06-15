@@ -15,6 +15,12 @@ public class CloudGeneratorScript : MonoBehaviour
 
     Vector3 startPos;
 
+    [SerializeField] private float minSpeed;
+    [SerializeField] private float maxSpeed;
+
+    [SerializeField] private float minY;
+    [SerializeField] private float maxY;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,13 +36,13 @@ public class CloudGeneratorScript : MonoBehaviour
         int randomIndex = UnityEngine.Random.Range(0, 4);
         GameObject cloud = Instantiate(clouds[randomIndex]);
 
-        float startY = UnityEngine.Random.Range(startPos.y - 2f, startPos.y + 2f);
+        float startY = UnityEngine.Random.Range(startPos.y - minY, startPos.y + maxY);
         cloud.transform.position = new Vector3(startPos.x, startY, startPos.z);
 
         float scale = UnityEngine.Random.Range(0.8f, 1.2f);
         cloud.transform.localScale = new Vector2(scale, scale);
 
-        float speed = UnityEngine.Random.Range(0, 2);
+        float speed = UnityEngine.Random.Range(minSpeed, maxSpeed);
         cloud.GetComponent<CloudScript>().StartFloating(speed, endPoint.transform.position.x);
 
 
