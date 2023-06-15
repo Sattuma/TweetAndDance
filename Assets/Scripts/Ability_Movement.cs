@@ -11,22 +11,23 @@ public class Ability_Movement : MonoBehaviour
     public PlayerCore core;
     public Rigidbody2D rb;
     public bool facingRight;
-    public bool cantMove;
+    public bool onMove;
     public GameObject level2Pos;
 
-    Vector2 movement;
 
     [SerializeField] private float playerSpeed;
+    [SerializeField] private float transitionSpeed;
 
     private void Awake()
     {
-        //GameModeManager.Level1End += PlayerPosLevel2;
+        GameModeManager.Level1End += FlipInCutScene2;
     }
 
     void Start()
     {
         core = GetComponent<PlayerCore>();
         rb = GetComponent<Rigidbody2D>();
+        level2Pos.SetActive(false);
     }
 
     public void Movement(Vector2 value)
@@ -58,26 +59,12 @@ public class Ability_Movement : MonoBehaviour
             { core.IdleStatus(); }
         }
 
-        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level2 && GameModeManager.instance.levelActive == true)
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level2 && GameModeManager.instance.levelActive != true)
         {
-
             rb.velocity = Vector2.zero;
             value.x = 0;
             core.myAnim.SetFloat("x", value.x);
-            if (!cantMove)
-            {
-                PlayerPosLevel2();
-            }
-            else
-            {
-                StopLevel2Pos();
-                if(facingRight)
-                {
-                    facingRight = !facingRight;
-                    transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-                }
-
-            }
+            PlayerPosLevel2();
 
         }
     }
@@ -91,24 +78,28 @@ public class Ability_Movement : MonoBehaviour
     //LEVEL 2 CUTSCENE
     public void PlayerPosLevel2()
     {
-        Vector2 direction = level2Pos.transform.position - transform.position;
-        direction.Normalize();
-        movement = direction;
-        MoveLevel2Pos2(movement);
-
+        if(onMove)
+        {
+            core.myAnim.SetTrigger("JumpStart");
+            transform.position = Vector3.Lerp(transform.position, level2Pos.transform.position, transitionSpeed * Time.deltaTime);
+        }
+        else
+        {
+            core.myAnim.SetBool("Reset", true);
+            rb.velocity = Vector2.zero;
+            rb.gravityScale = 15;
+            if(facingRight)
+            {
+                FlipCharacter();
+            }
+        }
     }
-    public void MoveLevel2Pos2(Vector2 direction)
+    public void FlipInCutScene2()
     {
-        rb.bodyType = RigidbodyType2D.Kinematic;
-        core.myAnim.SetBool("JumpStart", true);
-        rb.MovePosition((Vector2)transform.position + (playerSpeed * 2 * Time.deltaTime * direction));
-    }
-    public void StopLevel2Pos()
-    {
-        rb.bodyType = RigidbodyType2D.Dynamic;
-        core.myAnim.SetBool("Reset",true);
-        rb.gravityScale = 50;
-        rb.velocity = Vector2.zero;
+        if(!facingRight)
+        {
+            FlipCharacter();
+        }
     }
 
 }

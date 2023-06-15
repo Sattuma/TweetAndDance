@@ -20,6 +20,7 @@ public class HudScript : MonoBehaviour
 
     public GameObject level1Info;
     public GameObject level2Info;
+    public GameObject level3Info;
 
     public float timeValue = 10f;
     public TextMeshProUGUI timerCountdown;
@@ -31,9 +32,13 @@ public class HudScript : MonoBehaviour
     private void Awake()
     {
         GameModeManager.Level2Score += UpdateScore;
-        GameModeManager.Level2End += LevelTwoCleared;
-        GameModeManager.Level1End += LevelOneCleared;
+
         InputHandler.InfoBoxAnim += StartCountForLevelInfoOff;
+
+        GameModeManager.Level1End += LevelOneCleared;
+        GameModeManager.Level2End += LevelTwoCleared;
+
+
     }
 
     private void Start()
@@ -83,12 +88,10 @@ public class HudScript : MonoBehaviour
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level2)
         {
             level2Info.SetActive(false);
-            pointsText.SetActive(true);
-            pointsCountText.SetActive(true);
         }
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level3)
         {
-            //level 3 hudihommat wtf
+            //level 3 hudihommat
         }
     }
 
@@ -209,7 +212,7 @@ public class HudScript : MonoBehaviour
             noteLineImage.SetActive(false);
             timerText.SetActive(false);
             timerCountText.SetActive(false);
-            StartCoroutineLevel2();
+            GameModeManager.instance.LevelOneCleared();
             GameModeManager.instance.scoreLevel2 = 0;
             UpdateScore();
             GameModeManager.instance.CutScene2Active();
@@ -235,20 +238,18 @@ public class HudScript : MonoBehaviour
     public void LevelOneCleared()
     {
         noteLineImage.SetActive(false);
-        StartCoroutineLevel2();
-    }
-
-    public void StartCoroutineLevel2()
-    {
         StartCoroutine(GameMode2Start());
     }
+
     public IEnumerator GameMode2Start()
     {
 
         yield return new WaitUntil(() => GameModeManager.instance.levelActive == true);
-
+        //tapahtumat kaikissa muissa scripteissä redi nii sit vasta tästä eteenpäin
         yield return new WaitForSeconds(2f);
         noteLineImage.SetActive(true);
+        pointsText.SetActive(true);
+        pointsCountText.SetActive(true);
         yield return new WaitForSeconds(2f);
         noteLine.InvokeStartLevel2();
     }

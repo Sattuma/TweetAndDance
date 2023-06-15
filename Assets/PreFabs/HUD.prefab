@@ -3465,6 +3465,7 @@ MonoBehaviour:
   core: {fileID: 0}
   level1Info: {fileID: 437478428}
   level2Info: {fileID: 3314765334058561489}
+  level3Info: {fileID: 0}
   timeValue: 180
   timerCountdown: {fileID: 6577216067437786065}
   hud: {fileID: 6577216065897322140}
@@ -3794,7 +3795,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6577216066310150105
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4589,7 +4590,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6577216067437786066
 RectTransform:
   m_ObjectHideFlags: 0

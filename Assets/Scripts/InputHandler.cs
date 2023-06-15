@@ -7,11 +7,11 @@ using UnityEngine.InputSystem;
 //[RequireComponent(typeof(PlayerInput))]
 public class InputHandler : MonoBehaviour
 {
-    [SerializeField]private PlayerController playerController;
-    [SerializeField]private Vector2 inputVector;
-
     public delegate void UiAnim();
     public static UiAnim InfoBoxAnim;
+
+    [SerializeField]private PlayerController playerController;
+    [SerializeField]private Vector2 inputVector;
 
     [Header("Input Actions")]
     public InputAction abilityMovement;
@@ -89,20 +89,20 @@ public class InputHandler : MonoBehaviour
                 GameObject.Find("TextBox1").GetComponent<Animator>().SetTrigger("Fade");
                 GameModeManager.instance.levelActive = true;
                 GameModeManager.instance.Level1Active();
-                InfoBoxAnim?.Invoke();
+                InfoBoxAnim?.Invoke();// t‰m‰ sen takia ett‰ hud osaa laittaa objetin pois p‰‰lt‰
             }
             if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.cutScene2)
             {
+                moveScript.level2Pos.SetActive(true);
+                moveScript.onMove = true;
                 GameObject.Find("TextBox2").GetComponent<Animator>().SetTrigger("Fade");
                 GameModeManager.instance.Level2Active();
                 GameModeManager.instance.InvokeLevel1End();
-                InfoBoxAnim?.Invoke();
-
-
+                InfoBoxAnim?.Invoke(); // t‰m‰ sen takia ett‰ hud osaa laittaa objetin pois p‰‰lt‰
             }
             if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.cutScene3)
             {
-                GameObject.Find("TextBox3").GetComponent<Animator>().SetTrigger("Fade");
+                //GameObject.Find("TextBox3").GetComponent<Animator>().SetTrigger("Fade");
                 GameModeManager.instance.levelActive = true;
                 GameModeManager.instance.Level3Active();
                 InfoBoxAnim?.Invoke();

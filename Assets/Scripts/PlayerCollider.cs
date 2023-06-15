@@ -8,11 +8,18 @@ public class PlayerCollider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if(collision.gameObject.CompareTag("LevelTwo"))
         {
-            move = collision.gameObject.GetComponent<Ability_Movement>();
-            move.cantMove = true;
+            
+            collision.gameObject.SetActive(false);
+            move.onMove = false;
+
         }
+    }
+
+    private void Start()
+    {
+        move = GetComponent<Ability_Movement>();
     }
 
 }
