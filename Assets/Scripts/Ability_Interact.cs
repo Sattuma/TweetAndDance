@@ -25,7 +25,7 @@ public class Ability_Interact : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Collectable"))
+        if (collision.gameObject.CompareTag("Collectable") || collision.gameObject.CompareTag("NestObject"))
         {
             if(collectableObj == null)
             {
@@ -39,7 +39,7 @@ public class Ability_Interact : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Collectable"))
+        if (collision.gameObject.CompareTag("Collectable") || collision.gameObject.CompareTag("NestObject"))
         {
             if(canCollect)
             {

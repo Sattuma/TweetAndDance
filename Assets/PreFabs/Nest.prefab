@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 1076472404}
   - component: {fileID: 1076472406}
   - component: {fileID: 1076472407}
+  - component: {fileID: 548830095}
   m_Layer: 0
-  m_Name: Nest (1)
+  m_Name: NestArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,6 +124,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0.014905988, y: -0.364474}
   m_Size: {x: 4.1234894, y: 5.028681}
   m_Direction: 0
+--- !u!114 &548830095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076472403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec8ae397259c0464c87b208ce6f6cc89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8808270691628258835
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,8 +212,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8808270691871680890}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.46, z: 0}
-  m_LocalScale: {x: 2, y: 0.1375, z: 1}
+  m_LocalPosition: {x: 0, y: -1.09, z: 0}
+  m_LocalScale: {x: 5, y: 0.1375, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8808270691628258833}
@@ -311,8 +324,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8808270692011628368}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.3, z: 0}
-  m_LocalScale: {x: 2, y: 0.125, z: 1}
+  m_LocalPosition: {x: 0, y: 3.28, z: 0}
+  m_LocalScale: {x: 0.825, y: 0.125, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8808270691628258833}

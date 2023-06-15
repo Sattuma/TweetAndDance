@@ -68,7 +68,6 @@ public class NoteScript : MonoBehaviour
     {
         currentSpeed = (speed[Random.Range(0, 5)]);
         rb.velocity = new Vector2(-currentSpeed , rb.velocity.y);
-        //transform.Translate(Vector2.left * currentSpeed);
     }
 
 

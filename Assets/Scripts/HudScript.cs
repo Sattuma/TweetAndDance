@@ -22,7 +22,7 @@ public class HudScript : MonoBehaviour
     public GameObject level2Info;
     public GameObject level3Info;
 
-    public float timeValue = 10f;
+    //public float timeValue = 10f;
     public TextMeshProUGUI timerCountdown;
     public HudScript hud;
     public GameObject aSync;
@@ -49,13 +49,15 @@ public class HudScript : MonoBehaviour
     }
     void Update()
     {
-        if (timeValue > 0 && GameModeManager.instance.levelActive == true && GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1) 
-        { timeValue -= Time.deltaTime; }
+
+        if (GameModeManager.instance.timerLevel1 > 0 && GameModeManager.instance.levelActive == true && GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1) 
+        { GameModeManager.instance.timerLevel1 -= Time.deltaTime; }
 
 
-        if (timeValue <= 0 && GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1)
+        if (GameModeManager.instance.timerLevel1 <= 0 && GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1)
         {
             GameModeManager.instance.levelActive = false;
+            GameModeManager.instance.StopInvoke();
             FailedHud();
             levelClear.SetActive(false);
             CancelEndGameHud();
@@ -63,7 +65,7 @@ public class HudScript : MonoBehaviour
 
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1)
         {
-            DisplayTime(timeValue);
+            DisplayTime(GameModeManager.instance.timerLevel1);
         }
     }
 
@@ -200,6 +202,11 @@ public class HudScript : MonoBehaviour
             levelClear.SetActive(false);
             gameOverHud.SetActive(false);
             level1Info.SetActive(true);
+            timerText.SetActive(false);
+            timerCountText.SetActive(false);
+            GameModeManager.instance.DestroyPickUpsWithTag();
+            GameModeManager.instance.GroundSpawnPickupLevel1();
+            GameModeManager.instance.timerLevel1 = 5;
             GameModeManager.instance.levelActive = false;
             GameModeManager.instance.CutScene1Active();
             core.myAnim.SetTrigger("ResetTrig");

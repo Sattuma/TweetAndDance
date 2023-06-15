@@ -13,6 +13,7 @@ TagManager:
   - Early
   - Perfect
   - Late
+  - NestObject
   layers:
   - Default
   - TransparentFX
