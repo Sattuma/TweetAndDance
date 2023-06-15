@@ -11,7 +11,8 @@ public class CollectableCollision : MonoBehaviour
         if(collision.gameObject.tag != "Player")
         {
             gameObject.tag = "Collectable";
-            childObject.GetComponent<BoxCollider2D>().enabled = true;
+            childObject.tag = "Placeable";
+            childObject.GetComponent<CapsuleCollider2D>().enabled = true;
         }
     }
 

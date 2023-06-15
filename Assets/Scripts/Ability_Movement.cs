@@ -96,7 +96,7 @@ public class Ability_Movement : MonoBehaviour
     }
     public void FlipInCutScene2()
     {
-        if(!facingRight)
+        if(!facingRight && GameModeManager.instance.level2Retry != true)
         {
             FlipCharacter();
         }

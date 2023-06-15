@@ -148,7 +148,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9215853180460019692}
   - component: {fileID: 9215853180460019694}
-  - component: {fileID: 9215853180460019695}
+  - component: {fileID: 4689138453771599095}
   m_Layer: 0
   m_Name: PlacebleCol
   m_TagString: Placeable
@@ -224,8 +224,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &9215853180460019695
-BoxCollider2D:
+--- !u!70 &4689138453771599095
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -237,19 +237,9 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Offset: {x: -0.012589067, y: -0.024186762}
+  m_Size: {x: 1.0869709, y: 0.7727741}
+  m_Direction: 1
 --- !u!1 &9215853180769949985
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,7 +250,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9215853180769949984}
   - component: {fileID: 9215853180769949987}
-  - component: {fileID: 3530477924176708842}
+  - component: {fileID: 9146339049716264620}
   m_Layer: 7
   m_Name: IMAGE
   m_TagString: Untagged
@@ -335,8 +325,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &3530477924176708842
-BoxCollider2D:
+--- !u!70 &9146339049716264620
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -348,16 +338,6 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.4302063, y: -0.8830513}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 19.11, y: 4.99}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 17.525036, y: 2.4087718}
-  m_EdgeRadius: 0
+  m_Offset: {x: -0.60700834, y: -0.83462495}
+  m_Size: {x: 17.896023, y: 2.1826372}
+  m_Direction: 1

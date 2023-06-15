@@ -196,26 +196,30 @@ public class HudScript : MonoBehaviour
     {
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1)
         {
-            SceneManager.LoadScene("GameLevel");
+            //SceneManager.LoadScene("GameLevel");
             levelClear.SetActive(false);
             gameOverHud.SetActive(false);
             level1Info.SetActive(true);
             GameModeManager.instance.levelActive = false;
             GameModeManager.instance.CutScene1Active();
+            core.myAnim.SetTrigger("ResetTrig");
         }
 
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level2)
         {
+            GameModeManager.instance.level2Retry = true;
             levelClear.SetActive(false);
             gameOverHud.SetActive(false);
             level2Info.SetActive(true);
             noteLineImage.SetActive(false);
             timerText.SetActive(false);
             timerCountText.SetActive(false);
+            GameModeManager.instance.levelActive = false;
             GameModeManager.instance.LevelOneCleared();
             GameModeManager.instance.scoreLevel2 = 0;
             UpdateScore();
             GameModeManager.instance.CutScene2Active();
+            core.myAnim.SetTrigger("ResetTrig");
         }
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level3)
         {

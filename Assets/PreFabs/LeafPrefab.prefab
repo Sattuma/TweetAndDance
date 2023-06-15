@@ -249,7 +249,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7627667591022912153}
   - component: {fileID: 7627667591022912154}
-  - component: {fileID: 7627667591022912155}
+  - component: {fileID: 5433395232552399257}
   m_Layer: 0
   m_Name: PlacebleCol
   m_TagString: Placeable
@@ -325,8 +325,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &7627667591022912155
-BoxCollider2D:
+--- !u!70 &5433395232552399257
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -338,16 +338,6 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.014556751, y: -0.040667653}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.6870289, y: 1.6100237}
-  m_EdgeRadius: 0
+  m_Offset: {x: -0.0045731743, y: -0.0021283727}
+  m_Size: {x: 0.6128083, y: 1.5544552}
+  m_Direction: 0

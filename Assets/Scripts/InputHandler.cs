@@ -10,6 +10,7 @@ public class InputHandler : MonoBehaviour
     public delegate void UiAnim();
     public static UiAnim InfoBoxAnim;
 
+
     [SerializeField]private PlayerController playerController;
     [SerializeField]private Vector2 inputVector;
 
@@ -89,16 +90,16 @@ public class InputHandler : MonoBehaviour
                 GameObject.Find("TextBox1").GetComponent<Animator>().SetTrigger("Fade");
                 GameModeManager.instance.levelActive = true;
                 GameModeManager.instance.Level1Active();
-                InfoBoxAnim?.Invoke();// t‰m‰ sen takia ett‰ hud osaa laittaa objetin pois p‰‰lt‰
+                InfoBoxAnim?.Invoke();
             }
             if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.cutScene2)
             {
+                if(GameModeManager.instance.level2Retry != true) { moveScript.onMove = true; }
                 moveScript.level2Pos.SetActive(true);
-                moveScript.onMove = true;
                 GameObject.Find("TextBox2").GetComponent<Animator>().SetTrigger("Fade");
                 GameModeManager.instance.Level2Active();
                 GameModeManager.instance.InvokeLevel1End();
-                InfoBoxAnim?.Invoke(); // t‰m‰ sen takia ett‰ hud osaa laittaa objetin pois p‰‰lt‰
+                InfoBoxAnim?.Invoke();
             }
             if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.cutScene3)
             {

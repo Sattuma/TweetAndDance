@@ -18,6 +18,8 @@ public class GameModeManager : MonoBehaviour
 
     public bool levelActive;
 
+    public bool level2Retry;
+
     public float timerLevel1;
     public int scoreLevel2 = 0;
     public int scoreEndCount = 0;
