@@ -155,7 +155,7 @@ public class HudScript : MonoBehaviour
     }
     public void LevelTwoCleared()
     {
-        if (GameModeManager.instance.scoreLevel2 >= 50 && GameModeManager.instance.scoreEndCount >= 5)
+        if (GameModeManager.instance.scoreLevel2 >= 50 && GameModeManager.instance.scoreEndCount >= 100)
         {
             levelClear.SetActive(true);
         }
@@ -205,8 +205,9 @@ public class HudScript : MonoBehaviour
             timerText.SetActive(false);
             timerCountText.SetActive(false);
             GameModeManager.instance.DestroyPickUpsWithTag();
+            GameModeManager.instance.DestroyPickUpsWithTag2();
             GameModeManager.instance.GroundSpawnPickupLevel1();
-            GameModeManager.instance.timerLevel1 = 5;
+            GameModeManager.instance.timerLevel1 = 120;
             GameModeManager.instance.levelActive = false;
             GameModeManager.instance.CutScene1Active();
             core.myAnim.SetTrigger("ResetTrig");

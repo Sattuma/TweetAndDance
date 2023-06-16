@@ -10,10 +10,8 @@ public class PlayerCollider : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("LevelTwo"))
         {
-            
             collision.gameObject.SetActive(false);
             move.onMove = false;
-
         }
     }
 

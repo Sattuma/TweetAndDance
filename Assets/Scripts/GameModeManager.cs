@@ -191,6 +191,12 @@ public class GameModeManager : MonoBehaviour
         for (int i = 0; i < pickupsInScene.Length; i++)
         { Destroy(pickupsInScene[i]); }
     }
+    public void DestroyPickUpsWithTag2()
+    {
+        pickupsInScene = GameObject.FindGameObjectsWithTag("NestObject");
+        for (int i = 0; i < pickupsInScene.Length; i++)
+        { Destroy(pickupsInScene[i]); }
+    }
 
     public void StopInvoke()
     {
