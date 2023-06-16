@@ -14,6 +14,8 @@ public class InputHandler : MonoBehaviour
     [SerializeField]private PlayerController playerController;
     [SerializeField]private Vector2 inputVector;
 
+    public PlayerCore core;
+
     [Header("Input Actions")]
     public InputAction abilityMovement;
     public InputAction abilityJump;

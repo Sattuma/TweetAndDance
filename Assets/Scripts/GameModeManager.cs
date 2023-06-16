@@ -157,14 +157,13 @@ public class GameModeManager : MonoBehaviour
         Instantiate(pickupPrefab[1], pickupSpawnPoints[2].transform.position, pickupSpawnPoints[2].transform.rotation);
         Instantiate(pickupPrefab[1], pickupSpawnPoints[3].transform.position, pickupSpawnPoints[3].transform.rotation);
         Instantiate(pickupPrefab[2], pickupSpawnPoints[4].transform.position, pickupSpawnPoints[4].transform.rotation);
-        Instantiate(pickupPrefab[2], pickupSpawnPoints[5].transform.position, pickupSpawnPoints[5].transform.rotation);
-        Instantiate(pickupPrefab[2], pickupSpawnPoints[6].transform.position, pickupSpawnPoints[6].transform.rotation);
+        Instantiate(pickupPrefab[3], pickupSpawnPoints[5].transform.position, pickupSpawnPoints[5].transform.rotation);
+        Instantiate(pickupPrefab[3], pickupSpawnPoints[6].transform.position, pickupSpawnPoints[6].transform.rotation);
         Instantiate(pickupPrefab[2], pickupSpawnPoints[7].transform.position, pickupSpawnPoints[7].transform.rotation);
         Instantiate(pickupPrefab[1], pickupSpawnPoints[8].transform.position, pickupSpawnPoints[8].transform.rotation);
         Instantiate(pickupPrefab[1], pickupSpawnPoints[9].transform.position, pickupSpawnPoints[9].transform.rotation);
         Instantiate(pickupPrefab[0], pickupSpawnPoints[10].transform.position, pickupSpawnPoints[10].transform.rotation);
         Instantiate(pickupPrefab[0], pickupSpawnPoints[11].transform.position, pickupSpawnPoints[11].transform.rotation);
-
     }
 
     public void StartInvokeRepeating()
@@ -175,14 +174,14 @@ public class GameModeManager : MonoBehaviour
 
     public void AirSpawnPickup1()
     {
-        Instantiate(pickupPrefab[(4)], pickupSpawnPointsAir[Random.Range(0,2)].transform.position, pickupSpawnPointsAir[Random.Range(0, 2)].transform.rotation);
-        Instantiate(pickupPrefab[(4)], pickupSpawnPointsAir[Random.Range(6,7)].transform.position, pickupSpawnPointsAir[Random.Range(6, 7)].transform.rotation);
+        Instantiate(pickupPrefab[(5)], pickupSpawnPointsAir[Random.Range(0,2)].transform.position, pickupSpawnPointsAir[Random.Range(0, 2)].transform.rotation);
+        Instantiate(pickupPrefab[(5)], pickupSpawnPointsAir[Random.Range(6,7)].transform.position, pickupSpawnPointsAir[Random.Range(6, 7)].transform.rotation);
 
     }
     public void AirSpawnPickup2()
     {
-        Instantiate(pickupPrefab[(5)], pickupSpawnPointsAir[Random.Range(3, 5)].transform.position, pickupSpawnPointsAir[Random.Range(3, 5)].transform.rotation);
-        Instantiate(pickupPrefab[(5)], pickupSpawnPointsAir[Random.Range(8, 10)].transform.position, pickupSpawnPointsAir[Random.Range(8, 10)].transform.rotation);
+        Instantiate(pickupPrefab[(6)], pickupSpawnPointsAir[Random.Range(3, 5)].transform.position, pickupSpawnPointsAir[Random.Range(3, 5)].transform.rotation);
+        Instantiate(pickupPrefab[(6)], pickupSpawnPointsAir[Random.Range(8, 10)].transform.position, pickupSpawnPointsAir[Random.Range(8, 10)].transform.rotation);
     }
 
     public void DestroyPickUpsWithTag()
@@ -202,8 +201,5 @@ public class GameModeManager : MonoBehaviour
     {
         CancelInvoke();
     }
-
-
-
 
 }
