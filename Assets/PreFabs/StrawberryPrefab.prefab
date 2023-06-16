@@ -250,7 +250,7 @@ GameObject:
   m_Component:
   - component: {fileID: 557834982200064027}
   - component: {fileID: 557834982200064026}
-  - component: {fileID: 5630321671568565687}
+  - component: {fileID: 6135829643912864709}
   m_Layer: 7
   m_Name: IMAGE
   m_TagString: Untagged
@@ -314,7 +314,7 @@ SpriteRenderer:
   m_SortingLayerID: 419954873
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f6ec83cd45fc374438dafff15cbe1b6e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9d48b3d45d903bb4f9b473d9838f7486, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -325,8 +325,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &5630321671568565687
-CapsuleCollider2D:
+--- !u!58 &6135829643912864709
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -338,6 +338,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.06550649, y: -0.31446153}
-  m_Size: {x: 4.254005, y: 5.7957}
-  m_Direction: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2.295
