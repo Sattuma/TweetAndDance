@@ -256,8 +256,10 @@ public class HudScript : MonoBehaviour
     public IEnumerator GameMode2Start()
     {
 
+        // tähän game active pääll kun kaikki tarvittava on redi
+        GameModeManager.instance.ainoSpawner.onMove = true;
+
         yield return new WaitUntil(() => GameModeManager.instance.levelActive == true);
-        //tapahtumat kaikissa muissa scripteissä redi nii sit vasta tästä eteenpäin
         yield return new WaitForSeconds(2f);
         noteLineImage.SetActive(true);
         pointsText.SetActive(true);

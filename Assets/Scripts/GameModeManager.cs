@@ -31,6 +31,8 @@ public class GameModeManager : MonoBehaviour
     public GameObject[] pickupSpawnPointsAir;
     public GameObject[] pickupsInScene;
 
+    public AinoSpawner ainoSpawner;
+
     public enum GameMode
     {
         cutScene1,
@@ -56,7 +58,6 @@ public class GameModeManager : MonoBehaviour
 
     private void Start()
     {
-
         GroundSpawnPickupLevel1();
 
 
