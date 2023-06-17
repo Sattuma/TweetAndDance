@@ -39,7 +39,7 @@ public class CloudGeneratorScript : MonoBehaviour
         float startY = UnityEngine.Random.Range(startPos.y - minY, startPos.y + maxY);
         cloud.transform.position = new Vector3(startPos.x, startY, startPos.z);
 
-        float scale = UnityEngine.Random.Range(0.8f, 1.2f);
+        float scale = UnityEngine.Random.Range(0.8f, 1.5f);
         cloud.transform.localScale = new Vector2(scale, scale);
 
         float speed = UnityEngine.Random.Range(minSpeed, maxSpeed);
@@ -59,7 +59,7 @@ public class CloudGeneratorScript : MonoBehaviour
 
     void Prewarm()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 15; i++)
         {
             Vector3 spawnPos = startPos + Vector3.right * (i * 2);
             SpawnCloud(spawnPos);
