@@ -257,7 +257,7 @@ public class HudScript : MonoBehaviour
     {
 
         // tähän game active pääll kun kaikki tarvittava on redi
-        GameModeManager.instance.ainoSpawner.onMove = true;
+        //GameModeManager.instance.ainoSpawner.onMove = true;
 
         yield return new WaitUntil(() => GameModeManager.instance.levelActive == true);
         yield return new WaitForSeconds(2f);

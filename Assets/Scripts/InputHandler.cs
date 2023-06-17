@@ -122,6 +122,14 @@ public class InputHandler : MonoBehaviour
     {
         //tieto kulkeutuu napin painautuessa interactscriptiin ja siellä olevaan functioon
         interactScript.InteractActionOne();
+
+        if(GameModeManager.instance.levelActive != true && GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1)
+        {
+            if(interactScript.collectableObj != null)
+            {
+                Destroy(interactScript.collectableObj);
+            }
+        }
     }
     private void InteractInputCancel(InputAction.CallbackContext obj)
     {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameModeManager : MonoBehaviour
 {
@@ -31,7 +32,9 @@ public class GameModeManager : MonoBehaviour
     public GameObject[] pickupSpawnPointsAir;
     public GameObject[] pickupsInScene;
 
-    public AinoSpawner ainoSpawner;
+    //public AinoSpawner ainoSpawner;
+
+    
 
     public enum GameMode
     {
@@ -54,13 +57,20 @@ public class GameModeManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(instance);
         }
+ 
     }
 
     private void Start()
     {
         GroundSpawnPickupLevel1();
+    }
 
-
+    public void OnLevelWasLoaded(int level)
+    {
+        if (level == 1)
+        {
+            GroundSpawnPickupLevel1();
+        }
     }
 
     //TÄHÄN JOKU PAREMPI SYSTEEMI SAISKO UPDATESTA CHECKIN POIS JA MUUTA KAUTTA?

@@ -6,7 +6,7 @@ public class AinoSpawner : MonoBehaviour
 {
 
     public GameObject ainoPrefab;
-    public Animator anim;
+    //public Animator anim;
 
     public GameObject startPosLevel2, endPosLevel2, startPosLevel3, endPosLevel3;
 
@@ -22,7 +22,7 @@ public class AinoSpawner : MonoBehaviour
 
     private void Start()
     {
-        anim = ainoPrefab.GetComponentInChildren<Animator>();
+        //anim = ainoPrefab.GetComponentInChildren<Animator>();
     }
 
     private void FixedUpdate()
@@ -36,13 +36,13 @@ public class AinoSpawner : MonoBehaviour
 
     public void MoveToEndPosLevel2()
     {
-        anim.SetTrigger("FlyDown");
+        //anim.SetTrigger("FlyDown");
         ainoPrefab.transform.position = Vector3.Lerp(ainoPrefab.transform.position, endPosLevel2.transform.position, 1f * Time.deltaTime);
     }
     
     public void StopMovement()
     {
-        anim.SetTrigger("Reset");
+        //anim.SetTrigger("Reset");
     }
 
     public void SpawnAinoLevel3()
