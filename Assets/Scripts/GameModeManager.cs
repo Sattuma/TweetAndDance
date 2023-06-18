@@ -18,6 +18,10 @@ public class GameModeManager : MonoBehaviour
     public GameMode activeGameMode;
 
     public bool levelActive;
+    public bool ainoOnMove;
+
+
+
     public bool isPaused;
 
     public bool level2Retry;
@@ -25,6 +29,7 @@ public class GameModeManager : MonoBehaviour
     public float timerLevel1;
 
     public int scoreLevel2 = 0;
+    public int scoreLevel2Target = 0;
     public int scoreEndCount = 0;
     public int scoreEndCountTarget = 5;
     public int scoreLevel3 = 0;

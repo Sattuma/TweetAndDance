@@ -178,7 +178,7 @@ public class HudScript : MonoBehaviour
     }
     public void LevelTwoCleared()
     {
-        if (GameModeManager.instance.scoreLevel2 >= 1000 && GameModeManager.instance.scoreEndCount >= GameModeManager.instance.scoreEndCountTarget)
+        if (GameModeManager.instance.scoreLevel2 >= GameModeManager.instance.scoreEndCountTarget && GameModeManager.instance.scoreEndCount >= GameModeManager.instance.scoreEndCountTarget)
         {
             GameModeManager.instance.LevelTwoCleared();
             levelClear.SetActive(true);
@@ -305,9 +305,12 @@ public class HudScript : MonoBehaviour
     {
 
         // tähän game active pääll kun kaikki tarvittava on redi
-        //GameModeManager.instance.ainoSpawner.onMove = true;
+        yield return new WaitForSeconds(2f);
+        GameModeManager.instance.ainoOnMove = true;
 
-        yield return new WaitUntil(() => GameModeManager.instance.levelActive == true);
+        //yield return new WaitUntil(() => GameModeManager.instance.levelActive == true);
+        yield return new WaitForSeconds(2f);
+        GameModeManager.instance.levelActive = true;
         yield return new WaitForSeconds(2f);
         noteLineImage.SetActive(true);
         pointsText.SetActive(true);
