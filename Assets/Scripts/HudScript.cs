@@ -19,6 +19,7 @@ public class HudScript : MonoBehaviour
     public GameObject gameOverHud;
     public NestScript nest;
     public PlayerCore core;
+    public Aino_Movement aino;
 
     public GameObject level1Info;
     public GameObject level2Info;
@@ -57,6 +58,7 @@ public class HudScript : MonoBehaviour
         nest.arrowObj.SetActive(true);
         nest.arrow2Obj.SetActive(true);
         pauseButton.SetActive(false);
+        AudioManager.instance.PlayMusicFX(1);
     }
     void Update()
     {
@@ -178,10 +180,11 @@ public class HudScript : MonoBehaviour
     }
     public void LevelTwoCleared()
     {
-        if (GameModeManager.instance.scoreLevel2 >= GameModeManager.instance.scoreEndCountTarget && GameModeManager.instance.scoreEndCount >= GameModeManager.instance.scoreEndCountTarget)
+        if (GameModeManager.instance.scoreLevel2 >= 2000 && GameModeManager.instance.scoreEndCount >= GameModeManager.instance.scoreEndCountTarget)
         {
             GameModeManager.instance.LevelTwoCleared();
             levelClear.SetActive(true);
+            aino.WinAnim();
         }
         else if(GameModeManager.instance.scoreEndCount >= GameModeManager.instance.scoreEndCountTarget)
         {
@@ -202,6 +205,7 @@ public class HudScript : MonoBehaviour
             timerCountText.SetActive(false);
             GameModeManager.instance.CutScene2Active();
             core.myAnim.SetTrigger("ResetTrig");
+            AudioManager.instance.PlayMusicFX(3);
         }
 
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level2)
@@ -242,6 +246,7 @@ public class HudScript : MonoBehaviour
             nest.arrowObj.SetActive(true);
             nest.arrow2Obj.SetActive(true);
             pauseButton.SetActive(false);
+            
 
             if (GameModeManager.instance.isPaused)
             {
@@ -267,9 +272,12 @@ public class HudScript : MonoBehaviour
             UpdateScore();
             GameModeManager.instance.CutScene2Active();
             core.myAnim.SetTrigger("ResetTrig");
-            core.myAnim.SetTrigger("Level1");
             core.myAnim.SetFloat("x", 0);
             pauseButton.SetActive(false);
+            aino.anim.SetTrigger("Reset");
+            aino.isFailed = false;
+            core.myAnim.SetTrigger("Level1");
+            AudioManager.instance.PlayMusicFX(3);
 
             if (GameModeManager.instance.isPaused)
             {
@@ -318,6 +326,7 @@ public class HudScript : MonoBehaviour
         yield return new WaitForSeconds(2f);
         core.myAnim.SetTrigger("Level2");
         noteLine.InvokeStartLevel2();
+        AudioManager.instance.PlayMusicFX(2);
     }
 
     public void PauseMenu()

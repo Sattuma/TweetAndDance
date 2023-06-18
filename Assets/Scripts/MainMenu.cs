@@ -15,10 +15,12 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1;
         AudioManager.instance.PlayMusicFX(0);
     }
     public void StartGame(string levelIndex)
     {
+        AudioManager.instance.musicSource.Stop();
         GameModeManager.instance.levelActive = false;
         GameModeManager.instance.activeGameMode = GameModeManager.GameMode.cutScene1;
         SceneManager.LoadScene(levelIndex);

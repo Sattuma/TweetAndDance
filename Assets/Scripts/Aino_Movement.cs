@@ -10,10 +10,11 @@ public class Aino_Movement : MonoBehaviour
     public GameObject startPosLevel3;
     public GameObject endPosLevel3;
 
+    public GameObject startPos2Collider;
     public GameObject endPos2Collider;
 
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private Animator anim;
+    public Animator anim;
 
     [SerializeField] float transitionSpeed;
 
@@ -35,6 +36,7 @@ public class Aino_Movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponentInChildren<Animator>();
         transform.position = startPosLevel2.transform.position;
+        startPos2Collider.SetActive(false);
 
         GameModeManager.Fail += FailedBool;
         GameModeManager.Fail += FailAnim;
@@ -43,7 +45,7 @@ public class Aino_Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1 || GameModeManager.instance.activeGameMode == GameModeManager.GameMode.cutScene1)
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1 || GameModeManager.instance.activeGameMode == GameModeManager.GameMode.cutScene1 || GameModeManager.instance.activeGameMode == GameModeManager.GameMode.cutScene2)
         {
             transform.position = startPosLevel2.transform.position;
         }
@@ -65,6 +67,7 @@ public class Aino_Movement : MonoBehaviour
 
     public void MoveEndPos2()
     {
+
         endPos2Collider.SetActive(true);
         transform.position = Vector3.Lerp(transform.position, endPosLevel2.transform.position, transitionSpeed * Time.deltaTime);
         anim.SetBool("FlyDown", true);

@@ -388,7 +388,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1189796644}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.360001, y: -3.46, z: 0.054748513}
+  m_LocalPosition: {x: -10.86, y: -3.46, z: 0.054748513}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -878,9 +878,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeGameMode: 0
   levelActive: 0
+  ainoOnMove: 0
+  isPaused: 0
   level2Retry: 0
   timerLevel1: 120
   scoreLevel2: 0
+  scoreLevel2Target: 50
   scoreEndCount: 0
   scoreEndCountTarget: 5
   scoreLevel3: 0

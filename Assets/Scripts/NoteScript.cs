@@ -31,7 +31,7 @@ public class NoteScript : MonoBehaviour
             {
                 GameModeManager.instance.AddScore(10);
                 Instantiate(earlyPointFX, transform.position, transform.rotation);
-                Destroy(gameObject,0.2f);
+                Destroy(gameObject);
                 GameModeManager.instance.scoreEndCount += 1;
                 RightNote?.Invoke();
             }
@@ -40,7 +40,7 @@ public class NoteScript : MonoBehaviour
             {
                 GameModeManager.instance.AddScore(10);
                 Instantiate(latePointFX, transform.position, transform.rotation);
-                Destroy(gameObject, 0.2f);
+                Destroy(gameObject);
                 GameModeManager.instance.scoreEndCount += 1;
 
                 RightNote?.Invoke();
@@ -50,7 +50,7 @@ public class NoteScript : MonoBehaviour
             {
                 GameModeManager.instance.AddScore(50);
                 Instantiate(perfectPointFX, transform.position, transform.rotation);
-                Destroy(gameObject,0.2f);
+                Destroy(gameObject);
                 GameModeManager.instance.scoreEndCount += 1;
 
                 RightNote?.Invoke();
