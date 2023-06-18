@@ -30,8 +30,8 @@ public class NoteScript : MonoBehaviour
             if(isEarly && isPerfect)
             {
                 GameModeManager.instance.AddScore(10);
-                Instantiate(earlyPointFX, collision.transform.position, collision.transform.rotation);
-                Destroy(gameObject);
+                Instantiate(earlyPointFX, transform.position, transform.rotation);
+                Destroy(gameObject,0.2f);
                 GameModeManager.instance.scoreEndCount += 1;
                 RightNote?.Invoke();
             }
@@ -39,8 +39,8 @@ public class NoteScript : MonoBehaviour
             if (isLate && isPerfect)
             {
                 GameModeManager.instance.AddScore(10);
-                Instantiate(latePointFX, collision.transform.position, collision.transform.rotation);
-                Destroy(gameObject);
+                Instantiate(latePointFX, transform.position, transform.rotation);
+                Destroy(gameObject, 0.2f);
                 GameModeManager.instance.scoreEndCount += 1;
 
                 RightNote?.Invoke();
@@ -49,8 +49,8 @@ public class NoteScript : MonoBehaviour
             if (isPerfect)
             {
                 GameModeManager.instance.AddScore(50);
-                Instantiate(perfectPointFX, collision.transform.position, collision.transform.rotation);
-                Destroy(gameObject);
+                Instantiate(perfectPointFX, transform.position, transform.rotation);
+                Destroy(gameObject,0.2f);
                 GameModeManager.instance.scoreEndCount += 1;
 
                 RightNote?.Invoke();

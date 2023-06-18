@@ -437,8 +437,9 @@ MonoBehaviour:
   isPerfect: 0
   isLate: 0
   earlyPointFX: {fileID: 5911428068783535400, guid: 5548111cd18478246a2668b70855e6f0, type: 3}
-  latePointFX: {fileID: 5911428068783535400, guid: a6413651bd0b13a43a409d08420fea9c, type: 3}
+  latePointFX: {fileID: 5911428068783535400, guid: 5548111cd18478246a2668b70855e6f0, type: 3}
   perfectPointFX: {fileID: 5911428068783535400, guid: 58a774e1b331e2f4a8c17299928df5cc, type: 3}
+  core: {fileID: 0}
   rb: {fileID: 0}
 --- !u!58 &-6197934179067358118
 CircleCollider2D:
