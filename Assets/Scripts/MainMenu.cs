@@ -12,11 +12,17 @@ public class MainMenu : MonoBehaviour
     public GameObject settingButton;
     public GameObject quitButton;
 
+
+    private void Start()
+    {
+        AudioManager.instance.PlayMusicFX(0);
+    }
     public void StartGame(string levelIndex)
     {
         GameModeManager.instance.levelActive = false;
         GameModeManager.instance.activeGameMode = GameModeManager.GameMode.cutScene1;
         SceneManager.LoadScene(levelIndex);
+
     }
 
     public void OpenLevels()

@@ -22,6 +22,7 @@ public class NoteLineScript : MonoBehaviour
 
     public void InvokeStartLevel2()
     {
+        Debug.Log("invoke alkaa");
         InvokeRepeating("NoteSpawn1", 2f, 4f);
         InvokeRepeating("NoteSpawn2", 1f, 4f);
         InvokeRepeating("NoteSpawn3", 1.5f, 2f);

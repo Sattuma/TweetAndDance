@@ -345,6 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputVector: {x: 0, y: 0}
+  core: {fileID: 7344619329279733100}
   abilityMovement:
     m_Name: Ability Movement
     m_Type: 0

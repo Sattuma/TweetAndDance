@@ -71,6 +71,15 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""128cb87a-4e1c-4f04-9bc4-4833ff2949e6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -282,6 +291,17 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                     ""action"": ""Interact_Three"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6a1d8769-27ac-4be4-923f-65003a7d6fc6"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -295,6 +315,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         m_Player_Interact_One = m_Player.FindAction("Interact_One", throwIfNotFound: true);
         m_Player_Interact_Two = m_Player.FindAction("Interact_Two", throwIfNotFound: true);
         m_Player_Interact_Three = m_Player.FindAction("Interact_Three", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -361,6 +382,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Interact_One;
     private readonly InputAction m_Player_Interact_Two;
     private readonly InputAction m_Player_Interact_Three;
+    private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
         private @PlayerController m_Wrapper;
@@ -370,6 +392,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         public InputAction @Interact_One => m_Wrapper.m_Player_Interact_One;
         public InputAction @Interact_Two => m_Wrapper.m_Player_Interact_Two;
         public InputAction @Interact_Three => m_Wrapper.m_Player_Interact_Three;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -394,6 +417,9 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             @Interact_Three.started += instance.OnInteract_Three;
             @Interact_Three.performed += instance.OnInteract_Three;
             @Interact_Three.canceled += instance.OnInteract_Three;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -413,6 +439,9 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             @Interact_Three.started -= instance.OnInteract_Three;
             @Interact_Three.performed -= instance.OnInteract_Three;
             @Interact_Three.canceled -= instance.OnInteract_Three;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -437,5 +466,6 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         void OnInteract_One(InputAction.CallbackContext context);
         void OnInteract_Two(InputAction.CallbackContext context);
         void OnInteract_Three(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }

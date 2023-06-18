@@ -18,6 +18,7 @@ public class GameModeManager : MonoBehaviour
     public GameMode activeGameMode;
 
     public bool levelActive;
+    public bool isPaused;
 
     public bool level2Retry;
 
@@ -25,6 +26,7 @@ public class GameModeManager : MonoBehaviour
 
     public int scoreLevel2 = 0;
     public int scoreEndCount = 0;
+    public int scoreEndCountTarget = 5;
     public int scoreLevel3 = 0;
 
     public GameObject[] pickupPrefab;
@@ -76,11 +78,16 @@ public class GameModeManager : MonoBehaviour
     //TÄHÄN JOKU PAREMPI SYSTEEMI SAISKO UPDATESTA CHECKIN POIS JA MUUTA KAUTTA?
     private void Update()
     {
-        if (scoreEndCount >= 5)
+        if (scoreEndCount >= scoreEndCountTarget)
         {
             levelActive = false;
-            Level2End?.Invoke();
+            scoreEndCount = 0;
         }
+    }
+
+    public void InvokeLevelFail()
+    {
+        Fail?.Invoke();
     }
 
     public void InvokeLevel1End()
@@ -150,20 +157,18 @@ public class GameModeManager : MonoBehaviour
 
     public void GroundSpawnPickupLevel1()
     {
-        Instantiate(pickupPrefab[Random.Range(0, pickupPrefab.Length)], pickupSpawnPoints[0].transform.position,pickupSpawnPoints[0].transform.rotation);
-        Instantiate(pickupPrefab[Random.Range(0, pickupPrefab.Length)], pickupSpawnPoints[1].transform.position,pickupSpawnPoints[1].transform.rotation);
-        Instantiate(pickupPrefab[Random.Range(0, pickupPrefab.Length)], pickupSpawnPoints[2].transform.position,pickupSpawnPoints[2].transform.rotation);
-        Instantiate(pickupPrefab[Random.Range(0, pickupPrefab.Length)], pickupSpawnPoints[3].transform.position,pickupSpawnPoints[3].transform.rotation);
-        Instantiate(pickupPrefab[Random.Range(0, pickupPrefab.Length)], pickupSpawnPoints[4].transform.position,pickupSpawnPoints[4].transform.rotation);
-        Instantiate(pickupPrefab[Random.Range(0, pickupPrefab.Length)], pickupSpawnPoints[5].transform.position,pickupSpawnPoints[5].transform.rotation);
-        Instantiate(pickupPrefab[Random.Range(0, pickupPrefab.Length)], pickupSpawnPoints[6].transform.position, pickupSpawnPoints[6].transform.rotation);
-        Instantiate(pickupPrefab[Random.Range(0, pickupPrefab.Length)], pickupSpawnPoints[7].transform.position, pickupSpawnPoints[7].transform.rotation);
-        Instantiate(pickupPrefab[Random.Range(0, pickupPrefab.Length)], pickupSpawnPoints[8].transform.position, pickupSpawnPoints[8].transform.rotation);
-        Instantiate(pickupPrefab[Random.Range(0, pickupPrefab.Length)], pickupSpawnPoints[9].transform.position, pickupSpawnPoints[9].transform.rotation);
-        Instantiate(pickupPrefab[Random.Range(0, pickupPrefab.Length)], pickupSpawnPoints[10].transform.position, pickupSpawnPoints[10].transform.rotation);
-        Instantiate(pickupPrefab[Random.Range(0, pickupPrefab.Length)], pickupSpawnPoints[11].transform.position, pickupSpawnPoints[11].transform.rotation);
+        Instantiate(pickupPrefab[Random.Range(0, 6)], pickupSpawnPoints[1].transform.position,pickupSpawnPoints[1].transform.rotation);
+        Instantiate(pickupPrefab[Random.Range(0, 6)], pickupSpawnPoints[2].transform.position,pickupSpawnPoints[2].transform.rotation);
+        Instantiate(pickupPrefab[Random.Range(0, 6)], pickupSpawnPoints[3].transform.position,pickupSpawnPoints[3].transform.rotation);
+        Instantiate(pickupPrefab[Random.Range(0, 6)], pickupSpawnPoints[4].transform.position,pickupSpawnPoints[4].transform.rotation);
+        Instantiate(pickupPrefab[Random.Range(0, 6)], pickupSpawnPoints[5].transform.position,pickupSpawnPoints[5].transform.rotation);
+        Instantiate(pickupPrefab[Random.Range(0, 6)], pickupSpawnPoints[6].transform.position, pickupSpawnPoints[6].transform.rotation);
+        Instantiate(pickupPrefab[Random.Range(0, 6)], pickupSpawnPoints[7].transform.position, pickupSpawnPoints[7].transform.rotation);
+        Instantiate(pickupPrefab[Random.Range(0, 6)], pickupSpawnPoints[8].transform.position, pickupSpawnPoints[8].transform.rotation);
+        Instantiate(pickupPrefab[Random.Range(0, 6)], pickupSpawnPoints[9].transform.position, pickupSpawnPoints[9].transform.rotation);
+        Instantiate(pickupPrefab[Random.Range(0, 6)], pickupSpawnPoints[10].transform.position, pickupSpawnPoints[10].transform.rotation);
 
-        Instantiate(pickupPrefab[0], pickupSpawnPoints[0].transform.position, pickupSpawnPoints[0].transform.rotation);
+        Instantiate(pickupPrefab[7], pickupSpawnPoints[0].transform.position, pickupSpawnPoints[0].transform.rotation);
         Instantiate(pickupPrefab[0], pickupSpawnPoints[1].transform.position, pickupSpawnPoints[1].transform.rotation);
         Instantiate(pickupPrefab[1], pickupSpawnPoints[2].transform.position, pickupSpawnPoints[2].transform.rotation);
         Instantiate(pickupPrefab[1], pickupSpawnPoints[3].transform.position, pickupSpawnPoints[3].transform.rotation);
@@ -174,7 +179,7 @@ public class GameModeManager : MonoBehaviour
         Instantiate(pickupPrefab[1], pickupSpawnPoints[8].transform.position, pickupSpawnPoints[8].transform.rotation);
         Instantiate(pickupPrefab[1], pickupSpawnPoints[9].transform.position, pickupSpawnPoints[9].transform.rotation);
         Instantiate(pickupPrefab[0], pickupSpawnPoints[10].transform.position, pickupSpawnPoints[10].transform.rotation);
-        Instantiate(pickupPrefab[0], pickupSpawnPoints[11].transform.position, pickupSpawnPoints[11].transform.rotation);
+        Instantiate(pickupPrefab[7], pickupSpawnPoints[11].transform.position, pickupSpawnPoints[11].transform.rotation);
     }
 
     public void StartInvokeRepeating()

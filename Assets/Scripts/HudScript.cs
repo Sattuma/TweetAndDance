@@ -13,6 +13,7 @@ public class HudScript : MonoBehaviour
     public GameObject timerCountText;
     public GameObject pointsCountText;
     public GameObject[] countDown = new GameObject[3];
+    public GameObject pauseMenu;
     public GameObject levelClear;
     public GameObject gameOverHud;
     public NestScript nest;
@@ -34,6 +35,7 @@ public class HudScript : MonoBehaviour
         GameModeManager.Level2Score += UpdateScore;
 
         InputHandler.InfoBoxAnim += StartCountForLevelInfoOff;
+        InputHandler.PauseOn += PauseMenu;
 
         GameModeManager.Level1End += LevelOneCleared;
         GameModeManager.Level2End += LevelTwoCleared;
@@ -61,6 +63,8 @@ public class HudScript : MonoBehaviour
             FailedHud();
             levelClear.SetActive(false);
             CancelEndGameHud();
+            GameModeManager.instance.InvokeLevelFail();
+            GameModeManager.instance.timerLevel1 = 0.1f;
         }
 
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1)
@@ -155,13 +159,15 @@ public class HudScript : MonoBehaviour
     }
     public void LevelTwoCleared()
     {
-        if (GameModeManager.instance.scoreLevel2 >= 50 && GameModeManager.instance.scoreEndCount >= 100)
+        if (GameModeManager.instance.scoreLevel2 >= 50 && GameModeManager.instance.scoreEndCount >= GameModeManager.instance.scoreEndCountTarget)
         {
+            
             levelClear.SetActive(true);
         }
         else
         {
             gameOverHud.SetActive(true);
+            GameModeManager.instance.InvokeLevelFail();
         }
     }
 
@@ -198,9 +204,11 @@ public class HudScript : MonoBehaviour
     {
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1)
         {
+            StopAllCoroutines();
             //SceneManager.LoadScene("GameLevel");
             levelClear.SetActive(false);
             gameOverHud.SetActive(false);
+            pauseMenu.SetActive(false);
             level1Info.SetActive(true);
             timerText.SetActive(false);
             timerCountText.SetActive(false);
@@ -211,10 +219,19 @@ public class HudScript : MonoBehaviour
             GameModeManager.instance.levelActive = false;
             GameModeManager.instance.CutScene1Active();
             core.myAnim.SetTrigger("ResetTrig");
+            core.myAnim.SetFloat("x", 0);
+
+            if(GameModeManager.instance.isPaused)
+            {
+                PauseMenu();
+                
+            }
+
         }
 
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level2)
         {
+            StopAllCoroutines();
             GameModeManager.instance.level2Retry = true;
             levelClear.SetActive(false);
             gameOverHud.SetActive(false);
@@ -228,6 +245,13 @@ public class HudScript : MonoBehaviour
             UpdateScore();
             GameModeManager.instance.CutScene2Active();
             core.myAnim.SetTrigger("ResetTrig");
+            core.myAnim.SetFloat("x", 0);
+
+            if (GameModeManager.instance.isPaused)
+            {
+                PauseMenu();
+                
+            }
         }
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level3)
         {
@@ -266,6 +290,23 @@ public class HudScript : MonoBehaviour
         pointsCountText.SetActive(true);
         yield return new WaitForSeconds(2f);
         noteLine.InvokeStartLevel2();
+    }
+
+    public void PauseMenu()
+    {
+        if (Time.timeScale == 1)
+        {
+            GameModeManager.instance.isPaused = true;
+            pauseMenu.SetActive(true);
+            Time.timeScale = 0;
+        }
+        else
+        {
+            GameModeManager.instance.isPaused = false;
+            pauseMenu.SetActive(false);
+            Time.timeScale = 1;
+        }
+
     }
 
 }

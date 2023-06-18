@@ -54,7 +54,7 @@ public class PlayerCore : MonoBehaviour
 
     public void LevelFail()
     {
-        Debug.Log("ANIM PYÖRIMÄÄN koska kuolit");
+        myAnim.SetTrigger("LoseTrig");
     }
 
 

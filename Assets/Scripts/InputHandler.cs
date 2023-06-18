@@ -9,6 +9,7 @@ public class InputHandler : MonoBehaviour
 {
     public delegate void UiAnim();
     public static UiAnim InfoBoxAnim;
+    public static UiAnim PauseOn;
 
 
     [SerializeField]private PlayerController playerController;
@@ -22,6 +23,7 @@ public class InputHandler : MonoBehaviour
     public InputAction abilityInteract_one;
     public InputAction abilityInteract_two;
     public InputAction abilityInteract_three;
+    public InputAction pause;
 
     [Header("Ability Scripts")]
     public Ability_Movement moveScript;
@@ -38,6 +40,7 @@ public class InputHandler : MonoBehaviour
         abilityInteract_one = playerController.Player.Interact_One;
         abilityInteract_two = playerController.Player.Interact_Two;
         abilityInteract_three = playerController.Player.Interact_Three;
+        pause = playerController.Player.Pause;
     }
 
     private void OnEnable()
@@ -63,7 +66,12 @@ public class InputHandler : MonoBehaviour
         //enabloidaan input action Interact_Three Input assetista ja laitetaan komento kun se painetaan => functio InteractInputThree alempana
         abilityInteract_three.performed += InteractInputThree;
         abilityInteract_three.Enable();
+
+        pause.performed += Pause;
+        pause.Enable();
     }
+
+
 
     private void OnDisable()
     {
@@ -72,6 +80,20 @@ public class InputHandler : MonoBehaviour
         abilityInteract_one.Disable();
         abilityInteract_two.Disable();
         abilityInteract_three.Disable();
+        pause.Disable();
+    }
+
+    private void Pause(InputAction.CallbackContext obj)
+    {
+        if(GameModeManager.instance.activeGameMode != GameModeManager.GameMode.cutScene1)
+        {
+            PauseOn?.Invoke();
+        }
+        else
+        {
+            Debug.Log("Do nothing");
+        }
+
     }
 
     private void FixedUpdate()
@@ -147,6 +169,8 @@ public class InputHandler : MonoBehaviour
         //tieto kulkeutuu napin painautuessa interactscriptiin ja siellä olevaan functioon
         interactScript.InteractActionThree();
     }
+
+
 
 }
 

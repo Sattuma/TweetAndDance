@@ -882,6 +882,7 @@ MonoBehaviour:
   timerLevel1: 120
   scoreLevel2: 0
   scoreEndCount: 0
+  scoreEndCountTarget: 5
   scoreLevel3: 0
   pickupPrefab:
   - {fileID: 349161090463403962, guid: 6590bcc23d1632649b4258db8ed5aae2, type: 3}
@@ -891,6 +892,7 @@ MonoBehaviour:
   - {fileID: 7163180491361390622, guid: 748d03ea9c7c9f04194bd8a8e7ad32ab, type: 3}
   - {fileID: 9215853180304335118, guid: 4768e5ae20ccedb4fafe000bd679a16b, type: 3}
   - {fileID: 7627667589758524691, guid: 636fe28948eafea4b91ce7fafb257fb0, type: 3}
+  - {fileID: 9215853180304335118, guid: feaf80386f74bc6488ca974793a30aa2, type: 3}
   pickupSpawnPoints:
   - {fileID: 1189796644}
   - {fileID: 1513912476}
