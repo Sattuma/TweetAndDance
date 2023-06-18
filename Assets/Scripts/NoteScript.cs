@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class NoteScript : MonoBehaviour
 {
+    public delegate void SingAnim();
+    public static event SingAnim RightNote;
+    public static event SingAnim WrongNote;
+
     public float currentSpeed;
     public float[] speed = new float[5];
 
@@ -15,7 +19,7 @@ public class NoteScript : MonoBehaviour
     public ParticleSystem latePointFX;
     public ParticleSystem perfectPointFX;
 
-
+    public PlayerCore core;
 
     public Rigidbody2D rb;
 
@@ -26,29 +30,41 @@ public class NoteScript : MonoBehaviour
             if(isEarly && isPerfect)
             {
                 GameModeManager.instance.AddScore(10);
-                Instantiate(earlyPointFX, transform.position, transform.rotation);
+                Instantiate(earlyPointFX, collision.transform.position, collision.transform.rotation);
                 Destroy(gameObject);
                 GameModeManager.instance.scoreEndCount += 1;
+                RightNote?.Invoke();
             }
 
             if (isLate && isPerfect)
             {
                 GameModeManager.instance.AddScore(10);
-                Instantiate(latePointFX, transform.position, transform.rotation);
+                Instantiate(latePointFX, collision.transform.position, collision.transform.rotation);
                 Destroy(gameObject);
                 GameModeManager.instance.scoreEndCount += 1;
-            }
-            if (isEarly || isLate)
-            {
+
+                RightNote?.Invoke();
 
             }
-            if(isPerfect)
+            if (isPerfect)
             {
                 GameModeManager.instance.AddScore(50);
-                Instantiate(perfectPointFX, transform.position, transform.rotation);
+                Instantiate(perfectPointFX, collision.transform.position, collision.transform.rotation);
                 Destroy(gameObject);
                 GameModeManager.instance.scoreEndCount += 1;
+
+                RightNote?.Invoke();
+;
             }
+
+            if (isEarly && !isPerfect || isLate && !isPerfect)
+            {
+
+                Destroy(gameObject);
+                WrongNote?.Invoke();
+
+            }
+
             
         }
         if (collision.gameObject.CompareTag("Goal"))

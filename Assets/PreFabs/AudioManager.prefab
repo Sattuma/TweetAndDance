@@ -434,9 +434,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuFX: []
   characterFX:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 84defbbb54634c04da357c6c76ba0535, type: 3}
+  - {fileID: 8300000, guid: aea967427ac5bc842ae1e3ef6e47c78d, type: 3}
+  - {fileID: 8300000, guid: f94accfe123d13448ace33cf4984ef4b, type: 3}
   - {fileID: 0}
   soundFX:
   - {fileID: 0}
@@ -444,8 +444,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   musicFX:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 9d40199105eab5e4e9991669da0b47fe, type: 3}
+  - {fileID: 8300000, guid: 72e98c7191eef5947bc6e660002e8ffc, type: 3}
   - {fileID: 0}
   menuFXSource: {fileID: 0}
   characterFXSource: {fileID: 0}

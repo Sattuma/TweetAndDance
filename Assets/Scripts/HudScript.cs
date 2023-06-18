@@ -14,6 +14,7 @@ public class HudScript : MonoBehaviour
     public GameObject pointsCountText;
     public GameObject[] countDown = new GameObject[3];
     public GameObject pauseMenu;
+    public GameObject pauseButton;
     public GameObject levelClear;
     public GameObject gameOverHud;
     public NestScript nest;
@@ -27,6 +28,8 @@ public class HudScript : MonoBehaviour
     public TextMeshProUGUI timerCountdown;
     public HudScript hud;
     public GameObject aSync;
+
+    public bool isCountingLevel1;
 
     public NoteLineScript noteLine;
 
@@ -48,6 +51,12 @@ public class HudScript : MonoBehaviour
         level1Info.SetActive(true);
         timerText.SetActive(false);
         timerCountText.SetActive(false);
+        nest.nestAnim.SetBool("Flash", true);
+        nest.arrowAnim.SetBool("Flash", true);
+        nest.arrow2Anim.SetBool("Flash", true);
+        nest.arrowObj.SetActive(true);
+        nest.arrow2Obj.SetActive(true);
+        pauseButton.SetActive(false);
     }
     void Update()
     {
@@ -81,6 +90,12 @@ public class HudScript : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(1f);
         LevelInfoOff();
+        pauseButton.SetActive(true);
+        nest.nestAnim.SetBool("Flash", false);
+        nest.arrowAnim.SetBool("Flash",false);
+        nest.arrow2Anim.SetBool("Flash", false);
+        nest.arrowObj.SetActive(false);
+        nest.arrow2Obj.SetActive(false);
     }
     //ALL LEVELS - LEVELINFO IN THE BEGINNING
     public void LevelInfoOff()
@@ -122,6 +137,7 @@ public class HudScript : MonoBehaviour
     }
     public IEnumerator LevelEndCountOne()
     {
+        isCountingLevel1 = true;
         yield return new WaitForSecondsRealtime(0.2f);
         countDown[0].SetActive(true);
         yield return new WaitForSecondsRealtime(1f);
@@ -133,10 +149,12 @@ public class HudScript : MonoBehaviour
         yield return new WaitForSecondsRealtime(1f);
         countDown[2].SetActive(false);
         SuccessMenuOnLevel1();
+        isCountingLevel1 = false;
     }
     public void CancelEndGameHud()
     {
         StopAllCoroutines();
+        isCountingLevel1 = false;
         countDown[0].SetActive(false);
         countDown[1].SetActive(false);
         countDown[2].SetActive(false);
@@ -144,6 +162,7 @@ public class HudScript : MonoBehaviour
     public void SuccessMenuOnLevel1()
     {
         levelClear.SetActive(true);
+        pauseButton.SetActive(false);
         GameModeManager.instance.levelActive = false;
         GameModeManager.instance.LevelOneCleared();
     }
@@ -159,12 +178,12 @@ public class HudScript : MonoBehaviour
     }
     public void LevelTwoCleared()
     {
-        if (GameModeManager.instance.scoreLevel2 >= 50 && GameModeManager.instance.scoreEndCount >= GameModeManager.instance.scoreEndCountTarget)
+        if (GameModeManager.instance.scoreLevel2 >= 1000 && GameModeManager.instance.scoreEndCount >= GameModeManager.instance.scoreEndCountTarget)
         {
-            
+            GameModeManager.instance.LevelTwoCleared();
             levelClear.SetActive(true);
         }
-        else
+        else if(GameModeManager.instance.scoreEndCount >= GameModeManager.instance.scoreEndCountTarget)
         {
             gameOverHud.SetActive(true);
             GameModeManager.instance.InvokeLevelFail();
@@ -187,11 +206,8 @@ public class HudScript : MonoBehaviour
 
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level2)
         {
-            levelClear.SetActive(false);
-            level2Info.SetActive(true);
-            timerText.SetActive(false);
-            timerCountText.SetActive(false);
-            GameModeManager.instance.CutScene3Active();
+            //kakkoskent‰n continue mene retryyn koska kolmokentt‰‰ ei ole viel‰ - muuta kun tulee
+            Retry();
         }
 
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level3)
@@ -220,8 +236,14 @@ public class HudScript : MonoBehaviour
             GameModeManager.instance.CutScene1Active();
             core.myAnim.SetTrigger("ResetTrig");
             core.myAnim.SetFloat("x", 0);
+            nest.nestAnim.SetBool("Flash", true);
+            nest.arrowAnim.SetBool("Flash", true);
+            nest.arrow2Anim.SetBool("Flash", true);
+            nest.arrowObj.SetActive(true);
+            nest.arrow2Obj.SetActive(true);
+            pauseButton.SetActive(false);
 
-            if(GameModeManager.instance.isPaused)
+            if (GameModeManager.instance.isPaused)
             {
                 PauseMenu();
                 
@@ -245,7 +267,9 @@ public class HudScript : MonoBehaviour
             UpdateScore();
             GameModeManager.instance.CutScene2Active();
             core.myAnim.SetTrigger("ResetTrig");
+            core.myAnim.SetTrigger("Level1");
             core.myAnim.SetFloat("x", 0);
+            pauseButton.SetActive(false);
 
             if (GameModeManager.instance.isPaused)
             {
@@ -289,6 +313,7 @@ public class HudScript : MonoBehaviour
         pointsText.SetActive(true);
         pointsCountText.SetActive(true);
         yield return new WaitForSeconds(2f);
+        core.myAnim.SetTrigger("Level2");
         noteLine.InvokeStartLevel2();
     }
 

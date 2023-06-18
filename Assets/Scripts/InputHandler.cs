@@ -85,7 +85,7 @@ public class InputHandler : MonoBehaviour
 
     private void Pause(InputAction.CallbackContext obj)
     {
-        if(GameModeManager.instance.activeGameMode != GameModeManager.GameMode.cutScene1)
+        if (GameModeManager.instance.activeGameMode != GameModeManager.GameMode.cutScene1)
         {
             PauseOn?.Invoke();
         }

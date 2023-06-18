@@ -391,6 +391,15 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  pause:
+    m_Name: Pause
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 09078ae1-f908-45de-9251-f3b1f3d22c5d
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   moveScript: {fileID: 7344619329279733102}
   airborneScript: {fileID: 7344619329279733089}
   interactScript: {fileID: 7344619329279733088}
@@ -443,12 +452,12 @@ MonoBehaviour:
   core: {fileID: 0}
   rb: {fileID: 0}
   groundCheckObj: {fileID: 7344619328296753453}
-  jumpPower: 175
-  flyPower: 50
+  jumpPower: 220
+  flyPower: 80
   groundDetectRadius: 0.1
   groundMask:
     serializedVersion: 2
-    m_Bits: 65
+    m_Bits: 64
 --- !u!114 &7344619329279733088
 MonoBehaviour:
   m_ObjectHideFlags: 0

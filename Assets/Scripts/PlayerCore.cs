@@ -17,6 +17,8 @@ public class PlayerCore : MonoBehaviour
         myAnim = GetComponentInChildren<Animator>();
         GameModeManager.Success += Success;
         GameModeManager.Fail += LevelFail;
+        NoteScript.WrongNote += WrongNoteAnim;
+        NoteScript.RightNote += RightNoteAnim;
     }
 
     public enum ControlState
@@ -49,12 +51,39 @@ public class PlayerCore : MonoBehaviour
 
     public void Success()
     {
-        myAnim.SetTrigger("WinTrig");
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1)
+        {
+            myAnim.SetTrigger("WinTrig");
+        }
+
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level2)
+        {
+            myAnim.SetTrigger("WinTrig2");
+        }
+    }
+
+    public void RightNoteAnim()
+    {
+        myAnim.SetTrigger("RightNote");
+    }
+
+    public void WrongNoteAnim()
+    {
+        myAnim.SetTrigger("WrongNote");
     }
 
     public void LevelFail()
     {
-        myAnim.SetTrigger("LoseTrig");
+        if(GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1)
+        {
+            myAnim.SetTrigger("LoseTrig");
+        }
+
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level2)
+        {
+            myAnim.SetTrigger("LoseTrig2");
+        }
+
     }
 
 

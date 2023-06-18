@@ -5,11 +5,30 @@ using UnityEngine;
 public class NoteButtonCollision : MonoBehaviour
 {
 
-
+    public PlayerCore core;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Early"))
+        {
+            NoteScript note = collision.gameObject.GetComponentInParent<NoteScript>();
+            note.isEarly = true;
+        }
+        if (collision.gameObject.CompareTag("Perfect"))
+        {
+            NoteScript note = collision.gameObject.GetComponent<NoteScript>();
+            note.isPerfect = true;
+        }
+        if (collision.gameObject.CompareTag("Late"))
+        {
+            NoteScript note = collision.gameObject.GetComponentInParent<NoteScript>();
+            note.isLate = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Early"))
         {
             NoteScript note = collision.gameObject.GetComponentInParent<NoteScript>();
             note.isEarly = true;
@@ -43,6 +62,11 @@ public class NoteButtonCollision : MonoBehaviour
             NoteScript note = collision.gameObject.GetComponentInParent<NoteScript>();
             note.isLate = false;
         }
+    }
+
+    private void Start()
+    {
+        
     }
 
 }

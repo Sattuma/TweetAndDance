@@ -81,6 +81,7 @@ public class GameModeManager : MonoBehaviour
         if (scoreEndCount >= scoreEndCountTarget)
         {
             levelActive = false;
+            Level2End?.Invoke();
             scoreEndCount = 0;
         }
     }
@@ -88,6 +89,7 @@ public class GameModeManager : MonoBehaviour
     public void InvokeLevelFail()
     {
         Fail?.Invoke();
+        
     }
 
     public void InvokeLevel1End()
@@ -124,12 +126,12 @@ public class GameModeManager : MonoBehaviour
     public void LevelOneCleared()
     {
         Success?.Invoke();
+
         if(activeGameMode == GameMode.level1)
         {
             StopInvoke();
             DestroyPickUpsWithTag();
         }
-
     }
     
     public void AddScore(int score)
