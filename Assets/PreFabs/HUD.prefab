@@ -1258,8 +1258,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000015259, y: 50}
-  m_SizeDelta: {x: 261.6478, y: 134.7657}
+  m_AnchoredPosition: {x: 1.3835, y: 58.69}
+  m_SizeDelta: {x: 297.6192, y: 117.38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1796539801
 CanvasRenderer:
@@ -1290,8 +1290,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Lets show what an amazing nest building skills Seppo have. \r\nBuild triangle
-    shaped nest high enough to impress cutie bird.\r\n\nControls:\r\nAD to move left
-    and right\r\nSpace to jump\r\nSpace to fly\r\nJ to pick and drop items\r\n"
+    shaped nest high enough to impress the cutie bird.\r\n\nControls:\r\nAD to move
+    left and right\r\nSpace to jump\r\nSpace to fly\r\nJ to pick and drop items\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 67a6722c283099f42a8e37b66d2ec7ea, type: 2}
   m_sharedMaterial: {fileID: 6847863560581165111, guid: 67a6722c283099f42a8e37b66d2ec7ea, type: 2}
@@ -2857,9 +2857,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Good Job! Aino like Seppo''s nest building skills. Now it Seppo''s time
-    to clear his throath and charm cutie bird Aino with an amazing Rock God voice
-    he has! '
+  m_text: 'Good Job! Aino likes Seppo''s nest building skills. Now it is Seppo''s
+    time to clear his throath and charm the cutie bird Aino with an amazing Rock
+    God voice he has! '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 67a6722c283099f42a8e37b66d2ec7ea, type: 2}
   m_sharedMaterial: {fileID: 6847863560581165111, guid: 67a6722c283099f42a8e37b66d2ec7ea, type: 2}
