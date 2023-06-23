@@ -176,7 +176,7 @@ public class HudScript : MonoBehaviour
     //LEVEL2 - EVENT CALLS
     public void UpdateScore()
     {
-        pointsCountText.GetComponent<TextMeshProUGUI>().text = GameModeManager.instance.scoreLevel2.ToString();
+        pointsCountText.GetComponent<TextMeshProUGUI>().text = GameModeManager.instance.scoreLevel2.ToString() + "/ 2000";
     }
     public void LevelTwoCleared()
     {

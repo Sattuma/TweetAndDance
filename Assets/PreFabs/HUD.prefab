@@ -219,7 +219,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: 0 / 2000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 67a6722c283099f42a8e37b66d2ec7ea, type: 2}
   m_sharedMaterial: {fileID: 6847863560581165111, guid: 67a6722c283099f42a8e37b66d2ec7ea, type: 2}
@@ -4861,6 +4861,7 @@ MonoBehaviour:
   gameOverHud: {fileID: 3289069212460107630}
   nest: {fileID: 0}
   core: {fileID: 0}
+  aino: {fileID: 0}
   level1Info: {fileID: 437478428}
   level2Info: {fileID: 3314765334058561489}
   level3Info: {fileID: 0}

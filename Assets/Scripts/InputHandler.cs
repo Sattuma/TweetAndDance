@@ -94,6 +94,7 @@ public class InputHandler : MonoBehaviour
             Debug.Log("Do nothing");
         }
 
+
     }
 
     private void FixedUpdate()
