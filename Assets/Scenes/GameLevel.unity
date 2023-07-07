@@ -323,6 +323,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PerfectFX
       objectReference: {fileID: 0}
+    - target: {fileID: 7212877470714590773, guid: 58a774e1b331e2f4a8c17299928df5cc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58a774e1b331e2f4a8c17299928df5cc, type: 3}
 --- !u!4 &341282087 stripped
@@ -9968,6 +9972,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 799824095, guid: cde0bc226a13ce14488f041366ad0154, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -162.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 799824095, guid: cde0bc226a13ce14488f041366ad0154, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 121
+      objectReference: {fileID: 0}
     - target: {fileID: 1796539800, guid: cde0bc226a13ce14488f041366ad0154, type: 3}
       propertyPath: m_text
       value: "Let's show what an amazing nest building skills Seppo has. \r\nBuild

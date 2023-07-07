@@ -206,6 +206,28 @@
                 },
                 {
                     "name": "",
+                    "id": "da39141c-8d20-4795-ad3d-1914a71be647",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2b9dc928-f5a0-464e-9a91-8ba9b48687f6",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "73b4b490-31db-4b34-9f5b-fe3403c40b8c",
                     "path": "<Keyboard>/j",
                     "interactions": "",
@@ -219,6 +241,28 @@
                     "name": "",
                     "id": "15fbe882-c315-45f9-b556-1ab4a79b818c",
                     "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact_One",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "180a5696-0fa3-4c56-9afc-679ee18d0605",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact_One",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "370bd85d-7bf1-41a5-a287-cf3fe51f318b",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
