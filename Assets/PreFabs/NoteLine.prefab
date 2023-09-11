@@ -633,7 +633,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6450239695099007144
 Transform:
   m_ObjectHideFlags: 0
@@ -724,13 +724,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799bd0da00e37d5419706efbe2f95085, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noteObj: {fileID: 4951291525002950425, guid: d1a2cf3a10f3a3749aee6229c59a9525, type: 3}
-  startPos: {fileID: 4640695216661442226}
-  startPos2: {fileID: 492979379}
-  startPos3: {fileID: 4640695215968792419}
-  noteDestroyer: {fileID: 4631171487409145858}
-  notesInScene: []
-  hud: {fileID: 0}
 --- !u!1 &764120709100310468
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,84 +9,72 @@ using UnityEngine;
 public class PlayerCore : MonoBehaviour
 {
 
-    public ControlState controlState;
-
     public Animator myAnim;
+
+    public bool isGrounded;
+    public bool isCollecting;
+    public bool isLanding;
 
     private void Start()
     {
         myAnim = GetComponentInChildren<Animator>();
-        GameModeManager.Success += Success;
-        GameModeManager.Fail += LevelFail;
+
+        GameModeManager.Success += SuccessAnim;
+        GameModeManager.Fail += LevelFailAnim;
+
         NoteScript.WrongNote += WrongNoteAnim;
         NoteScript.RightNote += RightNoteAnim;
     }
 
-    public enum ControlState
+    public void JumpAnimOn()
     {
-        idle,
-        walking,
-        airborne,
-        landing
+        myAnim.SetBool("JumpStart",true);
+    }
+    public void JumpAnimOff()
+    {
+        myAnim.SetBool("JumpStart", false);
     }
 
-    public bool isGrounded;
-    
-    //PLAYERSTATUS
-    public void IdleStatus()
+    public void FlyAnimOn()
     {
-        controlState = PlayerCore.ControlState.idle;
+        myAnim.SetBool("FlyStart", true);
     }
-    public void WalkingStatus()
+    public void FlyAnimOff()
     {
-        controlState = PlayerCore.ControlState.walking;
-    }
-    public void AirborneStatus()
-    {
-        controlState = PlayerCore.ControlState.airborne;
-    }
-    public void LandingStatus()
-    {
-        controlState = PlayerCore.ControlState.landing;
+        myAnim.SetBool("FlyStart", false);
     }
 
-    public void Success()
+    public void LandingAnimOn()
     {
-        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1)
-        {
-            myAnim.SetTrigger("WinTrig");
-        }
-
-        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level2)
-        {
-            myAnim.SetTrigger("WinTrig2");
-        }
+        myAnim.SetTrigger("isLanding");
+    }
+    public void LandingAnimOff()
+    {
+        myAnim.SetTrigger("LandingFinish");
     }
 
     public void RightNoteAnim()
     {
-        myAnim.SetTrigger("RightNote");
+        //myAnim.SetTrigger("RightNote");
     }
 
     public void WrongNoteAnim()
     {
-        myAnim.SetTrigger("WrongNote");
+        //myAnim.SetTrigger("WrongNote");
     }
-
-    public void LevelFail()
+    public void WalkingAnim(float value)
     {
-        if(GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1)
-        {
-            myAnim.SetTrigger("LoseTrig");
-        }
-
-        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level2)
-        {
-            myAnim.SetTrigger("LoseTrig2");
-        }
-
+        myAnim.SetFloat("x", value);
     }
 
+    public void SuccessAnim()
+    {
+        // success animaatio tähän
+    }
 
+    public void LevelFailAnim()
+    {
+        // fail animaatio tähän
+    }
 
 }

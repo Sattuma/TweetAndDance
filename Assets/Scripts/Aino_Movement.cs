@@ -26,7 +26,6 @@ public class Aino_Movement : MonoBehaviour
         if(collision.gameObject.CompareTag("LevelTwo"))
         {
             anim.SetBool("FlyDown", false);
-            GameModeManager.instance.ainoOnMove = false;
             collision.gameObject.SetActive(false);
         }
     }
@@ -45,19 +44,7 @@ public class Aino_Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1 || GameModeManager.instance.activeGameMode == GameModeManager.GameMode.cutScene1 || GameModeManager.instance.activeGameMode == GameModeManager.GameMode.cutScene2)
-        {
-            transform.position = startPosLevel2.transform.position;
-        }
 
-        if (GameModeManager.instance.ainoOnMove && GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level2)
-        {
-            MoveEndPos2();
-        }
-        else if (isFailed && GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level2)
-        {
-            MoveStartPos2();
-        }
     }
 
     public void MoveStartPos2()
@@ -71,16 +58,6 @@ public class Aino_Movement : MonoBehaviour
         endPos2Collider.SetActive(true);
         transform.position = Vector3.Lerp(transform.position, endPosLevel2.transform.position, transitionSpeed * Time.deltaTime);
         anim.SetBool("FlyDown", true);
-    }
-
-    public void MoveStartPos3()
-    {
-
-    }
-
-    public void MoveEndPos3()
-    {
-
     }
 
     public void FailedBool()

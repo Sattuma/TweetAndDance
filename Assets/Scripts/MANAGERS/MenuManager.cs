@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using TMPro;
 
-public class HudScript : MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
     public GameObject timerText;
     public GameObject pointsText;
@@ -16,7 +16,6 @@ public class HudScript : MonoBehaviour
     public GameObject pauseButton;
     public GameObject levelClear;
     public GameObject gameOverHud;
-    public NestScript nest;
 
     public GameObject level1Info;
     public GameObject level2Info;
@@ -24,44 +23,28 @@ public class HudScript : MonoBehaviour
 
     //public float timeValue = 10f;
     public TextMeshProUGUI timerCountdown;
-    public HudScript hud;
 
     public bool isCountingLevel1;
 
-
-
     private void Awake()
     {
-        GameModeManager.BonusLevelScore += UpdateScore;
-
-        InputHandler.InfoBoxAnim += StartCountForLevelInfoOff;
-        InputHandler.PauseOn += PauseMenu;
 
     }
 
     private void Start()
     {
-        //level1Info.SetActive(true);
-        timerText.SetActive(false);
-        timerCountText.SetActive(false);
-        pauseButton.SetActive(false);
-
         AudioManager.instance.PlayMusicFX(1);
     }
     void Update()
     {
 
-        if (GameModeManager.instance.timerLevel1 > 0 && GameModeManager.instance.levelActive == true && GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel) 
+        if (GameModeManager.instance.timerLevel1 > 0 && GameModeManager.instance.levelActive == true && GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
         { GameModeManager.instance.timerLevel1 -= Time.deltaTime; }
 
 
         if (GameModeManager.instance.timerLevel1 <= 0 && GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
         {
             GameModeManager.instance.levelActive = false;
-
-            FailedHud();
-            levelClear.SetActive(false);
-            CancelEndGameHud();
             GameModeManager.instance.InvokeLevelFail();
             GameModeManager.instance.timerLevel1 = 0.1f;
         }
@@ -217,3 +200,4 @@ public class HudScript : MonoBehaviour
     }
 
 }
+

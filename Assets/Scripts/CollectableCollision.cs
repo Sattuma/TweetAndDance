@@ -15,5 +15,4 @@ public class CollectableCollision : MonoBehaviour
             childObject.GetComponent<CapsuleCollider2D>().enabled = true;
         }
     }
-
 }

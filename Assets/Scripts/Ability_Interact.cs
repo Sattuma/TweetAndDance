@@ -32,9 +32,9 @@ public class Ability_Interact : MonoBehaviour
                 canCollect = true;
                 collectableObj = collision.gameObject.transform; // on triggerstay collectable object is collision which player collides
                 collectableChildObj = collectableObj.transform.GetChild(0).gameObject.transform;
+                collectableChildObj.GetChild(0).GetComponent<Renderer>().material.color = Color.blue;
             }
         }
-
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -43,9 +43,11 @@ public class Ability_Interact : MonoBehaviour
         {
             if(canCollect)
             {
+                collectableChildObj.GetChild(0).GetComponent<Renderer>().material.color = Color.white;
                 canCollect = false;
                 collectableObj = null;
                 collectableChildObj = null;
+                
             }
         }
     }
@@ -56,12 +58,18 @@ public class Ability_Interact : MonoBehaviour
         collectableObj = null;
     }
 
+
     public void InteractActionOne()
     {
-        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level1 && GameModeManager.instance.levelActive == true)
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel && GameModeManager.instance.levelActive == true)
         {
+            Debug.Log("ker‰ysnappi painettu");
+
             if (canCollect)
             {
+                collectableChildObj.GetChild(0).GetComponent<Renderer>().material.color = Color.white;
+                Debug.Log("ker‰‰n itemin");
+                StartCoroutine(CollectDelay());
                 collectableObj.GetComponentInChildren<CapsuleCollider2D>().enabled = false;
                 collectableObj.gameObject.tag = "Untagged";
                 collectableChildObj.gameObject.tag = "Untagged";
@@ -74,6 +82,7 @@ public class Ability_Interact : MonoBehaviour
             }
             else if (pickedUp)
             {
+                Debug.Log("tiputan itemin");
                 collectableObj.gameObject.transform.parent = null; // if collectable is already picked up in Collect button is pressed again, player drops the collectable object
                 collectableObj.GetComponentInChildren<CapsuleCollider2D>().enabled = true;
                 collectableObj.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
@@ -82,7 +91,7 @@ public class Ability_Interact : MonoBehaviour
                 pickedUp = false;
             }
         }
-        if(GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level2)
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
         {
             button1.GetComponent<CircleCollider2D>().enabled = true;
         }
@@ -90,7 +99,8 @@ public class Ability_Interact : MonoBehaviour
 
     public void InteractActionTwo()
     {
-        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level2)
+
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
         {
             button2.GetComponent<CircleCollider2D>().enabled = true;
         }
@@ -99,7 +109,7 @@ public class Ability_Interact : MonoBehaviour
 
     public void InteractActionThree()
     {
-        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level2)
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
         {
             button3.GetComponent<CircleCollider2D>().enabled = true;
         }
@@ -108,11 +118,18 @@ public class Ability_Interact : MonoBehaviour
 
     public void InteractActionCancel()
     {
-        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.level2)
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
         {
             button1.GetComponent<CircleCollider2D>().enabled = false;
             button2.GetComponent<CircleCollider2D>().enabled = false;
             button3.GetComponent<CircleCollider2D>().enabled = false;
         }
+    }
+
+    public IEnumerator CollectDelay()
+    {
+        core.isCollecting = true;
+        yield return new WaitForSecondsRealtime(0.3f);
+        core.isCollecting = false;
     }
 }

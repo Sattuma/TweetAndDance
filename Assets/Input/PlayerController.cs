@@ -46,6 +46,15 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Fly"",
+                    ""type"": ""Button"",
+                    ""id"": ""f5e50790-1ef6-43b5-9e40-1909bed883fc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Interact_One"",
                     ""type"": ""Button"",
                     ""id"": ""bc8953e9-2f39-4510-9b7d-e341b9ff2309"",
@@ -228,8 +237,8 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""da39141c-8d20-4795-ad3d-1914a71be647"",
-                    ""path"": ""<Keyboard>/upArrow"",
+                    ""id"": ""f2047ea4-e8c2-42a1-88cf-0f867167f240"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -239,8 +248,8 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2b9dc928-f5a0-464e-9a91-8ba9b48687f6"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""id"": ""0657b7a0-d244-48d5-9f70-f2660913156c"",
+                    ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -272,7 +281,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""180a5696-0fa3-4c56-9afc-679ee18d0605"",
+                    ""id"": ""52025053-d0c2-4ce8-82d5-925ecea80c16"",
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -283,7 +292,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""370bd85d-7bf1-41a5-a287-cf3fe51f318b"",
+                    ""id"": ""f859957a-8001-4af9-a488-4b14a3115b72"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -346,6 +355,28 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8cf0684c-2940-41aa-916f-ceb814b28702"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1a8d65a2-597e-49fc-b3c0-64277c2d7c7a"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -356,6 +387,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_Fly = m_Player.FindAction("Fly", throwIfNotFound: true);
         m_Player_Interact_One = m_Player.FindAction("Interact_One", throwIfNotFound: true);
         m_Player_Interact_Two = m_Player.FindAction("Interact_Two", throwIfNotFound: true);
         m_Player_Interact_Three = m_Player.FindAction("Interact_Three", throwIfNotFound: true);
@@ -423,6 +455,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_Fly;
     private readonly InputAction m_Player_Interact_One;
     private readonly InputAction m_Player_Interact_Two;
     private readonly InputAction m_Player_Interact_Three;
@@ -433,6 +466,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         public PlayerActions(@PlayerController wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @Fly => m_Wrapper.m_Player_Fly;
         public InputAction @Interact_One => m_Wrapper.m_Player_Interact_One;
         public InputAction @Interact_Two => m_Wrapper.m_Player_Interact_Two;
         public InputAction @Interact_Three => m_Wrapper.m_Player_Interact_Three;
@@ -452,6 +486,9 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @Fly.started += instance.OnFly;
+            @Fly.performed += instance.OnFly;
+            @Fly.canceled += instance.OnFly;
             @Interact_One.started += instance.OnInteract_One;
             @Interact_One.performed += instance.OnInteract_One;
             @Interact_One.canceled += instance.OnInteract_One;
@@ -474,6 +511,9 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @Fly.started -= instance.OnFly;
+            @Fly.performed -= instance.OnFly;
+            @Fly.canceled -= instance.OnFly;
             @Interact_One.started -= instance.OnInteract_One;
             @Interact_One.performed -= instance.OnInteract_One;
             @Interact_One.canceled -= instance.OnInteract_One;
@@ -507,6 +547,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnFly(InputAction.CallbackContext context);
         void OnInteract_One(InputAction.CallbackContext context);
         void OnInteract_Two(InputAction.CallbackContext context);
         void OnInteract_Three(InputAction.CallbackContext context);
