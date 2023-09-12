@@ -14,12 +14,36 @@ public class GameModeManager : MonoBehaviour
 
     public static GameModeManager instance;
 
+    [Header("Active Gamemode")]
     public GameMode activeGameMode;
 
+    [Header("CurrentLevel")]
+    public CurrentLevel currentLevel;
+
+    [Header("Level State Booleans")]
     public bool levelActive;
     public bool isPaused;
 
+    [Header("Level Timer")]
     public float timerLevel1;
+    public float timerLevel2;
+    public float timerLevel3;
+
+    [Header("PickUp Amount")]
+    public int leafCount;
+    public int stickCount;
+    public int birchStickCount;
+    public int strawberryCount;
+    public int blossomCount;
+    public int dandelionCount;
+
+    [Header("PickUp Points")]
+    public int leafPoints;
+    public int stickPoints;
+    public int birchStickPoints;
+    public int strawberryPoints;
+    public int blossomPoints;
+    public int dandelionPoints;
 
 
     public enum GameMode
@@ -27,6 +51,13 @@ public class GameModeManager : MonoBehaviour
         cutScene,
         gameLevel,
         bonusLevel
+    }
+
+    public enum CurrentLevel
+    {
+        Level1_1,
+        Level1_2,
+        Level1_3,
     }
 
     private void Awake()
@@ -44,12 +75,9 @@ public class GameModeManager : MonoBehaviour
     public void InvokeLevelFail()
     {
         Fail?.Invoke();
+        Debug.Log("KUOLIT");
     }
 
-    public void CutScene1Active()
-    {
-        activeGameMode = GameMode.cutScene;
-    }
     public void Level1Active()
     {
         activeGameMode = GameMode.gameLevel;
@@ -78,11 +106,6 @@ public class GameModeManager : MonoBehaviour
     {
         Success?.Invoke();
         levelActive = false;
-    }
-
-    public void LevelFailed()
-    {
-        Fail?.Invoke();
     }
 
 }

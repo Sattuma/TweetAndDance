@@ -8,71 +8,26 @@ using TMPro;
 public class MenuManager : MonoBehaviour
 {
     public GameObject timerText;
-    public GameObject pointsText;
     public GameObject timerCountText;
+
+    public GameObject pointsText;
     public GameObject pointsCountText;
+
     public GameObject[] countDown = new GameObject[3];
+
     public GameObject pauseMenu;
     public GameObject pauseButton;
     public GameObject levelClear;
     public GameObject gameOverHud;
 
-    public GameObject level1Info;
-    public GameObject level2Info;
-    public GameObject level3Info;
-
-    //public float timeValue = 10f;
-    public TextMeshProUGUI timerCountdown;
-
     public bool isCountingLevel1;
-
-    private void Awake()
-    {
-
-    }
 
     private void Start()
     {
-        AudioManager.instance.PlayMusicFX(1);
-    }
-    void Update()
-    {
-
-        if (GameModeManager.instance.timerLevel1 > 0 && GameModeManager.instance.levelActive == true && GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
-        { GameModeManager.instance.timerLevel1 -= Time.deltaTime; }
-
-
-        if (GameModeManager.instance.timerLevel1 <= 0 && GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
-        {
-            GameModeManager.instance.levelActive = false;
-            GameModeManager.instance.InvokeLevelFail();
-            GameModeManager.instance.timerLevel1 = 0.1f;
-        }
-
-        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
-        {
-            DisplayTime(GameModeManager.instance.timerLevel1);
-        }
+        //AudioManager.instance.PlayMusicFX(1);
     }
 
-    void DisplayTime(float timeToDisplay)
-    {
-        if (timeToDisplay < 0)
-        {
-            timeToDisplay = 0;
-        }
-
-        float minutes = Mathf.FloorToInt(timeToDisplay / 60);
-        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
-
-        timerCountdown.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-    }
-
-    //LEVEL1 - COUNT TO SUCCESS & FAILED HUD
-    public void StartEndGame()
-    {
-        StartCoroutine(LevelEndCountOne());
-    }
+    //kun gamemangerissa invokataan? nii aktivoidaan tämä?
     public IEnumerator LevelEndCountOne()
     {
         isCountingLevel1 = true;
@@ -86,7 +41,7 @@ public class MenuManager : MonoBehaviour
         countDown[2].SetActive(true);
         yield return new WaitForSecondsRealtime(1f);
         countDown[2].SetActive(false);
-        SuccessMenuOnLevel1();
+        SuccessMenuOnLevel();
         isCountingLevel1 = false;
     }
     public void CancelEndGameHud()
@@ -94,20 +49,19 @@ public class MenuManager : MonoBehaviour
         StopAllCoroutines();
 
         isCountingLevel1 = false;
-
         countDown[0].SetActive(false);
         countDown[1].SetActive(false);
         countDown[2].SetActive(false);
     }
-    public void SuccessMenuOnLevel1()
+
+    public void SuccessMenuOnLevel()
     {
-        levelClear.SetActive(true);
-        pauseButton.SetActive(false);
         GameModeManager.instance.levelActive = false;
     }
+
     public void FailedHud()
     {
-        gameOverHud.SetActive(true);
+        
     }
 
     //LEVEL2 - EVENT CALLS
