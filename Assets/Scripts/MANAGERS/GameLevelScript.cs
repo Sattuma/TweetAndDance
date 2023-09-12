@@ -22,11 +22,12 @@ public class GameLevelScript : MonoBehaviour
         //StartInvokeRepeating();
     }
 
+
+
     public void GroundSpawnPickupLevel()
     {
         for(int i = 0; i < pickupSpawnPoints.Length; i++)
         {
-            Debug.Log(i);
             Instantiate(pickupPrefab[Random.Range(0, pickupPrefab.Length)], 
                 pickupSpawnPoints[i].transform.position, pickupSpawnPoints[i].transform.rotation);
         }

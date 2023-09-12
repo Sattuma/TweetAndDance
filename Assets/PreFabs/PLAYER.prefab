@@ -518,7 +518,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputVector: {x: 0, y: 0}
-  core: {fileID: 7344619329279733100}
   abilityMovement:
     m_Name: Ability Movement
     m_Type: 0
@@ -591,6 +590,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  core: {fileID: 7344619329279733100}
   moveScript: {fileID: 7344619329279733102}
   airborneScript: {fileID: 7344619329279733089}
   interactScript: {fileID: 7344619329279733088}
@@ -698,6 +698,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7344619329279733090}
     m_Modifications:
+    - target: {fileID: 1167411145994739726, guid: 4fa606d0802f9184b8ec6fb2194b4122, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1167411146392851483, guid: 4fa606d0802f9184b8ec6fb2194b4122, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -777,6 +781,14 @@ PrefabInstance:
     - target: {fileID: 1167411147022818486, guid: 4fa606d0802f9184b8ec6fb2194b4122, type: 3}
       propertyPath: m_Name
       value: PlayerAnim
+      objectReference: {fileID: 0}
+    - target: {fileID: 7220172783384372503, guid: 4fa606d0802f9184b8ec6fb2194b4122, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 7220172783384372503, guid: 4fa606d0802f9184b8ec6fb2194b4122, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.06
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fa606d0802f9184b8ec6fb2194b4122, type: 3}

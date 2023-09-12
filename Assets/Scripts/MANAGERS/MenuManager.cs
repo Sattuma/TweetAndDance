@@ -55,34 +55,6 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    public void StartCountForLevelInfoOff()
-    {
-        StartCoroutine(InfoOffCount());
-    }
-    public IEnumerator InfoOffCount()
-    {
-        yield return new WaitForSecondsRealtime(1f);
-        LevelInfoOff();
-        pauseButton.SetActive(true);
-
-    }
-    //ALL LEVELS - LEVELINFO IN THE BEGINNING
-    public void LevelInfoOff()
-    {
-        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
-        {
-            level1Info.SetActive(false);
-            timerText.SetActive(true);
-            timerCountText.SetActive(true);
-        }
-        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
-        {
-            level2Info.SetActive(false);
-        }
-
-    }
-
-    //LEVEL1 - DISPLAY TIMECOUNT TO HUD
     void DisplayTime(float timeToDisplay)
     {
         if (timeToDisplay < 0)
@@ -142,10 +114,6 @@ public class MenuManager : MonoBehaviour
     public void UpdateScore()
     {
         //pointsCountText.GetComponent<TextMeshProUGUI>().text = GameModeManager.instance.scoreLevel2.ToString() + "/ 2000";
-    }
-    public void LevelTwoCleared()
-    {
-
     }
 
     // BUTTON CALLS

@@ -32,7 +32,7 @@ public class Ability_Interact : MonoBehaviour
                 canCollect = true;
                 collectableObj = collision.gameObject.transform; // on triggerstay collectable object is collision which player collides
                 collectableChildObj = collectableObj.transform.GetChild(0).gameObject.transform;
-                collectableChildObj.GetChild(0).GetComponent<Renderer>().material.color = Color.blue;
+                collectableObj.GetComponent<CollectableCollision>().HighLightOn();
             }
         }
     }
@@ -43,7 +43,7 @@ public class Ability_Interact : MonoBehaviour
         {
             if(canCollect)
             {
-                collectableChildObj.GetChild(0).GetComponent<Renderer>().material.color = Color.white;
+                collectableObj.GetComponent<CollectableCollision>().HighLightOff();
                 canCollect = false;
                 collectableObj = null;
                 collectableChildObj = null;
@@ -67,7 +67,7 @@ public class Ability_Interact : MonoBehaviour
 
             if (canCollect)
             {
-                collectableChildObj.GetChild(0).GetComponent<Renderer>().material.color = Color.white;
+                collectableObj.GetComponent<CollectableCollision>().HighLightOff();
                 Debug.Log("ker‰‰n itemin");
                 StartCoroutine(CollectDelay());
                 collectableObj.GetComponentInChildren<CapsuleCollider2D>().enabled = false;
