@@ -358,6 +358,17 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""5998ab9a-ae56-4af3-95c7-fbccfbed8594"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""8cf0684c-2940-41aa-916f-ceb814b28702"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
