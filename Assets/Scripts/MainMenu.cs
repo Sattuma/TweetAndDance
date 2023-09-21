@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class MainMenu : MonoBehaviour
 {
@@ -13,6 +14,13 @@ public class MainMenu : MonoBehaviour
     public GameObject creditsButton;
     public GameObject backButton;
     public GameObject quitButton;
+
+    public GameObject mainButtons;
+
+
+    [Header("Display Windows")]
+    public GameObject settingWindow;
+    public GameObject logo;
 
 
 
@@ -38,6 +46,10 @@ public class MainMenu : MonoBehaviour
     public void OpenSettings()
     {
         Debug.Log("Settings opened");
+        mainButtons.SetActive(false);
+        backButton.SetActive(true);
+        settingWindow.SetActive(true);
+        logo.SetActive(false);
     }
 
     public void OpenHowToPlay()
@@ -53,6 +65,10 @@ public class MainMenu : MonoBehaviour
     public void OpenBack()
     {
         Debug.Log("Back Button Clicked");
+        mainButtons.SetActive(true);
+        backButton.SetActive(false);
+        settingWindow.SetActive(false);
+        logo.SetActive(true);
     }
 
     public void QuitGame()
@@ -60,4 +76,6 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Quit Button Clicked");
         Application.Quit();
     }
+
+
 }

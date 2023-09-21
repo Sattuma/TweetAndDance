@@ -15,19 +15,21 @@ public class InputHandler : MonoBehaviour
     public static event PlayerAction DropPlatoform;
 
     [SerializeField]private PlayerController playerController;
+    [SerializeField]private Vector2 mouseVector;
     [SerializeField]private Vector2 inputVector;
 
     
 
     [Header("Input Actions")]
-    public InputAction abilityMovement;
-    public InputAction abilityJump;
-    public InputAction abilityFly;
-    public InputAction abilityCollect;
-    public InputAction abilityInteract_one;
-    public InputAction abilityInteract_two;
-    public InputAction abilityInteract_three;
-    public InputAction pause;
+    private InputAction abilityMouse;
+    private InputAction abilityMovement;
+    private InputAction abilityJump;
+    private InputAction abilityFly;
+    private InputAction abilityCollect;
+    private InputAction abilityInteract_one;
+    private InputAction abilityInteract_two;
+    private InputAction abilityInteract_three;
+    private InputAction pause;
 
     [Header("Player Scripts")]
     public PlayerCore core;
@@ -35,11 +37,13 @@ public class InputHandler : MonoBehaviour
     public Ability_Airborne airborneScript;
     public Ability_Interact interactScript;
 
+    public float cursorTimer = 2f;
 
     private void Awake()
     {
         playerController = new PlayerController();
 
+        //abilityMouse = playerController.UI.Point;
         abilityMovement = playerController.Player.Movement;
         abilityJump = playerController.Player.Jump;
         abilityFly = playerController.Player.Fly;
@@ -51,6 +55,8 @@ public class InputHandler : MonoBehaviour
 
     private void OnEnable()
     {
+        //MOUSE MOVEMENT
+        //abilityMouse.Enable();
         //MOVEMENT
         abilityMovement.Enable();
         //BASIC CONTROLS//enabloidaan input action Airborne Input assetista ja laitetaan komento kun se painetaan => functio JumpInput alempana
@@ -81,6 +87,7 @@ public class InputHandler : MonoBehaviour
 
     private void OnDisable()
     {
+        //abilityMouse.Disable();
         abilityMovement.Disable();
         abilityJump.Disable();
         abilityFly.Disable();
@@ -92,6 +99,27 @@ public class InputHandler : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+        //mouseVector = abilityMouse.ReadValue<Vector2>();
+        mouseVector = Input.mousePosition;
+        GameModeManager.instance.mouseMovementCheck.transform.position = mouseVector;
+
+        if (GameModeManager.instance.mouseMovementCheck.transform.hasChanged)
+        {
+            GameModeManager.instance.mouseMovementCheck.transform.hasChanged = false;
+            Cursor.visible = true;
+            cursorTimer = 2f;
+        }
+        else
+        {
+            cursorTimer -= Time.deltaTime;
+            if(cursorTimer <= 0)
+            {
+                Cursor.visible = false;
+                cursorTimer = 0;
+            }
+        }
+
         // inputvector muuttuja alussa lukee inputAction ablilitymovement arvoa Vector 2
         inputVector = abilityMovement.ReadValue<Vector2>();
         // k‰ytet‰‰n t‰t‰ arvoa ja tietoa eri scriptiin functioon movescriptiss‰

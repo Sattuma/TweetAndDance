@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] soundFX;
     public AudioClip[] musicFX;
 
+
     public AudioSource menuFXSource;
     public AudioSource characterFXSource;
     public AudioSource soundFXSource;
@@ -22,11 +24,13 @@ public class AudioManager : MonoBehaviour
         if (instance != null) { Debug.Log("trying to create another!"); }
         else { instance = this; DontDestroyOnLoad(instance);}
 
-        menuFXSource = GameObject.Find("MenuFX").GetComponent<AudioSource>();
-        characterFXSource = GameObject.Find("CharacterFX").GetComponent<AudioSource>();
-        soundFXSource = GameObject.Find("SoundFX").GetComponent<AudioSource>();
+        menuFXSource = GameObject.Find("MenuFX").GetComponentInChildren<AudioSource>();
+        characterFXSource = GameObject.Find("CharacterFX").GetComponentInChildren<AudioSource>();
+        soundFXSource = GameObject.Find("SoundFX").GetComponentInChildren<AudioSource>();
         musicSource = GameObject.Find("Music").GetComponentInChildren<AudioSource>();
     }
+
+
 
     public void PlayMenuFX(int tracknumber)
     {

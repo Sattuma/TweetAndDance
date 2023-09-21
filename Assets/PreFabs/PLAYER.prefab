@@ -517,83 +517,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87dbb579aca8c344d8d3ce2ac2e7dd9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mouseVector: {x: 0, y: 0}
   inputVector: {x: 0, y: 0}
-  abilityMovement:
-    m_Name: Ability Movement
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: f1d5a369-9337-4a43-9fbd-bd12df1992a0
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  abilityJump:
-    m_Name: Ability Jump
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 409ba089-9463-41aa-88df-a1b925a84569
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  abilityFly:
-    m_Name: Ability Fly
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 81b7b0c2-4682-483c-b52d-10cb58bb7d28
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  abilityCollect:
-    m_Name: Ability Collect
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: af5b8b8d-d9d8-4d06-aba1-a5a3fec2f438
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  abilityInteract_one:
-    m_Name: Ability Interact_one
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 7666e0ed-dea5-495c-a4e0-fbce3f215763
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  abilityInteract_two:
-    m_Name: Ability Interact_two
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 0df80347-7860-4ffb-bb73-3fa5e6f93f96
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  abilityInteract_three:
-    m_Name: Ability Interact_three
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: ca2463ec-b2db-48f0-be49-3df3b76c6caf
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  pause:
-    m_Name: Pause
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 09078ae1-f908-45de-9251-f3b1f3d22c5d
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
   core: {fileID: 7344619329279733100}
   moveScript: {fileID: 7344619329279733102}
   airborneScript: {fileID: 7344619329279733089}
   interactScript: {fileID: 7344619329279733088}
+  mouseMovementCheck: {fileID: 0}
+  cursorTimer: 2
 --- !u!114 &7344619329279733100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -646,8 +577,8 @@ MonoBehaviour:
   landingCheckObj: {fileID: 1529831501155752897}
   jumpPower: 8
   flyPower: 5
-  flyingGravityRising: 0.5
-  flyingGravityFalling: 0.7
+  flyingGravityRising: 0.1
+  flyingGravityFalling: 0.15
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
   groundDetectRadius: 0.1

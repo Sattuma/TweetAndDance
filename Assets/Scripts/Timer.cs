@@ -54,6 +54,7 @@ public class Timer : MonoBehaviour
         }
     }
 
+
     public void DisplayTime(float timeToDisplay)
     {
 

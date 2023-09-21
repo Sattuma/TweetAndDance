@@ -172,7 +172,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 8423004449343959592, guid: c3b91a2b3ed4e504b9112c58f60d9d2a, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.366
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -216,7 +216,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.503
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -448,6 +448,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c1aecdb3286e3bd46972f4544fb69b17, type: 3}
   - {fileID: 8300000, guid: b5f0dfe7c0cb4604884d989f5cacdd98, type: 3}
   - {fileID: 8300000, guid: 6699674d2ab65fe469bc2028684daf80, type: 3}
+  masterMixer: {fileID: 24100000, guid: c3b91a2b3ed4e504b9112c58f60d9d2a, type: 2}
   menuFXSource: {fileID: 0}
   characterFXSource: {fileID: 0}
   soundFXSource: {fileID: 0}

@@ -45,6 +45,7 @@ public class GameModeManager : MonoBehaviour
     public int blossomPoints;
     public int dandelionPoints;
 
+    public GameObject mouseMovementCheck;
 
     public enum GameMode
     {
