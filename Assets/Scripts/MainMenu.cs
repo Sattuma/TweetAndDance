@@ -33,6 +33,11 @@ public class MainMenu : MonoBehaviour
 
     public GameObject logo;
 
+    private void Start()
+    {
+        AudioManager.instance.PlayMusicFX(0);
+    }
+
     public void OnPointerEnter()
     {
         if(EventSystem.current.IsPointerOverGameObject())
