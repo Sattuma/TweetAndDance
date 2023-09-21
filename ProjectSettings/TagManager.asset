@@ -15,6 +15,7 @@ TagManager:
   - Late
   - NestObject
   - FailReset
+  - Higlight
   layers:
   - Default
   - TransparentFX
