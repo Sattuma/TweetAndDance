@@ -30,8 +30,6 @@ public class AudioManager : MonoBehaviour
         musicSource = GameObject.Find("Music").GetComponentInChildren<AudioSource>();
     }
 
-
-
     public void PlayMenuFX(int tracknumber)
     {
         menuFXSource.clip = menuFX[tracknumber];
