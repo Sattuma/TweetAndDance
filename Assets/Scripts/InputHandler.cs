@@ -21,11 +21,10 @@ public class InputHandler : MonoBehaviour
     
 
     [Header("Input Actions")]
-    private InputAction abilityMouse;
+    //private InputAction abilityMouse;
     private InputAction abilityMovement;
     private InputAction abilityJump;
     private InputAction abilityFly;
-    private InputAction abilityCollect;
     private InputAction abilityInteract_one;
     private InputAction abilityInteract_two;
     private InputAction abilityInteract_three;
@@ -65,7 +64,6 @@ public class InputHandler : MonoBehaviour
         abilityFly.performed += FlyInput;
         abilityJump.Enable();
         abilityFly.Enable();
-        abilityCollect.Enable();
         //INTERACT_ONE//enabloidaan input action Interact_One Input assetista ja laitetaan komento kun se painetaan => functio InteractInputOne alempana
         abilityInteract_one.performed += InteractInputOne;
         abilityInteract_one.canceled += InteractInputCancel;
@@ -146,6 +144,7 @@ public class InputHandler : MonoBehaviour
 
     private void InteractInputOne(InputAction.CallbackContext obj)
     {
+
         //tieto kulkeutuu napin painautuessa interactscriptiin ja siellä olevaan functioon
         interactScript.InteractActionOne();
 
