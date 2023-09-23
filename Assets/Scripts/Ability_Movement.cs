@@ -12,6 +12,7 @@ public class Ability_Movement : MonoBehaviour
     public Rigidbody2D rb;
 
     public bool facingRight;
+    public bool playFootsteps;
 
     [SerializeField] private float playerSpeed;
     [SerializeField] private float walkingSpeed;
@@ -32,6 +33,17 @@ public class Ability_Movement : MonoBehaviour
             rb.velocity = new Vector2(value.x * playerSpeed, rb.velocity.y);
             rb.velocity.Normalize();
             core.WalkingAnim(value.x);
+
+            if (value.x > 0 && core.isGrounded && !core.isLanding || value.x < 0 && core.isGrounded && !core.isLanding)
+            {
+                playFootsteps = true;
+                ActivateFootstepsFX();
+            }
+            else
+            {
+                playFootsteps = false;
+                ActivateFootstepsFX();
+            }
 
             if (value.x > 0 && !facingRight)
             { FlipCharacter(); }
@@ -59,6 +71,18 @@ public class Ability_Movement : MonoBehaviour
         transform.Rotate(0, 180, 0);
     }
 
+    public void ActivateFootstepsFX()
+    {
+        if (playFootsteps)
+        {
+            AudioManager.instance.movementFXSource.GetComponent<AudioSource>().enabled = true;
 
+        }
+        else
+        {
+            AudioManager.instance.movementFXSource.GetComponent<AudioSource>().enabled = false;
+        }
+
+    }
 
 }

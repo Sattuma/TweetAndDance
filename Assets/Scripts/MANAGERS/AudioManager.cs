@@ -16,8 +16,12 @@ public class AudioManager : MonoBehaviour
 
     public AudioSource menuFXSource;
     public AudioSource characterFXSource;
+    public AudioSource movementFXSource;
     public AudioSource soundFXSource;
     public AudioSource musicSource;
+  
+
+    public bool playFootsteps;
 
     private void Awake()
     {
@@ -26,6 +30,7 @@ public class AudioManager : MonoBehaviour
 
         menuFXSource = GameObject.Find("MenuFX").GetComponentInChildren<AudioSource>();
         characterFXSource = GameObject.Find("CharacterFX").GetComponentInChildren<AudioSource>();
+        movementFXSource = GameObject.Find("MovementFX").GetComponentInChildren<AudioSource>();
         soundFXSource = GameObject.Find("SoundFX").GetComponentInChildren<AudioSource>();
         musicSource = GameObject.Find("Music").GetComponentInChildren<AudioSource>();
     }
@@ -35,7 +40,7 @@ public class AudioManager : MonoBehaviour
         menuFXSource.clip = menuFX[tracknumber];
         menuFXSource.Play();
     }
-    public void Character(int tracknumber)
+    public void PlayCharacterFX(int tracknumber)
     {
         characterFXSource.clip = characterFX[tracknumber];
         characterFXSource.Play();
@@ -50,4 +55,19 @@ public class AudioManager : MonoBehaviour
         musicSource.clip = musicFX[tracknumber];
         musicSource.Play();
     }
+    public void ActivateFootstepsFX()
+    {
+        if (playFootsteps)
+        {
+            gameObject.GetComponent<AudioSource>().enabled = true;
+
+        }
+        else
+        {
+            gameObject.GetComponent<AudioSource>().enabled = false;
+        }
+
+    }
+
+
 }

@@ -24,6 +24,7 @@ public class GroundCollider : MonoBehaviour
     {
         core.isLanding = true;
         core.LandingAnimOn();
+        AudioManager.instance.PlaySoundFX(1);
         yield return new WaitForSecondsRealtime(0.25f);
         core.isLanding = false;
         core.JumpAnimOff();

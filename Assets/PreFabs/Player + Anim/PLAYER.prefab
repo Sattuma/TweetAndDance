@@ -639,6 +639,7 @@ MonoBehaviour:
   core: {fileID: 0}
   rb: {fileID: 0}
   facingRight: 0
+  playFootsteps: 0
   playerSpeed: 0
   walkingSpeed: 6
   slowedSpeed: 0
@@ -705,6 +706,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   move: {fileID: 0}
+  imageAlpha: {fileID: 0}
+  otherTrigger: {fileID: 1529831501155752897}
+  fadeOutAlpha: 0.4
+  fadeInAlpha: 1
+  fadeSpeed: 10
 --- !u!1001 &7425879094384456476
 PrefabInstance:
   m_ObjectHideFlags: 0

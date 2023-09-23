@@ -21,7 +21,7 @@ public class InputHandler : MonoBehaviour
     
 
     [Header("Input Actions")]
-    //private InputAction abilityMouse;
+
     private InputAction abilityMovement;
     private InputAction abilityJump;
     private InputAction abilityFly;
@@ -54,8 +54,7 @@ public class InputHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        //MOUSE MOVEMENT
-        //abilityMouse.Enable();
+
         //MOVEMENT
         abilityMovement.Enable();
         //BASIC CONTROLS//enabloidaan input action Airborne Input assetista ja laitetaan komento kun se painetaan => functio JumpInput alempana

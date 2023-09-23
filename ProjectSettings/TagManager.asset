@@ -17,6 +17,7 @@ TagManager:
   - FailReset
   - Higlight
   - Shader
+  - Grass
   layers:
   - Default
   - TransparentFX

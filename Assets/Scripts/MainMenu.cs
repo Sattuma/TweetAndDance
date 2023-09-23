@@ -53,35 +53,33 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame(string levelIndex)
     {
-        AudioManager.instance.musicSource.Stop();
-        //GameModeManager.instance.levelActive = false;
-        //GameModeManager.instance.activeGameMode = GameModeManager.GameMode.cutScene;
-        SceneManager.LoadScene(levelIndex);
+        StartCoroutine(StartButtonDelay(levelIndex));
     }
 
     public void OpenSettings()
     {
         Debug.Log("Settings opened");
-        
+        AudioManager.instance.PlayMenuFX(0);
         mainButtons.SetActive(false);
         backButton.SetActive(true);
         settingWindow.SetActive(true);
         logo.SetActive(false);
-        //GameObject.Find("Master").GetComponent<Selectable>().Select();
+        GameObject.Find("Master").GetComponent<Selectable>().Select();
     }
 
     public void OpenHowToPlay()
     {
         Debug.Log("HowToPlay Opened");
-        
+        AudioManager.instance.PlayMenuFX(0);
         mainButtons.SetActive(false);
         backButton.SetActive(true);
         howToPlayWindow.SetActive(true);
         logo.SetActive(false);
         howToPlayNavigationButtonRight.SetActive(true);
         howToPlayNavigationButtonLeft.SetActive(false);
+        howToPlayNavigationButtonRight.GetComponent<Selectable>().Select();
 
-        for(int i = 0; i < howToPlayImagesController.Length; i++)
+        for (int i = 0; i < howToPlayImagesController.Length; i++)
         {
             howToPlayImagesController[i].SetActive(false);
         }
@@ -97,8 +95,10 @@ public class MainMenu : MonoBehaviour
 
     public void HowToPlayRightNav()
     {
+        AudioManager.instance.PlayMenuFX(0);
         howToPlayNavigationButtonRight.SetActive(false);
         howToPlayNavigationButtonLeft.SetActive(true);
+        howToPlayNavigationButtonLeft.GetComponent<Selectable>().Select();
 
         for (int i = 0; i < howToPlayImagesController.Length; i++)
         {
@@ -112,8 +112,10 @@ public class MainMenu : MonoBehaviour
 
     public void HowToPlayLeftNav()
     {
+        AudioManager.instance.PlayMenuFX(0);
         howToPlayNavigationButtonRight.SetActive(true);
         howToPlayNavigationButtonLeft.SetActive(false);
+        howToPlayNavigationButtonRight.GetComponent<Selectable>().Select();
 
         for (int i = 0; i < howToPlayImagesController.Length; i++)
         {
@@ -127,17 +129,19 @@ public class MainMenu : MonoBehaviour
     public void OpenCredits()
     {
         Debug.Log("Credits Opened");
-
+        AudioManager.instance.PlayMenuFX(0);
         mainButtons.SetActive(false);
         backButton.SetActive(true);
         creditsWindow.SetActive(true);
         logo.SetActive(false);
+        backButton.GetComponent<Selectable>().Select();
 
     }
 
     public void OpenBack()
     {
         Debug.Log("Back Button Clicked");
+        AudioManager.instance.PlayMenuFX(0);
         mainButtons.SetActive(true);
         backButton.SetActive(false);
         settingWindow.SetActive(false);
@@ -150,6 +154,21 @@ public class MainMenu : MonoBehaviour
     public void QuitGame()
     {
         Debug.Log("Quit Button Clicked");
+        StartCoroutine(QuitButtonDelay());
+    }
+
+    public IEnumerator StartButtonDelay(string levelIndex)
+    {
+        AudioManager.instance.PlayMenuFX(0);
+        yield return new WaitForSecondsRealtime(0.2f);
+        AudioManager.instance.musicSource.Stop();
+        SceneManager.LoadScene(levelIndex);
+    }
+
+    public IEnumerator QuitButtonDelay()
+    {
+        AudioManager.instance.PlayMenuFX(0);
+        yield return new WaitForSecondsRealtime(0.2f);
         Application.Quit();
     }
 
