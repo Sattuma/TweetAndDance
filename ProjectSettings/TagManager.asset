@@ -16,6 +16,7 @@ TagManager:
   - NestObject
   - FailReset
   - Higlight
+  - Shader
   layers:
   - Default
   - TransparentFX

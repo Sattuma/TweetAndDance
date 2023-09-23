@@ -24,10 +24,10 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
-        //AudioManager.instance.PlayMusicFX(1);
+        
     }
 
-    //kun gamemangerissa invokataan? nii aktivoidaan t‰m‰?
+    //kun gamemangerissa invokataan? nii aktivoidaan t‰m‰ENDCOUNTSTART?
     public IEnumerator LevelEndCountOne()
     {
         isCountingLevel1 = true;
@@ -44,6 +44,7 @@ public class MenuManager : MonoBehaviour
         SuccessMenuOnLevel();
         isCountingLevel1 = false;
     }
+    //kun gamemangerissa invokataan? nii aktivoidaan t‰m‰ ENDCOUNTCANCEL??
     public void CancelEndGameHud()
     {
         StopAllCoroutines();
@@ -57,11 +58,12 @@ public class MenuManager : MonoBehaviour
     public void SuccessMenuOnLevel()
     {
         GameModeManager.instance.levelActive = false;
+        //t‰h‰n endincscreen SUCCESS HUD
     }
 
     public void FailedHud()
     {
-        
+        //t‰h‰n endincscreen FAILED HUD
     }
 
     //LEVEL2 - EVENT CALLS
@@ -101,6 +103,7 @@ public class MenuManager : MonoBehaviour
     public void ToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+        //latausruutu AKTIVOINTI t‰h‰n?
     }
 
 
