@@ -12,7 +12,13 @@ public class GameModeManager : MonoBehaviour
     public static event GameAction Success;
     public static event GameAction Fail;
 
+    public delegate void LevelAction();
+    public static event LevelAction NestCount;
+    public static event LevelAction NestCountEnd;
+
     public static GameModeManager instance;
+
+    public GameObject loadingScreenPrefab;
 
     [Header("Active Gamemode")]
     public GameMode activeGameMode;
@@ -28,6 +34,11 @@ public class GameModeManager : MonoBehaviour
     public float timerLevel1;
     public float timerLevel2;
     public float timerLevel3;
+
+    [Header("Secrets Found")]
+    public int secretLevel1_1;
+    public int secretLevel1_2;
+    public int secretLevel1_3;
 
     [Header("PickUp Amount")]
     public int leafCount;
@@ -73,23 +84,28 @@ public class GameModeManager : MonoBehaviour
 
     }
 
+    //INVOKE EVENTS FUNCTIONS
+    public void InvokeLevelCountOn()
+    { NestCount?.Invoke();}
+    public void InvokeLevelCountOff()
+    { NestCountEnd?.Invoke();}
+    public void InvokeSuccess()
+    { Success?.Invoke(); }
     public void InvokeLevelFail()
-    {
-        Fail?.Invoke();
-        Debug.Log("KUOLIT");
-    }
+    { Fail?.Invoke();}
 
-    public void Level1Active()
-    {
-        activeGameMode = GameMode.gameLevel;
-    }
+    // ACTIVE GAMEMODE FUNCTIONS
+    public void LevelActive()
+    { activeGameMode = GameMode.gameLevel;}
     public void CutSceneActive()
+    { activeGameMode = GameMode.cutScene;}
+    public void BonusLevelActive()
+    { activeGameMode = GameMode.bonusLevel;}
+
+    // ACTIVE CURRENTLEVEL FUNCTIONS
+    public void CurrentLevelActivation()
     {
-        activeGameMode = GameMode.cutScene;
-    }
-    public void BonusLevel()
-    {
-        activeGameMode = GameMode.bonusLevel;
+        
     }
 
     public void AddScore(int score)
@@ -107,6 +123,13 @@ public class GameModeManager : MonoBehaviour
     {
         Success?.Invoke();
         levelActive = false;
+    }
+
+
+    public void ChangeLevel(int levelIndex)
+    {
+        Instantiate(loadingScreenPrefab);
+        GameObject.Find("LevelChanger(Clone)").GetComponent<ASync>().LoadLevel(levelIndex);
     }
 
 }

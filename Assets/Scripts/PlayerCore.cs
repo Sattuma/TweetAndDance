@@ -26,55 +26,57 @@ public class PlayerCore : MonoBehaviour
         NoteScript.RightNote += RightNoteAnim;
     }
 
+    //PLAYER ACTION ANIMATION TRIGGER FUNCTIONS
     public void JumpAnimOn()
-    {
-        myAnim.SetBool("JumpStart",true);
-    }
+    { myAnim.SetBool("JumpStart",true);}
     public void JumpAnimOff()
-    {
-        myAnim.SetBool("JumpStart", false);
-    }
-
+    { myAnim.SetBool("JumpStart", false);}
     public void FlyAnimOn()
-    {
-        myAnim.SetBool("FlyStart", true);
-    }
+    { myAnim.SetBool("FlyStart", true);}
     public void FlyAnimOff()
-    {
-        myAnim.SetBool("FlyStart", false);
-    }
-
+    { myAnim.SetBool("FlyStart", false);}
     public void LandingAnimOn()
-    {
-        myAnim.SetTrigger("isLanding");
-    }
+    { myAnim.SetTrigger("isLanding");}
     public void LandingAnimOff()
+    { myAnim.SetTrigger("LandingFinish");}
+    public void WalkingAnim(float value)
+    { myAnim.SetFloat("x", value);}
+
+    //END GAME ANIMATION TRIGGER FUNCTIONS
+    public void SuccessAnim()
     {
-        myAnim.SetTrigger("LandingFinish");
+        if(isGrounded)
+        { myAnim.SetTrigger("WinTrig");}
+        else
+        { StartCoroutine(SuccessAnimDelay());}
+    }
+    IEnumerator SuccessAnimDelay()
+    {
+        yield return new WaitUntil(() => isLanding);
+        myAnim.SetTrigger("WinTrig");
+    }
+    public void LevelFailAnim()
+    {
+        if (isGrounded)
+        { myAnim.SetTrigger("LoseTrig");}
+        else
+        { StartCoroutine(FailAnimDelay());}
+    }
+    IEnumerator FailAnimDelay()
+    {
+        yield return new WaitUntil(() => isLanding);
+        myAnim.SetTrigger("LoseTrig");
     }
 
+
+
+    //BONUSLEVEL ANIMATION TRIGGER FUNCTIONS
     public void RightNoteAnim()
-    {
-        //myAnim.SetTrigger("RightNote");
+    {//myAnim.SetTrigger("RightNote");
     }
 
     public void WrongNoteAnim()
-    {
-        //myAnim.SetTrigger("WrongNote");
-    }
-    public void WalkingAnim(float value)
-    {
-        myAnim.SetFloat("x", value);
-    }
-
-    public void SuccessAnim()
-    {
-        // success animaatio tähän
-    }
-
-    public void LevelFailAnim()
-    {
-        // fail animaatio tähän
+    {//myAnim.SetTrigger("WrongNote");
     }
 
 }

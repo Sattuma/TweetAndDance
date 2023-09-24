@@ -30,6 +30,8 @@ public class MainMenu : MonoBehaviour
     [Header("Credits Window")]
     public GameObject creditsWindow;
 
+        public GameObject loadingScreenPrefab;
+
 
     public GameObject logo;
 
@@ -51,7 +53,7 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Continue Game Clicked");
     }
 
-    public void StartGame(string levelIndex)
+    public void StartGame(int levelIndex)
     {
         StartCoroutine(StartButtonDelay(levelIndex));
     }
@@ -157,12 +159,12 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(QuitButtonDelay());
     }
 
-    public IEnumerator StartButtonDelay(string levelIndex)
+    public IEnumerator StartButtonDelay(int levelIndex)
     {
         AudioManager.instance.PlayMenuFX(0);
         yield return new WaitForSecondsRealtime(0.2f);
         AudioManager.instance.musicSource.Stop();
-        SceneManager.LoadScene(levelIndex);
+        GameModeManager.instance.ChangeLevel(levelIndex);
     }
 
     public IEnumerator QuitButtonDelay()

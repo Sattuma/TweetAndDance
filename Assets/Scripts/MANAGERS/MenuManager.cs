@@ -7,6 +7,8 @@ using TMPro;
 
 public class MenuManager : MonoBehaviour
 {
+
+
     public GameObject timerText;
     public GameObject timerCountText;
 
@@ -15,20 +17,28 @@ public class MenuManager : MonoBehaviour
 
     public GameObject[] countDown = new GameObject[3];
 
-    public GameObject pauseMenu;
     public GameObject pauseButton;
-    public GameObject levelClear;
-    public GameObject gameOverHud;
+    public GameObject pauseMenu;
+    public GameObject successMenu;
+    public GameObject gameOverMenu;
 
     public bool isCountingLevel1;
 
+    public GameObject loadingScreen;
+
     private void Start()
     {
-        
+        GameModeManager.Success += SuccessMenuOnLevel;
+        GameModeManager.Fail += FailedMenuOnLevel;
+
+        GameModeManager.NestCount += StartLevelEndCount;
+        GameModeManager.NestCountEnd += CancelLevelEndCount;
     }
 
-    //kun gamemangerissa invokataan? nii aktivoidaan t‰m‰ENDCOUNTSTART?
-    public IEnumerator LevelEndCountOne()
+    public void StartLevelEndCount()
+    { StartCoroutine(LevelEndCount()); }
+
+    public IEnumerator LevelEndCount()
     {
         isCountingLevel1 = true;
         yield return new WaitForSecondsRealtime(0.2f);
@@ -41,11 +51,10 @@ public class MenuManager : MonoBehaviour
         countDown[2].SetActive(true);
         yield return new WaitForSecondsRealtime(1f);
         countDown[2].SetActive(false);
-        SuccessMenuOnLevel();
+        GameModeManager.instance.InvokeSuccess();
         isCountingLevel1 = false;
     }
-    //kun gamemangerissa invokataan? nii aktivoidaan t‰m‰ ENDCOUNTCANCEL??
-    public void CancelEndGameHud()
+    public void CancelLevelEndCount()
     {
         StopAllCoroutines();
 
@@ -58,12 +67,29 @@ public class MenuManager : MonoBehaviour
     public void SuccessMenuOnLevel()
     {
         GameModeManager.instance.levelActive = false;
-        //t‰h‰n endincscreen SUCCESS HUD
+        successMenu.SetActive(true);
     }
 
-    public void FailedHud()
+    public void FailedMenuOnLevel()
     {
-        //t‰h‰n endincscreen FAILED HUD
+        GameModeManager.instance.levelActive = false;
+        gameOverMenu.SetActive(true);
+    }
+    public void PauseMenu()
+    {
+        if (Time.timeScale == 1)
+        {
+            GameModeManager.instance.isPaused = true;
+            pauseMenu.SetActive(true);
+            Time.timeScale = 0;
+        }
+        else
+        {
+            GameModeManager.instance.isPaused = false;
+            pauseMenu.SetActive(false);
+            Time.timeScale = 1;
+        }
+
     }
 
     //LEVEL2 - EVENT CALLS
@@ -100,28 +126,9 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    public void ToMainMenu()
+    public void ToMainMenu(int sceneIndex)
     {
-        SceneManager.LoadScene("MainMenu");
-        //latausruutu AKTIVOINTI t‰h‰n?
-    }
-
-
-    public void PauseMenu()
-    {
-        if (Time.timeScale == 1)
-        {
-            GameModeManager.instance.isPaused = true;
-            pauseMenu.SetActive(true);
-            Time.timeScale = 0;
-        }
-        else
-        {
-            GameModeManager.instance.isPaused = false;
-            pauseMenu.SetActive(false);
-            Time.timeScale = 1;
-        }
-
+        GameModeManager.instance.ChangeLevel(sceneIndex);
     }
 
 }

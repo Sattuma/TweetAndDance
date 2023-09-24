@@ -2375,7 +2375,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6703965331153242747}
   m_Layer: 5
-  m_Name: GameOverHud
+  m_Name: GameOverMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4576,10 +4576,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: HudScript, Assembly-CSharp
+      - m_Target: {fileID: 676652453}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: ToMainMenu
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4719,11 +4719,12 @@ MonoBehaviour:
   - {fileID: 6577216066587687284}
   - {fileID: 6577216065744497222}
   - {fileID: 6577216066442655870}
-  pauseMenu: {fileID: 0}
-  pauseButton: {fileID: 0}
-  levelClear: {fileID: 0}
-  gameOverHud: {fileID: 0}
+  pauseButton: {fileID: 3359800167458720234}
+  pauseMenu: {fileID: 7093228087364564707}
+  successMenu: {fileID: 6577216066456405156}
+  gameOverMenu: {fileID: 3289069212460107630}
   isCountingLevel1: 0
+  loadingScreen: {fileID: 0}
 --- !u!1 &6577216065919407713
 GameObject:
   m_ObjectHideFlags: 0
@@ -5311,7 +5312,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6577216066456405163}
   m_Layer: 5
-  m_Name: LevelClear
+  m_Name: SuccessMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameLevelScript : MonoBehaviour
 {
-
     public GameObject[] pickupPrefab;
     public GameObject[] pickupSpawnPoints;
     public GameObject[] pickupSpawnPointsAir;
@@ -21,8 +20,6 @@ public class GameLevelScript : MonoBehaviour
         GroundSpawnPickupLevel();
         //StartInvokeRepeating();
     }
-
-
 
     public void GroundSpawnPickupLevel()
     {
@@ -66,11 +63,13 @@ public class GameLevelScript : MonoBehaviour
 
     public void StopInvoke()
     {
+        //cancel invokerepating system if decide to use this system ?
         CancelInvoke();
     }
 
-    public void LevelOneCleared()
+    public void LevelCleared()
     {
+        //cancel invokerepating system if decide to use this system and destroy pick ups around the nest?
         StopInvoke();
         DestroyPickUpsWithTag();
     }

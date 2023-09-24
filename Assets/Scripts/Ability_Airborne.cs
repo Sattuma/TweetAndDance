@@ -100,7 +100,7 @@ public class Ability_Airborne : MonoBehaviour
 
     public void FlyAction()
     {
-        if(GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
+        if(GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel && GameModeManager.instance.levelActive == true)
         {
             
             if (core.isGrounded == false)

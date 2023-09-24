@@ -18,6 +18,7 @@ TagManager:
   - Higlight
   - Shader
   - Grass
+  - Canvas
   layers:
   - Default
   - TransparentFX

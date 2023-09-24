@@ -2,27 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NestCollider : MonoBehaviour
+public class NestCollider2 : MonoBehaviour
 {
-
     public NestScript nestBase;
-    public HudScript hud;
-    public bool partComplete;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Placeable"))
         {
-            partComplete = true;
+            nestBase.partTwoOn = true;
             nestBase.completeLevelFinal = true;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Placeable") && !hud.isCountingLevel1)
+        if (collision.gameObject.CompareTag("Placeable") && nestBase.partOneOn)
         {
-            hud.StartEndGame();
+            GameModeManager.instance.InvokeLevelCountOn();
         }
     }
 
@@ -31,15 +28,12 @@ public class NestCollider : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Placeable"))
         {
-            partComplete = false;
+            nestBase.partTwoOn = false;
             nestBase.completeLevelFinal = false;
-            hud.CancelEndGameHud();
+            GameModeManager.instance.InvokeLevelCountOff();
         }
     }
 
     private void Start()
-    {
-        nestBase = GetComponentInParent<NestScript>();
-    }
-
+    { nestBase = GetComponentInParent<NestScript>();}
 }

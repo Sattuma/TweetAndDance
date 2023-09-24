@@ -8,11 +8,7 @@ using UnityEngine.InputSystem;
 public class InputHandler : MonoBehaviour
 {
     public delegate void UiAnim();
-    public static UiAnim InfoBoxAnim;
     public static UiAnim PauseOn;
-
-    public delegate void PlayerAction();
-    public static event PlayerAction DropPlatoform;
 
     [SerializeField]private PlayerController playerController;
     [SerializeField]private Vector2 mouseVector;
@@ -173,7 +169,8 @@ public class InputHandler : MonoBehaviour
     {
         if (GameModeManager.instance.activeGameMode != GameModeManager.GameMode.cutScene)
         { PauseOn?.Invoke(); }
-        else{ Debug.Log("Do nothing"); }
+        else
+        { Debug.Log("Do nothing"); }
     }
 }
 

@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class NestScript : MonoBehaviour
 {
-    public NestCollider nestCol;
+    [Header("Script Variables")]
+    public NestCollider1 nestCol;
+    public NestCollider2 nestCol2;
+
+    [Header("Nest Completion Booleans")]
     public bool completeLevelFinal;
-    public HudScript hud;
-
-    public Animator nestAnim;
-    public Animator arrowAnim;
-    public Animator arrow2Anim;
-
-    public GameObject arrowObj;
-    public GameObject arrow2Obj;
+    public bool partOneOn;
+    public bool partTwoOn;
 }
