@@ -19,12 +19,15 @@ public class PlayerCore : MonoBehaviour
     {
         myAnim = GetComponentInChildren<Animator>();
 
+        //EVENT CALL TO FUNCTIONS
         GameModeManager.Success += SuccessAnim;
         GameModeManager.Fail += LevelFailAnim;
 
         NoteScript.WrongNote += WrongNoteAnim;
         NoteScript.RightNote += RightNoteAnim;
     }
+
+    //-------------------------------------
 
     //PLAYER ACTION ANIMATION TRIGGER FUNCTIONS
     public void JumpAnimOn()
@@ -41,6 +44,8 @@ public class PlayerCore : MonoBehaviour
     { myAnim.SetTrigger("LandingFinish");}
     public void WalkingAnim(float value)
     { myAnim.SetFloat("x", value);}
+
+    //-------------------------------------
 
     //END GAME ANIMATION TRIGGER FUNCTIONS
     public void SuccessAnim()
@@ -68,7 +73,7 @@ public class PlayerCore : MonoBehaviour
         myAnim.SetTrigger("LoseTrig");
     }
 
-
+    //-------------------------------------
 
     //BONUSLEVEL ANIMATION TRIGGER FUNCTIONS
     public void RightNoteAnim()

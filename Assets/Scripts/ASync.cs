@@ -26,7 +26,6 @@ public class ASync : MonoBehaviour
 
     IEnumerator LoadAsynchronously(int sceneIndex)
     {
-
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
         while (!operation.isDone && !canChange)
         {

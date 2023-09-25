@@ -19,6 +19,9 @@ TagManager:
   - Shader
   - Grass
   - Canvas
+  - GrassGround
+  - RockGround
+  - WoodGround
   layers:
   - Default
   - TransparentFX

@@ -4,43 +4,76 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using TMPro;
+using System;
 
 public class MenuManager : MonoBehaviour
 {
 
-
+    [Header("UI Timer HUDvariables")]
     public GameObject timerText;
     public GameObject timerCountText;
 
+    [Header("UI points HUDvariables")]
     public GameObject pointsText;
     public GameObject pointsCountText;
 
+    [Header("UI Beginning Texts")]
+    public GameObject[] beginning = new GameObject[2];
+
+    [Header("UI OnScreen CountDown")]
     public GameObject[] countDown = new GameObject[3];
 
+    [Header("UI Menus & Buttons")]
     public GameObject pauseButton;
     public GameObject pauseMenu;
     public GameObject successMenu;
     public GameObject gameOverMenu;
 
-    public bool isCountingLevel1;
-
-    public GameObject loadingScreen;
-
     private void Start()
     {
+        //LEVEL EVENT CALL FOR FUNCTIONS
+        GameLevelScript.ActivateLevel += ActivateLevel;
+
+        //GAME EVENT CALL FOR FUNCTIONS
         GameModeManager.Success += SuccessMenuOnLevel;
         GameModeManager.Fail += FailedMenuOnLevel;
 
         GameModeManager.NestCount += StartLevelEndCount;
         GameModeManager.NestCountEnd += CancelLevelEndCount;
+
+        beginning[0].SetActive(false);
+        beginning[1].SetActive(false);
+
     }
 
+    private void ActivateLevel()
+    {
+        StartCoroutine(ActivateLevelCoRoutine());
+
+    }
+    IEnumerator ActivateLevelCoRoutine()
+    {
+
+        yield return new WaitForSecondsRealtime(1f);
+        beginning[0].SetActive(true);
+        yield return new WaitForSecondsRealtime(2f);
+        beginning[0].SetActive(false);
+        beginning[1].SetActive(true);
+        GameModeManager.instance.levelActive = true;
+        yield return new WaitForSecondsRealtime(0.5f);
+        beginning[1].SetActive(false);
+    }
+
+
+    //----------------------------------------------
+
+
+    //COUNTDOWN START FOR LEVEL END
     public void StartLevelEndCount()
     { StartCoroutine(LevelEndCount()); }
 
     public IEnumerator LevelEndCount()
     {
-        isCountingLevel1 = true;
         yield return new WaitForSecondsRealtime(0.2f);
         countDown[0].SetActive(true);
         yield return new WaitForSecondsRealtime(1f);
@@ -52,29 +85,34 @@ public class MenuManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(1f);
         countDown[2].SetActive(false);
         GameModeManager.instance.InvokeSuccess();
-        isCountingLevel1 = false;
     }
+    //COUNTDOWN CANCEL FOR LEVEL END
     public void CancelLevelEndCount()
     {
         StopAllCoroutines();
-
-        isCountingLevel1 = false;
         countDown[0].SetActive(false);
         countDown[1].SetActive(false);
         countDown[2].SetActive(false);
     }
 
+
+
+    //----------------------------------------------
+
+
+
+    //GAME LEVEL ENDING MENU WINDOWS
     public void SuccessMenuOnLevel()
     {
         GameModeManager.instance.levelActive = false;
         successMenu.SetActive(true);
     }
-
     public void FailedMenuOnLevel()
     {
         GameModeManager.instance.levelActive = false;
         gameOverMenu.SetActive(true);
     }
+    //PAUSE MENU WINDOW FUNCTIONS
     public void PauseMenu()
     {
         if (Time.timeScale == 1)
@@ -89,8 +127,13 @@ public class MenuManager : MonoBehaviour
             pauseMenu.SetActive(false);
             Time.timeScale = 1;
         }
-
     }
+
+
+
+    //----------------------------------------------
+
+
 
     //LEVEL2 - EVENT CALLS
     public void UpdateScore()
@@ -98,7 +141,13 @@ public class MenuManager : MonoBehaviour
         //pointsCountText.GetComponent<TextMeshProUGUI>().text = GameModeManager.instance.scoreLevel2.ToString() + "/ 2000";
     }
 
-    // BUTTON CALLS
+
+
+    //----------------------------------------------
+
+
+
+    // BUTTON CALLS FOR NAVIGATION BETWEEN MENUS AND SCENES
     public void Continue()
     {
 
@@ -128,7 +177,18 @@ public class MenuManager : MonoBehaviour
 
     public void ToMainMenu(int sceneIndex)
     {
+        GameModeManager.instance.timerLevel1 = PlayerPrefs.GetFloat("Timer1_1");
+        GameModeManager.instance.timerLevel2 = PlayerPrefs.GetFloat("Timer1_2");
+        GameModeManager.instance.timerLevel3 = PlayerPrefs.GetFloat("Timer1_3");
         GameModeManager.instance.ChangeLevel(sceneIndex);
+    }
+
+    //----------------------------------------------
+
+    public void OnDestroy()
+    {
+        
+        
     }
 
 }

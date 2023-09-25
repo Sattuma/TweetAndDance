@@ -961,13 +961,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 957c378cacb1a004a945670f2b426910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadingScreenPrefab: {fileID: 2413979157351415043, guid: 7152a842434c13a498d429d441957bb2, type: 3}
   activeGameMode: 0
   currentLevel: 0
   levelActive: 1
   isPaused: 0
-  timerLevel1: 500
+  timerLevel1: 200
   timerLevel2: 300
   timerLevel3: 421
+  secretLevel1_1: 0
+  secretLevel1_2: 0
+  secretLevel1_3: 0
   leafCount: 0
   stickCount: 0
   birchStickCount: 0

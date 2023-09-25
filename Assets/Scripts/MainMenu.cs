@@ -30,9 +30,6 @@ public class MainMenu : MonoBehaviour
     [Header("Credits Window")]
     public GameObject creditsWindow;
 
-        public GameObject loadingScreenPrefab;
-
-
     public GameObject logo;
 
     private void Start()

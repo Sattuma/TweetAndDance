@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GameLevelScript : MonoBehaviour
 {
+
+    public delegate void LevelAction();
+    public static event LevelAction ActivateLevel;
+
     public GameObject[] pickupPrefab;
     public GameObject[] pickupSpawnPoints;
     public GameObject[] pickupSpawnPointsAir;
@@ -13,13 +17,26 @@ public class GameLevelScript : MonoBehaviour
     private void Awake()
     {
         AudioManager.instance.PlayMusicFX(3);
+        
     }
 
     private void Start()
     {
         GroundSpawnPickupLevel();
         //StartInvokeRepeating();
+
+    //----------------------------------------------------------------------------------------------------------
+        // TÄSTÄ JOHTUU MIKSI SE MENUMANAGER DESTROY IHTESÄ UUDESTAAN LADATESSA!!
+        StartCoroutine(StartLevelCheck());
+
     }
+    // TÄSTÄ JOHTUU MIKSI SE MENUMANAGER DESTROY IHTESÄ UUDESTAAN LADATESSA!!
+    IEnumerator StartLevelCheck()
+    {
+        yield return new WaitUntil(() => GameModeManager.instance.cutsceneActive == false);
+        ActivateLevel?.Invoke();
+    }
+    //----------------------------------------------------------------------------------------------------------
 
     public void GroundSpawnPickupLevel()
     {

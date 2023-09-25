@@ -14,20 +14,21 @@ public class PlayerCollider : MonoBehaviour
     public float fadeInAlpha;
     public float fadeSpeed;
 
+    public bool objectFading;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Shader"))
         {
-            Debug.Log("Osun pensaaseen");
             AudioManager.instance.PlaySoundFX(0);
             Physics2D.IgnoreCollision(otherTrigger.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
             imageAlpha = collision.gameObject.transform.GetComponent<SpriteRenderer>();
             imageAlpha.color = new Color(1, 1, 1, fadeOutAlpha);
+            objectFading = true;
         }
 
         if (collision.gameObject.CompareTag("Grass"))
         {
-            Debug.Log("Osun pensaaseen");
             AudioManager.instance.PlaySoundFX(0);
         }
         /*
@@ -43,15 +44,14 @@ public class PlayerCollider : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Shader"))
         {
-            Debug.Log("Pois Pensaasta");
             AudioManager.instance.PlaySoundFX(0);
             imageAlpha = collision.gameObject.transform.GetComponent<SpriteRenderer>();
             imageAlpha.color = new Color(1, 1, 1, fadeInAlpha);
+            objectFading = false;
         }
 
         if(collision.gameObject.CompareTag("Grass"))
         {
-            Debug.Log("Pois Pensaasta");
             AudioManager.instance.PlaySoundFX(0);
         }
     }
@@ -59,5 +59,6 @@ public class PlayerCollider : MonoBehaviour
     {
         move = GetComponent<Ability_Movement>();
     }
+
 
 }

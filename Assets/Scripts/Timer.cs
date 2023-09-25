@@ -6,6 +6,14 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
     public TextMeshProUGUI timerCountdown;
+    public Animator uiAnim;
+    public AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioSource = GetComponentInParent<AudioSource>();
+        audioSource.enabled = false;
+    }
 
     void Update()
     {
@@ -58,14 +66,23 @@ public class Timer : MonoBehaviour
     public void DisplayTime(float timeToDisplay)
     {
 
-        if (timeToDisplay < 0)
-        {
-            timeToDisplay = 0;
-        }
+        if(timeToDisplay <= 11 && timeToDisplay > 0.1f)
+        { uiAnim.SetBool("CountOn", true);}
+        else if(timeToDisplay < 0.1f)
+        { uiAnim.SetBool("CountOn", false);}
+
+        if (timeToDisplay <= 0)
+        { timeToDisplay = 0;}
 
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
         timerCountdown.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
+
+    public void PlaySoundOnCount()
+    {
+        audioSource.enabled = true;
+    }
+
 }

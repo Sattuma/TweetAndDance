@@ -165,6 +165,8 @@ public class InputHandler : MonoBehaviour
         interactScript.InteractActionCancel();
     }
 
+
+
     private void Pause(InputAction.CallbackContext obj)
     {
         if (GameModeManager.instance.activeGameMode != GameModeManager.GameMode.cutScene)

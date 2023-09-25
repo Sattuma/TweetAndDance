@@ -14,17 +14,23 @@ public class GroundCollider : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") && GetComponentInParent<Rigidbody2D>().velocity.y <= 0)
-        {
-            Debug.Log("osun maahan");
-            StartCoroutine(ResetDelay());
-        }
+        { StartCoroutine(ResetDelay());}
+
+        // TRIGGERS FOR AUDIO EFFECTS ON LANDING
+        if(collision.gameObject.CompareTag("GrassGround"))
+        { AudioManager.instance.PlaySoundFX(1);}
+
+        if (collision.gameObject.CompareTag("RockGround"))
+        { AudioManager.instance.PlaySoundFX(3);}
+
+        if (collision.gameObject.CompareTag("WoodGround"))
+        { AudioManager.instance.PlaySoundFX(4);}
     }
 
     public IEnumerator ResetDelay()
     {
         core.isLanding = true;
         core.LandingAnimOn();
-        AudioManager.instance.PlaySoundFX(1);
         yield return new WaitForSecondsRealtime(0.25f);
         core.isLanding = false;
         core.JumpAnimOff();

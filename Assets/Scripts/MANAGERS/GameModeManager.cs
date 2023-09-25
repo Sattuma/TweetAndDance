@@ -27,6 +27,7 @@ public class GameModeManager : MonoBehaviour
     public CurrentLevel currentLevel;
 
     [Header("Level State Booleans")]
+    public bool cutsceneActive;
     public bool levelActive;
     public bool isPaused;
 
@@ -80,9 +81,16 @@ public class GameModeManager : MonoBehaviour
         { instance = this; DontDestroyOnLoad(instance);}
 
         activeGameMode = GameMode.gameLevel;
-        levelActive = true;
 
+        PlayerPrefs.SetFloat("Timer1_1", timerLevel1);
+        PlayerPrefs.SetFloat("Timer1_2", timerLevel2);
+        PlayerPrefs.SetFloat("Timer1_3", timerLevel3);
+        
     }
+
+
+    //----------------------------------------
+
 
     //INVOKE EVENTS FUNCTIONS
     public void InvokeLevelCountOn()
@@ -93,6 +101,10 @@ public class GameModeManager : MonoBehaviour
     { Success?.Invoke(); }
     public void InvokeLevelFail()
     { Fail?.Invoke();}
+
+
+    //----------------------------------------
+
 
     // ACTIVE GAMEMODE FUNCTIONS
     public void LevelActive()
@@ -107,6 +119,10 @@ public class GameModeManager : MonoBehaviour
     {
         
     }
+
+
+    //----------------------------------------
+
 
     public void AddScore(int score)
     {
@@ -126,10 +142,15 @@ public class GameModeManager : MonoBehaviour
     }
 
 
+    //----------------------------------------
+
+
     public void ChangeLevel(int levelIndex)
     {
         Instantiate(loadingScreenPrefab);
         GameObject.Find("LevelChanger(Clone)").GetComponent<ASync>().LoadLevel(levelIndex);
     }
+
+    //----------------------------------------F
 
 }
