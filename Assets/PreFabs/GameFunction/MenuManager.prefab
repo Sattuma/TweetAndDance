@@ -302,7 +302,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerCountdown: {fileID: 0}
   uiAnim: {fileID: 0}
-  audioSource: {fileID: 0}
 --- !u!1 &416250791
 GameObject:
   m_ObjectHideFlags: 0
@@ -3902,10 +3901,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: HudScript, Assembly-CSharp
+      - m_Target: {fileID: 676652453}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: ToMainMenu
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6369,7 +6368,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerCountdown: {fileID: 6577216067437786065}
   uiAnim: {fileID: 4725601029390739068}
-  audioSource: {fileID: 0}
 --- !u!1 &6709921150037897365
 GameObject:
   m_ObjectHideFlags: 0

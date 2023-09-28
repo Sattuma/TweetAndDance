@@ -20,6 +20,9 @@ public class MainMenu : MonoBehaviour
 
     [Header("Settings Window")]
     public GameObject settingWindow;
+    public Slider masterVolumeSlider;
+    public Slider musicVolumeSlider;
+    public Slider effectsVolumeSlider;
 
     [Header("HowToPlay Window")]
     public GameObject howToPlayWindow;
@@ -35,6 +38,8 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         AudioManager.instance.PlayMusicFX(0);
+        SendDataToStore();
+        GetStoredAudioData();
     }
 
     public void OnPointerEnter()
@@ -86,9 +91,6 @@ public class MainMenu : MonoBehaviour
         {
             howToPlayImagesKey[i].SetActive(true);
         }
-
-
-
 
     }
 
@@ -159,6 +161,10 @@ public class MainMenu : MonoBehaviour
     public IEnumerator StartButtonDelay(int levelIndex)
     {
         AudioManager.instance.PlayMenuFX(0);
+        masterVolumeSlider.value = AudioManager.instance.masterVolumeValue;
+        effectsVolumeSlider.value = AudioManager.instance.effectsVolumeValue;
+        musicVolumeSlider.value = AudioManager.instance.musicVolumeValue;
+        SendDataToStore();
         yield return new WaitForSecondsRealtime(0.2f);
         AudioManager.instance.musicSource.Stop();
         GameModeManager.instance.ChangeLevel(levelIndex);
@@ -169,6 +175,18 @@ public class MainMenu : MonoBehaviour
         AudioManager.instance.PlayMenuFX(0);
         yield return new WaitForSecondsRealtime(0.2f);
         Application.Quit();
+    }
+
+    public void GetStoredAudioData()
+    {
+        masterVolumeSlider.value = PlayerPrefs.GetFloat("MasterVolume");
+        effectsVolumeSlider.value = PlayerPrefs.GetFloat("EffectsVolume");
+        musicVolumeSlider.value = PlayerPrefs.GetFloat("MusicVolume");
+    }
+
+    public void SendDataToStore()
+    {
+        AudioManager.instance.SetStoredData();
     }
 
 

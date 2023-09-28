@@ -19,7 +19,10 @@ public class AudioManager : MonoBehaviour
     public AudioSource movementFXSource;
     public AudioSource soundFXSource;
     public AudioSource musicSource;
-  
+
+    public float masterVolumeValue;
+    public float effectsVolumeValue;
+    public float musicVolumeValue;
 
     public bool playFootsteps;
 
@@ -67,6 +70,13 @@ public class AudioManager : MonoBehaviour
             gameObject.GetComponent<AudioSource>().enabled = false;
         }
 
+    }
+
+    public void SetStoredData()
+    {
+        PlayerPrefs.SetFloat("MasterVolume", masterVolumeValue);
+        PlayerPrefs.SetFloat("EffectVolume", effectsVolumeValue);
+        PlayerPrefs.SetFloat("MusicVolume", musicVolumeValue);
     }
 
 

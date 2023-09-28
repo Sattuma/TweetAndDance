@@ -35,6 +35,7 @@ public class MenuManager : MonoBehaviour
         GameLevelScript.ActivateLevel += ActivateLevel;
 
         //GAME EVENT CALL FOR FUNCTIONS
+        GameModeManager.PauseOn += PauseMenu;
         GameModeManager.Success += SuccessMenuOnLevel;
         GameModeManager.Fail += FailedMenuOnLevel;
 
@@ -177,19 +178,30 @@ public class MenuManager : MonoBehaviour
 
     public void ToMainMenu(int sceneIndex)
     {
-        GameModeManager.instance.timerLevel1 = PlayerPrefs.GetFloat("Timer1_1");
-        GameModeManager.instance.timerLevel2 = PlayerPrefs.GetFloat("Timer1_2");
-        GameModeManager.instance.timerLevel3 = PlayerPrefs.GetFloat("Timer1_3");
+        GetStoredTimerData();
         GameModeManager.instance.ChangeLevel(sceneIndex);
     }
 
     //----------------------------------------------
 
+    public void GetStoredTimerData()
+    {
+        GameModeManager.instance.timerLevel1 = PlayerPrefs.GetFloat("Timer1_1");
+        GameModeManager.instance.timerLevel2 = PlayerPrefs.GetFloat("Timer1_2");
+        GameModeManager.instance.timerLevel3 = PlayerPrefs.GetFloat("Timer1_3");
+    }
+
     public void OnDestroy()
     {
-        
-        
+        GameLevelScript.ActivateLevel -= ActivateLevel;
+        GameModeManager.PauseOn -= PauseMenu;
+        GameModeManager.Success -= SuccessMenuOnLevel;
+        GameModeManager.Fail -= FailedMenuOnLevel;
+        GameModeManager.NestCount -= StartLevelEndCount;
+        GameModeManager.NestCountEnd -= CancelLevelEndCount;
     }
+
+
 
 }
 

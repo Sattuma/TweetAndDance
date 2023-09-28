@@ -7,13 +7,9 @@ public class Timer : MonoBehaviour
 {
     public TextMeshProUGUI timerCountdown;
     public Animator uiAnim;
-    public AudioSource audioSource;
 
-    private void Awake()
-    {
-        audioSource = GetComponentInParent<AudioSource>();
-        audioSource.enabled = false;
-    }
+
+
 
     void Update()
     {
@@ -80,9 +76,6 @@ public class Timer : MonoBehaviour
         timerCountdown.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
-    public void PlaySoundOnCount()
-    {
-        audioSource.enabled = true;
-    }
+
 
 }

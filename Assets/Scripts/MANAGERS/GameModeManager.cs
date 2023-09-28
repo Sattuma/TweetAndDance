@@ -8,6 +8,7 @@ public class GameModeManager : MonoBehaviour
     public delegate void GameAction();
     public static event GameAction GameLevelEnd;
     public static event GameAction BonusLevelEnd;
+    public static event GameAction PauseOn;
     public static event GameAction BonusLevelScore;
     public static event GameAction Success;
     public static event GameAction Fail;
@@ -81,11 +82,7 @@ public class GameModeManager : MonoBehaviour
         { instance = this; DontDestroyOnLoad(instance);}
 
         activeGameMode = GameMode.gameLevel;
-
-        PlayerPrefs.SetFloat("Timer1_1", timerLevel1);
-        PlayerPrefs.SetFloat("Timer1_2", timerLevel2);
-        PlayerPrefs.SetFloat("Timer1_3", timerLevel3);
-        
+        SetStoredData();
     }
 
 
@@ -97,10 +94,13 @@ public class GameModeManager : MonoBehaviour
     { NestCount?.Invoke();}
     public void InvokeLevelCountOff()
     { NestCountEnd?.Invoke();}
+    public void InvokePause()
+    { PauseOn?.Invoke(); }
     public void InvokeSuccess()
     { Success?.Invoke(); }
     public void InvokeLevelFail()
     { Fail?.Invoke();}
+
 
 
     //----------------------------------------
@@ -147,10 +147,20 @@ public class GameModeManager : MonoBehaviour
 
     public void ChangeLevel(int levelIndex)
     {
+        //Success = null
         Instantiate(loadingScreenPrefab);
         GameObject.Find("LevelChanger(Clone)").GetComponent<ASync>().LoadLevel(levelIndex);
+        
+
     }
 
-    //----------------------------------------F
+    public void SetStoredData()
+    {
+        PlayerPrefs.SetFloat("Timer1_1", timerLevel1);
+        PlayerPrefs.SetFloat("Timer1_2", timerLevel2);
+        PlayerPrefs.SetFloat("Timer1_3", timerLevel3);
+    }
+
+    //----------------------------------------
 
 }

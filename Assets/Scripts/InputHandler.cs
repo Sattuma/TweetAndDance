@@ -121,11 +121,15 @@ public class InputHandler : MonoBehaviour
 
     private void JumpInput(InputAction.CallbackContext obj)
     {
-        if(!core.isLanding)
+        if(!GameModeManager.instance.isPaused)
         {
-            airborneScript.jumpIsPressed = true;
-            airborneScript.JumpAction();
+            if (!core.isLanding)
+            {
+                airborneScript.jumpIsPressed = true;
+                airborneScript.JumpAction();
+            }
         }
+
 
     }
     private void JumpInputCancel(InputAction.CallbackContext obj)
@@ -134,14 +138,21 @@ public class InputHandler : MonoBehaviour
     }
     private void FlyInput(InputAction.CallbackContext obj)
     {
-        airborneScript.FlyAction();
+        if (!GameModeManager.instance.isPaused)
+        {
+            airborneScript.FlyAction();
+        }
+
     }
 
     private void InteractInputOne(InputAction.CallbackContext obj)
     {
-
+        if(!GameModeManager.instance.isPaused)
+        {
+            interactScript.InteractActionOne();
+        }
         //tieto kulkeutuu napin painautuessa interactscriptiin ja siellä olevaan functioon
-        interactScript.InteractActionOne();
+
 
         if(GameModeManager.instance.levelActive != true && GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
         {
@@ -169,8 +180,8 @@ public class InputHandler : MonoBehaviour
 
     private void Pause(InputAction.CallbackContext obj)
     {
-        if (GameModeManager.instance.activeGameMode != GameModeManager.GameMode.cutScene)
-        { PauseOn?.Invoke(); }
+        if (GameModeManager.instance.activeGameMode != GameModeManager.GameMode.cutScene && GameModeManager.instance.levelActive)
+        { GameModeManager.instance.InvokePause(); }
         else
         { Debug.Log("Do nothing"); }
     }

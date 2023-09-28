@@ -2836,6 +2836,18 @@ PrefabInstance:
       value: AudioManager
       objectReference: {fileID: 0}
     - target: {fileID: 921483886097288750, guid: 4cf04bb701032774298427d4ecb23238, type: 3}
+      propertyPath: musicVolumeValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 921483886097288750, guid: 4cf04bb701032774298427d4ecb23238, type: 3}
+      propertyPath: masterVolumeValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 921483886097288750, guid: 4cf04bb701032774298427d4ecb23238, type: 3}
+      propertyPath: effectsVolumeValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 921483886097288750, guid: 4cf04bb701032774298427d4ecb23238, type: 3}
       propertyPath: hudFX.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: aea967427ac5bc842ae1e3ef6e47c78d, type: 3}
@@ -2982,11 +2994,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7475598443264628686, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
       propertyPath: timerLevel1
-      value: 15
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7475598443264628686, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
       propertyPath: cutsceneActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8097760874582612812, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
       propertyPath: m_RootOrder
@@ -3730,34 +3742,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5514999591065086336, guid: 063194214bc7bb84e9aabddca407d8e4, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5514999591065086336, guid: 063194214bc7bb84e9aabddca407d8e4, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5514999591079683695, guid: 063194214bc7bb84e9aabddca407d8e4, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5514999591079683695, guid: 063194214bc7bb84e9aabddca407d8e4, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5514999591578568297, guid: 063194214bc7bb84e9aabddca407d8e4, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5514999591578568297, guid: 063194214bc7bb84e9aabddca407d8e4, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5514999591578568297, guid: 063194214bc7bb84e9aabddca407d8e4, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5514999591815202987, guid: 063194214bc7bb84e9aabddca407d8e4, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -3845,38 +3829,6 @@ PrefabInstance:
     - target: {fileID: 5514999591815202991, guid: 063194214bc7bb84e9aabddca407d8e4, type: 3}
       propertyPath: m_Name
       value: MainMenu_CANVAS
-      objectReference: {fileID: 0}
-    - target: {fileID: 5514999592462149497, guid: 063194214bc7bb84e9aabddca407d8e4, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5514999592462149497, guid: 063194214bc7bb84e9aabddca407d8e4, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5514999592501649662, guid: 063194214bc7bb84e9aabddca407d8e4, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5514999592501649662, guid: 063194214bc7bb84e9aabddca407d8e4, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5514999592501649662, guid: 063194214bc7bb84e9aabddca407d8e4, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5514999593032122484, guid: 063194214bc7bb84e9aabddca407d8e4, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5514999593032122484, guid: 063194214bc7bb84e9aabddca407d8e4, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5514999593032122484, guid: 063194214bc7bb84e9aabddca407d8e4, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 063194214bc7bb84e9aabddca407d8e4, type: 3}

@@ -16,7 +16,7 @@ public class GameLevelScript : MonoBehaviour
 
     private void Awake()
     {
-        AudioManager.instance.PlayMusicFX(3);
+        //AudioManager.instance.PlayMusicFX(3);
         
     }
 
@@ -24,19 +24,16 @@ public class GameLevelScript : MonoBehaviour
     {
         GroundSpawnPickupLevel();
         //StartInvokeRepeating();
-
-    //----------------------------------------------------------------------------------------------------------
-        // TÄSTÄ JOHTUU MIKSI SE MENUMANAGER DESTROY IHTESÄ UUDESTAAN LADATESSA!!
         StartCoroutine(StartLevelCheck());
 
     }
-    // TÄSTÄ JOHTUU MIKSI SE MENUMANAGER DESTROY IHTESÄ UUDESTAAN LADATESSA!!
+
     IEnumerator StartLevelCheck()
     {
         yield return new WaitUntil(() => GameModeManager.instance.cutsceneActive == false);
         ActivateLevel?.Invoke();
     }
-    //----------------------------------------------------------------------------------------------------------
+
 
     public void GroundSpawnPickupLevel()
     {
