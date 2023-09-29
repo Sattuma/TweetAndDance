@@ -29,16 +29,22 @@ public class ASync : MonoBehaviour
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
         while (!operation.isDone && !canChange)
         {
+            GameModeManager.instance.ResetEvents();
+            Time.timeScale = 1;
+            GameModeManager.instance.isPaused = false;
             float progress = Mathf.Clamp01(operation.progress / 0.9f);
             progressBar.value = progress;
             percentText.text = progress * 100f + ("%");
             if(progressBar.value == 100f)
             {
                 progressBar.value = 100f;
+
             }
             yield return null;
         }
     }
+
+
 
 
 

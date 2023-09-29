@@ -31,6 +31,26 @@ public class PlayerCollider : MonoBehaviour
         {
             AudioManager.instance.PlaySoundFX(0);
         }
+
+        if (collision.gameObject.CompareTag("LeftCamTrig"))
+        {
+            Debug.Log("VASEN kamera aktivoituu");
+            Physics2D.IgnoreCollision(otherTrigger.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
+            //FindCameraLeft();
+        }
+        if (collision.gameObject.CompareTag("StaticCamTrig"))
+        {
+            Debug.Log("KESKI kamera aktivoituu");
+            Physics2D.IgnoreCollision(otherTrigger.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
+            //FindCameraStatic();
+        }
+        if (collision.gameObject.CompareTag("RightCamTrig"))
+        {
+            Debug.Log("OIKEA kamera aktivoituu");
+            Physics2D.IgnoreCollision(otherTrigger.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
+            //FindCameraRight();
+        }
+
         /*
         if(collision.gameObject.CompareTag("LevelTwo"))
         {
@@ -58,6 +78,25 @@ public class PlayerCollider : MonoBehaviour
     private void Start()
     {
         move = GetComponent<Ability_Movement>();
+    }
+
+    public void FindCameraStatic()
+    {
+        GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
+        CameraController controller = camera.GetComponent<CameraController>();
+        controller.target = controller.staticObj;
+    }
+    public void FindCameraLeft()
+    {
+        GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
+        CameraController controller = camera.GetComponent<CameraController>();
+        controller.target = controller.leftObj;
+    }
+    public void FindCameraRight()
+    {
+        GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
+        CameraController controller = camera.GetComponent<CameraController>();
+        controller.target = controller.rightObj;
     }
 
 

@@ -85,8 +85,8 @@ public class Ability_Airborne : MonoBehaviour
             if (core.isGrounded == true)
             {
                 AudioManager.instance.PlaySoundFX(2);
-                rb.velocity = Vector2.up * jumpPower;
-                //rb.AddForce(transform.up * jumpPower);
+                //rb.velocity = Vector2.up * jumpPower;
+                rb.AddForce(transform.up * jumpPower);
                 core.JumpAnimOn();
                 
                 

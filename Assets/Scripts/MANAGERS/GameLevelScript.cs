@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class GameLevelScript : MonoBehaviour
 {
-
-    public delegate void LevelAction();
-    public static event LevelAction ActivateLevel;
-
     public GameObject[] pickupPrefab;
     public GameObject[] pickupSpawnPoints;
     public GameObject[] pickupSpawnPointsAir;
@@ -31,7 +27,7 @@ public class GameLevelScript : MonoBehaviour
     IEnumerator StartLevelCheck()
     {
         yield return new WaitUntil(() => GameModeManager.instance.cutsceneActive == false);
-        ActivateLevel?.Invoke();
+        GameModeManager.instance.StartLevelInvoke();
     }
 
 

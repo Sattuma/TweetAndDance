@@ -15,6 +15,7 @@ public class CloudGeneratorScript : MonoBehaviour
 
     Vector3 startPos;
 
+
     [SerializeField] private float minSpeed;
     [SerializeField] private float maxSpeed;
 
@@ -35,6 +36,11 @@ public class CloudGeneratorScript : MonoBehaviour
     {
         int randomIndex = UnityEngine.Random.Range(0, 4);
         GameObject cloud = Instantiate(clouds[randomIndex]);
+
+        //LISÄYS
+        int layerBackground = LayerMask.NameToLayer("Background");
+        cloud.layer = layerBackground;
+        //--------
 
         float startY = UnityEngine.Random.Range(startPos.y - minY, startPos.y + maxY);
         cloud.transform.position = new Vector3(startPos.x, startY, startPos.z);

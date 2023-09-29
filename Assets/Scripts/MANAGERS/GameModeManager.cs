@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameModeManager : MonoBehaviour
 {
     public delegate void GameAction();
+    public static event GameAction StartLevel;
     public static event GameAction GameLevelEnd;
     public static event GameAction BonusLevelEnd;
     public static event GameAction PauseOn;
@@ -90,6 +91,8 @@ public class GameModeManager : MonoBehaviour
 
 
     //INVOKE EVENTS FUNCTIONS
+    public void StartLevelInvoke()
+    { StartLevel?.Invoke(); }
     public void InvokeLevelCountOn()
     { NestCount?.Invoke();}
     public void InvokeLevelCountOff()
@@ -147,7 +150,6 @@ public class GameModeManager : MonoBehaviour
 
     public void ChangeLevel(int levelIndex)
     {
-        //Success = null
         Instantiate(loadingScreenPrefab);
         GameObject.Find("LevelChanger(Clone)").GetComponent<ASync>().LoadLevel(levelIndex);
         
@@ -159,6 +161,19 @@ public class GameModeManager : MonoBehaviour
         PlayerPrefs.SetFloat("Timer1_1", timerLevel1);
         PlayerPrefs.SetFloat("Timer1_2", timerLevel2);
         PlayerPrefs.SetFloat("Timer1_3", timerLevel3);
+    }
+
+    public void ResetEvents()
+    {
+        StartLevel = null;
+        GameLevelEnd = null;
+        BonusLevelEnd = null;
+        PauseOn = null;
+        BonusLevelScore = null;
+        Success = null;
+        Fail = null;
+        NestCount = null;
+        NestCountEnd = null;
     }
 
     //----------------------------------------
