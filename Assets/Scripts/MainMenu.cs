@@ -35,11 +35,20 @@ public class MainMenu : MonoBehaviour
 
     public GameObject logo;
 
+    private void Awake()
+    {
+
+    }
     private void Start()
     {
+
+        AudioManager.instance.masterVolumeValue = masterVolumeSlider.value;
+        AudioManager.instance.effectsVolumeValue = effectsVolumeSlider.value;
+        AudioManager.instance.musicVolumeValue = musicVolumeSlider.value;
+
+        GetData();
+        SetData();
         AudioManager.instance.PlayMusicFX(0);
-        SendDataToStore();
-        GetStoredAudioData();
     }
 
     public void OnPointerEnter()
@@ -161,10 +170,7 @@ public class MainMenu : MonoBehaviour
     public IEnumerator StartButtonDelay(int levelIndex)
     {
         AudioManager.instance.PlayMenuFX(0);
-        masterVolumeSlider.value = AudioManager.instance.masterVolumeValue;
-        effectsVolumeSlider.value = AudioManager.instance.effectsVolumeValue;
-        musicVolumeSlider.value = AudioManager.instance.musicVolumeValue;
-        SendDataToStore();
+        SetData();
         yield return new WaitForSecondsRealtime(0.2f);
         AudioManager.instance.musicSource.Stop();
         GameModeManager.instance.ChangeLevel(levelIndex);
@@ -177,16 +183,31 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void GetStoredAudioData()
+    public void SetData()
     {
-        masterVolumeSlider.value = PlayerPrefs.GetFloat("MasterVolume");
-        effectsVolumeSlider.value = PlayerPrefs.GetFloat("EffectsVolume");
-        musicVolumeSlider.value = PlayerPrefs.GetFloat("MusicVolume");
+
+        AudioManager.instance.masterVolumeValue = masterVolumeSlider.value;
+        AudioManager.instance.effectsVolumeValue = effectsVolumeSlider.value;
+        AudioManager.instance.musicVolumeValue = musicVolumeSlider.value;
+        Debug.Log(AudioManager.instance.masterVolumeValue);
+
+        DataManager.instance.SetLevelAudio(masterVolumeSlider.value, effectsVolumeSlider.value, musicVolumeSlider.value);
     }
 
-    public void SendDataToStore()
+    public void GetData()
     {
-        AudioManager.instance.SetStoredData();
+        DataManager.instance.GetLevelAudio();
+
+        masterVolumeSlider.value = AudioManager.instance.masterVolumeValue;
+        effectsVolumeSlider.value = AudioManager.instance.effectsVolumeValue;
+        musicVolumeSlider.value = AudioManager.instance.musicVolumeValue;
+
+        
+    }
+
+    private void OnDestroy()
+    {
+        //SendData();
     }
 
 

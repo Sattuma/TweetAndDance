@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using TMPro;
 using System;
+using UnityEngine.EventSystems;
 
 public class MenuManager : MonoBehaviour
 {
@@ -24,11 +26,25 @@ public class MenuManager : MonoBehaviour
     public GameObject[] countDown = new GameObject[3];
 
     [Header("UI Menus & Buttons")]
+
+    public GameObject cutSceneDemoButton;//poista kun oikea tehd‰‰n
+
     public GameObject pauseButton;
+    public GameObject backButton;
     public GameObject pauseMenu;
+    public GameObject settingsMenu;
     public GameObject successMenu;
     public GameObject gameOverMenu;
 
+    [Header("UI Sliders")]
+    public Slider masterVolumeSlider;
+    public Slider musicVolumeSlider;
+    public Slider effectsVolumeSlider;
+
+    private void Awake()
+    {
+        GetData();
+    }
     private void Start()
     {
         //LEVEL EVENT CALL FOR FUNCTIONS
@@ -45,6 +61,14 @@ public class MenuManager : MonoBehaviour
         beginning[0].SetActive(false);
         beginning[1].SetActive(false);
 
+    }
+
+    public void OnPointerEnter()
+    {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+        }
     }
 
     private void ActivateLevel()
@@ -95,12 +119,7 @@ public class MenuManager : MonoBehaviour
         countDown[1].SetActive(false);
         countDown[2].SetActive(false);
     }
-
-
-
     //----------------------------------------------
-
-
 
     //GAME LEVEL ENDING MENU WINDOWS
     public void SuccessMenuOnLevel()
@@ -113,6 +132,7 @@ public class MenuManager : MonoBehaviour
         GameModeManager.instance.levelActive = false;
         gameOverMenu.SetActive(true);
     }
+    //------------------------------------------------
     //PAUSE MENU WINDOW FUNCTIONS
     public void PauseMenu()
     {
@@ -129,10 +149,20 @@ public class MenuManager : MonoBehaviour
             Time.timeScale = 1;
         }
     }
+    public void OpenSettings()
+    {
+        settingsMenu.SetActive(true);
+        pauseMenu.SetActive(false);
+        backButton.SetActive(true);
+    }
+    public void BackButtonPause()
+    {
+        settingsMenu.SetActive(false);
+        pauseMenu.SetActive(true);
+        backButton.SetActive(false);
+    }
+    //------------------------------------------------
 
-
-
-    //----------------------------------------------
 
 
 
@@ -176,21 +206,36 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    public void CutSceneDemo()//poista kun oikea tehd‰‰n
+    {
+        cutSceneDemoButton.SetActive(false);
+        GameModeManager.instance.cutsceneActive = false;
+
+    }
+
     public void ToMainMenu(int sceneIndex)
     {
-        GetStoredTimerData();
-        
+        SetData();
         GameModeManager.instance.ChangeLevel(sceneIndex);
     }
 
-    //----------------------------------------------
-
-    public void GetStoredTimerData()
+    public void GetData()
     {
-        GameModeManager.instance.timerLevel1 = PlayerPrefs.GetFloat("Timer1_1");
-        GameModeManager.instance.timerLevel2 = PlayerPrefs.GetFloat("Timer1_2");
-        GameModeManager.instance.timerLevel3 = PlayerPrefs.GetFloat("Timer1_3");
+        masterVolumeSlider.value = AudioManager.instance.masterVolumeValue;
+        effectsVolumeSlider.value = AudioManager.instance.effectsVolumeValue;
+        musicVolumeSlider.value = AudioManager.instance.musicVolumeValue;
+        DataManager.instance.GetLevelAudio();
     }
+    public void SetData()
+    {
+        AudioManager.instance.masterVolumeValue = masterVolumeSlider.value;
+        AudioManager.instance.effectsVolumeValue = effectsVolumeSlider.value;
+        AudioManager.instance.musicVolumeValue = musicVolumeSlider.value;
+
+        DataManager.instance.SetLevelAudio(masterVolumeSlider.value, effectsVolumeSlider.value, musicVolumeSlider.value);
+    }
+
+    //----------------------------------------------
 
     public void OnDestroy()
     {

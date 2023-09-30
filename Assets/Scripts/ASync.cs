@@ -29,6 +29,7 @@ public class ASync : MonoBehaviour
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
         while (!operation.isDone && !canChange)
         {
+            GetData();
             GameModeManager.instance.ResetEvents();
             Time.timeScale = 1;
             GameModeManager.instance.isPaused = false;
@@ -44,8 +45,10 @@ public class ASync : MonoBehaviour
         }
     }
 
-
-
+    public void GetData()
+    {
+        DataManager.instance.GetLevelTimers();
+    }
 
 
 }

@@ -72,12 +72,5 @@ public class AudioManager : MonoBehaviour
 
     }
 
-    public void SetStoredData()
-    {
-        PlayerPrefs.SetFloat("MasterVolume", masterVolumeValue);
-        PlayerPrefs.SetFloat("EffectVolume", effectsVolumeValue);
-        PlayerPrefs.SetFloat("MusicVolume", musicVolumeValue);
-    }
-
 
 }

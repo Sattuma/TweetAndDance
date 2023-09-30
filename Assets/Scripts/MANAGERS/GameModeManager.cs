@@ -77,15 +77,20 @@ public class GameModeManager : MonoBehaviour
 
     private void Awake()
     {
+        
         if (instance != null)
         { Destroy(gameObject); }
         else
-        { instance = this; DontDestroyOnLoad(instance);}
-
+        { instance = this; DontDestroyOnLoad(instance);  }
+        
         activeGameMode = GameMode.gameLevel;
-        SetStoredData();
+        
     }
 
+    private void Start()
+    {
+        SetData();
+    }
 
     //----------------------------------------
 
@@ -152,15 +157,12 @@ public class GameModeManager : MonoBehaviour
     {
         Instantiate(loadingScreenPrefab);
         GameObject.Find("LevelChanger(Clone)").GetComponent<ASync>().LoadLevel(levelIndex);
-        
 
     }
 
-    public void SetStoredData()
+    public void SetData()
     {
-        PlayerPrefs.SetFloat("Timer1_1", timerLevel1);
-        PlayerPrefs.SetFloat("Timer1_2", timerLevel2);
-        PlayerPrefs.SetFloat("Timer1_3", timerLevel3);
+        DataManager.instance.SetLevelTimers(timerLevel1, timerLevel2, timerLevel3);
     }
 
     public void ResetEvents()
@@ -177,5 +179,10 @@ public class GameModeManager : MonoBehaviour
     }
 
     //----------------------------------------
+
+    private void OnDestroy()
+    {
+        DataManager.instance.SetLevelAudio(1, 1, 1);
+    }
 
 }

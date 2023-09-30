@@ -42,7 +42,8 @@ public class PlayerCollider : MonoBehaviour
         {
             Debug.Log("KESKI kamera aktivoituu");
             Physics2D.IgnoreCollision(otherTrigger.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
-            //FindCameraStatic();
+            FindCameraStatic();
+            StartCoroutine(SwitchCameraTarget());
         }
         if (collision.gameObject.CompareTag("RightCamTrig"))
         {
@@ -82,10 +83,13 @@ public class PlayerCollider : MonoBehaviour
 
     public void FindCameraStatic()
     {
+
         GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
         CameraController controller = camera.GetComponent<CameraController>();
         controller.target = controller.staticObj;
     }
+
+    
     public void FindCameraLeft()
     {
         GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
@@ -98,6 +102,14 @@ public class PlayerCollider : MonoBehaviour
         CameraController controller = camera.GetComponent<CameraController>();
         controller.target = controller.rightObj;
     }
-
+    
+    
+    IEnumerator SwitchCameraTarget()
+    {
+        yield return new WaitUntil(() => GameModeManager.instance.levelActive);
+        GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
+        CameraController controller = camera.GetComponent<CameraController>();
+        controller.target = controller.followObj;
+    }
 
 }

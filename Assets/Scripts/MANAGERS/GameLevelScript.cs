@@ -12,7 +12,10 @@ public class GameLevelScript : MonoBehaviour
 
     private void Awake()
     {
-        //AudioManager.instance.PlayMusicFX(3);
+        GameModeManager.instance.levelActive = false;
+        GameModeManager.instance.cutsceneActive = true;
+        GameModeManager.instance.activeGameMode = GameModeManager.GameMode.cutScene;
+        AudioManager.instance.PlayMusicFX(3);
         
     }
 
@@ -27,6 +30,7 @@ public class GameLevelScript : MonoBehaviour
     IEnumerator StartLevelCheck()
     {
         yield return new WaitUntil(() => GameModeManager.instance.cutsceneActive == false);
+        GameModeManager.instance.activeGameMode = GameModeManager.GameMode.gameLevel;
         GameModeManager.instance.StartLevelInvoke();
     }
 

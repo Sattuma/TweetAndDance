@@ -37,21 +37,10 @@ public class CameraController : MonoBehaviour
     private void FixedUpdate()
     {
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, minX, maxX), Mathf.Clamp(transform.position.y, minY, maxY), transform.position.z);
-
-
         movement = transform.position;
-        //x axis camera follow
         movement.x = Mathf.Lerp(movement.x, target.position.x, cameraSpeed * Time.deltaTime);
-
-
         transform.position = movement;
 
-        /*
-        if(target = followObj)
-        {
-            UpdateCamera();
-        }
-        */
     }
 
     public void ChangeCamStatic()

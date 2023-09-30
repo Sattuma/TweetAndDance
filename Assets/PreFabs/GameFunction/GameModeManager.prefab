@@ -964,9 +964,10 @@ MonoBehaviour:
   loadingScreenPrefab: {fileID: 2413979157351415043, guid: 7152a842434c13a498d429d441957bb2, type: 3}
   activeGameMode: 0
   currentLevel: 0
-  levelActive: 1
+  cutsceneActive: 0
+  levelActive: 0
   isPaused: 0
-  timerLevel1: 200
+  timerLevel1: 100
   timerLevel2: 300
   timerLevel3: 421
   secretLevel1_1: 0

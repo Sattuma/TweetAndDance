@@ -439,8 +439,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  hudFX:
-  - {fileID: 0}
   characterFX:
   - {fileID: 8300000, guid: 84defbbb54634c04da357c6c76ba0535, type: 3}
   - {fileID: 8300000, guid: aea967427ac5bc842ae1e3ef6e47c78d, type: 3}
@@ -465,6 +463,9 @@ MonoBehaviour:
   movementFXSource: {fileID: 0}
   soundFXSource: {fileID: 0}
   musicSource: {fileID: 0}
+  masterVolumeValue: 1
+  effectsVolumeValue: 1
+  musicVolumeValue: 1
   playFootsteps: 0
 --- !u!82 &2044907132
 AudioSource:
