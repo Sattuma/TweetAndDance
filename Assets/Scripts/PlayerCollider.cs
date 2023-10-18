@@ -34,20 +34,17 @@ public class PlayerCollider : MonoBehaviour
 
         if (collision.gameObject.CompareTag("LeftCamTrig"))
         {
-            Debug.Log("VASEN kamera aktivoituu");
             Physics2D.IgnoreCollision(otherTrigger.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
             //FindCameraLeft();
         }
         if (collision.gameObject.CompareTag("StaticCamTrig"))
         {
-            Debug.Log("KESKI kamera aktivoituu");
             Physics2D.IgnoreCollision(otherTrigger.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
             FindCameraStatic();
             StartCoroutine(SwitchCameraTarget());
         }
         if (collision.gameObject.CompareTag("RightCamTrig"))
         {
-            Debug.Log("OIKEA kamera aktivoituu");
             Physics2D.IgnoreCollision(otherTrigger.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
             //FindCameraRight();
         }

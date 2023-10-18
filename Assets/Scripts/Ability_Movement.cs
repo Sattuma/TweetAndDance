@@ -14,10 +14,14 @@ public class Ability_Movement : MonoBehaviour
     public bool facingRight;
     public bool playFootsteps;
 
+    //PlayerSpeed
     [SerializeField] private float playerSpeed;
+    //PlayerSpeed Variables
+    [SerializeField] private float acceleration;
+    [SerializeField] private float deacceleration;
+    [SerializeField] private float maxSpeed;
     [SerializeField] private float walkingSpeed;
     [SerializeField] private float slowedSpeed;
-    //[SerializeField] private float transitionSpeed;
 
     void Start()
     {
@@ -29,7 +33,8 @@ public class Ability_Movement : MonoBehaviour
     {
         //kun enabloidaan input action movement
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel && GameModeManager.instance.levelActive == true)
-        {        
+        {
+            CalculateSpeed(value);
             rb.velocity = new Vector2(value.x * playerSpeed, rb.velocity.y);
             rb.velocity.Normalize();
             core.WalkingAnim(value.x);
@@ -65,6 +70,16 @@ public class Ability_Movement : MonoBehaviour
         }
     }
 
+    public void CalculateSpeed(Vector2 speed)
+    {
+
+        if (speed.x > 0 || speed.x < 0)
+        { walkingSpeed += acceleration * Time.deltaTime; }
+        else
+        { walkingSpeed -= deacceleration * Time.deltaTime; }
+        walkingSpeed = Mathf.Clamp(walkingSpeed, 0, maxSpeed);
+    }
+
     void FlipCharacter()
     {
         facingRight = !facingRight;
@@ -74,15 +89,9 @@ public class Ability_Movement : MonoBehaviour
     public void ActivateFootstepsFX()
     {
         if (playFootsteps)
-        {
-            AudioManager.instance.movementFXSource.GetComponent<AudioSource>().enabled = true;
-
-        }
+        { AudioManager.instance.movementFXSource.GetComponent<AudioSource>().enabled = true;}
         else
-        {
-            AudioManager.instance.movementFXSource.GetComponent<AudioSource>().enabled = false;
-        }
-
+        { AudioManager.instance.movementFXSource.GetComponent<AudioSource>().enabled = false;}
     }
 
 }

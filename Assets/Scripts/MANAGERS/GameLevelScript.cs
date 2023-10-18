@@ -6,17 +6,27 @@ public class GameLevelScript : MonoBehaviour
 {
     public GameObject[] pickupPrefab;
     public GameObject[] pickupSpawnPoints;
+
+    public List<GameObject> pickUpGroundList = new List<GameObject>();
+    public int pickUpCountVariation;
+
     public GameObject[] pickupSpawnPointsAir;
     public GameObject[] pickupsInScene;
 
+    public GameObject[] secretsFoundInScene;
+    public GameObject[] secretsInScene;
 
     private void Awake()
     {
+
+        GameModeManager.Success += CountLevelSuccess;
+
         GameModeManager.instance.levelActive = false;
         GameModeManager.instance.cutsceneActive = true;
         GameModeManager.instance.activeGameMode = GameModeManager.GameMode.cutScene;
         AudioManager.instance.PlayMusicFX(3);
-        
+
+
     }
 
     private void Start()
@@ -37,10 +47,15 @@ public class GameLevelScript : MonoBehaviour
 
     public void GroundSpawnPickupLevel()
     {
-        for(int i = 0; i < pickupSpawnPoints.Length; i++)
+        while(0 < pickUpCountVariation)
         {
-            Instantiate(pickupPrefab[Random.Range(0, pickupPrefab.Length)], 
-                pickupSpawnPoints[i].transform.position, pickupSpawnPoints[i].transform.rotation);
+            for (int i = 0; i < pickupSpawnPoints.Length; i++)
+            {
+                GameObject pickupRange = pickupPrefab[Random.Range(0, pickupPrefab.Length)];
+                Instantiate(pickupRange, pickupSpawnPoints[i].transform.position, pickupSpawnPoints[i].transform.rotation);
+                pickUpGroundList.Add(pickupRange);
+            }
+            pickUpCountVariation--;
         }
     }
 
@@ -72,19 +87,45 @@ public class GameLevelScript : MonoBehaviour
     {
         pickupsInScene = GameObject.FindGameObjectsWithTag("NestObject");
         for (int i = 0; i < pickupsInScene.Length; i++)
-        { Destroy(pickupsInScene[i]); }
+        { Destroy(pickupsInScene[i]);  }
     }
+
+    //EI KUTSUTA VIELÄ MISTÄÄN - LAITA TSEKKI KUN KENTTTÄ MENEE LÄPI JA TÄSTÄ SITTEN SUCCES MENUUN INFOT!
+    public void CountLevelSuccess()
+    {
+        SecretsCheck();
+        PointsCheck();
+    }
+    public void SecretsCheck()
+    {
+        secretsInScene = GameObject.FindGameObjectsWithTag("Secret");
+        secretsFoundInScene = GameObject.FindGameObjectsWithTag("SecretFound");
+
+        for (int i = 0; i < secretsInScene.Length; i++)
+        { i = secretsInScene.Length; GameModeManager.instance.secretsMissed = i; }
+
+        GameModeManager.instance.SecretsCheck(secretsFoundInScene);
+    }
+    public void PointsCheck()
+    { GameModeManager.instance.HighScoreCheck();}
 
     public void StopInvoke()
     {
         //cancel invokerepating system if decide to use this system ?
         CancelInvoke();
     }
-
     public void LevelCleared()
     {
         //cancel invokerepating system if decide to use this system and destroy pick ups around the nest?
         StopInvoke();
         DestroyPickUpsWithTag();
     }
+
+    private void OnDestroy()
+    {
+        //Reset variables which only count in current level
+        GameModeManager.instance.levelScore = 0;
+        GameModeManager.instance.secretsMissed = 0;
+    }
+
 }

@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 9215853180304335107}
   - component: {fileID: 9215853180304335106}
   - component: {fileID: 9215853180304335108}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Log
   m_TagString: Collectable
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 1
+  m_Constraints: 5
 --- !u!114 &9215853180304335108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 9215853180460019692}
   - component: {fileID: 9215853180460019694}
   - component: {fileID: 4689138453771599095}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlacebleCol
   m_TagString: Placeable
   m_Icon: {fileID: 0}
@@ -425,7 +425,7 @@ GameObject:
   - component: {fileID: 9146339049716264620}
   m_Layer: 7
   m_Name: IMAGE
-  m_TagString: Untagged
+  m_TagString: Secret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -510,6 +510,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.6070083, y: -0.20940225}
-  m_Size: {x: 17.896025, y: 3.4330854}
+  m_Offset: {x: -0.6070082, y: -0.015797522}
+  m_Size: {x: 17.896027, y: 3.8202987}
   m_Direction: 1

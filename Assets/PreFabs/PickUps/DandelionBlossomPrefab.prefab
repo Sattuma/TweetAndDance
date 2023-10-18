@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 349161089240051760}
   - component: {fileID: 349161089240051763}
   - component: {fileID: 3488253994537539078}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlacebleCol
   m_TagString: Placeable
   m_Icon: {fileID: 0}
@@ -100,8 +100,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00000028614306, y: 0.019164553}
-  m_Size: {x: 1.1219529, y: 1.03489}
+  m_Offset: {x: -0.021730809, y: 0.019164557}
+  m_Size: {x: 1.2697314, y: 1.03489}
   m_Direction: 1
 --- !u!1 &349161090463403962
 GameObject:
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 349161090463403846}
   - component: {fileID: 349161090463403960}
   - component: {fileID: 349161090463403963}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DandelionBlossomPrefab
   m_TagString: Collectable
   m_Icon: {fileID: 0}
@@ -219,7 +219,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 60
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -341,8 +341,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.39304233, y: 0.455912}
-  m_Size: {x: 6.3939114, y: 6.0381775}
+  m_Offset: {x: -0.3669653, y: 0.39529175}
+  m_Size: {x: 7.002415, y: 6.4800477}
   m_Direction: 0
 --- !u!1 &2221234884511771051
 GameObject:

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
@@ -9,17 +10,25 @@ using UnityEngine.EventSystems;
 public class MainMenu : MonoBehaviour
 {
 
+    public EventSystem eventSystem;
+    public GameObject lastSelectedGameObject;
+    public GameObject currentSelectedGameObject_Recent;
+
     [Header("MainMenu Buttons")]
     public GameObject startButton;
     public GameObject settingButton;
     public GameObject howToPlayButton;
     public GameObject creditsButton;
     public GameObject backButton;
+    public GameObject backButtonSpesific;
     public GameObject quitButton;
     public GameObject mainButtons;
 
     [Header("Settings Window")]
     public GameObject settingWindow;
+    public GameObject controlSettingsWindow;
+    public GameObject audioSettingsWindow;
+    public TextMeshProUGUI currentControlText;
     public Slider masterVolumeSlider;
     public Slider musicVolumeSlider;
     public Slider effectsVolumeSlider;
@@ -34,11 +43,13 @@ public class MainMenu : MonoBehaviour
     public GameObject creditsWindow;
 
     public GameObject logo;
+    public Vector2 mousePos;
 
-    private void Awake()
-    {
+    [Header("Open Level Name")]
+    public string levelName1_1;
+    public string levelName1_2;
+    public string levelName1_3;
 
-    }
     private void Start()
     {
 
@@ -46,17 +57,57 @@ public class MainMenu : MonoBehaviour
         AudioManager.instance.effectsVolumeValue = effectsVolumeSlider.value;
         AudioManager.instance.musicVolumeValue = musicVolumeSlider.value;
 
+        DataManager.instance.CheckControllerNull(); // check ei toimi, pelin alussa herjaus jos gamepad ei ole kytketty. tee checki siitä että toimii myös kun vain toinen KEY/ GAMEPAD on kytketty
         GetData();
         SetData();
         AudioManager.instance.PlayMusicFX(0);
+        if (DataManager.instance.controls == DataManager.ControlSystem.Gamepad)
+        { DataManager.instance.ActivateGamePad(); }
+        if (DataManager.instance.controls == DataManager.ControlSystem.Keyboard)
+        { DataManager.instance.ActivateKeyboard(); }
+
+
+
+        currentControlText.text = DataManager.instance.controls.ToString();
     }
 
+    /*
     public void OnPointerEnter()
     {
+        //WHEN MOUSE IS SET AWAY FROM UI BUTTON
         if(EventSystem.current.IsPointerOverGameObject())
         {
+            mousePos = Input.mousePosition;
+            RectTransformUtility.RectangleContainsScreenPoint(rectTransform, mousePos);
             EventSystem.current.SetSelectedGameObject(null);
+            rectTransform.GetComponent<Selectable>().Select();
         }
+    }
+    */
+
+    // EI TOIMI TÄYSIN MUT OOKOO TÄHÄN TILANTEESEEN - FIX MYÖHEMMIN
+    public void OnPointerEnter()
+    {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            currentSelectedGameObject_Recent = eventSystem.currentSelectedGameObject;
+            EventSystem.current.SetSelectedGameObject(null);
+            lastSelectedGameObject = currentSelectedGameObject_Recent;
+        }
+
+        Debug.Log(eventSystem.currentSelectedGameObject);
+
+    }
+    public void OnPointerExit()
+    {
+        EventSystem.current.SetSelectedGameObject(currentSelectedGameObject_Recent);
+
+        if (lastSelectedGameObject == currentSelectedGameObject_Recent)
+        {
+            lastSelectedGameObject = currentSelectedGameObject_Recent;
+            currentSelectedGameObject_Recent = eventSystem.currentSelectedGameObject;
+        }
+
     }
 
     public void ContinueGame()
@@ -64,22 +115,66 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Continue Game Clicked");
     }
 
-    public void StartGame(int levelIndex)
+    public void StartGame(string levelName)
     {
-        StartCoroutine(StartButtonDelay(levelIndex));
+        levelName = levelName1_1;
+        StartCoroutine(StartButtonDelay(levelName));
     }
 
     public void OpenSettings()
     {
-        Debug.Log("Settings opened");
         AudioManager.instance.PlayMenuFX(0);
         mainButtons.SetActive(false);
         backButton.SetActive(true);
         settingWindow.SetActive(true);
         logo.SetActive(false);
+        GameObject.Find("AudioSettingsButton").GetComponent<Selectable>().Select();
+    }
+    public void OpenAudioSettings()
+    {
+        AudioManager.instance.PlayMenuFX(0);
+        backButton.SetActive(false);
+        backButtonSpesific.SetActive(true);
+        settingWindow.SetActive(false);
+        audioSettingsWindow.SetActive(true);
         GameObject.Find("Master").GetComponent<Selectable>().Select();
     }
+    public void OpenControlsSettings()
+    {
+        AudioManager.instance.PlayMenuFX(0);
+        backButton.SetActive(false);
+        backButtonSpesific.SetActive(true);
+        settingWindow.SetActive(false);
+        controlSettingsWindow.SetActive(true);
+        GameObject.Find("SwitchControlsButton").GetComponent<Selectable>().Select();
 
+    }
+    public void OpenBackSpesific()
+    {
+        AudioManager.instance.PlayMenuFX(0);
+        settingWindow.SetActive(true);
+        controlSettingsWindow.SetActive(false);
+        audioSettingsWindow.SetActive(false);
+        backButton.SetActive(true);
+        backButtonSpesific.SetActive(false);
+        GameObject.Find("AudioSettingsButton").GetComponent<Selectable>().Select();
+    }
+    public void SwitchControls()
+    {
+        AudioManager.instance.PlayMenuFX(0);
+        if (DataManager.instance.controls == DataManager.ControlSystem.Keyboard)
+        {
+            Debug.Log("GAMEPAD ACTIVE");
+            currentControlText.text = "Gamepad".ToString();
+            DataManager.instance.ActivateGamePad();
+        }
+        else if (DataManager.instance.controls == DataManager.ControlSystem.Gamepad)
+        {
+            Debug.Log("KEYBOARD ACTIVE");
+            currentControlText.text = "Keyboard".ToString();
+            DataManager.instance.ActivateKeyboard();
+        }
+    }
     public void OpenHowToPlay()
     {
         Debug.Log("HowToPlay Opened");
@@ -100,7 +195,6 @@ public class MainMenu : MonoBehaviour
         {
             howToPlayImagesKey[i].SetActive(true);
         }
-
     }
 
     public void HowToPlayRightNav()
@@ -147,7 +241,6 @@ public class MainMenu : MonoBehaviour
         backButton.GetComponent<Selectable>().Select();
 
     }
-
     public void OpenBack()
     {
         Debug.Log("Back Button Clicked");
@@ -161,19 +254,28 @@ public class MainMenu : MonoBehaviour
         startButton.GetComponent<Selectable>().Select();
     }
 
+    public void ActivateKeyboard()
+    {
+        DataManager.instance.ActivateKeyboard();
+    }
+    public void ActivateGamepad()
+    {
+        DataManager.instance.ActivateGamePad();
+    }
+
     public void QuitGame()
     {
-        Debug.Log("Quit Button Clicked");
         StartCoroutine(QuitButtonDelay());
     }
 
-    public IEnumerator StartButtonDelay(int levelIndex)
+    public IEnumerator StartButtonDelay(string levelName)
     {
         AudioManager.instance.PlayMenuFX(0);
         SetData();
         yield return new WaitForSecondsRealtime(0.2f);
         AudioManager.instance.musicSource.Stop();
-        GameModeManager.instance.ChangeLevel(levelIndex);
+        GameModeManager.instance.ActivateLevel1_1();
+        GameModeManager.instance.ChangeLevel(levelName);
     }
 
     public IEnumerator QuitButtonDelay()
@@ -185,29 +287,27 @@ public class MainMenu : MonoBehaviour
 
     public void SetData()
     {
-
         AudioManager.instance.masterVolumeValue = masterVolumeSlider.value;
         AudioManager.instance.effectsVolumeValue = effectsVolumeSlider.value;
         AudioManager.instance.musicVolumeValue = musicVolumeSlider.value;
         Debug.Log(AudioManager.instance.masterVolumeValue);
-
         DataManager.instance.SetLevelAudio(masterVolumeSlider.value, effectsVolumeSlider.value, musicVolumeSlider.value);
     }
 
     public void GetData()
     {
         DataManager.instance.GetLevelAudio();
-
         masterVolumeSlider.value = AudioManager.instance.masterVolumeValue;
         effectsVolumeSlider.value = AudioManager.instance.effectsVolumeValue;
         musicVolumeSlider.value = AudioManager.instance.musicVolumeValue;
-
-        
     }
 
     private void OnDestroy()
     {
-        //SendData();
+        if(lastSelectedGameObject = null)
+        { lastSelectedGameObject = null; }
+        if(currentSelectedGameObject_Recent = null)
+        { currentSelectedGameObject_Recent = null; }
     }
 
 

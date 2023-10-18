@@ -25,6 +25,8 @@ TagManager:
   - LeftCamTrig
   - StaticCamTrig
   - RightCamTrig
+  - Secret
+  - SecretFound
   layers:
   - Default
   - TransparentFX
@@ -34,7 +36,7 @@ TagManager:
   - UI
   - Ground
   - Pickup
-  - 
+  - Glue
   - 
   - 
   - 

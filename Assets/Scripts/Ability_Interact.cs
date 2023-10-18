@@ -33,6 +33,7 @@ public class Ability_Interact : MonoBehaviour
                 collectableObj = collision.gameObject.transform; // on triggerstay collectable object is collision which player collides
                 collectableChildObj = collectableObj.transform.GetChild(0).gameObject.transform;
                 collectableObj.GetComponent<CollectableCollision>().HighLightOn();
+
             }
         }
     }
@@ -63,12 +64,10 @@ public class Ability_Interact : MonoBehaviour
     {
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel && GameModeManager.instance.levelActive == true)
         {
-            Debug.Log("ker‰ysnappi painettu");
 
             if (canCollect)
             {
                 collectableObj.GetComponent<CollectableCollision>().HighLightOff();
-                Debug.Log("ker‰‰n itemin");
                 StartCoroutine(CollectDelay());
                 collectableObj.GetComponentInChildren<CapsuleCollider2D>().enabled = false;
                 collectableObj.gameObject.tag = "Untagged";
@@ -82,7 +81,6 @@ public class Ability_Interact : MonoBehaviour
             }
             else if (pickedUp)
             {
-                Debug.Log("tiputan itemin");
                 collectableObj.gameObject.transform.parent = null; // if collectable is already picked up in Collect button is pressed again, player drops the collectable object
                 collectableObj.GetComponentInChildren<CapsuleCollider2D>().enabled = true;
                 collectableObj.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;

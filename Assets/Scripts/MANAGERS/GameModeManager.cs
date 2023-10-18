@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameModeManager : MonoBehaviour
 {
+    //GAMEACTION EVENTS
     public delegate void GameAction();
     public static event GameAction StartLevel;
     public static event GameAction GameLevelEnd;
@@ -13,13 +15,17 @@ public class GameModeManager : MonoBehaviour
     public static event GameAction BonusLevelScore;
     public static event GameAction Success;
     public static event GameAction Fail;
+   
 
+    //LEVELACTION EVENTS
     public delegate void LevelAction();
     public static event LevelAction NestCount;
     public static event LevelAction NestCountEnd;
 
+    //INSTANCE TO SELF
     public static GameModeManager instance;
 
+    //LOADING SCREEN PREFAB
     public GameObject loadingScreenPrefab;
 
     [Header("Active Gamemode")]
@@ -32,16 +38,12 @@ public class GameModeManager : MonoBehaviour
     public bool cutsceneActive;
     public bool levelActive;
     public bool isPaused;
+    public bool cannotResumeFromPause;
 
     [Header("Level Timer")]
     public float timerLevel1;
     public float timerLevel2;
     public float timerLevel3;
-
-    [Header("Secrets Found")]
-    public int secretLevel1_1;
-    public int secretLevel1_2;
-    public int secretLevel1_3;
 
     [Header("PickUp Amount")]
     public int leafCount;
@@ -59,10 +61,27 @@ public class GameModeManager : MonoBehaviour
     public int blossomPoints;
     public int dandelionPoints;
 
+    [Header("Level HighScores")]
+    public int highScoreLevel1_1;
+    public int highScoreLevel1_2;
+    public int highScoreLevel1_3;
+
+    [Header("Secrets Found/missed")]
+    public int secretLevel1_1;
+    public int secretLevel1_2;
+    public int secretLevel1_3;
+
+    [Header("Variables on level")]
+    public int levelScore;
+    public int secretsMissed;
+
     public GameObject mouseMovementCheck;
+
+
 
     public enum GameMode
     {
+        mainMenu,
         cutScene,
         gameLevel,
         bonusLevel
@@ -70,6 +89,7 @@ public class GameModeManager : MonoBehaviour
 
     public enum CurrentLevel
     {
+        MainMenu,
         Level1_1,
         Level1_2,
         Level1_3,
@@ -77,19 +97,18 @@ public class GameModeManager : MonoBehaviour
 
     private void Awake()
     {
-        
         if (instance != null)
         { Destroy(gameObject); }
         else
-        { instance = this; DontDestroyOnLoad(instance);  }
-        
-        activeGameMode = GameMode.gameLevel;
-        
+        { instance = this; DontDestroyOnLoad(instance); }
+
+        activeGameMode = GameMode.mainMenu;
     }
 
     private void Start()
     {
         SetData();
+        // kaikki GetData otetaan levelchangerisa jo valmiiksi josta info pisteistä etc gamemodemanageriin
     }
 
     //----------------------------------------
@@ -115,6 +134,8 @@ public class GameModeManager : MonoBehaviour
 
 
     // ACTIVE GAMEMODE FUNCTIONS
+    public void MainMenuActive()
+    { activeGameMode = GameMode.mainMenu; }
     public void LevelActive()
     { activeGameMode = GameMode.gameLevel;}
     public void CutSceneActive()
@@ -123,43 +144,28 @@ public class GameModeManager : MonoBehaviour
     { activeGameMode = GameMode.bonusLevel;}
 
     // ACTIVE CURRENTLEVEL FUNCTIONS
-    public void CurrentLevelActivation()
-    {
-        
-    }
-
-
-    //----------------------------------------
-
+    public void ActivateMainMenu()
+    { currentLevel = CurrentLevel.MainMenu; }
+    public void ActivateLevel1_1()
+    { currentLevel = CurrentLevel.Level1_1;  }
+    public void ActivateLevel1_2()
+    { currentLevel = CurrentLevel.Level1_2; }
+    public void ActivateLevel1_3()
+    { currentLevel = CurrentLevel.Level1_3; }
 
     public void AddScore(int score)
     {
         BonusLevelScore?.Invoke();
     }
 
-    public void LevelTwoCleared()
-    {
-        Success?.Invoke();
-        levelActive = false;
-    }
-
-    public void LevelThreeCleared()
-    {
-        Success?.Invoke();
-        levelActive = false;
-    }
-
-
     //----------------------------------------
 
 
-    public void ChangeLevel(int levelIndex)
+    public void ChangeLevel(string levelName)
     {
         Instantiate(loadingScreenPrefab);
-        GameObject.Find("LevelChanger(Clone)").GetComponent<ASync>().LoadLevel(levelIndex);
-
+        GameObject.Find("LevelChanger(Clone)").GetComponent<ASync>().LoadLevel(levelName);
     }
-
     public void SetData()
     {
         DataManager.instance.SetLevelTimers(timerLevel1, timerLevel2, timerLevel3);
@@ -176,6 +182,61 @@ public class GameModeManager : MonoBehaviour
         Fail = null;
         NestCount = null;
         NestCountEnd = null;
+    }
+
+    public void HighScoreCheck()
+    {
+        if (currentLevel == CurrentLevel.Level1_1)
+        {
+            if (levelScore > highScoreLevel1_1)
+            { DataManager.instance.SetLevelPoints(levelScore); }
+        }
+
+        if (currentLevel == CurrentLevel.Level1_2)
+        {
+            if (levelScore > highScoreLevel1_2)
+            { DataManager.instance.SetLevelPoints(levelScore); }
+        }
+
+        if (currentLevel == CurrentLevel.Level1_3)
+        {
+            if (levelScore > highScoreLevel1_3)
+            { DataManager.instance.SetLevelPoints(levelScore); }
+        }
+    }
+
+    public void SecretsCheck(GameObject[] array)
+    {
+        if (currentLevel == CurrentLevel.Level1_1)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                i = array.Length;
+                secretLevel1_1 = i;
+                DataManager.instance.SetLevelSecrets(secretLevel1_1);
+            }
+        }
+
+        if (currentLevel == CurrentLevel.Level1_2)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                i = array.Length;
+                secretLevel1_2 = i;
+                DataManager.instance.SetLevelSecrets(secretLevel1_2);
+            }
+        }
+
+        if (currentLevel == CurrentLevel.Level1_3)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                i = array.Length;
+                secretLevel1_3 = i;
+                DataManager.instance.SetLevelSecrets(secretLevel1_3);
+            }
+        }
+
     }
 
     //----------------------------------------

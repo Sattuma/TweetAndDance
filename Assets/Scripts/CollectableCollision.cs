@@ -18,37 +18,15 @@ public class CollectableCollision : MonoBehaviour
             childObject.tag = "Placeable";
             childObject.GetComponent<CapsuleCollider2D>().enabled = true;
         }
-    }
 
+    }
     private void Awake()
     {
         HighLightOff();
     }
     public void HighLightOn()
-    {
-        //materiaali koko muutos
-        myModel.gameObject.SetActive(true);
-        /*
-        //Materiaali väri muutos
-        Color color = myModel.material.color;
-        color.a = 255f;
-        myModel.material.color = Color.black;
-        myModel.material.color = color;
-        Debug.Log("HIGHLIGHT PICKUP ON");
-        */
-    }
+    { myModel.gameObject.SetActive(true);}
 
     public void HighLightOff()
-    {
-        //materiaali koko muutos
-        myModel.gameObject.SetActive(false);
-        /*
-        //Materiaali väri muutos
-        Color color = myModel.material.color;
-        color.a = 0f;
-        myModel.material.color = Color.black;
-        myModel.material.color = color;
-        Debug.Log("HIGHLIGHT PICKUP OFF");
-        */
-    }
+    { myModel.gameObject.SetActive(false);}
 }

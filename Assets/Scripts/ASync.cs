@@ -13,20 +13,20 @@ public class ASync : MonoBehaviour
     public bool canChange;
     public float staticTimeForScreen;
 
-    public void LoadLevel(int sceneIndex)
+    public void LoadLevel(string sceneName)
     {
-        StartCoroutine(LevelLoadDelay(sceneIndex));
+        StartCoroutine(LevelLoadDelay(sceneName));
     }
 
-    IEnumerator LevelLoadDelay(int sceneIndex)
+    IEnumerator LevelLoadDelay(string sceneName)
     {
         yield return new WaitForSecondsRealtime(staticTimeForScreen);
-        StartCoroutine(LoadAsynchronously(sceneIndex));
+        StartCoroutine(LoadAsynchronously(sceneName));
     }
 
-    IEnumerator LoadAsynchronously(int sceneIndex)
+    IEnumerator LoadAsynchronously(string sceneName)
     {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
         while (!operation.isDone && !canChange)
         {
             GetData();
@@ -48,6 +48,8 @@ public class ASync : MonoBehaviour
     public void GetData()
     {
         DataManager.instance.GetLevelTimers();
+        DataManager.instance.GetLevelPoints();
+        DataManager.instance.GetLevelSecrets();
     }
 
 

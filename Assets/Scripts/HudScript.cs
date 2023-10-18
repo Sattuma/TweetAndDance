@@ -34,8 +34,6 @@ public class HudScript : MonoBehaviour
     {
         GameModeManager.BonusLevelScore += UpdateScore;
 
-        InputHandler.PauseOn += PauseMenu;
-
     }
 
     private void Start()

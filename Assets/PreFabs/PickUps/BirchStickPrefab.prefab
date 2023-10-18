@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 9215853180304335107}
   - component: {fileID: 9215853180304335106}
   - component: {fileID: 9215853180304335108}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BirchStickPrefab
   m_TagString: Collectable
   m_Icon: {fileID: 0}
@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 9215853180460019692}
   - component: {fileID: 9215853180460019694}
   - component: {fileID: 4689138453771599095}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlacebleCol
   m_TagString: Placeable
   m_Icon: {fileID: 0}

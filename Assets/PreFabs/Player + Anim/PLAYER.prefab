@@ -469,6 +469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87dbb579aca8c344d8d3ce2ac2e7dd9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursorSensitivityVector: {x: 0, y: 0}
   mouseVector: {x: 0, y: 0}
   inputVector: {x: 0, y: 0}
   core: {fileID: 7344619329279733100}
@@ -476,6 +477,7 @@ MonoBehaviour:
   airborneScript: {fileID: 7344619329279733089}
   interactScript: {fileID: 7344619329279733088}
   cursorTimer: 2
+  cursorSensitivity: 0
 --- !u!114 &7344619329279733100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -509,7 +511,11 @@ MonoBehaviour:
   facingRight: 0
   playFootsteps: 0
   playerSpeed: 0
-  walkingSpeed: 6
+  acceleration: 10
+  deacceleration: 20
+  maxSpeed: 7
+  currentDirection: 1
+  walkingSpeed: 0
   slowedSpeed: 0
 --- !u!114 &7344619329279733089
 MonoBehaviour:
@@ -527,12 +533,12 @@ MonoBehaviour:
   rb: {fileID: 0}
   groundCheckObj: {fileID: 7344619328296753453}
   landingCheckObj: {fileID: 1529831501155752897}
-  jumpPower: 8
+  jumpPower: 450
   flyPower: 5
   flyingGravityRising: 0.1
   flyingGravityFalling: 0.15
-  fallMultiplier: 2.5
-  lowJumpMultiplier: 2
+  fallMultiplier: 4
+  lowJumpMultiplier: 3
   groundDetectRadius: 0.1
   y: 0
   groundMask:

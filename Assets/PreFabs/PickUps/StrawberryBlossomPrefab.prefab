@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 6158153177393450681}
   - component: {fileID: 6158153177393450687}
   - component: {fileID: 6158153177393450686}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StrawberryBlossomPrefab
   m_TagString: Collectable
   m_Icon: {fileID: 0}
@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 6158153177938065090}
   - component: {fileID: 6158153177938065089}
   - component: {fileID: 829897976588787783}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlacebleCol
   m_TagString: Placeable
   m_Icon: {fileID: 0}

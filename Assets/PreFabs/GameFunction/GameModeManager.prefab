@@ -967,7 +967,8 @@ MonoBehaviour:
   cutsceneActive: 0
   levelActive: 0
   isPaused: 0
-  timerLevel1: 100
+  cannotResumeFromPause: 0
+  timerLevel1: 300
   timerLevel2: 300
   timerLevel3: 421
   secretLevel1_1: 0

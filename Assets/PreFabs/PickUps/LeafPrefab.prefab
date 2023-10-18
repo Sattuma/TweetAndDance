@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 7627667589758524911}
   - component: {fileID: 7627667589758524689}
   - component: {fileID: 7627667589758524690}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeafPrefab
   m_TagString: Collectable
   m_Icon: {fileID: 0}
@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 7627667591022912153}
   - component: {fileID: 7627667591022912154}
   - component: {fileID: 5433395232552399257}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlacebleCol
   m_TagString: Placeable
   m_Icon: {fileID: 0}

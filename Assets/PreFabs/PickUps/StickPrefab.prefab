@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 7163180490835138976}
   - component: {fileID: 7163180490835138977}
   - component: {fileID: 5828993024123149957}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlacebleCol
   m_TagString: Placeable
   m_Icon: {fileID: 0}
@@ -319,7 +319,7 @@ GameObject:
   - component: {fileID: 7163180491361390618}
   - component: {fileID: 7163180491361390616}
   - component: {fileID: 7163180491361390617}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StickPrefab
   m_TagString: Collectable
   m_Icon: {fileID: 0}

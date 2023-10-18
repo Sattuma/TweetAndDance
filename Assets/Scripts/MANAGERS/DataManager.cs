@@ -1,11 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DataManager : MonoBehaviour
 {
 
     public static DataManager instance;
+
+    public enum ControlSystem
+    {
+        Keyboard,
+        Gamepad
+    }
+
+    public ControlSystem controls;
 
     private void Awake()
     {
@@ -13,6 +22,24 @@ public class DataManager : MonoBehaviour
         { Destroy(gameObject); }
         else
         { instance = this; DontDestroyOnLoad(instance); }
+
+        ActivateKeyboard();
+
+
+    }
+
+    public void CheckControllerNull() // ei toimi
+    {
+        string[] names = Input.GetJoystickNames();
+
+        for (int x = 0; x < names.Length; x++)
+        {
+            print(names[x].Length);
+            if(names[x] == null)
+            {
+                names[x]  = null;
+            }
+        }
     }
 
 
@@ -45,5 +72,58 @@ public class DataManager : MonoBehaviour
         AudioManager.instance.musicVolumeValue = PlayerPrefs.GetFloat("MusicVolume");
     }
     //-----------------
+
+    //SECRETS LEVEL DATA
+    public void SetLevelSecrets(int secrets)
+    {
+        if (GameModeManager.instance.currentLevel == GameModeManager.CurrentLevel.Level1_1)
+        { PlayerPrefs.SetInt("Secrets1_1", secrets); }
+
+        if (GameModeManager.instance.currentLevel == GameModeManager.CurrentLevel.Level1_2)
+        { PlayerPrefs.SetInt("Secrets1_2", secrets); }
+
+        if (GameModeManager.instance.currentLevel == GameModeManager.CurrentLevel.Level1_3)
+        { PlayerPrefs.SetInt("Secrets1_3", secrets); }
+    }
+
+    public void GetLevelSecrets()
+    {
+        GameModeManager.instance.secretLevel1_1 = PlayerPrefs.GetInt("Secrets1_1");
+        GameModeManager.instance.secretLevel1_2 = PlayerPrefs.GetInt("Secrets1_2");
+        GameModeManager.instance.secretLevel1_3 = PlayerPrefs.GetInt("Secrets1_3");
+    }
+
+    //POINTS LEVEL DATA
+    public void SetLevelPoints(int points)
+    {
+        if (GameModeManager.instance.currentLevel == GameModeManager.CurrentLevel.Level1_1)
+        { PlayerPrefs.SetInt("HiScore1_1", points);}
+
+        if (GameModeManager.instance.currentLevel == GameModeManager.CurrentLevel.Level1_2)
+        { PlayerPrefs.SetInt("HiScore1_2", points); }
+
+        if (GameModeManager.instance.currentLevel == GameModeManager.CurrentLevel.Level1_3)
+        { PlayerPrefs.SetInt("HiScore1_3", points); }
+    }
+
+    public void GetLevelPoints()
+    {
+        GameModeManager.instance.highScoreLevel1_1 = PlayerPrefs.GetInt("HiScore1_1");
+        GameModeManager.instance.highScoreLevel1_2 = PlayerPrefs.GetInt("HiScore1_2");
+        GameModeManager.instance.highScoreLevel1_3 = PlayerPrefs.GetInt("HiScore1_3");
+    }
+
+    public void ActivateKeyboard()
+    {
+        InputSystem.EnableDevice(Keyboard.current);
+        InputSystem.DisableDevice(Gamepad.current);
+        controls = ControlSystem.Keyboard;
+    }
+    public void ActivateGamePad()
+    {
+        InputSystem.EnableDevice(Gamepad.current);
+        InputSystem.DisableDevice(Keyboard.current);
+        controls = ControlSystem.Gamepad;
+    }
 
 }

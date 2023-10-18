@@ -7,17 +7,15 @@ using UnityEngine.InputSystem;
 //[RequireComponent(typeof(PlayerInput))]
 public class InputHandler : MonoBehaviour
 {
-    public delegate void UiAnim();
-    public static UiAnim PauseOn;
 
     [SerializeField]private PlayerController playerController;
+    [SerializeField]private Vector2 cursorSensitivityVector;
     [SerializeField]private Vector2 mouseVector;
     [SerializeField]private Vector2 inputVector;
 
     
 
     [Header("Input Actions")]
-
     private InputAction abilityMovement;
     private InputAction abilityJump;
     private InputAction abilityFly;
@@ -33,12 +31,12 @@ public class InputHandler : MonoBehaviour
     public Ability_Interact interactScript;
 
     public float cursorTimer = 2f;
+    public float cursorSensitivity;
 
     private void Awake()
     {
         playerController = new PlayerController();
 
-        //abilityMouse = playerController.UI.Point;
         abilityMovement = playerController.Player.Movement;
         abilityJump = playerController.Player.Jump;
         abilityFly = playerController.Player.Fly;
@@ -50,7 +48,6 @@ public class InputHandler : MonoBehaviour
 
     private void OnEnable()
     {
-
         //MOVEMENT
         abilityMovement.Enable();
         //BASIC CONTROLS//enabloidaan input action Airborne Input assetista ja laitetaan komento kun se painetaan => functio JumpInput alempana
@@ -75,12 +72,8 @@ public class InputHandler : MonoBehaviour
         pause.performed += Pause;
         pause.Enable();
     }
-
-
-
     private void OnDisable()
     {
-        //abilityMouse.Disable();
         abilityMovement.Disable();
         abilityJump.Disable();
         abilityFly.Disable();
@@ -93,7 +86,6 @@ public class InputHandler : MonoBehaviour
     private void FixedUpdate()
     {
 
-        //mouseVector = abilityMouse.ReadValue<Vector2>();
         mouseVector = Input.mousePosition;
         GameModeManager.instance.mouseMovementCheck.transform.position = mouseVector;
 
@@ -180,10 +172,9 @@ public class InputHandler : MonoBehaviour
 
     private void Pause(InputAction.CallbackContext obj)
     {
-        if (GameModeManager.instance.activeGameMode != GameModeManager.GameMode.cutScene && GameModeManager.instance.levelActive)
+        if (GameModeManager.instance.levelActive && !GameModeManager.instance.cannotResumeFromPause)
         { GameModeManager.instance.InvokePause(); }
-        else
-        { Debug.Log("Do nothing"); }
+
     }
 }
 

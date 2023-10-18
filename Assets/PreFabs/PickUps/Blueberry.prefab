@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 557834980885794969}
   - component: {fileID: 557834980885794970}
   - component: {fileID: 2823317741076451430}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlacebleCol
   m_TagString: Placeable
   m_Icon: {fileID: 0}
@@ -116,7 +116,8 @@ GameObject:
   - component: {fileID: 557834982060666863}
   - component: {fileID: 557834982060666641}
   - component: {fileID: 557834982060666642}
-  m_Layer: 0
+  - component: {fileID: 462642674728335827}
+  m_Layer: 8
   m_Name: Blueberry
   m_TagString: Collectable
   m_Icon: {fileID: 0}
@@ -243,6 +244,20 @@ MonoBehaviour:
   myModelParent: {fileID: 557834982200064026}
   myModel: {fileID: 6974903033278994799}
   childObject: {fileID: 557834980885794972}
+--- !u!114 &462642674728335827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557834982060666643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dddd117210138f74a9b2f5dcbd8520bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glueObj: {fileID: 0}
+  glueChildObj: {fileID: 0}
 --- !u!1 &557834982200064028
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +352,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 557834982200064028}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 81cf760ab35486b49a431eee9b28f2d5, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

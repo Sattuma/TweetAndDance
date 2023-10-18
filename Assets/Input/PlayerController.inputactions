@@ -192,6 +192,61 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "Directional (Gamepad)",
+                    "id": "d2043efc-2645-446b-9699-d02f854ab7ad",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "eb99f198-2c3d-4788-9162-01746fd60619",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "931cc37a-1222-483b-9c0a-50d6a294449c",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "91984ff6-334b-44bc-9abc-ce7515547f48",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "f1456264-3137-4c9a-8c74-5683109b9d03",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "3d44d74f-7a75-405c-86ba-d6b7aedada53",
                     "path": "<Keyboard>/space",
@@ -237,6 +292,17 @@
                 },
                 {
                     "name": "",
+                    "id": "f5e8c8a8-0cd8-4b8a-bd43-7894920cd35d",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "73b4b490-31db-4b34-9f5b-fe3403c40b8c",
                     "path": "<Keyboard>/j",
                     "interactions": "",
@@ -272,6 +338,17 @@
                     "name": "",
                     "id": "f859957a-8001-4af9-a488-4b14a3115b72",
                     "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact_One",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "648b1379-dbbb-4049-b87a-71fd5c669409",
+                    "path": "<Gamepad>/dpad/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -371,6 +448,28 @@
                     "name": "",
                     "id": "1a8d65a2-597e-49fc-b3c0-64277c2d7c7a",
                     "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fly",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "853a273f-1420-4b5d-a150-06c5686c7185",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fly",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2d04517b-6cb1-49cf-9f00-7d8e86b472d0",
+                    "path": "<Gamepad>/dpad/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
