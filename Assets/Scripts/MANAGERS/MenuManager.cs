@@ -268,12 +268,24 @@ public class MenuManager : MonoBehaviour
 
         if(GameModeManager.instance.secretsMissed == 0)
         {
-            GameModeManager.instance.ChangeLevel(bonusLevelName);
-            Debug.Log("BONUS LEVEL ACCESSED IN THIS LEVEL");
+            if(GameModeManager.instance.levelIndex <= 3 && GameModeManager.instance.levelIndex > 0)
+            {
+                GameModeManager.instance.ChangeLevel(GameModeManager.instance.bonusLevelName[0]);
+            }
+            if (GameModeManager.instance.levelIndex <= 6 && GameModeManager.instance.levelIndex > 3)
+            {
+                GameModeManager.instance.ChangeLevel(GameModeManager.instance.bonusLevelName[1]);
+            }
+            if (GameModeManager.instance.levelIndex <= 9 && GameModeManager.instance.levelIndex > 6)
+            {
+                GameModeManager.instance.ChangeLevel(GameModeManager.instance.bonusLevelName[2]);   
+            }
+
         }
         else
         {
-            GameModeManager.instance.ChangeLevel(nextLevelName);
+            GameModeManager.instance.levelIndex += 1;
+            GameModeManager.instance.ChangeLevel(GameModeManager.instance.levelName[GameModeManager.instance.levelIndex]);
         }
 
 
@@ -300,9 +312,7 @@ public class MenuManager : MonoBehaviour
         AudioManager.instance.PlayMenuFX(0);
         SetData();
         GameModeManager.instance.levelActive = false;
-        GameModeManager.instance.MainMenuActive();
-        GameModeManager.instance.ActivateMainMenu();
-        GameModeManager.instance.ChangeLevel(mainMenuName);
+        GameModeManager.instance.ChangeLevel(GameModeManager.instance.levelName[0]);
     }
 
     public void GetData()

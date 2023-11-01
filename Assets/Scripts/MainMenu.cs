@@ -45,11 +45,6 @@ public class MainMenu : MonoBehaviour
     public GameObject logo;
     public Vector2 mousePos;
 
-    [Header("Open Level Name")]
-    public string levelName1_1;
-    public string levelName1_2;
-    public string levelName1_3;
-
     private void Start()
     {
 
@@ -117,7 +112,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame(string levelName)
     {
-        levelName = levelName1_1;
+        levelName = GameModeManager.instance.levelName[1];
         StartCoroutine(StartButtonDelay(levelName));
     }
 
@@ -274,7 +269,7 @@ public class MainMenu : MonoBehaviour
         SetData();
         yield return new WaitForSecondsRealtime(0.2f);
         AudioManager.instance.musicSource.Stop();
-        GameModeManager.instance.ActivateLevel1_1();
+        //GameModeManager.instance.ActivateLevel1_1();
         GameModeManager.instance.ChangeLevel(levelName);
     }
 

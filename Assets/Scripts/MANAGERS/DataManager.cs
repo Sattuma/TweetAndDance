@@ -113,6 +113,11 @@ public class DataManager : MonoBehaviour
         GameModeManager.instance.highScoreLevel1_3 = PlayerPrefs.GetInt("HiScore1_3");
     }
 
+    public void CurrentLevelCheck()
+    {
+
+    }
+
     public void ActivateKeyboard()
     {
         InputSystem.EnableDevice(Keyboard.current);

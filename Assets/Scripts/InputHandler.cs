@@ -12,8 +12,8 @@ public class InputHandler : MonoBehaviour
     [SerializeField]private Vector2 cursorSensitivityVector;
     [SerializeField]private Vector2 mouseVector;
     [SerializeField]private Vector2 inputVector;
+    [SerializeField] private float moveX;
 
-    
 
     [Header("Input Actions")]
     private InputAction abilityMovement;
@@ -45,7 +45,6 @@ public class InputHandler : MonoBehaviour
         abilityInteract_three = playerController.Player.Interact_Three;
         pause = playerController.Player.Pause;
     }
-
     private void OnEnable()
     {
         //MOVEMENT
@@ -105,10 +104,9 @@ public class InputHandler : MonoBehaviour
             }
         }
 
-        // inputvector muuttuja alussa lukee inputAction ablilitymovement arvoa Vector 2
         inputVector = abilityMovement.ReadValue<Vector2>();
-        // k‰ytet‰‰n t‰t‰ arvoa ja tietoa eri scriptiin functioon movescriptiss‰
-        moveScript.Movement(inputVector);
+        moveX = inputVector.x;
+        moveScript.Movement(moveX);
     }
 
     private void JumpInput(InputAction.CallbackContext obj)

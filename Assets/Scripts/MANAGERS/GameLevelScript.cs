@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameLevelScript : MonoBehaviour
 {
@@ -16,8 +17,12 @@ public class GameLevelScript : MonoBehaviour
     public GameObject[] secretsFoundInScene;
     public GameObject[] secretsInScene;
 
+
     private void Awake()
     {
+        GameModeManager.instance.levelIndex = SceneManager.GetActiveScene().buildIndex;
+        string level = GameModeManager.instance.levelName[GameModeManager.instance.levelIndex];
+        GameModeManager.instance.ActivateCurrentLevel(level);
 
         GameModeManager.Success += CountLevelSuccess;
 

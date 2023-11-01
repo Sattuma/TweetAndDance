@@ -8,9 +8,6 @@ public class Timer : MonoBehaviour
     public TextMeshProUGUI timerCountdown;
     public Animator uiAnim;
 
-
-
-
     void Update()
     {
         if (GameModeManager.instance.currentLevel == GameModeManager.CurrentLevel.Level1_1)

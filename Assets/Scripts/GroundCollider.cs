@@ -5,6 +5,7 @@ using UnityEngine;
 public class GroundCollider : MonoBehaviour
 {
     public PlayerCore core;
+    public float landingTime;
 
     private void Start()
     {
@@ -31,7 +32,7 @@ public class GroundCollider : MonoBehaviour
     {
         core.isLanding = true;
         core.LandingAnimOn();
-        yield return new WaitForSecondsRealtime(0.25f);
+        yield return new WaitForSecondsRealtime(landingTime);
         core.isLanding = false;
         core.JumpAnimOff();
         core.FlyAnimOff();

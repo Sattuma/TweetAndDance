@@ -7,21 +7,22 @@ using UnityEngine;
 
 public class Ability_Movement : MonoBehaviour
 {
-
+    [Header("Components")]
     public PlayerCore core;
     public Rigidbody2D rb;
 
+    [Header("Booleans")]
     public bool facingRight;
     public bool playFootsteps;
 
-    //PlayerSpeed
+    [Header("Player Movement")]
     [SerializeField] private float playerSpeed;
-    //PlayerSpeed Variables
-    [SerializeField] private float acceleration;
-    [SerializeField] private float deacceleration;
-    [SerializeField] private float maxSpeed;
+    [SerializeField] private float movementSmooth;
+
+    [Header("Variables for Movement")]
     [SerializeField] private float walkingSpeed;
     [SerializeField] private float slowedSpeed;
+    [SerializeField] private Vector2 velocity = Vector2.zero;
 
     void Start()
     {
@@ -29,17 +30,24 @@ public class Ability_Movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public void Movement(Vector2 value)
+    public void Movement(float value)
     {
-        //kun enabloidaan input action movement
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel && GameModeManager.instance.levelActive == true)
         {
-            CalculateSpeed(value);
-            rb.velocity = new Vector2(value.x * playerSpeed, rb.velocity.y);
-            rb.velocity.Normalize();
-            core.WalkingAnim(value.x);
+            if(core.isGrounded)
+            {
+                Vector2 targetVelocity = new Vector2(value * playerSpeed, rb.velocity.y);
+                rb.velocity = Vector2.SmoothDamp(rb.velocity, targetVelocity, ref velocity, movementSmooth);
+            }
+            else if(!core.isGrounded)
+            {
+                rb.velocity = new Vector2(value * playerSpeed, rb.velocity.y);
+            }
 
-            if (value.x > 0 && core.isGrounded && !core.isLanding || value.x < 0 && core.isGrounded && !core.isLanding)
+            rb.velocity.Normalize();
+            core.WalkingAnim(value);
+
+            if (value > 0 && core.isGrounded && !core.isLanding || value < 0 && core.isGrounded && !core.isLanding)
             {
                 playFootsteps = true;
                 ActivateFootstepsFX();
@@ -50,10 +58,10 @@ public class Ability_Movement : MonoBehaviour
                 ActivateFootstepsFX();
             }
 
-            if (value.x > 0 && !facingRight)
+            if (value > 0 && !facingRight)
             { FlipCharacter(); }
 
-            if(value.x < 0 && facingRight)
+            if(value < 0 && facingRight)
             { FlipCharacter(); }
 
             if(core.isLanding || core.isCollecting)
@@ -65,19 +73,9 @@ public class Ability_Movement : MonoBehaviour
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel && GameModeManager.instance.levelActive != true)
         {
             rb.velocity = Vector2.zero;
-            value.x = 0;
+            value = 0;
             //animaatio tähän?
         }
-    }
-
-    public void CalculateSpeed(Vector2 speed)
-    {
-
-        if (speed.x > 0 || speed.x < 0)
-        { walkingSpeed += acceleration * Time.deltaTime; }
-        else
-        { walkingSpeed -= deacceleration * Time.deltaTime; }
-        walkingSpeed = Mathf.Clamp(walkingSpeed, 0, maxSpeed);
     }
 
     void FlipCharacter()

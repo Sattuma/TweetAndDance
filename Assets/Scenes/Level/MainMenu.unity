@@ -2991,6 +2991,46 @@ PrefabInstance:
       propertyPath: timerLevel3
       value: 300
       objectReference: {fileID: 0}
+    - target: {fileID: 7475598443264628686, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
+      propertyPath: levelName.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7475598443264628686, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
+      propertyPath: levelName.Array.data[0]
+      value: MainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7475598443264628686, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
+      propertyPath: levelName.Array.data[1]
+      value: Level1_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7475598443264628686, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
+      propertyPath: levelName.Array.data[2]
+      value: Level1_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7475598443264628686, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
+      propertyPath: levelName.Array.data[3]
+      value: Level1_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7475598443264628686, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
+      propertyPath: levelName.Array.data[4]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7475598443264628686, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
+      propertyPath: bonusLevelName.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7475598443264628686, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
+      propertyPath: bonusLevelName.Array.data[0]
+      value: Bonus1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7475598443264628686, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
+      propertyPath: bonusLevelName.Array.data[1]
+      value: Bonus2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7475598443264628686, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
+      propertyPath: bonusLevelName.Array.data[2]
+      value: Bonus3
+      objectReference: {fileID: 0}
     - target: {fileID: 8097760874582612812, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
       propertyPath: m_RootOrder
       value: 2

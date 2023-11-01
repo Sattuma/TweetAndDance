@@ -1159,7 +1159,6 @@ Transform:
   - {fileID: 1558297727}
   - {fileID: 864989437}
   - {fileID: 640628229}
-  - {fileID: 1778874853}
   m_Father: {fileID: 1933136950}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1709,6 +1708,7 @@ Transform:
   - {fileID: 1950943189}
   - {fileID: 1380167524}
   - {fileID: 942807047}
+  - {fileID: 1778874853}
   m_Father: {fileID: 352026072}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10613,6 +10613,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaterSparkles
       objectReference: {fileID: 0}
+    - target: {fileID: 3974634442677531830, guid: b00a88355f38ac145ad8563e327d0353, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3974634442677531831, guid: b00a88355f38ac145ad8563e327d0353, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -10721,23 +10725,23 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 595019195}
+    m_TransformParent: {fileID: 818798719}
     m_Modifications:
     - target: {fileID: 5175900058586963062, guid: 6c61996e7fc9aaf46b214acdcda1fd65, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5175900058586963062, guid: 6c61996e7fc9aaf46b214acdcda1fd65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 51.4
+      value: 48.018585
       objectReference: {fileID: 0}
     - target: {fileID: 5175900058586963062, guid: 6c61996e7fc9aaf46b214acdcda1fd65, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.719305
+      value: 12.3650675
       objectReference: {fileID: 0}
     - target: {fileID: 5175900058586963062, guid: 6c61996e7fc9aaf46b214acdcda1fd65, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.29575044
+      value: -0.013941497
       objectReference: {fileID: 0}
     - target: {fileID: 5175900058586963062, guid: 6c61996e7fc9aaf46b214acdcda1fd65, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10770,6 +10774,14 @@ PrefabInstance:
     - target: {fileID: 5175900058586963063, guid: 6c61996e7fc9aaf46b214acdcda1fd65, type: 3}
       propertyPath: m_Name
       value: DustSparkles
+      objectReference: {fileID: 0}
+    - target: {fileID: 5175900058586963063, guid: 6c61996e7fc9aaf46b214acdcda1fd65, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5175900059083960224, guid: 6c61996e7fc9aaf46b214acdcda1fd65, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c61996e7fc9aaf46b214acdcda1fd65, type: 3}

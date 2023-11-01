@@ -34,6 +34,10 @@ public class GameModeManager : MonoBehaviour
     [Header("CurrentLevel")]
     public CurrentLevel currentLevel;
 
+    [Header("Level Change String Array")]
+    public string[] levelName;
+    public string[] bonusLevelName;
+
     [Header("Level State Booleans")]
     public bool cutsceneActive;
     public bool levelActive;
@@ -77,7 +81,7 @@ public class GameModeManager : MonoBehaviour
 
     public GameObject mouseMovementCheck;
 
-
+    public int levelIndex;
 
     public enum GameMode
     {
@@ -90,7 +94,7 @@ public class GameModeManager : MonoBehaviour
     public enum CurrentLevel
     {
         MainMenu,
-        Level1_1,
+        Level1_1 = 1,
         Level1_2,
         Level1_3,
     }
@@ -144,8 +148,10 @@ public class GameModeManager : MonoBehaviour
     { activeGameMode = GameMode.bonusLevel;}
 
     // ACTIVE CURRENTLEVEL FUNCTIONS
-    public void ActivateMainMenu()
-    { currentLevel = CurrentLevel.MainMenu; }
+    public void ActivateCurrentLevel(string levelName)
+    {
+        currentLevel = (CurrentLevel)System.Enum.Parse(typeof(CurrentLevel), levelName);
+    }
     public void ActivateLevel1_1()
     { currentLevel = CurrentLevel.Level1_1;  }
     public void ActivateLevel1_2()
