@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 
@@ -29,6 +30,7 @@ public class MainMenu : MonoBehaviour
     public GameObject controlSettingsWindow;
     public GameObject audioSettingsWindow;
     public TextMeshProUGUI currentControlText;
+    public TextMeshProUGUI noGamepadDetectedText;
     public Slider masterVolumeSlider;
     public Slider musicVolumeSlider;
     public Slider effectsVolumeSlider;
@@ -44,6 +46,7 @@ public class MainMenu : MonoBehaviour
 
     public GameObject logo;
     public Vector2 mousePos;
+    bool gamepadDetection;
 
     private void Start()
     {
@@ -52,17 +55,10 @@ public class MainMenu : MonoBehaviour
         AudioManager.instance.effectsVolumeValue = effectsVolumeSlider.value;
         AudioManager.instance.musicVolumeValue = musicVolumeSlider.value;
 
-        DataManager.instance.CheckControllerNull(); // check ei toimi, pelin alussa herjaus jos gamepad ei ole kytketty. tee checki siitä että toimii myös kun vain toinen KEY/ GAMEPAD on kytketty
+        //DataManager.instance.CheckControllerNull(); // check ei toimi, pelin alussa herjaus jos gamepad ei ole kytketty. tee checki siitä että toimii myös kun vain toinen KEY/ GAMEPAD on kytketty
         GetData();
         SetData();
         AudioManager.instance.PlayMusicFX(0);
-        if (DataManager.instance.controls == DataManager.ControlSystem.Gamepad)
-        { DataManager.instance.ActivateGamePad(); }
-        if (DataManager.instance.controls == DataManager.ControlSystem.Keyboard)
-        { DataManager.instance.ActivateKeyboard(); }
-
-
-
         currentControlText.text = DataManager.instance.controls.ToString();
     }
 
@@ -159,16 +155,27 @@ public class MainMenu : MonoBehaviour
         AudioManager.instance.PlayMenuFX(0);
         if (DataManager.instance.controls == DataManager.ControlSystem.Keyboard)
         {
-            Debug.Log("GAMEPAD ACTIVE");
-            currentControlText.text = "Gamepad".ToString();
             DataManager.instance.ActivateGamePad();
         }
         else if (DataManager.instance.controls == DataManager.ControlSystem.Gamepad)
         {
-            Debug.Log("KEYBOARD ACTIVE");
-            currentControlText.text = "Keyboard".ToString();
             DataManager.instance.ActivateKeyboard();
         }
+        currentControlText.text = DataManager.instance.controls.ToString();
+
+        if (!gamepadDetection && Gamepad.current?.IsActuated(0) == null)
+        {
+            StartCoroutine(NoConnect());
+        }
+    }
+
+    IEnumerator NoConnect()
+    {
+        gamepadDetection = true;
+        noGamepadDetectedText.gameObject.SetActive(true);
+        yield return new WaitForSecondsRealtime(1f);
+        noGamepadDetectedText.gameObject.SetActive(false);
+        gamepadDetection = false;
     }
     public void OpenHowToPlay()
     {
@@ -269,7 +276,6 @@ public class MainMenu : MonoBehaviour
         SetData();
         yield return new WaitForSecondsRealtime(0.2f);
         AudioManager.instance.musicSource.Stop();
-        //GameModeManager.instance.ActivateLevel1_1();
         GameModeManager.instance.ChangeLevel(levelName);
     }
 
@@ -285,7 +291,6 @@ public class MainMenu : MonoBehaviour
         AudioManager.instance.masterVolumeValue = masterVolumeSlider.value;
         AudioManager.instance.effectsVolumeValue = effectsVolumeSlider.value;
         AudioManager.instance.musicVolumeValue = musicVolumeSlider.value;
-        Debug.Log(AudioManager.instance.masterVolumeValue);
         DataManager.instance.SetLevelAudio(masterVolumeSlider.value, effectsVolumeSlider.value, musicVolumeSlider.value);
     }
 

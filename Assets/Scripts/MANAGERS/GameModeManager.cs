@@ -9,8 +9,8 @@ public class GameModeManager : MonoBehaviour
     //GAMEACTION EVENTS
     public delegate void GameAction();
     public static event GameAction StartLevel;
-    public static event GameAction GameLevelEnd;
-    public static event GameAction BonusLevelEnd;
+    //public static event GameAction GameLevelEnd;
+    //public static event GameAction BonusLevelEnd;
     public static event GameAction PauseOn;
     public static event GameAction BonusLevelScore;
     public static event GameAction Success;
@@ -33,6 +33,8 @@ public class GameModeManager : MonoBehaviour
 
     [Header("CurrentLevel")]
     public CurrentLevel currentLevel;
+
+    public int levelIndex;
 
     [Header("Level Change String Array")]
     public string[] levelName;
@@ -66,23 +68,24 @@ public class GameModeManager : MonoBehaviour
     public int dandelionPoints;
 
     [Header("Level HighScores")]
-    public int highScoreLevel1_1;
-    public int highScoreLevel1_2;
-    public int highScoreLevel1_3;
+    public int[] levelHighScores; //?? tämä samalla tavalla kun secretit
+    public int highScoreLevel1_1; // turhia?
+    public int highScoreLevel1_2; // turhia?
+    public int highScoreLevel1_3; // turhia?
 
     [Header("Secrets Found/missed")]
-    public int secretLevel1_1;
-    public int secretLevel1_2;
-    public int secretLevel1_3;
+    public int[] secretInLevel;
+    public int[] secretMissedInLevel;
 
     [Header("Variables on level")]
-    public int levelScore;
-    public int secretsMissed;
+    public int levelScore; //?? tämä samalla tavalla kun secretit
+    public int secretFoundTemp;
+    public int secretMissedTemp;
+    public int secretTotalTemp;
 
     public GameObject mouseMovementCheck;
 
-    public int levelIndex;
-
+    //Handles functions as player movement, pause etc..
     public enum GameMode
     {
         mainMenu,
@@ -91,10 +94,11 @@ public class GameModeManager : MonoBehaviour
         bonusLevel
     }
 
+    //Handles scoring, secrets, info etc..
     public enum CurrentLevel
     {
         MainMenu,
-        Level1_1 = 1,
+        Level1_1,
         Level1_2,
         Level1_3,
     }
@@ -106,13 +110,17 @@ public class GameModeManager : MonoBehaviour
         else
         { instance = this; DontDestroyOnLoad(instance); }
 
+        //when game open - first scene
         activeGameMode = GameMode.mainMenu;
+
     }
 
     private void Start()
     {
+        GetData();
         SetData();
-        // kaikki GetData otetaan levelchangerisa jo valmiiksi josta info pisteistä etc gamemodemanageriin
+        // kaikki GetData otetaan levelchangerisa jo valmiiksi josta info pisteistä etc gamemodemanageriin -
+        // (ADD) why the fuck? hmm mietitätä vielä
     }
 
     //----------------------------------------
@@ -149,22 +157,21 @@ public class GameModeManager : MonoBehaviour
 
     // ACTIVE CURRENTLEVEL FUNCTIONS
     public void ActivateCurrentLevel(string levelName)
+    {  currentLevel = (CurrentLevel)System.Enum.Parse(typeof(CurrentLevel), levelName);}
+    public void ActivateNextLevel()
+    { levelIndex += 1; ChangeLevel(levelName[levelIndex]);}
+    public void ActivateBonusLevel()
     {
-        currentLevel = (CurrentLevel)System.Enum.Parse(typeof(CurrentLevel), levelName);
+        if (levelIndex <= 3 && levelIndex > 0)
+        { ChangeLevel(bonusLevelName[0]);}
+        if (levelIndex <= 6 && levelIndex > 3)
+        { ChangeLevel(bonusLevelName[1]);}
+        if (levelIndex <= 9 && levelIndex > 6)
+        { ChangeLevel(bonusLevelName[2]);}
     }
-    public void ActivateLevel1_1()
-    { currentLevel = CurrentLevel.Level1_1;  }
-    public void ActivateLevel1_2()
-    { currentLevel = CurrentLevel.Level1_2; }
-    public void ActivateLevel1_3()
-    { currentLevel = CurrentLevel.Level1_3; }
 
     public void AddScore(int score)
-    {
-        BonusLevelScore?.Invoke();
-    }
-
-    //----------------------------------------
+    { BonusLevelScore?.Invoke();}
 
 
     public void ChangeLevel(string levelName)
@@ -180,8 +187,8 @@ public class GameModeManager : MonoBehaviour
     public void ResetEvents()
     {
         StartLevel = null;
-        GameLevelEnd = null;
-        BonusLevelEnd = null;
+        //GameLevelEnd = null;
+        //BonusLevelEnd = null;
         PauseOn = null;
         BonusLevelScore = null;
         Success = null;
@@ -211,45 +218,25 @@ public class GameModeManager : MonoBehaviour
         }
     }
 
-    public void SecretsCheck(GameObject[] array)
+    public void SecretsCheck(int secretsFound, int secretsMissed)
     {
-        if (currentLevel == CurrentLevel.Level1_1)
-        {
-            for (int i = 0; i < array.Length; i++)
-            {
-                i = array.Length;
-                secretLevel1_1 = i;
-                DataManager.instance.SetLevelSecrets(secretLevel1_1);
-            }
-        }
-
-        if (currentLevel == CurrentLevel.Level1_2)
-        {
-            for (int i = 0; i < array.Length; i++)
-            {
-                i = array.Length;
-                secretLevel1_2 = i;
-                DataManager.instance.SetLevelSecrets(secretLevel1_2);
-            }
-        }
-
-        if (currentLevel == CurrentLevel.Level1_3)
-        {
-            for (int i = 0; i < array.Length; i++)
-            {
-                i = array.Length;
-                secretLevel1_3 = i;
-                DataManager.instance.SetLevelSecrets(secretLevel1_3);
-            }
-        }
-
+        secretInLevel[levelIndex] = secretsFound;
+        secretMissedInLevel[levelIndex] = secretsMissed;
+        DataManager.instance.SetLevelSecrets(secretsFound);
     }
 
+    public void CheckBonusLevelAccess()
+    {
+        if (secretMissedInLevel[levelIndex] == 0)
+        { ActivateBonusLevel(); }
+        else { ActivateNextLevel(); }
+    }
     //----------------------------------------
 
-    private void OnDestroy()
+
+    public void GetData()
     {
-        DataManager.instance.SetLevelAudio(1, 1, 1);
+        DataManager.instance.GetLevelSecrets();
     }
 
 }

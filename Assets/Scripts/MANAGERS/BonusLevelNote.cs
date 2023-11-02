@@ -24,7 +24,7 @@ public class BonusLevelNote : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameModeManager.BonusLevelEnd += StopInvoke;
+        //GameModeManager.BonusLevelEnd += StopInvoke;
         core.myAnim.SetTrigger("Level2");
     }
 

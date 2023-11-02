@@ -23,11 +23,16 @@ public class DataManager : MonoBehaviour
         else
         { instance = this; DontDestroyOnLoad(instance); }
 
-        ActivateKeyboard();
+        //ActivateKeyboard();
+        if (controls == DataManager.ControlSystem.Gamepad)
+        { ActivateGamePad(); }
+        if (controls == DataManager.ControlSystem.Keyboard)
+        { ActivateKeyboard(); }
 
 
     }
 
+    /*
     public void CheckControllerNull() // ei toimi
     {
         string[] names = Input.GetJoystickNames();
@@ -41,6 +46,7 @@ public class DataManager : MonoBehaviour
             }
         }
     }
+    */
 
 
     //LEVEL TIMERS DATA
@@ -77,20 +83,33 @@ public class DataManager : MonoBehaviour
     public void SetLevelSecrets(int secrets)
     {
         if (GameModeManager.instance.currentLevel == GameModeManager.CurrentLevel.Level1_1)
-        { PlayerPrefs.SetInt("Secrets1_1", secrets); }
+        { 
+            PlayerPrefs.SetInt("Secrets1_1", secrets);
+            PlayerPrefs.SetInt("SecretsMissed1_1", secrets);
+        }
 
         if (GameModeManager.instance.currentLevel == GameModeManager.CurrentLevel.Level1_2)
-        { PlayerPrefs.SetInt("Secrets1_2", secrets); }
+        {
+            PlayerPrefs.SetInt("Secrets1_2", secrets);
+            PlayerPrefs.SetInt("SecretsMissed1_2", secrets);
+        }
 
         if (GameModeManager.instance.currentLevel == GameModeManager.CurrentLevel.Level1_3)
-        { PlayerPrefs.SetInt("Secrets1_3", secrets); }
+        { 
+            PlayerPrefs.SetInt("Secrets1_3", secrets);
+            PlayerPrefs.SetInt("SecretsMissed1_2", secrets);
+        }
     }
 
     public void GetLevelSecrets()
     {
-        GameModeManager.instance.secretLevel1_1 = PlayerPrefs.GetInt("Secrets1_1");
-        GameModeManager.instance.secretLevel1_2 = PlayerPrefs.GetInt("Secrets1_2");
-        GameModeManager.instance.secretLevel1_3 = PlayerPrefs.GetInt("Secrets1_3");
+        GameModeManager.instance.secretInLevel[1] = PlayerPrefs.GetInt("Secrets1_1");
+        GameModeManager.instance.secretInLevel[2] = PlayerPrefs.GetInt("Secrets1_2");
+        GameModeManager.instance.secretInLevel[3] = PlayerPrefs.GetInt("Secrets1_3");
+
+        GameModeManager.instance.secretMissedInLevel[1] = PlayerPrefs.GetInt("SecretsMissed1_1");
+        GameModeManager.instance.secretMissedInLevel[2] = PlayerPrefs.GetInt("SecretsMissed1_2");
+        GameModeManager.instance.secretMissedInLevel[3] = PlayerPrefs.GetInt("SecretsMissed1_3");
     }
 
     //POINTS LEVEL DATA
@@ -113,22 +132,51 @@ public class DataManager : MonoBehaviour
         GameModeManager.instance.highScoreLevel1_3 = PlayerPrefs.GetInt("HiScore1_3");
     }
 
-    public void CurrentLevelCheck()
-    {
-
-    }
-
     public void ActivateKeyboard()
     {
-        InputSystem.EnableDevice(Keyboard.current);
-        InputSystem.DisableDevice(Gamepad.current);
-        controls = ControlSystem.Keyboard;
+        Keyboard.current?.IsActuated(0);
+        Gamepad.current?.IsActuated(0);
+
+        if (Gamepad.current?.IsActuated(0) == null)
+        {
+            Debug.Log("KEYBOARD ACTIVE" + "ohjain ei kytketty");
+            InputSystem.EnableDevice(Keyboard.current);
+            controls = ControlSystem.Keyboard;
+        }
+        else if(Gamepad.current?.IsActuated(0) != null)
+        {
+            Debug.Log("KEYBOARD ACTIVE" + "ohjain MYÖS kytketty");
+            InputSystem.EnableDevice(Keyboard.current);
+            InputSystem.DisableDevice(Gamepad.current);
+            controls = ControlSystem.Keyboard;
+        }
+
+
+
+
     }
     public void ActivateGamePad()
     {
-        InputSystem.EnableDevice(Gamepad.current);
-        InputSystem.DisableDevice(Keyboard.current);
-        controls = ControlSystem.Gamepad;
+        Keyboard.current?.IsActuated(0);
+        Gamepad.current?.IsActuated(0);
+
+        if (Gamepad.current?.IsActuated(0) == null)
+        {
+            InputSystem.EnableDevice(Keyboard.current);
+            Debug.Log("GAMEPAD EI KYTKETTY" + "keyboard jatkaa aktiivisena");
+            controls = ControlSystem.Keyboard;
+        }
+        else if (Gamepad.current?.IsActuated(0) != null)
+        {
+            Debug.Log("GAMEPAD ACTIVE");
+            InputSystem.EnableDevice(Gamepad.current);
+            InputSystem.DisableDevice(Keyboard.current);
+            controls = ControlSystem.Gamepad;
+        }
+
+
     }
+
+
 
 }

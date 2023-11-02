@@ -41,7 +41,10 @@ public class MenuManager : MonoBehaviour
     public GameObject audioSettingsWindow;
     public GameObject controlSettingsWindow;
     public TextMeshProUGUI currentControlText;
+    public TextMeshProUGUI noGamepadDetectedText;
     public GameObject successMenu;
+    public TextMeshProUGUI foundSecretsText;
+    public TextMeshProUGUI totalSecretsText;
     public GameObject gameOverMenu;
 
     [Header("Buttons to be autoactivated on menus")]
@@ -59,6 +62,8 @@ public class MenuManager : MonoBehaviour
     public string nextLevelName;
     public string bonusLevelName;
     public string mainMenuName;
+
+    bool gamepadDetection;
 
     private void Awake()
     {
@@ -154,6 +159,8 @@ public class MenuManager : MonoBehaviour
     {
         GameModeManager.instance.levelActive = false;
         successMenu.SetActive(true);
+        foundSecretsText.text = GameModeManager.instance.secretFoundTemp.ToString();
+        totalSecretsText.text = GameModeManager.instance.secretTotalTemp.ToString();
         successFirstButton.GetComponent<Selectable>().Select();
     }
     public void FailedMenuOnLevel()
@@ -230,17 +237,31 @@ public class MenuManager : MonoBehaviour
         AudioManager.instance.PlayMenuFX(0);
         if (DataManager.instance.controls == DataManager.ControlSystem.Keyboard)
         {
-            Debug.Log("GAMEPAD ACTIVE");
-            currentControlText.text = "Gamepad".ToString();
             DataManager.instance.ActivateGamePad();
+
         }
         else if (DataManager.instance.controls == DataManager.ControlSystem.Gamepad)
         {
-            Debug.Log("KEYBOARD ACTIVE");
-            currentControlText.text = "Keyboard".ToString();
             DataManager.instance.ActivateKeyboard();
         }
+
+        currentControlText.text = DataManager.instance.controls.ToString();
+
+        if (!gamepadDetection && Gamepad.current?.IsActuated(0) == null)
+        {
+            StartCoroutine(NoConnect());
+        }
     }
+
+    IEnumerator NoConnect()
+    {
+        gamepadDetection = true;
+        noGamepadDetectedText.gameObject.SetActive(true);
+        yield return new WaitForSecondsRealtime(1f);
+        noGamepadDetectedText.gameObject.SetActive(false);
+        gamepadDetection = false;
+    }
+
     public void BackButtonPause()
     {
         AudioManager.instance.PlayMenuFX(0);
@@ -265,31 +286,7 @@ public class MenuManager : MonoBehaviour
     {
         AudioManager.instance.PlayMenuFX(0);
         SetData();
-
-        if(GameModeManager.instance.secretsMissed == 0)
-        {
-            if(GameModeManager.instance.levelIndex <= 3 && GameModeManager.instance.levelIndex > 0)
-            {
-                GameModeManager.instance.ChangeLevel(GameModeManager.instance.bonusLevelName[0]);
-            }
-            if (GameModeManager.instance.levelIndex <= 6 && GameModeManager.instance.levelIndex > 3)
-            {
-                GameModeManager.instance.ChangeLevel(GameModeManager.instance.bonusLevelName[1]);
-            }
-            if (GameModeManager.instance.levelIndex <= 9 && GameModeManager.instance.levelIndex > 6)
-            {
-                GameModeManager.instance.ChangeLevel(GameModeManager.instance.bonusLevelName[2]);   
-            }
-
-        }
-        else
-        {
-            GameModeManager.instance.levelIndex += 1;
-            GameModeManager.instance.ChangeLevel(GameModeManager.instance.levelName[GameModeManager.instance.levelIndex]);
-        }
-
-
-
+        GameModeManager.instance.CheckBonusLevelAccess();
     }
 
     public void Retry()

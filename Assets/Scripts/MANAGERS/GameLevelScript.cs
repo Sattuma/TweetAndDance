@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+//PURPOSE OF THIS SCRIPT IS COUNT TEMPORARILY INFO AND FUNCTIONS WHICH GOES TO GAME MANAGER IF NEEDED WGERE STORED 
 public class GameLevelScript : MonoBehaviour
 {
     public GameObject[] pickupPrefab;
     public GameObject[] pickupSpawnPoints;
 
-    public List<GameObject> pickUpGroundList = new List<GameObject>();
+    public List<GameObject> pickUpGroundList = new();
     public int pickUpCountVariation;
 
     public GameObject[] pickupSpawnPointsAir;
@@ -16,14 +18,18 @@ public class GameLevelScript : MonoBehaviour
 
     public GameObject[] secretsFoundInScene;
     public GameObject[] secretsInScene;
+    public int secretsFound;
+    public int secretsMissed;
 
 
     private void Awake()
     {
+        //Aktivoidaan Gamemodemanageriin oikea kenttä aktiiviseksi
         GameModeManager.instance.levelIndex = SceneManager.GetActiveScene().buildIndex;
         string level = GameModeManager.instance.levelName[GameModeManager.instance.levelIndex];
         GameModeManager.instance.ActivateCurrentLevel(level);
 
+        //gamemodemanagerin kutsu kentän onnistumisesta
         GameModeManager.Success += CountLevelSuccess;
 
         GameModeManager.instance.levelActive = false;
@@ -45,6 +51,7 @@ public class GameLevelScript : MonoBehaviour
     IEnumerator StartLevelCheck()
     {
         yield return new WaitUntil(() => GameModeManager.instance.cutsceneActive == false);
+        GameModeManager.instance.LevelActive();
         GameModeManager.instance.activeGameMode = GameModeManager.GameMode.gameLevel;
         GameModeManager.instance.StartLevelInvoke();
     }
@@ -95,21 +102,34 @@ public class GameLevelScript : MonoBehaviour
         { Destroy(pickupsInScene[i]);  }
     }
 
-    //EI KUTSUTA VIELÄ MISTÄÄN - LAITA TSEKKI KUN KENTTTÄ MENEE LÄPI JA TÄSTÄ SITTEN SUCCES MENUUN INFOT!
+    
     public void CountLevelSuccess()
     {
         SecretsCheck();
-        PointsCheck();
+        PointsCheck(); 
     }
     public void SecretsCheck()
     {
         secretsInScene = GameObject.FindGameObjectsWithTag("Secret");
         secretsFoundInScene = GameObject.FindGameObjectsWithTag("SecretFound");
 
-        for (int i = 0; i < secretsInScene.Length; i++)
-        { i = secretsInScene.Length; GameModeManager.instance.secretsMissed = i; }
+        for (int i = 0; i < secretsFoundInScene.Length; i++)
+        {
+            i = secretsFoundInScene.Length;
+            secretsFound = i;
+            GameModeManager.instance.secretMissedTemp = i;
+        }
 
-        GameModeManager.instance.SecretsCheck(secretsFoundInScene);
+        for (int i = 0; i < secretsInScene.Length; i++)
+        {
+            i = secretsInScene.Length;
+            secretsMissed = i;
+            GameModeManager.instance.secretFoundTemp = i;
+        }
+
+        GameModeManager.instance.secretTotalTemp = secretsFound + secretsMissed;
+
+        GameModeManager.instance.SecretsCheck(secretsFound, secretsMissed);
     }
     public void PointsCheck()
     { GameModeManager.instance.HighScoreCheck();}
@@ -129,8 +149,12 @@ public class GameLevelScript : MonoBehaviour
     private void OnDestroy()
     {
         //Reset variables which only count in current level
-        GameModeManager.instance.levelScore = 0;
-        GameModeManager.instance.secretsMissed = 0;
+        //GameModeManager.instance.levelScore = 0;
+        secretsFound = 0;
+        secretsMissed = 0;
+        GameModeManager.instance.secretFoundTemp = 0;
+        GameModeManager.instance.secretMissedTemp = 0;
+        GameModeManager.instance.secretTotalTemp = 0;
     }
 
 }
