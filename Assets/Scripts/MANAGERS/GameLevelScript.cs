@@ -117,14 +117,16 @@ public class GameLevelScript : MonoBehaviour
         {
             i = secretsFoundInScene.Length;
             secretsFound = i;
-            GameModeManager.instance.secretMissedTemp = i;
+            GameModeManager.instance.secretFoundTemp = i;
+            
         }
 
         for (int i = 0; i < secretsInScene.Length; i++)
         {
             i = secretsInScene.Length;
             secretsMissed = i;
-            GameModeManager.instance.secretFoundTemp = i;
+            GameModeManager.instance.secretMissedTemp = i;
+
         }
 
         GameModeManager.instance.secretTotalTemp = secretsFound + secretsMissed;
