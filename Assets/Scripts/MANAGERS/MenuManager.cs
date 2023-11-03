@@ -68,7 +68,6 @@ public class MenuManager : MonoBehaviour
     private void Awake()
     {
         GetData();
-
     }
     private void Start()
     {
@@ -324,22 +323,8 @@ public class MenuManager : MonoBehaviour
         AudioManager.instance.masterVolumeValue = masterVolumeSlider.value;
         AudioManager.instance.effectsVolumeValue = effectsVolumeSlider.value;
         AudioManager.instance.musicVolumeValue = musicVolumeSlider.value;
-
         DataManager.instance.SetLevelAudio(masterVolumeSlider.value, effectsVolumeSlider.value, musicVolumeSlider.value);
     }
 
-    //----------------------------------------------
-
-    public void OnDestroy()
-    {
-        /*
-        GameModeManager.StartLevel -= ActivateLevel;
-        GameModeManager.PauseOn -= PauseMenu;
-        GameModeManager.Success -= SuccessMenuOnLevel;
-        GameModeManager.Fail -= FailedMenuOnLevel;
-        GameModeManager.NestCount -= StartLevelEndCount;
-        GameModeManager.NestCountEnd -= CancelLevelEndCount;
-        */
-    }
 }
 

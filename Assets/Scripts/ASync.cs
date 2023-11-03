@@ -37,10 +37,7 @@ public class ASync : MonoBehaviour
             progressBar.value = progress;
             percentText.text = progress * 100f + ("%");
             if(progressBar.value == 100f)
-            {
-                progressBar.value = 100f;
-
-            }
+            { progressBar.value = 100f;}
             yield return null;
         }
     }

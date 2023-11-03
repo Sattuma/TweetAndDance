@@ -19,6 +19,7 @@ public class InputHandler : MonoBehaviour
     private InputAction abilityMovement;
     private InputAction abilityJump;
     private InputAction abilityFly;
+    private InputAction abilityCollect;
     private InputAction abilityInteract_one;
     private InputAction abilityInteract_two;
     private InputAction abilityInteract_three;
@@ -40,6 +41,7 @@ public class InputHandler : MonoBehaviour
         abilityMovement = playerController.Player.Movement;
         abilityJump = playerController.Player.Jump;
         abilityFly = playerController.Player.Fly;
+        abilityCollect = playerController.Player.Collect;
         abilityInteract_one = playerController.Player.Interact_One;
         abilityInteract_two = playerController.Player.Interact_Two;
         abilityInteract_three = playerController.Player.Interact_Three;
@@ -53,8 +55,10 @@ public class InputHandler : MonoBehaviour
         abilityJump.performed += JumpInput;
         abilityJump.canceled += JumpInputCancel;
         abilityFly.performed += FlyInput;
+        abilityCollect.performed += CollectInput;
         abilityJump.Enable();
         abilityFly.Enable();
+        abilityCollect.Enable();
         //INTERACT_ONE//enabloidaan input action Interact_One Input assetista ja laitetaan komento kun se painetaan => functio InteractInputOne alempana
         abilityInteract_one.performed += InteractInputOne;
         abilityInteract_one.canceled += InteractInputCancel;
@@ -71,11 +75,13 @@ public class InputHandler : MonoBehaviour
         pause.performed += Pause;
         pause.Enable();
     }
+
     private void OnDisable()
     {
         abilityMovement.Disable();
         abilityJump.Disable();
         abilityFly.Disable();
+        abilityCollect.Disable();
         abilityInteract_one.Disable();
         abilityInteract_two.Disable();
         abilityInteract_three.Disable();
@@ -119,8 +125,6 @@ public class InputHandler : MonoBehaviour
                 airborneScript.JumpAction();
             }
         }
-
-
     }
     private void JumpInputCancel(InputAction.CallbackContext obj)
     {
@@ -129,45 +133,41 @@ public class InputHandler : MonoBehaviour
     private void FlyInput(InputAction.CallbackContext obj)
     {
         if (!GameModeManager.instance.isPaused)
-        {
-            airborneScript.FlyAction();
-        }
+        { airborneScript.FlyAction();}
+    }
 
+    private void CollectInput(InputAction.CallbackContext obj)
+    {
+        if (!GameModeManager.instance.isPaused)
+        { interactScript.Collect(); }
+        /*
+        if (GameModeManager.instance.levelActive != true && GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
+        {
+            if (interactScript.collectableObj != null)
+            { Destroy(interactScript.collectableObj); }
+        }
+        */
     }
 
     private void InteractInputOne(InputAction.CallbackContext obj)
     {
         if(!GameModeManager.instance.isPaused)
-        {
-            interactScript.InteractActionOne();
-        }
-        //tieto kulkeutuu napin painautuessa interactscriptiin ja siellä olevaan functioon
-
-
-        if(GameModeManager.instance.levelActive != true && GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
-        {
-            if(interactScript.collectableObj != null)
-            { Destroy(interactScript.collectableObj); }
-        }
+        { interactScript.InteractActionOne();}
     }
     private void InteractInputTwo(InputAction.CallbackContext obj)
     {
-        //tieto kulkeutuu napin painautuessa interactscriptiin ja siellä olevaan functioon
-        interactScript.InteractActionTwo();
+        if (!GameModeManager.instance.isPaused)
+        { interactScript.InteractActionTwo(); }
     }
     private void InteractInputThree(InputAction.CallbackContext obj)
     {
-        //tieto kulkeutuu napin painautuessa interactscriptiin ja siellä olevaan functioon
-        interactScript.InteractActionThree();
+        if (!GameModeManager.instance.isPaused)
+        { interactScript.InteractActionThree();}
     }
     private void InteractInputCancel(InputAction.CallbackContext obj)
     {
-        //tieto kulkeutuu napin painautuessa interactscriptiin ja siellä olevaan functioon
         interactScript.InteractActionCancel();
     }
-
-
-
     private void Pause(InputAction.CallbackContext obj)
     {
         if (GameModeManager.instance.levelActive && !GameModeManager.instance.cannotResumeFromPause)

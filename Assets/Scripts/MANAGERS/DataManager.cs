@@ -139,13 +139,11 @@ public class DataManager : MonoBehaviour
 
         if (Gamepad.current?.IsActuated(0) == null)
         {
-            Debug.Log("KEYBOARD ACTIVE" + "ohjain ei kytketty");
             InputSystem.EnableDevice(Keyboard.current);
             controls = ControlSystem.Keyboard;
         }
         else if(Gamepad.current?.IsActuated(0) != null)
         {
-            Debug.Log("KEYBOARD ACTIVE" + "ohjain MYÖS kytketty");
             InputSystem.EnableDevice(Keyboard.current);
             InputSystem.DisableDevice(Gamepad.current);
             controls = ControlSystem.Keyboard;
@@ -163,12 +161,10 @@ public class DataManager : MonoBehaviour
         if (Gamepad.current?.IsActuated(0) == null)
         {
             InputSystem.EnableDevice(Keyboard.current);
-            Debug.Log("GAMEPAD EI KYTKETTY" + "keyboard jatkaa aktiivisena");
             controls = ControlSystem.Keyboard;
         }
         else if (Gamepad.current?.IsActuated(0) != null)
         {
-            Debug.Log("GAMEPAD ACTIVE");
             InputSystem.EnableDevice(Gamepad.current);
             InputSystem.DisableDevice(Keyboard.current);
             controls = ControlSystem.Gamepad;

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-//PURPOSE OF THIS SCRIPT IS COUNT TEMPORARILY INFO AND FUNCTIONS WHICH GOES TO GAME MANAGER IF NEEDED WGERE STORED 
+//ACTIVATE FUNCTIONS WHICH ARE NEEDED ONLY ON !!GAMELEVEL!!
+//PURPOSE OF THIS SCRIPT IS COUNT TEMPORARILY INFO AND FUNCTIONS WHICH GOES TO GAME MANAGER IF NEEDED WERE STORED 
 public class GameLevelScript : MonoBehaviour
 {
     public GameObject[] pickupPrefab;
@@ -24,18 +24,24 @@ public class GameLevelScript : MonoBehaviour
 
     private void Awake()
     {
-        //Aktivoidaan Gamemodemanageriin oikea kenttä aktiiviseksi
+        //Aktivoidaan Gamemodemanageriin oikea kenttä aktiiviseksi - INDEXIN VAIHTO RELEVANTTIA VAIN GAME LEVELISSÄ,
+        //BONUS KENTTÄ TOIMII GAME LEVELIN INDEXIIN NOJAUTUEN. KAI :D
         GameModeManager.instance.levelIndex = SceneManager.GetActiveScene().buildIndex;
         string level = GameModeManager.instance.levelName[GameModeManager.instance.levelIndex];
         GameModeManager.instance.ActivateCurrentLevel(level);
+        GameModeManager.instance.CutSceneActive();
 
         //gamemodemanagerin kutsu kentän onnistumisesta
         GameModeManager.Success += CountLevelSuccess;
 
-        GameModeManager.instance.levelActive = false;
-        GameModeManager.instance.cutsceneActive = true;
-        GameModeManager.instance.activeGameMode = GameModeManager.GameMode.cutScene;
-        AudioManager.instance.PlayMusicFX(3);
+        //valitaan kyseisen kentän musiikki
+        if(GameModeManager.instance.levelIndex > 0 && GameModeManager.instance.levelIndex <= 3)
+        { AudioManager.instance.PlayMusicFX(3); }
+        if (GameModeManager.instance.levelIndex > 3 && GameModeManager.instance.levelIndex <= 6)
+        { Debug.Log("musaa toiseen maailmaan puuttuu"); }
+        if (GameModeManager.instance.levelIndex > 6 && GameModeManager.instance.levelIndex <= 9)
+        { Debug.Log("musaa kolmanteen maailmaan puuttuu"); }
+
 
 
     }
@@ -52,7 +58,6 @@ public class GameLevelScript : MonoBehaviour
     {
         yield return new WaitUntil(() => GameModeManager.instance.cutsceneActive == false);
         GameModeManager.instance.LevelActive();
-        GameModeManager.instance.activeGameMode = GameModeManager.GameMode.gameLevel;
         GameModeManager.instance.StartLevelInvoke();
     }
 
@@ -117,8 +122,7 @@ public class GameLevelScript : MonoBehaviour
         {
             i = secretsFoundInScene.Length;
             secretsFound = i;
-            GameModeManager.instance.secretFoundTemp = i;
-            
+            GameModeManager.instance.secretFoundTemp = i;      
         }
 
         for (int i = 0; i < secretsInScene.Length; i++)
@@ -126,7 +130,6 @@ public class GameLevelScript : MonoBehaviour
             i = secretsInScene.Length;
             secretsMissed = i;
             GameModeManager.instance.secretMissedTemp = i;
-
         }
 
         GameModeManager.instance.secretTotalTemp = secretsFound + secretsMissed;

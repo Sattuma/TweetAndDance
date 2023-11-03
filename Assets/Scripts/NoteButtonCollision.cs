@@ -5,7 +5,6 @@ using UnityEngine;
 public class NoteButtonCollision : MonoBehaviour
 {
 
-    public PlayerCore core;
 
     private void OnTriggerStay2D(Collider2D collision)
     {

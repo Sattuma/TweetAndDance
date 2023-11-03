@@ -55,6 +55,15 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Collect"",
+                    ""type"": ""Button"",
+                    ""id"": ""3e7200bb-e24b-4607-a179-913a4cc38e98"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Interact_One"",
                     ""type"": ""Button"",
                     ""id"": ""bc8953e9-2f39-4510-9b7d-e341b9ff2309"",
@@ -336,41 +345,8 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""15fbe882-c315-45f9-b556-1ab4a79b818c"",
+                    ""id"": ""77eaef41-7363-454f-b9f9-2b0cedc61eae"",
                     ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interact_One"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""52025053-d0c2-4ce8-82d5-925ecea80c16"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interact_One"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f859957a-8001-4af9-a488-4b14a3115b72"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interact_One"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""648b1379-dbbb-4049-b87a-71fd5c669409"",
-                    ""path"": ""<Gamepad>/dpad/down"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -496,6 +472,39 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Fly"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""66d39cf5-cf03-4951-a6f8-256b5a87141e"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Collect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bff433a4-6dd4-4cef-bc6b-a43f02d82998"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Collect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a3485527-3854-484a-ae10-7fab4501774e"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Collect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1025,6 +1034,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Fly = m_Player.FindAction("Fly", throwIfNotFound: true);
+        m_Player_Collect = m_Player.FindAction("Collect", throwIfNotFound: true);
         m_Player_Interact_One = m_Player.FindAction("Interact_One", throwIfNotFound: true);
         m_Player_Interact_Two = m_Player.FindAction("Interact_Two", throwIfNotFound: true);
         m_Player_Interact_Three = m_Player.FindAction("Interact_Three", throwIfNotFound: true);
@@ -1105,6 +1115,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Fly;
+    private readonly InputAction m_Player_Collect;
     private readonly InputAction m_Player_Interact_One;
     private readonly InputAction m_Player_Interact_Two;
     private readonly InputAction m_Player_Interact_Three;
@@ -1116,6 +1127,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Fly => m_Wrapper.m_Player_Fly;
+        public InputAction @Collect => m_Wrapper.m_Player_Collect;
         public InputAction @Interact_One => m_Wrapper.m_Player_Interact_One;
         public InputAction @Interact_Two => m_Wrapper.m_Player_Interact_Two;
         public InputAction @Interact_Three => m_Wrapper.m_Player_Interact_Three;
@@ -1138,6 +1150,9 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             @Fly.started += instance.OnFly;
             @Fly.performed += instance.OnFly;
             @Fly.canceled += instance.OnFly;
+            @Collect.started += instance.OnCollect;
+            @Collect.performed += instance.OnCollect;
+            @Collect.canceled += instance.OnCollect;
             @Interact_One.started += instance.OnInteract_One;
             @Interact_One.performed += instance.OnInteract_One;
             @Interact_One.canceled += instance.OnInteract_One;
@@ -1163,6 +1178,9 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             @Fly.started -= instance.OnFly;
             @Fly.performed -= instance.OnFly;
             @Fly.canceled -= instance.OnFly;
+            @Collect.started -= instance.OnCollect;
+            @Collect.performed -= instance.OnCollect;
+            @Collect.canceled -= instance.OnCollect;
             @Interact_One.started -= instance.OnInteract_One;
             @Interact_One.performed -= instance.OnInteract_One;
             @Interact_One.canceled -= instance.OnInteract_One;
@@ -1315,6 +1333,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnFly(InputAction.CallbackContext context);
+        void OnCollect(InputAction.CallbackContext context);
         void OnInteract_One(InputAction.CallbackContext context);
         void OnInteract_Two(InputAction.CallbackContext context);
         void OnInteract_Three(InputAction.CallbackContext context);

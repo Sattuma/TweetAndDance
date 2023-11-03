@@ -33,7 +33,6 @@ public class Ability_Interact : MonoBehaviour
                 collectableObj = collision.gameObject.transform; // on triggerstay collectable object is collision which player collides
                 collectableChildObj = collectableObj.transform.GetChild(0).gameObject.transform;
                 collectableObj.GetComponent<CollectableCollision>().HighLightOn();
-
             }
         }
     }
@@ -48,7 +47,6 @@ public class Ability_Interact : MonoBehaviour
                 canCollect = false;
                 collectableObj = null;
                 collectableChildObj = null;
-                
             }
         }
     }
@@ -59,12 +57,10 @@ public class Ability_Interact : MonoBehaviour
         collectableObj = null;
     }
 
-
-    public void InteractActionOne()
+    public void Collect()
     {
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel && GameModeManager.instance.levelActive == true)
         {
-
             if (canCollect)
             {
                 collectableObj.GetComponent<CollectableCollision>().HighLightOff();
@@ -89,20 +85,22 @@ public class Ability_Interact : MonoBehaviour
                 pickedUp = false;
             }
         }
+    }
+
+    //BONUS LEVEL ABILITTIES BUTTON
+    public void InteractActionOne()
+    {
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
         {
             button1.GetComponent<CircleCollider2D>().enabled = true;
         }
     }
-
     public void InteractActionTwo()
     {
-
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
         {
             button2.GetComponent<CircleCollider2D>().enabled = true;
         }
-
     }
 
     public void InteractActionThree()
@@ -111,7 +109,6 @@ public class Ability_Interact : MonoBehaviour
         {
             button3.GetComponent<CircleCollider2D>().enabled = true;
         }
-
     }
 
     public void InteractActionCancel()

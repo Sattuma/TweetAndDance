@@ -51,7 +51,7 @@ public class GameModeManager : MonoBehaviour
     public float timerLevel2;
     public float timerLevel3;
 
-    [Header("PickUp Amount")]
+    [Header("PickUp Amount")] // ei vielä käytössä - testing
     public int leafCount;
     public int stickCount;
     public int birchStickCount;
@@ -59,7 +59,7 @@ public class GameModeManager : MonoBehaviour
     public int blossomCount;
     public int dandelionCount;
 
-    [Header("PickUp Points")]
+    [Header("PickUp Points")] // ei vielä käytössä -testing
     public int leafPoints;
     public int stickPoints;
     public int birchStickPoints;
@@ -101,6 +101,9 @@ public class GameModeManager : MonoBehaviour
         Level1_1,
         Level1_2,
         Level1_3,
+        Bonus1,
+        Bonus2,
+        Bonus3
     }
 
     private void Awake()
@@ -123,9 +126,6 @@ public class GameModeManager : MonoBehaviour
         // (ADD) why the fuck? hmm mietitätä vielä
     }
 
-    //----------------------------------------
-
-
     //INVOKE EVENTS FUNCTIONS
     public void StartLevelInvoke()
     { StartLevel?.Invoke(); }
@@ -140,40 +140,48 @@ public class GameModeManager : MonoBehaviour
     public void InvokeLevelFail()
     { Fail?.Invoke();}
 
-
-
-    //----------------------------------------
-
-
-    // ACTIVE GAMEMODE FUNCTIONS
+    // ACTIVATE GAMEMODE FUNCTIONS
     public void MainMenuActive()
-    { activeGameMode = GameMode.mainMenu; }
+    { 
+        activeGameMode = GameMode.mainMenu; 
+    }
     public void LevelActive()
-    { activeGameMode = GameMode.gameLevel;}
+    { 
+        activeGameMode = GameMode.gameLevel;
+        levelActive = true;
+        cutsceneActive = false;
+    }
     public void CutSceneActive()
-    { activeGameMode = GameMode.cutScene;}
+    { 
+        activeGameMode = GameMode.cutScene;
+        levelActive = false;
+        cutsceneActive = true;
+    }
     public void BonusLevelActive()
-    { activeGameMode = GameMode.bonusLevel;}
+    { 
+        activeGameMode = GameMode.bonusLevel;
+    }
 
-    // ACTIVE CURRENTLEVEL FUNCTIONS
-    public void ActivateCurrentLevel(string levelName)
-    {  currentLevel = (CurrentLevel)System.Enum.Parse(typeof(CurrentLevel), levelName);}
+    // ACTIVATE CURRENTLEVEL FUNCTIONS
+    public void ActivateCurrentLevel(string levelName) // VAIHDETAAN KENTÄN NIMI
+    {
+        currentLevel = (CurrentLevel)System.Enum.Parse(typeof(CurrentLevel), levelName);
+    }
+
     public void ActivateNextLevel()
-    { levelIndex += 1; ChangeLevel(levelName[levelIndex]);}
+    {
+        levelIndex += 1; 
+        ChangeLevel(levelName[levelIndex]);
+    }
     public void ActivateBonusLevel()
     {
         if (levelIndex <= 3 && levelIndex > 0)
-        { ChangeLevel(bonusLevelName[0]);}
-        if (levelIndex <= 6 && levelIndex > 3)
         { ChangeLevel(bonusLevelName[1]);}
-        if (levelIndex <= 9 && levelIndex > 6)
+        if (levelIndex <= 6 && levelIndex > 3)
         { ChangeLevel(bonusLevelName[2]);}
+        if (levelIndex <= 9 && levelIndex > 6)
+        { ChangeLevel(bonusLevelName[3]);}
     }
-
-    public void AddScore(int score)
-    { BonusLevelScore?.Invoke();}
-
-
     public void ChangeLevel(string levelName)
     {
         Instantiate(loadingScreenPrefab);
@@ -184,17 +192,13 @@ public class GameModeManager : MonoBehaviour
         DataManager.instance.SetLevelTimers(timerLevel1, timerLevel2, timerLevel3);
     }
 
-    public void ResetEvents()
+    public void AddBonusScore(int score)
     {
-        StartLevel = null;
-        //GameLevelEnd = null;
-        //BonusLevelEnd = null;
-        PauseOn = null;
-        BonusLevelScore = null;
-        Success = null;
-        Fail = null;
-        NestCount = null;
-        NestCountEnd = null;
+        BonusLevelScore?.Invoke();
+    }
+    public void AddLevelScore(int score)
+    {
+        //level score invoke jos tarvii
     }
 
     public void HighScoreCheck()
@@ -228,11 +232,23 @@ public class GameModeManager : MonoBehaviour
     public void CheckBonusLevelAccess()
     {
         if (secretMissedInLevel[levelIndex] == 0)
-        { ActivateBonusLevel(); }
+        { ActivateBonusLevel();}
         else { ActivateNextLevel(); }
     }
     //----------------------------------------
 
+    public void ResetEvents()
+    {
+        StartLevel = null;
+        //GameLevelEnd = null;
+        //BonusLevelEnd = null;
+        PauseOn = null;
+        BonusLevelScore = null;
+        Success = null;
+        Fail = null;
+        NestCount = null;
+        NestCountEnd = null;
+    }
 
     public void GetData()
     {
