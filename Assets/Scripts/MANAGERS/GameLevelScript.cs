@@ -24,6 +24,10 @@ public class GameLevelScript : MonoBehaviour
 
     private void Awake()
     {
+
+        GameModeManager.instance.bonusLevelActive = false;
+
+        GameModeManager.StartLevelCountOver += ActivateLevel;
         //Aktivoidaan Gamemodemanageriin oikea kenttä aktiiviseksi - INDEXIN VAIHTO RELEVANTTIA VAIN GAME LEVELISSÄ,
         //BONUS KENTTÄ TOIMII GAME LEVELIN INDEXIIN NOJAUTUEN. KAI :D
         GameModeManager.instance.levelIndex = SceneManager.GetActiveScene().buildIndex;
@@ -46,20 +50,22 @@ public class GameLevelScript : MonoBehaviour
 
     }
 
+
+
     private void Start()
     {
         GroundSpawnPickupLevel();
         //StartInvokeRepeating();
         StartCoroutine(StartLevelCheck());
-
     }
 
     IEnumerator StartLevelCheck()
     {
         yield return new WaitUntil(() => GameModeManager.instance.cutsceneActive == false);
-        GameModeManager.instance.LevelActive();
         GameModeManager.instance.StartLevelInvoke();
     }
+    private void ActivateLevel()
+    { GameModeManager.instance.LevelActive(); }
 
 
     public void GroundSpawnPickupLevel()

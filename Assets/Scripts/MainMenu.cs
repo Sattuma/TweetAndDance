@@ -60,6 +60,8 @@ public class MainMenu : MonoBehaviour
         SetData();
         AudioManager.instance.PlayMusicFX(0);
         currentControlText.text = DataManager.instance.controls.ToString();
+
+
     }
 
     /*

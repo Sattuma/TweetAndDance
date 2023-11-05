@@ -9,6 +9,7 @@ public class GameModeManager : MonoBehaviour
     //GAMEACTION EVENTS
     public delegate void GameAction();
     public static event GameAction StartLevel;
+    public static event GameAction StartLevelCountOver;
     //public static event GameAction GameLevelEnd;
     //public static event GameAction BonusLevelEnd;
     public static event GameAction PauseOn;
@@ -43,6 +44,7 @@ public class GameModeManager : MonoBehaviour
     [Header("Level State Booleans")]
     public bool cutsceneActive;
     public bool levelActive;
+    public bool bonusLevelActive;
     public bool isPaused;
     public bool cannotResumeFromPause;
 
@@ -129,6 +131,8 @@ public class GameModeManager : MonoBehaviour
     //INVOKE EVENTS FUNCTIONS
     public void StartLevelInvoke()
     { StartLevel?.Invoke(); }
+    public void StartCountOverInvoke()
+    { StartLevelCountOver?.Invoke(); }
     public void InvokeLevelCountOn()
     { NestCount?.Invoke();}
     public void InvokeLevelCountOff()
@@ -160,6 +164,8 @@ public class GameModeManager : MonoBehaviour
     public void BonusLevelActive()
     { 
         activeGameMode = GameMode.bonusLevel;
+        levelActive = true;
+        cutsceneActive = false;
     }
 
     // ACTIVATE CURRENTLEVEL FUNCTIONS
@@ -182,6 +188,7 @@ public class GameModeManager : MonoBehaviour
         if (levelIndex <= 9 && levelIndex > 6)
         { ChangeLevel(bonusLevelName[3]);}
     }
+
     public void ChangeLevel(string levelName)
     {
         Instantiate(loadingScreenPrefab);
@@ -240,6 +247,7 @@ public class GameModeManager : MonoBehaviour
     public void ResetEvents()
     {
         StartLevel = null;
+        StartLevelCountOver = null;
         //GameLevelEnd = null;
         //BonusLevelEnd = null;
         PauseOn = null;

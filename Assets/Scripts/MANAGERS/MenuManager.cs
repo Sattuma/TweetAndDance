@@ -23,6 +23,11 @@ public class MenuManager : MonoBehaviour
     public GameObject pointsText;
     public GameObject pointsCountText;
 
+    [Header("ACTIVE LEVEL HUDvariables")]
+    public GameObject[] currentStateHud;
+    public GameObject[] cutSceneInfo;
+
+
     [Header("UI Beginning Texts")]
     public GameObject[] beginning = new GameObject[2];
 
@@ -31,7 +36,7 @@ public class MenuManager : MonoBehaviour
 
     [Header("UI Menus & Buttons")]
 
-    public GameObject cutSceneDemoButton;//poista kun oikea tehd‰‰n
+    public GameObject cutSceneDemoButton;
 
     public GameObject pauseButton;
     public GameObject backButton;
@@ -87,6 +92,84 @@ public class MenuManager : MonoBehaviour
         beginning[0].SetActive(false);
         beginning[1].SetActive(false);
         pauseButton.SetActive(false);
+
+        CheckCutSceneInfo(); // tsekataan mik‰ cutscene info tulee riippuen mik‰ kentt‰ on ja mit‰ tarvii
+
+    }
+
+    private void CheckCutSceneInfo()
+    {
+        CutsceneHudActive();
+
+        int levelIndex = GameModeManager.instance.levelIndex;
+        bool bonus = GameModeManager.instance.bonusLevelActive;
+
+        // t‰ll‰ tavoin ekassa kolmeessa game leveliss‰ on sama cxutscene info. voi muuttaa vaihtamalla indexej‰ ja tekem‰ll‰ lis‰‰ ui objecteja
+        if (levelIndex <= 3 && levelIndex > 0)             
+        { 
+            if(!bonus)
+            { cutSceneInfo[1].SetActive(true); }
+            else if (bonus)
+            { cutSceneInfo[4].SetActive(true); }
+        }
+
+
+    }
+    public void CutsceneHudActive()
+    {
+        currentStateHud[0].SetActive(true);
+        currentStateHud[1].SetActive(false);
+        currentStateHud[2].SetActive(false);
+        currentStateHud[3].SetActive(false);
+    }
+
+    private void ActivateLevel()
+    { StartCoroutine(ActivateLevelCoRoutine()); }
+
+    IEnumerator ActivateLevelCoRoutine()
+    {
+        yield return new WaitForSecondsRealtime(1f);
+        beginning[0].SetActive(true);
+        yield return new WaitForSecondsRealtime(2f);
+        beginning[0].SetActive(false);
+        beginning[1].SetActive(true);
+        pauseButton.SetActive(true);
+        GameModeManager.instance.StartCountOverInvoke();
+        yield return new WaitForSecondsRealtime(0.5f);
+        beginning[1].SetActive(false);
+        CheckCurrentLevelInfo();
+    }
+    private void CheckCurrentLevelInfo()
+    {
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
+        { LevelHudActive(); }
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
+        { BonusOneHudActive(); }
+
+    }
+
+    public void LevelHudActive()
+    {
+        currentStateHud[0].SetActive(false);
+        currentStateHud[1].SetActive(true);
+        currentStateHud[2].SetActive(false);
+        currentStateHud[3].SetActive(true);
+    }
+
+    public void BonusOneHudActive()
+    {
+        currentStateHud[0].SetActive(false);
+        currentStateHud[1].SetActive(false);
+        currentStateHud[2].SetActive(true);
+        currentStateHud[3].SetActive(true);
+    }
+    public void BonusTwoHudActive()
+    {
+
+    }
+    public void BonusThreeHudActive()
+    {
+
     }
 
     public void OnPointerEnter()
@@ -97,7 +180,6 @@ public class MenuManager : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(null);
             lastSelectedGameObject = currentSelectedGameObject_Recent;
         }
-        Debug.Log(eventSystem.currentSelectedGameObject);
     }
     public void OnPointerExit()
     {
@@ -110,21 +192,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    private void ActivateLevel()
-    { StartCoroutine(ActivateLevelCoRoutine());}
 
-    IEnumerator ActivateLevelCoRoutine()
-    {
-        yield return new WaitForSecondsRealtime(1f);
-        beginning[0].SetActive(true);
-        yield return new WaitForSecondsRealtime(2f);
-        beginning[0].SetActive(false);
-        beginning[1].SetActive(true);
-        pauseButton.SetActive(true);
-        GameModeManager.instance.levelActive = true;
-        yield return new WaitForSecondsRealtime(0.5f);
-        beginning[1].SetActive(false);
-    }
 
     //COUNTDOWN START FOR LEVEL END
     public void StartLevelEndCount()
@@ -295,10 +363,11 @@ public class MenuManager : MonoBehaviour
         GameModeManager.instance.ChangeLevel(currentName);
     }
 
-    public void CutSceneDemo()//poista kun oikea tehd‰‰n
+    public void CutSceneDemo()
     {
         AudioManager.instance.PlayMenuFX(0);
         cutSceneDemoButton.SetActive(false);
+        currentStateHud[0].SetActive(false);
         GameModeManager.instance.cutsceneActive = false;
 
     }
