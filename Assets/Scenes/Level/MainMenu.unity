@@ -3013,6 +3013,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7475598443264628686, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
+      propertyPath: levelHighScores.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7475598443264628686, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
       propertyPath: secretInLevel.Array.data[0]
       value: 100000
       objectReference: {fileID: 0}
@@ -3031,6 +3035,10 @@ PrefabInstance:
     - target: {fileID: 7475598443264628686, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
       propertyPath: bonusLevelName.Array.data[3]
       value: Bonus3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7475598443264628686, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
+      propertyPath: levelHighScores.Array.data[0]
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 7475598443264628686, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
       propertyPath: secretMissedInLevel.Array.size

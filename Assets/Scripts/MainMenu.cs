@@ -88,8 +88,6 @@ public class MainMenu : MonoBehaviour
             lastSelectedGameObject = currentSelectedGameObject_Recent;
         }
 
-        Debug.Log(eventSystem.currentSelectedGameObject);
-
     }
     public void OnPointerExit()
     {

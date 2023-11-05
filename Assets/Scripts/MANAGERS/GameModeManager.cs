@@ -10,18 +10,16 @@ public class GameModeManager : MonoBehaviour
     public delegate void GameAction();
     public static event GameAction StartLevel;
     public static event GameAction StartLevelCountOver;
-    //public static event GameAction GameLevelEnd;
-    //public static event GameAction BonusLevelEnd;
     public static event GameAction PauseOn;
     public static event GameAction BonusLevelScore;
     public static event GameAction Success;
     public static event GameAction Fail;
    
-
     //LEVELACTION EVENTS
     public delegate void LevelAction();
     public static event LevelAction NestCount;
     public static event LevelAction NestCountEnd;
+
 
     //INSTANCE TO SELF
     public static GameModeManager instance;
@@ -246,14 +244,15 @@ public class GameModeManager : MonoBehaviour
 
     public void ResetEvents()
     {
+        //GAMEACTION RESET
         StartLevel = null;
         StartLevelCountOver = null;
-        //GameLevelEnd = null;
-        //BonusLevelEnd = null;
         PauseOn = null;
         BonusLevelScore = null;
         Success = null;
         Fail = null;
+
+        //LEVELACTION RESET
         NestCount = null;
         NestCountEnd = null;
     }

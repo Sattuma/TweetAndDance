@@ -27,6 +27,7 @@ TagManager:
   - RightCamTrig
   - Secret
   - SecretFound
+  - BonusLevelOne
   layers:
   - Default
   - TransparentFX

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Ability_Interact : MonoBehaviour
 {
-    [Header("Level 1 Actions")]
+    [Header("Game Level Actions")]
     public PlayerCore core;
     public Transform dropPoint;
     public Transform collectPoint;
@@ -15,12 +15,10 @@ public class Ability_Interact : MonoBehaviour
     public bool canCollect;
     public bool pickedUp;
 
-    [Header("Level 2 Actions")]
-    public GameObject button1;
-    public GameObject button2;
-    public GameObject button3;
 
-    //[Header("Level 3 Actions")]
+    [Header("Bonus Level Buttons")]
+    public GameObject[] bonusLevelButtons = new GameObject[3];
+
     
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -55,6 +53,7 @@ public class Ability_Interact : MonoBehaviour
     {
         core = GetComponent<PlayerCore>();
         collectableObj = null;
+
     }
 
     public void Collect()
@@ -92,14 +91,14 @@ public class Ability_Interact : MonoBehaviour
     {
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
         {
-            button1.GetComponent<CircleCollider2D>().enabled = true;
+            bonusLevelButtons[0].GetComponent<CircleCollider2D>().enabled = true; // halutaan ite gameobjecti pois/p‰‰lt‰ eik‰ vain collideria t‰ss‰ systeemiss‰
         }
     }
     public void InteractActionTwo()
     {
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
         {
-            button2.GetComponent<CircleCollider2D>().enabled = true;
+            bonusLevelButtons[1].GetComponent<CircleCollider2D>().enabled = true;
         }
     }
 
@@ -107,17 +106,29 @@ public class Ability_Interact : MonoBehaviour
     {
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
         {
-            button3.GetComponent<CircleCollider2D>().enabled = true;
+            bonusLevelButtons[2].GetComponent<CircleCollider2D>().enabled = true;
         }
     }
 
-    public void InteractActionCancel()
+    public void CancelOne()
     {
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
         {
-            button1.GetComponent<CircleCollider2D>().enabled = false;
-            button2.GetComponent<CircleCollider2D>().enabled = false;
-            button3.GetComponent<CircleCollider2D>().enabled = false;
+            bonusLevelButtons[0].GetComponent<CircleCollider2D>().enabled = false;
+        }
+    }
+    public void CancelTwo()
+    {
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
+        {
+            bonusLevelButtons[1].GetComponent<CircleCollider2D>().enabled = false;
+        }
+    }
+    public void CancelThree()
+    {
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
+        {
+            bonusLevelButtons[2].GetComponent<CircleCollider2D>().enabled = false;
         }
     }
 

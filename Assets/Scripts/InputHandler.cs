@@ -30,6 +30,7 @@ public class InputHandler : MonoBehaviour
     public Ability_Movement moveScript;
     public Ability_Airborne airborneScript;
     public Ability_Interact interactScript;
+    public NoteLineScript bonusOne;
 
     public float cursorTimer = 2f;
     public float cursorSensitivity;
@@ -47,6 +48,18 @@ public class InputHandler : MonoBehaviour
         abilityInteract_three = playerController.Player.Interact_Three;
         pause = playerController.Player.Pause;
     }
+    void Start()
+    {
+
+        //Bonus Level One Buttons Finding
+        bonusOne = GameObject.FindGameObjectWithTag("BonusLevelOne").GetComponent<NoteLineScript>();
+        interactScript.bonusLevelButtons[0] = bonusOne.activators[0].transform.GetChild(1).gameObject;
+        interactScript.bonusLevelButtons[1] = bonusOne.activators[1].transform.GetChild(1).gameObject;
+        interactScript.bonusLevelButtons[2] = bonusOne.activators[2].transform.GetChild(1).gameObject;
+        if (bonusOne == null)
+        { bonusOne = null; }
+
+    }
     private void OnEnable()
     {
         //MOVEMENT
@@ -61,9 +74,9 @@ public class InputHandler : MonoBehaviour
         abilityCollect.Enable();
         //INTERACT_ONE//enabloidaan input action Interact_One Input assetista ja laitetaan komento kun se painetaan => functio InteractInputOne alempana
         abilityInteract_one.performed += InteractInputOne;
-        abilityInteract_one.canceled += InteractInputCancel;
-        abilityInteract_two.canceled += InteractInputCancel;
-        abilityInteract_three.canceled += InteractInputCancel;
+        abilityInteract_one.canceled += InteractInputCancelOne;
+        abilityInteract_two.canceled += InteractInputCancelTwo;
+        abilityInteract_three.canceled += InteractInputCancelThree;
         abilityInteract_one.Enable();
         //INTERACT_TWO//enabloidaan input action Interact_Two Input assetista ja laitetaan komento kun se painetaan => functio InteractInputTwo alempana
         abilityInteract_two.performed += InteractInputTwo;
@@ -164,9 +177,17 @@ public class InputHandler : MonoBehaviour
         if (!GameModeManager.instance.isPaused)
         { interactScript.InteractActionThree();}
     }
-    private void InteractInputCancel(InputAction.CallbackContext obj)
+    private void InteractInputCancelOne(InputAction.CallbackContext obj)
     {
-        interactScript.InteractActionCancel();
+        interactScript.CancelOne();
+    }
+    private void InteractInputCancelTwo(InputAction.CallbackContext obj)
+    {
+        interactScript.CancelTwo();
+    }
+    private void InteractInputCancelThree(InputAction.CallbackContext obj)
+    {
+        interactScript.CancelThree();
     }
     private void Pause(InputAction.CallbackContext obj)
     {
