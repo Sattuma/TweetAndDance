@@ -23,13 +23,12 @@ public class DataManager : MonoBehaviour
         else
         { instance = this; DontDestroyOnLoad(instance); }
 
-        //ActivateKeyboard();
+
         if (controls == DataManager.ControlSystem.Gamepad)
         { ActivateGamePad(); }
         if (controls == DataManager.ControlSystem.Keyboard)
         { ActivateKeyboard(); }
-
-
+     
     }
 
     /*

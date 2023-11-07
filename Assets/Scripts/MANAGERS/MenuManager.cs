@@ -27,36 +27,40 @@ public class MenuManager : MonoBehaviour
     public GameObject[] currentStateHud;
     public GameObject[] cutSceneInfo;
 
-
-    [Header("UI Beginning Texts")]
+    [Header("UI Texts")]
     public GameObject[] beginning = new GameObject[2];
+    public TextMeshProUGUI currentControlText;
+    public TextMeshProUGUI noGamepadDetectedText;
+    public TextMeshProUGUI foundSecretsText;
+    public TextMeshProUGUI totalSecretsText;
 
     [Header("UI OnScreen CountDown")]
     public GameObject[] countDown = new GameObject[3];
 
-    [Header("UI Menus & Buttons")]
-
+    [Header("Buttons")]
     public GameObject cutSceneDemoButton;
-
     public GameObject pauseButton;
     public GameObject backButton;
     public GameObject backButtonSpesific;
-    public GameObject pauseMenu;
-    public GameObject settingsMenu;
-    public GameObject audioSettingsWindow;
-    public GameObject controlSettingsWindow;
-    public TextMeshProUGUI currentControlText;
-    public TextMeshProUGUI noGamepadDetectedText;
-    public GameObject successMenu;
-    public TextMeshProUGUI foundSecretsText;
-    public TextMeshProUGUI totalSecretsText;
-    public GameObject gameOverMenu;
 
     [Header("Buttons to be autoactivated on menus")]
     public GameObject pauseFirstButton;
     public GameObject successFirstButton;
     public GameObject gameoverFirstButton;
     public GameObject settingsFirstButton;
+
+    [Header("UI Menus")]
+    public GameObject pauseMenu;
+    public GameObject pauseMenuBonus;
+    public GameObject settingsMenu;
+    public GameObject audioSettingsWindow;
+    public GameObject controlSettingsWindow;
+    public GameObject successMenu;
+    public GameObject gameOverMenu;
+
+    [Header("UI BONUS INFO CUTSCENE VARIABLES")]
+    public GameObject[] bonusControlLevel1_key = new GameObject[4];
+    public GameObject[] bonusControlLevel1_pad = new GameObject[4];
 
     [Header("UI Sliders")]
     public Slider masterVolumeSlider;
@@ -99,24 +103,41 @@ public class MenuManager : MonoBehaviour
 
     private void CheckCutSceneInfo()
     {
+        //TÄSSÄ AKTIVOIDAAN CUTSCENE HUD PÄÄLLE ->
         CutsceneHudActive();
 
         int levelIndex = GameModeManager.instance.levelIndex;
         bool bonus = GameModeManager.instance.bonusLevelActive;
 
-        // tällä tavoin ekassa kolmeessa game levelissä on sama cxutscene info. voi muuttaa vaihtamalla indexejä ja tekemällä lisää ui objecteja
+        //TÄSSÄ TSEKATAAN AKTIIVISEN LEVELIN CUTSCENE INFO LAITETAAN PÄÄLLE ->
+        // tällä tavoin ekassa kolmeessa game levelissä on sama cutscene info. voi muuttaa vaihtamalla indexejä ja tekemällä lisää ui objecteja
+        // voi spesifoida myöhemmin esim 1, 2 ,3 kenttiin eli saman maailman eri kenttiin eri infot jos tarvis !!!HUOM!!!
         if (levelIndex <= 3 && levelIndex > 0)             
         { 
             if(!bonus)
-            { cutSceneInfo[1].SetActive(true); }
+            { 
+                cutSceneInfo[1].SetActive(true); // kenttien 1-3 cutscene info päälle kun index on 1 - 3
+            }
             else if (bonus)
-            { cutSceneInfo[4].SetActive(true); }
+            { 
+                cutSceneInfo[4].SetActive(true); // bonus 1 kentän cutscene info päälle kun index on 1 - 3
+                if(DataManager.instance.controls == DataManager.ControlSystem.Keyboard)
+                {
+                    for (int i = 0; i < bonusControlLevel1_key.Length; i++)
+                    { bonusControlLevel1_key[i].SetActive(true);}
+                }
+                else if (DataManager.instance.controls == DataManager.ControlSystem.Gamepad)
+                {
+                    for (int i = 0; i < bonusControlLevel1_key.Length; i++)
+                    { bonusControlLevel1_pad[i].SetActive(true); }
+                }
+            }
         }
-
-
     }
+
     public void CutsceneHudActive()
     {
+
         currentStateHud[0].SetActive(true);
         currentStateHud[1].SetActive(false);
         currentStateHud[2].SetActive(false);
@@ -244,18 +265,41 @@ public class MenuManager : MonoBehaviour
         if (Time.timeScale == 1)
         {
             GameModeManager.instance.isPaused = true;
-            pauseMenu.SetActive(true);
-            pauseFirstButton.GetComponent<Selectable>().Select();
-            Time.timeScale = 0;
+            if(GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
+            {
+                pauseMenu.SetActive(true);
+                pauseFirstButton.GetComponent<Selectable>().Select();
+                Time.timeScale = 0;
+            }
+            if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
+            {
+                pauseMenuBonus.SetActive(true);
+                pauseFirstButton.GetComponent<Selectable>().Select();
+                Time.timeScale = 0;
+            }
         }
         else
         {
             GameModeManager.instance.isPaused = false;
-            pauseMenu.SetActive(false);
+            PauseMenuOff();
             Time.timeScale = 1;
         }
     }
 
+    void PauseMenuOn()
+    {
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
+        { pauseMenu.SetActive(true);}
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
+        { pauseMenuBonus.SetActive(true);}
+    }
+    void PauseMenuOff()
+    {
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
+        { pauseMenu.SetActive(false); }
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
+        { pauseMenuBonus.SetActive(false); }
+    }
     public void OpenSettings()
     {
         AudioManager.instance.PlayMenuFX(0);
@@ -263,7 +307,7 @@ public class MenuManager : MonoBehaviour
         pauseButton.SetActive(false);
         AudioManager.instance.PlayMenuFX(0);
         settingsMenu.SetActive(true);
-        pauseMenu.SetActive(false);
+        PauseMenuOff();
         backButton.SetActive(true);
         GameObject.Find("AudioSettingsButton").GetComponent<Selectable>().Select();
         backButton.SetActive(true);
@@ -336,7 +380,7 @@ public class MenuManager : MonoBehaviour
         GameModeManager.instance.cannotResumeFromPause = false;
         pauseButton.SetActive(true);
         settingsMenu.SetActive(false);
-        pauseMenu.SetActive(true);
+        PauseMenuOn();
         backButton.SetActive(false);
         pauseFirstButton.GetComponent<Selectable>().Select();
     }
@@ -386,7 +430,10 @@ public class MenuManager : MonoBehaviour
         masterVolumeSlider.value = AudioManager.instance.masterVolumeValue;
         effectsVolumeSlider.value = AudioManager.instance.effectsVolumeValue;
         musicVolumeSlider.value = AudioManager.instance.musicVolumeValue;
-        DataManager.instance.GetLevelAudio();
+
+        Debug.Log("HUOM TÄÄLLÄ - testiä varten");
+        //kommentoitu pois testiä varten, muuten päällä
+        //DataManager.instance.GetLevelAudio();
     }
     public void SetData()
     {
