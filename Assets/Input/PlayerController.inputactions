@@ -69,6 +69,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Interact_Four",
+                    "type": "Button",
+                    "id": "3209666f-4cdb-43ab-a8b5-86e607c7b6b9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Pause",
                     "type": "Button",
                     "id": "128cb87a-4e1c-4f04-9bc4-4833ff2949e6",
@@ -313,7 +322,7 @@
                 {
                     "name": "",
                     "id": "73b4b490-31db-4b34-9f5b-fe3403c40b8c",
-                    "path": "<Keyboard>/j",
+                    "path": "<Keyboard>/h",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -324,7 +333,7 @@
                 {
                     "name": "",
                     "id": "77eaef41-7363-454f-b9f9-2b0cedc61eae",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/dpad/left",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -335,7 +344,7 @@
                 {
                     "name": "",
                     "id": "24e62fdf-5775-4af1-9f80-519acc31dc54",
-                    "path": "<Keyboard>/k",
+                    "path": "<Keyboard>/j",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -346,7 +355,7 @@
                 {
                     "name": "",
                     "id": "d6e6f94c-167c-4857-aceb-597f42a389fc",
-                    "path": "<Gamepad>/buttonNorth",
+                    "path": "<Gamepad>/dpad/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -357,7 +366,7 @@
                 {
                     "name": "",
                     "id": "d131adeb-8d96-456f-898a-31d83faa0f67",
-                    "path": "<Keyboard>/l",
+                    "path": "<Keyboard>/k",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -368,7 +377,7 @@
                 {
                     "name": "",
                     "id": "190614a8-98ee-4106-8d02-31ae3b06dc6a",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -478,11 +487,33 @@
                 {
                     "name": "",
                     "id": "a3485527-3854-484a-ae10-7fab4501774e",
-                    "path": "<Gamepad>/dpad/down",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Collect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3892f132-4401-4c71-8cb3-73ae17f00813",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact_Four",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "89566c9b-79d8-40ad-9b98-e0871cf05717",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact_Four",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

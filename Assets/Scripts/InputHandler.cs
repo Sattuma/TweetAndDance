@@ -23,6 +23,7 @@ public class InputHandler : MonoBehaviour
     private InputAction abilityInteract_one;
     private InputAction abilityInteract_two;
     private InputAction abilityInteract_three;
+    private InputAction abilityInteract_four;
     private InputAction pause;
 
     [Header("Player Scripts")]
@@ -46,19 +47,19 @@ public class InputHandler : MonoBehaviour
         abilityInteract_one = playerController.Player.Interact_One;
         abilityInteract_two = playerController.Player.Interact_Two;
         abilityInteract_three = playerController.Player.Interact_Three;
+        abilityInteract_four = playerController.Player.Interact_Four;
         pause = playerController.Player.Pause;
     }
     void Start()
     {
-
-        //Bonus Level One Buttons Finding
-        bonusOne = GameObject.FindGameObjectWithTag("BonusLevelOne").GetComponent<NoteLineScript>();
-        interactScript.bonusLevelButtons[0] = bonusOne.activators[0].transform.GetChild(1).gameObject;
-        interactScript.bonusLevelButtons[1] = bonusOne.activators[1].transform.GetChild(1).gameObject;
-        interactScript.bonusLevelButtons[2] = bonusOne.activators[2].transform.GetChild(1).gameObject;
-        if (bonusOne == null)
-        { bonusOne = null; }
-
+        if(GameModeManager.instance.bonusLevelActive)
+        {
+            bonusOne = GameObject.FindGameObjectWithTag("BonusLevelOne").GetComponent<NoteLineScript>();
+            interactScript.bonusLevelButtons[0] = bonusOne.activators[0].transform.GetChild(1).gameObject;
+            interactScript.bonusLevelButtons[1] = bonusOne.activators[1].transform.GetChild(1).gameObject;
+            interactScript.bonusLevelButtons[2] = bonusOne.activators[2].transform.GetChild(1).gameObject;
+            interactScript.bonusLevelButtons[3] = bonusOne.activators[3].transform.GetChild(1).gameObject;
+        }
     }
     private void OnEnable()
     {
@@ -75,19 +76,25 @@ public class InputHandler : MonoBehaviour
         //INTERACT_ONE//enabloidaan input action Interact_One Input assetista ja laitetaan komento kun se painetaan => functio InteractInputOne alempana
         abilityInteract_one.performed += InteractInputOne;
         abilityInteract_one.canceled += InteractInputCancelOne;
-        abilityInteract_two.canceled += InteractInputCancelTwo;
-        abilityInteract_three.canceled += InteractInputCancelThree;
         abilityInteract_one.Enable();
         //INTERACT_TWO//enabloidaan input action Interact_Two Input assetista ja laitetaan komento kun se painetaan => functio InteractInputTwo alempana
         abilityInteract_two.performed += InteractInputTwo;
+        abilityInteract_two.canceled += InteractInputCancelTwo;
         abilityInteract_two.Enable();
         //INTERACT_THREE//enabloidaan input action Interact_Three Input assetista ja laitetaan komento kun se painetaan => functio InteractInputThree alempana
         abilityInteract_three.performed += InteractInputThree;
+        abilityInteract_three.canceled += InteractInputCancelThree;
         abilityInteract_three.Enable();
+        //INTERACT_FOUR//enabloidaan input action Interact_Four Input assetista ja laitetaan komento kun se painetaan => functio InteractInputThree alempana
+        abilityInteract_four.performed += InteractInputFour;
+        abilityInteract_four.canceled += InteractInputCancelFour;
+        abilityInteract_four.Enable();
         //PAUSE
         pause.performed += Pause;
         pause.Enable();
     }
+
+
 
     private void OnDisable()
     {
@@ -98,6 +105,7 @@ public class InputHandler : MonoBehaviour
         abilityInteract_one.Disable();
         abilityInteract_two.Disable();
         abilityInteract_three.Disable();
+        abilityInteract_four.Disable();
         pause.Disable();
     }
 
@@ -177,6 +185,11 @@ public class InputHandler : MonoBehaviour
         if (!GameModeManager.instance.isPaused)
         { interactScript.InteractActionThree();}
     }
+    private void InteractInputFour(InputAction.CallbackContext obj)
+    {
+        if (!GameModeManager.instance.isPaused)
+        { interactScript.InteractActionFour(); }
+    }
     private void InteractInputCancelOne(InputAction.CallbackContext obj)
     {
         interactScript.CancelOne();
@@ -189,6 +202,11 @@ public class InputHandler : MonoBehaviour
     {
         interactScript.CancelThree();
     }
+    private void InteractInputCancelFour(InputAction.CallbackContext obj)
+    {
+        interactScript.CancelFour();
+    }
+
     private void Pause(InputAction.CallbackContext obj)
     {
         if (GameModeManager.instance.levelActive && !GameModeManager.instance.cannotResumeFromPause)

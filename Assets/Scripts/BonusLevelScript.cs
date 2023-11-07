@@ -16,6 +16,7 @@ public class BonusLevelScript : MonoBehaviour
         {
             string level = GameModeManager.instance.bonusLevelName[1];
             GameModeManager.instance.ActivateCurrentLevel(level);
+            AudioManager.instance.PlayMusicFX(1);
             //musa ja index 
         }
         if (GameModeManager.instance.levelIndex > 3 && GameModeManager.instance.levelIndex <= 6)

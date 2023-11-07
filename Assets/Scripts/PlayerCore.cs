@@ -22,9 +22,6 @@ public class PlayerCore : MonoBehaviour
         //EVENT CALL TO FUNCTIONS
         GameModeManager.Success += SuccessAnim;
         GameModeManager.Fail += LevelFailAnim;
-
-        NoteScript.WrongNote += WrongNoteAnim;
-        NoteScript.RightNote += RightNoteAnim;
     }
 
     //-------------------------------------

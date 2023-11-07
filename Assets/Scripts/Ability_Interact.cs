@@ -91,14 +91,17 @@ public class Ability_Interact : MonoBehaviour
     {
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
         {
-            bonusLevelButtons[0].GetComponent<CircleCollider2D>().enabled = true; // halutaan ite gameobjecti pois/p‰‰lt‰ eik‰ vain collideria t‰ss‰ systeemiss‰
+            bonusLevelButtons[0].SetActive(true);
+            bonusLevelButtons[0].GetComponentInParent<Animator>().SetTrigger("Response");
+
         }
     }
     public void InteractActionTwo()
     {
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
         {
-            bonusLevelButtons[1].GetComponent<CircleCollider2D>().enabled = true;
+            bonusLevelButtons[1].SetActive(true);
+            bonusLevelButtons[1].GetComponentInParent<Animator>().SetTrigger("Response");
         }
     }
 
@@ -106,7 +109,16 @@ public class Ability_Interact : MonoBehaviour
     {
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
         {
-            bonusLevelButtons[2].GetComponent<CircleCollider2D>().enabled = true;
+            bonusLevelButtons[2].SetActive(true);
+            bonusLevelButtons[2].GetComponentInParent<Animator>().SetTrigger("Response");
+        }
+    }
+    public void InteractActionFour()
+    {
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
+        {
+            bonusLevelButtons[3].SetActive(true);
+            bonusLevelButtons[3].GetComponentInParent<Animator>().SetTrigger("Response");
         }
     }
 
@@ -114,21 +126,28 @@ public class Ability_Interact : MonoBehaviour
     {
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
         {
-            bonusLevelButtons[0].GetComponent<CircleCollider2D>().enabled = false;
+            bonusLevelButtons[0].SetActive(false);
         }
     }
     public void CancelTwo()
     {
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
         {
-            bonusLevelButtons[1].GetComponent<CircleCollider2D>().enabled = false;
+            bonusLevelButtons[1].SetActive(false);
         }
     }
     public void CancelThree()
     {
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
         {
-            bonusLevelButtons[2].GetComponent<CircleCollider2D>().enabled = false;
+            bonusLevelButtons[2].SetActive(false);
+        }
+    }
+    public void CancelFour()
+    {
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
+        {
+            bonusLevelButtons[3].SetActive(false);
         }
     }
 

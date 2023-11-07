@@ -359,6 +359,7 @@ public class MenuManager : MonoBehaviour
     public void Retry()
     {
         AudioManager.instance.PlayMenuFX(0);
+        SetData();
         string currentName = SceneManager.GetActiveScene().name;
         GameModeManager.instance.ChangeLevel(currentName);
     }

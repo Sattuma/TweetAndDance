@@ -91,6 +91,15 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Interact_Four"",
+                    ""type"": ""Button"",
+                    ""id"": ""3209666f-4cdb-43ab-a8b5-86e607c7b6b9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""128cb87a-4e1c-4f04-9bc4-4833ff2949e6"",
@@ -335,7 +344,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""73b4b490-31db-4b34-9f5b-fe3403c40b8c"",
-                    ""path"": ""<Keyboard>/j"",
+                    ""path"": ""<Keyboard>/h"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -346,7 +355,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""77eaef41-7363-454f-b9f9-2b0cedc61eae"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/dpad/left"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -357,7 +366,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""24e62fdf-5775-4af1-9f80-519acc31dc54"",
-                    ""path"": ""<Keyboard>/k"",
+                    ""path"": ""<Keyboard>/j"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -368,7 +377,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""d6e6f94c-167c-4857-aceb-597f42a389fc"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""path"": ""<Gamepad>/dpad/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -379,7 +388,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""d131adeb-8d96-456f-898a-31d83faa0f67"",
-                    ""path"": ""<Keyboard>/l"",
+                    ""path"": ""<Keyboard>/k"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -390,7 +399,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""190614a8-98ee-4106-8d02-31ae3b06dc6a"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -500,11 +509,33 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a3485527-3854-484a-ae10-7fab4501774e"",
-                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Collect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3892f132-4401-4c71-8cb3-73ae17f00813"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact_Four"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""89566c9b-79d8-40ad-9b98-e0871cf05717"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact_Four"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1038,6 +1069,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         m_Player_Interact_One = m_Player.FindAction("Interact_One", throwIfNotFound: true);
         m_Player_Interact_Two = m_Player.FindAction("Interact_Two", throwIfNotFound: true);
         m_Player_Interact_Three = m_Player.FindAction("Interact_Three", throwIfNotFound: true);
+        m_Player_Interact_Four = m_Player.FindAction("Interact_Four", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -1119,6 +1151,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Interact_One;
     private readonly InputAction m_Player_Interact_Two;
     private readonly InputAction m_Player_Interact_Three;
+    private readonly InputAction m_Player_Interact_Four;
     private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
@@ -1131,6 +1164,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         public InputAction @Interact_One => m_Wrapper.m_Player_Interact_One;
         public InputAction @Interact_Two => m_Wrapper.m_Player_Interact_Two;
         public InputAction @Interact_Three => m_Wrapper.m_Player_Interact_Three;
+        public InputAction @Interact_Four => m_Wrapper.m_Player_Interact_Four;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -1162,6 +1196,9 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             @Interact_Three.started += instance.OnInteract_Three;
             @Interact_Three.performed += instance.OnInteract_Three;
             @Interact_Three.canceled += instance.OnInteract_Three;
+            @Interact_Four.started += instance.OnInteract_Four;
+            @Interact_Four.performed += instance.OnInteract_Four;
+            @Interact_Four.canceled += instance.OnInteract_Four;
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
@@ -1190,6 +1227,9 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             @Interact_Three.started -= instance.OnInteract_Three;
             @Interact_Three.performed -= instance.OnInteract_Three;
             @Interact_Three.canceled -= instance.OnInteract_Three;
+            @Interact_Four.started -= instance.OnInteract_Four;
+            @Interact_Four.performed -= instance.OnInteract_Four;
+            @Interact_Four.canceled -= instance.OnInteract_Four;
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
@@ -1337,6 +1377,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         void OnInteract_One(InputAction.CallbackContext context);
         void OnInteract_Two(InputAction.CallbackContext context);
         void OnInteract_Three(InputAction.CallbackContext context);
+        void OnInteract_Four(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
     }
     public interface IUIActions

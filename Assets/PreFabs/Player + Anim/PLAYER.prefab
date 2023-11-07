@@ -478,6 +478,7 @@ MonoBehaviour:
   moveScript: {fileID: 7344619329279733102}
   airborneScript: {fileID: 7344619329279733089}
   interactScript: {fileID: 7344619329279733088}
+  bonusOne: {fileID: 0}
   cursorTimer: 2
   cursorSensitivity: 0
 --- !u!114 &7344619329279733100
@@ -564,9 +565,11 @@ MonoBehaviour:
   collectableChildObj: {fileID: 0}
   canCollect: 0
   pickedUp: 0
-  button1: {fileID: 0}
-  button2: {fileID: 0}
-  button3: {fileID: 0}
+  bonusLevelButtons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1559851027
 MonoBehaviour:
   m_ObjectHideFlags: 0

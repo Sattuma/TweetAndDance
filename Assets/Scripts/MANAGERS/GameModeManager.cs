@@ -40,6 +40,7 @@ public class GameModeManager : MonoBehaviour
     public string[] bonusLevelName;
 
     [Header("Level State Booleans")]
+    public bool rewardClaimed;
     public bool cutsceneActive;
     public bool levelActive;
     public bool bonusLevelActive;
@@ -79,6 +80,8 @@ public class GameModeManager : MonoBehaviour
 
     [Header("Variables on level")]
     public int levelScore; //?? t‰m‰ samalla tavalla kun secretit
+    public int bonuslevelScore; //?? t‰m‰ samalla tavalla kun secretit
+
     public int secretFoundTemp;
     public int secretMissedTemp;
     public int secretTotalTemp;
@@ -120,8 +123,8 @@ public class GameModeManager : MonoBehaviour
 
     private void Start()
     {
-        GetData();
-        SetData();
+        GetData(); // p‰‰lle aina, testain vuoksi pois
+        SetData(); // p‰‰le ain testiun vuoksi pois
         // kaikki GetData otetaan levelchangerisa jo valmiiksi josta info pisteist‰ etc gamemodemanageriin -
         // (ADD) why the fuck? hmm mietit‰t‰ viel‰
     }
