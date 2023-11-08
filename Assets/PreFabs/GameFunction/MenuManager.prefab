@@ -4629,7 +4629,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -12177,6 +12177,7 @@ MonoBehaviour:
   timerCountText: {fileID: 6577216067437786067}
   pointsText: {fileID: 0}
   pointsCountText: {fileID: 0}
+  bonusOneSlider: {fileID: 7242221427448603211}
   currentStateHud:
   - {fileID: 8521290903354729060}
   - {fileID: 6577244350155048198}
