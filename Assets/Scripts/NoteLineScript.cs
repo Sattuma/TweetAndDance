@@ -5,19 +5,18 @@ using UnityEngine;
 public class NoteLineScript : MonoBehaviour
 {
 
+    public BonusLevelScript bonusCore;
+    public int pointlossCheck;
 
+    [Header("GameObjects")]
     public GameObject[] activators = new GameObject[4];
     public GameObject[] startingPos = new GameObject[4];
     public GameObject[] notePrefab = new GameObject[3];
 
-
-    //BPM INFO PER BONUS LEVEL
-    //BonusLevel 1 bpm = 164
-    //Bonuslevel 1 notespeed = 9.5f
-
+    [Header("FUNCTION BOOLEAS")]
     public bool canStartSong;
-    public float beatsShownInAdvance;
-    public float noteSpeed;
+    public bool song1Active;
+    public bool song2Active;
 
     [Header("POSITION TRACKING")]
     public float songTimeTotal;
@@ -25,57 +24,110 @@ public class NoteLineScript : MonoBehaviour
 
     public float secPosition;
     public float beatsposition;
+    public float beatsShownInAdvance;
     float secPerBeat;
 
     [Header("SONG INFORMATION")]
     public float bpm;
-    public float[] notes;
+    public float noteSpeed;
+
+    //LEVEL NOTES AND SYNC ARRAYS
+    public float[] notes; // song 1 sync notes
+    public float[] notes2;// song 2 sync notes
+
     public int nextIndex = 0;
+
 
     private void Awake()
     {
+        GameModeManager.instance.bonuslevelScoreTemp = 0;
+
+        bonusCore = GetComponentInParent<BonusLevelScript>();
+        GameModeManager.StartLevel += StopMusic;
         GameModeManager.StartLevelCountOver += StartSong;
+    }
+    private void Start()
+    {
+        canStartSong = false;
+    }
+
+    private void StopMusic()
+    {
+        AudioManager.instance.musicSource.Stop();
     }
 
     private void StartSong()
     {
         AudioManager.instance.musicSource.loop = false;
-        AudioManager.instance.PlayMusicFX(2);
         canStartSong = true;
+
+        if (GameModeManager.instance.levelIndex == 1)
+        {
+            song1Active = true;
+            AudioManager.instance.PlayMusicFX(2);
+            bpm = 164;
+            noteSpeed = 9.5f;
+            secPerBeat = 60f / bpm;
+            songTimeTotal = AudioManager.instance.musicFX[2].length;
+            songBeatsTotal = songTimeTotal / secPerBeat;
+        }
+        if (GameModeManager.instance.levelIndex == 2)
+        {
+            song2Active = true;
+            //valitaan viel musa
+            //bpm = 164;
+            //noteSpeed = 9.5f;
+            secPerBeat = 60f / bpm;
+            songTimeTotal = AudioManager.instance.musicFX[0].length;
+            songBeatsTotal = songTimeTotal / secPerBeat;
+        }
     }
 
-    private void Start()
-    {
-
-
-        canStartSong = false;
-
-        secPerBeat = 60f / bpm;
-
-        songTimeTotal = AudioManager.instance.musicFX[2].length;
-        songBeatsTotal = songTimeTotal / secPerBeat;
-    }
 
     void Update()
     {
         if(canStartSong)
         {
-            secPosition = AudioManager.instance.musicSource.time;
-            beatsposition = secPosition / secPerBeat;
-            if (beatsposition >= songBeatsTotal)
-            { beatsposition = songBeatsTotal; secPerBeat = songTimeTotal; }
+            if (song1Active)
+            { Song1(); StartSongCount(); }
+            if(song2Active)
+            { Song2(); StartSongCount(); }
 
-            if (nextIndex < notes.Length && notes[nextIndex] < beatsposition + beatsShownInAdvance)
-            {
-                GameObject clone = Instantiate(notePrefab[Random.Range(0, notePrefab.Length)], startingPos[Random.Range(0, startingPos.Length)].transform.position, startingPos[0].transform.rotation);
-                clone.GetComponent<NoteScript>().currentSpeed = noteSpeed;
-                nextIndex++;
-            }
+            CheckScoring();
         }
     }
 
-    private void OnDestroy()
+    public void StartSongCount()
     {
-        AudioManager.instance.musicSource.loop = true;
+        secPosition = AudioManager.instance.musicSource.time;
+        beatsposition = secPosition / secPerBeat;
+        if (beatsposition >= songBeatsTotal)
+        { beatsposition = songBeatsTotal; secPerBeat = songTimeTotal; }
+
     }
+
+    public void Song1()
+    {
+   
+        if (nextIndex < notes.Length && notes[nextIndex] < beatsposition + beatsShownInAdvance)
+        {
+            GameObject clone = Instantiate(notePrefab[Random.Range(0, notePrefab.Length)], startingPos[Random.Range(0, startingPos.Length)].transform.position, startingPos[0].transform.rotation);
+            clone.GetComponent<NoteScript>().currentSpeed = noteSpeed;
+            nextIndex++;
+        }
+        
+    }
+    public void Song2()
+    {
+
+    }
+
+    public void CheckScoring()
+    {
+        GameModeManager.instance.bonuslevelScoreTemp -= pointlossCheck;
+
+        if(GameModeManager.instance.bonuslevelScoreTemp <= 0)
+        { GameModeManager.instance.bonuslevelScoreTemp = 0; }
+    }
+
 }

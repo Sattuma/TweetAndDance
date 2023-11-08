@@ -172,6 +172,33 @@ public class DataManager : MonoBehaviour
 
     }
 
+    public void CheckBonusLevelInfo(GameObject obj, GameObject obj2, GameObject obj3)
+    {
+        if (GameModeManager.instance.levelIndex > 0 && GameModeManager.instance.levelIndex <= 3)
+        {
+            string level = GameModeManager.instance.bonusLevelName[1];
+            GameModeManager.instance.ActivateCurrentLevel(level);
+            AudioManager.instance.PlayMusicFX(1);
+            obj.SetActive(true);
+
+        }
+        if (GameModeManager.instance.levelIndex > 3 && GameModeManager.instance.levelIndex <= 6)
+        {
+            string level = GameModeManager.instance.bonusLevelName[2];
+            GameModeManager.instance.ActivateCurrentLevel(level);
+            AudioManager.instance.PlayMusicFX(1);
+            obj2.SetActive(true);
+        }
+        if (GameModeManager.instance.levelIndex > 6 && GameModeManager.instance.levelIndex <= 9)
+        {
+            string level = GameModeManager.instance.bonusLevelName[3];
+            GameModeManager.instance.ActivateCurrentLevel(level);
+            AudioManager.instance.PlayMusicFX(1);
+            obj3.SetActive(true);
+        }
+    }
+
+
 
 
 }

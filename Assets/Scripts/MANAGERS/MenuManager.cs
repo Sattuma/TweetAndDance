@@ -15,13 +15,14 @@ public class MenuManager : MonoBehaviour
     public GameObject lastSelectedGameObject;
     public GameObject currentSelectedGameObject_Recent;
 
-    [Header("UI Timer HUDvariables")]
+    [Header("ONSCREEN UI LEVEL")]
     public GameObject timerText;
     public GameObject timerCountText;
 
-    [Header("UI points HUDvariables")]
+    [Header("ONSCREEN UI BONUS")]
     public GameObject pointsText;
     public GameObject pointsCountText;
+    public Slider bonusOneSlider;
 
     [Header("ACTIVE LEVEL HUDvariables")]
     public GameObject[] currentStateHud;
@@ -99,6 +100,12 @@ public class MenuManager : MonoBehaviour
 
         CheckCutSceneInfo(); // tsekataan mikä cutscene info tulee riippuen mikä kenttä on ja mitä tarvii
 
+    }
+
+    private void FixedUpdate()
+    {
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
+        { UpdateScoreBonus(); }
     }
 
     private void CheckCutSceneInfo()
@@ -390,6 +397,22 @@ public class MenuManager : MonoBehaviour
     public void UpdateScore()
     {
         //pointsCountText.GetComponent<TextMeshProUGUI>().text = GameModeManager.instance.scoreLevel2.ToString() + "/ 2000";
+    }
+    public void UpdateScoreBonus()
+    {
+        if (GameModeManager.instance.levelIndex > 0 && GameModeManager.instance.levelIndex <= 3)
+        {
+            bonusOneSlider.value = GameModeManager.instance.bonuslevelScoreTemp;
+
+        }
+        if (GameModeManager.instance.levelIndex > 3 && GameModeManager.instance.levelIndex <= 6)
+        {
+            
+        }
+        if (GameModeManager.instance.levelIndex > 6 && GameModeManager.instance.levelIndex <= 9)
+        {
+
+        }
     }
 
     // BUTTON CALLS FOR NAVIGATION BETWEEN MENUS AND SCENES

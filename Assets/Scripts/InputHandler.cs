@@ -52,14 +52,8 @@ public class InputHandler : MonoBehaviour
     }
     void Start()
     {
-        if(GameModeManager.instance.bonusLevelActive)
-        {
-            bonusOne = GameObject.FindGameObjectWithTag("BonusLevelOne").GetComponent<NoteLineScript>();
-            interactScript.bonusLevelButtons[0] = bonusOne.activators[0].transform.GetChild(1).gameObject;
-            interactScript.bonusLevelButtons[1] = bonusOne.activators[1].transform.GetChild(1).gameObject;
-            interactScript.bonusLevelButtons[2] = bonusOne.activators[2].transform.GetChild(1).gameObject;
-            interactScript.bonusLevelButtons[3] = bonusOne.activators[3].transform.GetChild(1).gameObject;
-        }
+        CheckBonusLevelControls();
+
     }
     private void OnEnable()
     {
@@ -212,6 +206,30 @@ public class InputHandler : MonoBehaviour
         if (GameModeManager.instance.levelActive && !GameModeManager.instance.cannotResumeFromPause)
         { GameModeManager.instance.InvokePause(); }
 
+    }
+
+    public void CheckBonusLevelControls()
+    {
+        if (GameModeManager.instance.bonusLevelActive)
+        {
+            if (GameModeManager.instance.levelIndex > 0 && GameModeManager.instance.levelIndex <= 3)
+            {
+                bonusOne = GameObject.FindGameObjectWithTag("BonusLevelOne").GetComponent<NoteLineScript>();
+                interactScript.bonusLevelButtons[0] = bonusOne.activators[0].transform.GetChild(1).gameObject;
+                interactScript.bonusLevelButtons[1] = bonusOne.activators[1].transform.GetChild(1).gameObject;
+                interactScript.bonusLevelButtons[2] = bonusOne.activators[2].transform.GetChild(1).gameObject;
+                interactScript.bonusLevelButtons[3] = bonusOne.activators[3].transform.GetChild(1).gameObject;
+            }
+            if (GameModeManager.instance.levelIndex > 3 && GameModeManager.instance.levelIndex <= 6)
+            {
+                //bonuslevel2 controllit
+            }
+            if (GameModeManager.instance.levelIndex > 6 && GameModeManager.instance.levelIndex <= 9)
+            {
+                //bonuslevel3 controllit
+            }
+
+        }
     }
 }
 

@@ -13,4 +13,12 @@ public class NoteScript : MonoBehaviour
         rb.velocity = new Vector2(0, -currentSpeed);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Goal"))
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }

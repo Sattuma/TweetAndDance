@@ -10,7 +10,7 @@ public class NoteButtonCollision : MonoBehaviour
         if(collision.gameObject.CompareTag("Note"))
         {
             Destroy(collision.gameObject.transform.parent.gameObject);
-            //pisteytys kerroin jne
+            GameModeManager.instance.AddBonusScore(150);
         }
         if (collision.gameObject.CompareTag("Perfect"))
         {

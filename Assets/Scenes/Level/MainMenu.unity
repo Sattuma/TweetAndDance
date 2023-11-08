@@ -2831,6 +2831,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2044907132, guid: 4cf04bb701032774298427d4ecb23238, type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 921483885716108573, guid: 4cf04bb701032774298427d4ecb23238, type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 921483885725485757, guid: 4cf04bb701032774298427d4ecb23238, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 921483885725485757, guid: 4cf04bb701032774298427d4ecb23238, type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 921483886043546284, guid: 4cf04bb701032774298427d4ecb23238, type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 921483886097288749, guid: 4cf04bb701032774298427d4ecb23238, type: 3}
       propertyPath: m_Name
       value: AudioManager
@@ -2877,6 +2897,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 921483886097288751, guid: 4cf04bb701032774298427d4ecb23238, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 921483886710426500, guid: 4cf04bb701032774298427d4ecb23238, type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3347463128615526189, guid: 4cf04bb701032774298427d4ecb23238, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3347463128615526189, guid: 4cf04bb701032774298427d4ecb23238, type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

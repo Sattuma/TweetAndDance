@@ -24,7 +24,6 @@ public class GameLevelScript : MonoBehaviour
 
     private void Awake()
     {
-
         GameModeManager.instance.bonusLevelActive = false;
 
         GameModeManager.StartLevelCountOver += ActivateLevel;
@@ -34,12 +33,12 @@ public class GameLevelScript : MonoBehaviour
         string level = GameModeManager.instance.levelName[GameModeManager.instance.levelIndex];
         GameModeManager.instance.ActivateCurrentLevel(level);
         GameModeManager.instance.CutSceneActive();
-
-        //gamemodemanagerin kutsu kentän onnistumisesta
         GameModeManager.Success += CountLevelSuccess;
 
+        AudioManager.instance.musicSource.loop = true;
+
         //valitaan kyseisen kentän musiikki
-        if(GameModeManager.instance.levelIndex > 0 && GameModeManager.instance.levelIndex <= 3)
+        if (GameModeManager.instance.levelIndex > 0 && GameModeManager.instance.levelIndex <= 3)
         { AudioManager.instance.PlayMusicFX(3); }
         if (GameModeManager.instance.levelIndex > 3 && GameModeManager.instance.levelIndex <= 6)
         { Debug.Log("musaa toiseen maailmaan puuttuu"); }

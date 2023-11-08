@@ -3,39 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//SCRIPT HANDLE BONUSLEVELLOGIC AND ACTIVATES THE CERTAIN BONSULEVELFUNCION/OBJECT/SCRIPT WHICH NEEDED BETWEEN LEVELS
 public class BonusLevelScript : MonoBehaviour
 {
+    [Header("GameObjects ACtivation")]
+    public GameObject bonus1obj;
+    public GameObject bonus2obj;
+    public GameObject bonus3obj;
+
     private void Awake()
     {
-
-        GameModeManager.instance.bonusLevelActive = true;
-
         GameModeManager.StartLevelCountOver += ActivateLevel;
-
-        if (GameModeManager.instance.levelIndex > 0 && GameModeManager.instance.levelIndex <= 3)
-        {
-            string level = GameModeManager.instance.bonusLevelName[1];
-            GameModeManager.instance.ActivateCurrentLevel(level);
-            AudioManager.instance.PlayMusicFX(1);
-            //musa ja index 
-        }
-        if (GameModeManager.instance.levelIndex > 3 && GameModeManager.instance.levelIndex <= 6)
-        {
-            string level = GameModeManager.instance.bonusLevelName[2];
-            GameModeManager.instance.ActivateCurrentLevel(level);
-            //musa ja index 
-        }
-        if (GameModeManager.instance.levelIndex > 6 && GameModeManager.instance.levelIndex <= 9)
-        {
-            string level = GameModeManager.instance.bonusLevelName[3];
-            GameModeManager.instance.ActivateCurrentLevel(level);
-            //musa ja index 
-        }
-        GameModeManager.instance.CutSceneActive();
     }
 
     private void Start()
     {
+        AudioManager.instance.musicSource.loop = true;
+        GameModeManager.instance.bonusLevelActive = true;
+        DataManager.instance.CheckBonusLevelInfo(bonus1obj,bonus2obj,bonus3obj);
+        GameModeManager.instance.CutSceneActive();
+
         StartCoroutine(StartLevelCheck());
     }
 
@@ -46,4 +33,10 @@ public class BonusLevelScript : MonoBehaviour
     }
     private void ActivateLevel()
     { GameModeManager.instance.BonusLevelActive(); }
+
+    private void OnDestroy()
+    {
+        GameModeManager.instance.bonuslevelScoreTemp = 0;
+        GameModeManager.instance.missedNotesTemp = 0;
+    }
 }

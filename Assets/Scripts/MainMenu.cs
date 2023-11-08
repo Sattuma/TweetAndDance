@@ -50,7 +50,7 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-
+        AudioManager.instance.musicSource.loop = true;
         AudioManager.instance.masterVolumeValue = masterVolumeSlider.value;
         AudioManager.instance.effectsVolumeValue = effectsVolumeSlider.value;
         AudioManager.instance.musicVolumeValue = musicVolumeSlider.value;

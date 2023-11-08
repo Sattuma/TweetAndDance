@@ -11,7 +11,6 @@ public class GameModeManager : MonoBehaviour
     public static event GameAction StartLevel;
     public static event GameAction StartLevelCountOver;
     public static event GameAction PauseOn;
-    public static event GameAction BonusLevelScore;
     public static event GameAction Success;
     public static event GameAction Fail;
    
@@ -79,12 +78,19 @@ public class GameModeManager : MonoBehaviour
     public int[] secretMissedInLevel;
 
     [Header("Variables on level")]
-    public int levelScore; //?? tämä samalla tavalla kun secretit
-    public int bonuslevelScore; //?? tämä samalla tavalla kun secretit
 
+    // main level score which is saved
+    public int levelScore; //?? tämä samalla tavalla kun secretit
+
+    //tracking on level which is temporary and trigger functions - no high score or saving - reset with OnDestroy on levelscripts
+    //MAIN LEVEL
     public int secretFoundTemp;
     public int secretMissedTemp;
     public int secretTotalTemp;
+
+    //BONUS
+    public float bonuslevelScoreTemp;
+    public int missedNotesTemp;
 
     public GameObject mouseMovementCheck;
 
@@ -205,7 +211,9 @@ public class GameModeManager : MonoBehaviour
 
     public void AddBonusScore(int score)
     {
-        BonusLevelScore?.Invoke();
+        bonuslevelScoreTemp += score;
+        if(bonuslevelScoreTemp >= 1000)
+        { bonuslevelScoreTemp = 1000; }
     }
     public void AddLevelScore(int score)
     {
@@ -254,7 +262,6 @@ public class GameModeManager : MonoBehaviour
         StartLevel = null;
         StartLevelCountOver = null;
         PauseOn = null;
-        BonusLevelScore = null;
         Success = null;
         Fail = null;
 
