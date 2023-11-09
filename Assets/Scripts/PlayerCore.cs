@@ -22,6 +22,9 @@ public class PlayerCore : MonoBehaviour
         //EVENT CALL TO FUNCTIONS
         GameModeManager.Success += SuccessAnim;
         GameModeManager.Fail += LevelFailAnim;
+
+        GameModeManager.BonusSuccess += SuccessAnim;
+        GameModeManager.BonusFail += LevelFailAnim;
     }
 
     //-------------------------------------
@@ -71,6 +74,8 @@ public class PlayerCore : MonoBehaviour
     }
 
     //-------------------------------------
+
+    //kutsu bonsukentän animaatioita eventtikutsussa. tehty bonsukenttien alkuun event
 
     //BONUSLEVEL ANIMATION TRIGGER FUNCTIONS
     public void RightNoteAnim()

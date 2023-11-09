@@ -7,6 +7,7 @@ public class DataManager : MonoBehaviour
 {
 
     public static DataManager instance;
+    public bool controllerConnected = false;
 
     public enum ControlSystem
     {
@@ -23,30 +24,47 @@ public class DataManager : MonoBehaviour
         else
         { instance = this; DontDestroyOnLoad(instance); }
 
+        CheckControls();
 
-        if (controls == DataManager.ControlSystem.Gamepad)
-        { ActivateGamePad(); }
-        if (controls == DataManager.ControlSystem.Keyboard)
-        { ActivateKeyboard(); }
+        //tsekkki tarvittaessa siihen onko vcontroller connected vai ei
+        StartCoroutine(CheckForControllers());
+
      
     }
 
-    /*
-    public void CheckControllerNull() // ei toimi
+    IEnumerator CheckForControllers()
     {
-        string[] names = Input.GetJoystickNames();
-
-        for (int x = 0; x < names.Length; x++)
+        while (true)
         {
-            print(names[x].Length);
-            if(names[x] == null)
-            {
-                names[x]  = null;
-            }
-        }
-    }
-    */
+            Debug.Log(controllerConnected);
 
+            string[] names = Input.GetJoystickNames();
+
+            for (int x = 0; x < names.Length; x++)
+            {
+                //print(names[x].Length);
+                if (names[x] == null)
+                {
+                    names[x] = null;
+                }
+                if (!controllerConnected && names[x].Length > 0)
+                {
+                    controllerConnected = true;
+                    //Debug.Log("Connected");
+
+                }
+                else if (controllerConnected && names[x].Length == 0)
+                {
+                    controllerConnected = false;
+                    //Debug.Log("Disconnected");
+                }
+            }
+
+            yield return new WaitForSeconds(1f);
+            
+        }
+        
+    }
 
     //LEVEL TIMERS DATA
     public void SetLevelTimers(float timer1,float timer2,float timer3)
@@ -131,6 +149,14 @@ public class DataManager : MonoBehaviour
         GameModeManager.instance.highScoreLevel1_3 = PlayerPrefs.GetInt("HiScore1_3");
     }
 
+    public void CheckControls()
+    {
+        if (controls == DataManager.ControlSystem.Gamepad)
+        { ActivateGamePad(); }
+        if (controls == DataManager.ControlSystem.Keyboard)
+        { ActivateKeyboard(); }
+    }
+
     public void ActivateKeyboard()
     {
         Keyboard.current?.IsActuated(0);
@@ -147,9 +173,6 @@ public class DataManager : MonoBehaviour
             InputSystem.DisableDevice(Gamepad.current);
             controls = ControlSystem.Keyboard;
         }
-
-
-
 
     }
     public void ActivateGamePad()

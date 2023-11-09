@@ -24,6 +24,8 @@ public class GameLevelScript : MonoBehaviour
 
     private void Awake()
     {
+
+
         GameModeManager.instance.bonusLevelActive = false;
 
         GameModeManager.StartLevelCountOver += ActivateLevel;
@@ -53,6 +55,9 @@ public class GameLevelScript : MonoBehaviour
 
     private void Start()
     {
+
+        
+
         GroundSpawnPickupLevel();
         //StartInvokeRepeating();
         StartCoroutine(StartLevelCheck());

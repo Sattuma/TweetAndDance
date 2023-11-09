@@ -68,6 +68,9 @@ public class MenuManager : MonoBehaviour
     public Slider musicVolumeSlider;
     public Slider effectsVolumeSlider;
 
+    [Header("UI Animators")]
+    public Animator bonusAnim;
+
     [Header("Bonus Level Name After Level")]
     public string nextLevelName;
     public string bonusLevelName;
@@ -89,6 +92,9 @@ public class MenuManager : MonoBehaviour
         GameModeManager.Success += SuccessMenuOnLevel;
         GameModeManager.Fail += FailedMenuOnLevel;
 
+        GameModeManager.BonusMeterAnimOn += BonusAnimOn;
+        GameModeManager.BonusMeterAnimOff += BonusAnimOff;
+
         GameModeManager.NestCount += StartLevelEndCount;
         GameModeManager.NestCountEnd += CancelLevelEndCount;
 
@@ -102,9 +108,14 @@ public class MenuManager : MonoBehaviour
 
     }
 
+    private void BonusAnimOn()
+    { bonusAnim.SetBool("Danger", true);}
+    private void BonusAnimOff()
+    { bonusAnim.SetBool("Danger", false); }
+
     private void FixedUpdate()
     {
-        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel && !GameModeManager.instance.bonusLevelEnd)
         { UpdateScoreBonus(); }
     }
 
@@ -274,13 +285,15 @@ public class MenuManager : MonoBehaviour
             GameModeManager.instance.isPaused = true;
             if(GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
             {
-                pauseMenu.SetActive(true);
+                //pauseMenu.SetActive(true);
+                PauseMenuOn();
                 pauseFirstButton.GetComponent<Selectable>().Select();
                 Time.timeScale = 0;
             }
             if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
             {
-                pauseMenuBonus.SetActive(true);
+                //pauseMenuBonus.SetActive(true);
+                PauseMenuOn();
                 pauseFirstButton.GetComponent<Selectable>().Select();
                 Time.timeScale = 0;
             }
@@ -298,14 +311,14 @@ public class MenuManager : MonoBehaviour
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
         { pauseMenu.SetActive(true);}
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
-        { pauseMenuBonus.SetActive(true);}
+        { pauseMenuBonus.SetActive(true); AudioManager.instance.musicSource.Pause(); }
     }
     void PauseMenuOff()
     {
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
         { pauseMenu.SetActive(false); }
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
-        { pauseMenuBonus.SetActive(false); }
+        { pauseMenuBonus.SetActive(false); AudioManager.instance.musicSource.Play(); }
     }
     public void OpenSettings()
     {
@@ -365,7 +378,7 @@ public class MenuManager : MonoBehaviour
 
         currentControlText.text = DataManager.instance.controls.ToString();
 
-        if (!gamepadDetection && Gamepad.current?.IsActuated(0) == null)
+        if (!gamepadDetection && !DataManager.instance.controllerConnected)
         {
             StartCoroutine(NoConnect());
         }
@@ -402,7 +415,7 @@ public class MenuManager : MonoBehaviour
     {
         if (GameModeManager.instance.levelIndex > 0 && GameModeManager.instance.levelIndex <= 3)
         {
-            bonusOneSlider.value = GameModeManager.instance.bonuslevelScoreTemp;
+            bonusOneSlider.value = GameModeManager.instance.bonuslevelScoreTemp * 0.0001f;
 
         }
         if (GameModeManager.instance.levelIndex > 3 && GameModeManager.instance.levelIndex <= 6)

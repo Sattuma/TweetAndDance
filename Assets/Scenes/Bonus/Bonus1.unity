@@ -3373,6 +3373,10 @@ PrefabInstance:
       propertyPath: controls
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5771237371224905266, guid: 2a5f7411d8f3a3f49aeea34272369db9, type: 3}
+      propertyPath: connected
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5771237371224905267, guid: 2a5f7411d8f3a3f49aeea34272369db9, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -8914,6 +8918,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3150268496929479935, guid: f44198b0ba9a3ae418ea9c65c576d500, type: 3}
+      propertyPath: failCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3150268496929479935, guid: f44198b0ba9a3ae418ea9c65c576d500, type: 3}
+      propertyPath: startCountforFail
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3232401321733259322, guid: f44198b0ba9a3ae418ea9c65c576d500, type: 3}
       propertyPath: m_RootOrder
       value: 3

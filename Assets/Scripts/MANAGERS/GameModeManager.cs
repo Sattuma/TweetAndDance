@@ -19,6 +19,14 @@ public class GameModeManager : MonoBehaviour
     public static event LevelAction NestCount;
     public static event LevelAction NestCountEnd;
 
+    //BONUSACTION EVENTS
+    public delegate void BonusAction();
+    public static event BonusAction BonusOneStart;
+    public static event BonusAction BonusMeterAnimOn;
+    public static event BonusAction BonusMeterAnimOff;
+    public static event BonusAction BonusSuccess;
+    public static event BonusAction BonusFail;
+
 
     //INSTANCE TO SELF
     public static GameModeManager instance;
@@ -39,12 +47,15 @@ public class GameModeManager : MonoBehaviour
     public string[] bonusLevelName;
 
     [Header("Level State Booleans")]
-    public bool rewardClaimed;
     public bool cutsceneActive;
     public bool levelActive;
-    public bool bonusLevelActive;
     public bool isPaused;
     public bool cannotResumeFromPause;
+
+    [Header("BonusLevel State Booleans")]
+    public bool rewardClaimed;
+    public bool bonusLevelActive;
+    public bool bonusLevelEnd;
 
     [Header("Level Timer")]
     public float timerLevel1;
@@ -153,6 +164,16 @@ public class GameModeManager : MonoBehaviour
     { Success?.Invoke(); }
     public void InvokeLevelFail()
     { Fail?.Invoke();}
+    public void InvokeBonusOneStart()
+    { BonusOneStart?.Invoke(); }
+    public void InvokeBonusMeterAnimOn()
+    { BonusMeterAnimOn?.Invoke(); }
+    public void InvokeBonusMeterAnimOff()
+    { BonusMeterAnimOff?.Invoke(); }
+    public void InvokeBonusSuccess()
+    { BonusSuccess?.Invoke(); }
+    public void InvokeBonusFail()
+    { BonusFail?.Invoke(); }
 
     // ACTIVATE GAMEMODE FUNCTIONS
     public void MainMenuActive()
@@ -212,8 +233,6 @@ public class GameModeManager : MonoBehaviour
     public void AddBonusScore(int score)
     {
         bonuslevelScoreTemp += score;
-        if(bonuslevelScoreTemp >= 1000)
-        { bonuslevelScoreTemp = 1000; }
     }
     public void AddLevelScore(int score)
     {
@@ -256,6 +275,7 @@ public class GameModeManager : MonoBehaviour
     }
     //----------------------------------------
 
+    //nämä restoidaan aina levelChangerissa eli Async scriptissä
     public void ResetEvents()
     {
         //GAMEACTION RESET
@@ -268,6 +288,13 @@ public class GameModeManager : MonoBehaviour
         //LEVELACTION RESET
         NestCount = null;
         NestCountEnd = null;
+
+        //LEVELACTION RESET
+        BonusOneStart = null;
+        BonusMeterAnimOn = null;
+        BonusMeterAnimOff = null;
+        BonusSuccess = null;
+        BonusFail = null;
     }
 
     public void GetData()

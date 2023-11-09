@@ -14,10 +14,13 @@ public class BonusLevelScript : MonoBehaviour
     private void Awake()
     {
         GameModeManager.StartLevelCountOver += ActivateLevel;
+
+
     }
 
     private void Start()
     {
+
         AudioManager.instance.musicSource.loop = true;
         GameModeManager.instance.bonusLevelActive = true;
         DataManager.instance.CheckBonusLevelInfo(bonus1obj,bonus2obj,bonus3obj);
@@ -38,5 +41,6 @@ public class BonusLevelScript : MonoBehaviour
     {
         GameModeManager.instance.bonuslevelScoreTemp = 0;
         GameModeManager.instance.missedNotesTemp = 0;
+        GameModeManager.instance.bonusLevelEnd = false;
     }
 }

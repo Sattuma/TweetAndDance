@@ -89,7 +89,7 @@ public class Ability_Interact : MonoBehaviour
     //BONUS LEVEL ABILITTIES BUTTON
     public void InteractActionOne()
     {
-        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel && GameModeManager.instance.levelActive == true)
         {
             bonusLevelButtons[0].SetActive(true);
             bonusLevelButtons[0].GetComponentInParent<Animator>().SetTrigger("Response");
@@ -98,7 +98,7 @@ public class Ability_Interact : MonoBehaviour
     }
     public void InteractActionTwo()
     {
-        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel && GameModeManager.instance.levelActive == true)
         {
             bonusLevelButtons[1].SetActive(true);
             bonusLevelButtons[1].GetComponentInParent<Animator>().SetTrigger("Response");
@@ -107,7 +107,7 @@ public class Ability_Interact : MonoBehaviour
 
     public void InteractActionThree()
     {
-        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel && GameModeManager.instance.levelActive == true)
         {
             bonusLevelButtons[2].SetActive(true);
             bonusLevelButtons[2].GetComponentInParent<Animator>().SetTrigger("Response");
@@ -115,7 +115,7 @@ public class Ability_Interact : MonoBehaviour
     }
     public void InteractActionFour()
     {
-        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel && GameModeManager.instance.levelActive == true)
         {
             bonusLevelButtons[3].SetActive(true);
             bonusLevelButtons[3].GetComponentInParent<Animator>().SetTrigger("Response");
@@ -124,28 +124,28 @@ public class Ability_Interact : MonoBehaviour
 
     public void CancelOne()
     {
-        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel && GameModeManager.instance.levelActive == true)
         {
             bonusLevelButtons[0].SetActive(false);
         }
     }
     public void CancelTwo()
     {
-        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel && GameModeManager.instance.levelActive == true)
         {
             bonusLevelButtons[1].SetActive(false);
         }
     }
     public void CancelThree()
     {
-        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel && GameModeManager.instance.levelActive == true)
         {
             bonusLevelButtons[2].SetActive(false);
         }
     }
     public void CancelFour()
     {
-        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
+        if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel && GameModeManager.instance.levelActive == true)
         {
             bonusLevelButtons[3].SetActive(false);
         }
