@@ -41,7 +41,7 @@ public class GameLevelScript : MonoBehaviour
 
         //valitaan kyseisen kentän musiikki
         if (GameModeManager.instance.levelIndex > 0 && GameModeManager.instance.levelIndex <= 3)
-        { AudioManager.instance.PlayMusicFX(3); }
+        { AudioManager.instance.PlayMusicFX(1); }
         if (GameModeManager.instance.levelIndex > 3 && GameModeManager.instance.levelIndex <= 6)
         { Debug.Log("musaa toiseen maailmaan puuttuu"); }
         if (GameModeManager.instance.levelIndex > 6 && GameModeManager.instance.levelIndex <= 9)
@@ -56,8 +56,6 @@ public class GameLevelScript : MonoBehaviour
     private void Start()
     {
 
-        
-
         GroundSpawnPickupLevel();
         //StartInvokeRepeating();
         StartCoroutine(StartLevelCheck());
@@ -66,7 +64,24 @@ public class GameLevelScript : MonoBehaviour
     IEnumerator StartLevelCheck()
     {
         yield return new WaitUntil(() => GameModeManager.instance.cutsceneActive == false);
-        GameModeManager.instance.StartLevelInvoke();
+
+        if (GameModeManager.instance.rewardClaimed == true)
+        {
+            Debug.Log("REWARD CLAIMED");
+            yield return new WaitForSecondsRealtime(2f);
+            Debug.Log("Start Level WITH reward claim");
+            GameModeManager.instance.rewardClaimed = false;
+            GameModeManager.instance.StartLevelInvoke();
+        }
+        else if(GameModeManager.instance.rewardClaimed == false)
+        {
+            Debug.Log("Start level WITHOUT reward claim");
+            GameModeManager.instance.StartLevelInvoke();
+        }
+                
+            
+
+
     }
     private void ActivateLevel()
     { GameModeManager.instance.LevelActive(); }

@@ -165,7 +165,7 @@ public class GameModeManager : MonoBehaviour
     public void InvokeLevelFail()
     { Fail?.Invoke();}
     public void InvokeBonusOneStart()
-    { BonusOneStart?.Invoke(); }
+    { BonusOneStart?.Invoke();  }
     public void InvokeBonusMeterAnimOn()
     { BonusMeterAnimOn?.Invoke(); }
     public void InvokeBonusMeterAnimOff()

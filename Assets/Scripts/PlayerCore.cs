@@ -23,6 +23,7 @@ public class PlayerCore : MonoBehaviour
         GameModeManager.Success += SuccessAnim;
         GameModeManager.Fail += LevelFailAnim;
 
+        GameModeManager.BonusOneStart += BonusOneTransitionAnim;
         GameModeManager.BonusSuccess += SuccessAnim;
         GameModeManager.BonusFail += LevelFailAnim;
     }
@@ -44,6 +45,9 @@ public class PlayerCore : MonoBehaviour
     { myAnim.SetTrigger("LandingFinish");}
     public void WalkingAnim(float value)
     { myAnim.SetFloat("x", value);}
+
+    public void BonusOneTransitionAnim()
+    { myAnim.SetTrigger("Bonus1"); }
 
     //-------------------------------------
 

@@ -36,7 +36,6 @@ public class DataManager : MonoBehaviour
     {
         while (true)
         {
-            Debug.Log(controllerConnected);
 
             string[] names = Input.GetJoystickNames();
 
@@ -195,15 +194,16 @@ public class DataManager : MonoBehaviour
 
     }
 
+
+
     public void CheckBonusLevelInfo(GameObject obj, GameObject obj2, GameObject obj3)
     {
         if (GameModeManager.instance.levelIndex > 0 && GameModeManager.instance.levelIndex <= 3)
         {
             string level = GameModeManager.instance.bonusLevelName[1];
             GameModeManager.instance.ActivateCurrentLevel(level);
-            AudioManager.instance.PlayMusicFX(1);
+            AudioManager.instance.PlayMusicFX(3);
             obj.SetActive(true);
-
         }
         if (GameModeManager.instance.levelIndex > 3 && GameModeManager.instance.levelIndex <= 6)
         {

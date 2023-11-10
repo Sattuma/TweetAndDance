@@ -8,18 +8,34 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager instance { get; private set; }
 
+    [Header("MENU AUDIO FX")]
     public AudioClip[] menuFX;
+
+    [Header("CHARACTER FX")]
     public AudioClip[] characterFX;
     public AudioClip[] soundFX;
+
+    [Header("LEVEL/BONUS FX")]
+    public AudioClip[] mainLevelFX;
+    public AudioClip[] levelBonusOneFX;
+    public AudioClip[] levelBonusTwoFX;
+    public AudioClip[] levelBonusThreeFX;
+
+    [Header("MUSIC FX")]
     public AudioClip[] musicFX;
 
-
+    [Header("AUDIO SOURCES")]
     public AudioSource menuFXSource;
     public AudioSource characterFXSource;
     public AudioSource movementFXSource;
     public AudioSource soundFXSource;
+    public AudioSource mainLevelFXSource;
+    public AudioSource bonusOneFXSource;
+    public AudioSource bonusTwoFXSource;
+    public AudioSource bonusThreeFXSource;
     public AudioSource musicSource;
 
+    [Header("VOLUME SETTINGS")]
     public float masterVolumeValue;
     public float effectsVolumeValue;
     public float musicVolumeValue;
@@ -35,6 +51,10 @@ public class AudioManager : MonoBehaviour
         characterFXSource = GameObject.Find("CharacterFX").GetComponentInChildren<AudioSource>();
         movementFXSource = GameObject.Find("MovementFX").GetComponentInChildren<AudioSource>();
         soundFXSource = GameObject.Find("SoundFX").GetComponentInChildren<AudioSource>();
+        mainLevelFXSource = GameObject.Find("MainLevelFX").GetComponentInChildren<AudioSource>();
+        bonusOneFXSource = GameObject.Find("BonusOneFX").GetComponentInChildren<AudioSource>();
+        bonusTwoFXSource = GameObject.Find("BonusTwoFX").GetComponentInChildren<AudioSource>();
+        bonusThreeFXSource = GameObject.Find("BonusThreeFX").GetComponentInChildren<AudioSource>();
         musicSource = GameObject.Find("Music").GetComponentInChildren<AudioSource>();
     }
 
@@ -47,6 +67,26 @@ public class AudioManager : MonoBehaviour
     {
         characterFXSource.clip = characterFX[tracknumber];
         characterFXSource.Play();
+    }
+    public void PlayMainLevelFX(int tracknumber)
+    {
+        mainLevelFXSource.clip = mainLevelFX[tracknumber];
+        mainLevelFXSource.Play();
+    }
+    public void PlayBopnusOneFX(int tracknumber)
+    {
+        bonusOneFXSource.clip = characterFX[tracknumber];
+        bonusOneFXSource.Play();
+    }
+    public void PlayBonusTwoFX(int tracknumber)
+    {
+        bonusTwoFXSource.clip = characterFX[tracknumber];
+        bonusTwoFXSource.Play();
+    }
+    public void PlayBonusThreeFX(int tracknumber)
+    {
+        bonusThreeFXSource.clip = characterFX[tracknumber];
+        bonusThreeFXSource.Play();
     }
     public void PlaySoundFX(int tracknumber)
     {

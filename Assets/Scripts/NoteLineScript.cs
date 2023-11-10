@@ -32,9 +32,10 @@ public class NoteLineScript : MonoBehaviour
     public float noteSpeed;
 
     [Header("SUCCESS/FAIL VARIABLES")]
-    public float startCountforFail;
     public bool countOn;
     public float failCount;
+    float startCount = 1;
+
 
     //LEVEL NOTES AND SYNC ARRAYS
     public float[] notes; // song 1 sync notes
@@ -45,7 +46,7 @@ public class NoteLineScript : MonoBehaviour
 
     private void Awake()
     {
-        GameModeManager.instance.bonuslevelScoreTemp = 4000;
+
 
         bonusCore = GetComponentInParent<BonusLevelScript>();
         GameModeManager.StartLevel += StopMusic;
@@ -53,6 +54,8 @@ public class NoteLineScript : MonoBehaviour
     }
     private void Start()
     {
+        GameModeManager.instance.bonuslevelScoreTemp = 4000;
+
         //reset booleans on default state on START
         canStartSong = false;
         song1Active = false;
@@ -106,7 +109,6 @@ public class NoteLineScript : MonoBehaviour
                     StartSongCount();
                     CheckScoring();
                 }
-
             }
             if(song2Active)
             {
@@ -116,7 +118,6 @@ public class NoteLineScript : MonoBehaviour
                     StartSongCount();
                     CheckScoring();
                 }
-
             }
         }
     }
@@ -168,26 +169,35 @@ public class NoteLineScript : MonoBehaviour
 
     public void CheckFail()
     {
+        startCount -= Time.deltaTime;
+
         if(GameModeManager.instance.bonuslevelScoreTemp <= 1800 && GameModeManager.instance.bonuslevelScoreTemp >= 0)
         {
-            failCount -= Time.deltaTime;
 
+
+            failCount -= Time.deltaTime;
             GameModeManager.instance.InvokeBonusMeterAnimOn();
+
             if (failCount <= 0)
             {
-                failCount = 0;
+                failCount = 0.01f;
                 song1Active = false;
                 song2Active = false;
                 GameModeManager.instance.levelActive = false;
                 GameModeManager.instance.bonusLevelEnd = true;
                 GameModeManager.instance.InvokeBonusFail();
-                GameModeManager.instance.InvokeBonusMeterAnimOff();
             }
         }
         else
         {
-            GameModeManager.instance.InvokeBonusMeterAnimOff();
             failCount = 10;
+
+            if (startCount <= 0)
+            {
+                startCount = 0;
+                GameModeManager.instance.InvokeBonusMeterAnimOff(); 
+            }
+
         }
 
     }

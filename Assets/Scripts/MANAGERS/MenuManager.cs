@@ -30,6 +30,7 @@ public class MenuManager : MonoBehaviour
 
     [Header("UI Texts")]
     public GameObject[] beginning = new GameObject[2];
+    public TextMeshProUGUI levelInfoText;
     public TextMeshProUGUI currentControlText;
     public TextMeshProUGUI noGamepadDetectedText;
     public TextMeshProUGUI foundSecretsText;
@@ -63,6 +64,11 @@ public class MenuManager : MonoBehaviour
     public GameObject[] bonusControlLevel1_key = new GameObject[4];
     public GameObject[] bonusControlLevel1_pad = new GameObject[4];
 
+    [Header("UI BONUSLEVEL")]
+    public GameObject bonusOneMeter;
+    public GameObject successMenuBonus;
+    public GameObject gameOverMenuBonus;
+
     [Header("UI Sliders")]
     public Slider masterVolumeSlider;
     public Slider musicVolumeSlider;
@@ -92,6 +98,9 @@ public class MenuManager : MonoBehaviour
         GameModeManager.Success += SuccessMenuOnLevel;
         GameModeManager.Fail += FailedMenuOnLevel;
 
+        GameModeManager.BonusSuccess += SuccessMenuOnBonus;
+        GameModeManager.BonusFail += FailedMenuOnBonus;
+
         GameModeManager.BonusMeterAnimOn += BonusAnimOn;
         GameModeManager.BonusMeterAnimOff += BonusAnimOff;
 
@@ -109,7 +118,7 @@ public class MenuManager : MonoBehaviour
     }
 
     private void BonusAnimOn()
-    { bonusAnim.SetBool("Danger", true);}
+    { bonusAnim.SetBool("Danger", true);  }
     private void BonusAnimOff()
     { bonusAnim.SetBool("Danger", false); }
 
@@ -135,6 +144,7 @@ public class MenuManager : MonoBehaviour
             if(!bonus)
             { 
                 cutSceneInfo[1].SetActive(true); // kenttien 1-3 cutscene info p‰‰lle kun index on 1 - 3
+                levelInfoText.text = "Level " + GameModeManager.instance.levelIndex.ToString();
             }
             else if (bonus)
             { 
@@ -155,7 +165,7 @@ public class MenuManager : MonoBehaviour
 
     public void CutsceneHudActive()
     {
-
+        successFirstButton.GetComponent<Selectable>().Select();
         currentStateHud[0].SetActive(true);
         currentStateHud[1].SetActive(false);
         currentStateHud[2].SetActive(false);
@@ -167,6 +177,7 @@ public class MenuManager : MonoBehaviour
 
     IEnumerator ActivateLevelCoRoutine()
     {
+        yield return new WaitUntil(() => GameModeManager.instance.rewardClaimed == false);
         yield return new WaitForSecondsRealtime(1f);
         beginning[0].SetActive(true);
         yield return new WaitForSecondsRealtime(2f);
@@ -274,6 +285,18 @@ public class MenuManager : MonoBehaviour
         GameModeManager.instance.levelActive = false;
         gameOverMenu.SetActive(true);
         gameoverFirstButton.GetComponent<Selectable>().Select();
+    }
+
+    //BONUS LEVEL ENDING WINDOWS
+    public void SuccessMenuOnBonus()
+    {
+        bonusOneSlider.gameObject.SetActive(false);
+        successMenuBonus.SetActive(true);
+    }
+    public void FailedMenuOnBonus()
+    {
+        bonusOneSlider.gameObject.SetActive(false);
+        gameOverMenuBonus.SetActive(true);
     }
     //------------------------------------------------
     //PAUSE MENU WINDOW FUNCTIONS
@@ -434,6 +457,12 @@ public class MenuManager : MonoBehaviour
         AudioManager.instance.PlayMenuFX(0);
         SetData();
         GameModeManager.instance.CheckBonusLevelAccess();
+    }
+    public void ContinueFromBonus()
+    {
+        AudioManager.instance.PlayMenuFX(0);
+        SetData();
+        GameModeManager.instance.ActivateNextLevel();
     }
 
     public void Retry()

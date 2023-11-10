@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class NoteButtonCollision : MonoBehaviour
 {
+    public ParticleSystem hitParticle;
+    public ParticleSystem perfectParticle;
+
+    public bool hit;
+    public bool perfect;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -11,6 +16,7 @@ public class NoteButtonCollision : MonoBehaviour
         {
             Destroy(collision.gameObject.transform.parent.gameObject);
             GameModeManager.instance.AddBonusScore(30);
+            Instantiate(hitParticle, transform.position, transform.rotation);
         }
         if (collision.gameObject.CompareTag("Perfect"))
         {

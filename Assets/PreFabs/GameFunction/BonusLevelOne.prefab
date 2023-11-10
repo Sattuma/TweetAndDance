@@ -356,6 +356,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea236e653aa333488bf097d23e484d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitParticle: {fileID: 0}
+  perfectParticle: {fileID: 0}
+  hit: 0
+  perfect: 0
 --- !u!1 &764730987
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,6 +854,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea236e653aa333488bf097d23e484d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitParticle: {fileID: 0}
+  perfectParticle: {fileID: 0}
+  hit: 0
+  perfect: 0
 --- !u!1 &1273477255
 GameObject:
   m_ObjectHideFlags: 0
@@ -1319,6 +1327,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea236e653aa333488bf097d23e484d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitParticle: {fileID: 0}
+  perfectParticle: {fileID: 0}
+  hit: 0
+  perfect: 0
 --- !u!1 &1993012720
 GameObject:
   m_ObjectHideFlags: 0
@@ -1673,6 +1685,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799bd0da00e37d5419706efbe2f95085, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bonusCore: {fileID: 0}
+  pointlossCheck: 0
   activators:
   - {fileID: 3175934084479377968}
   - {fileID: 809367165}
@@ -1688,13 +1702,17 @@ MonoBehaviour:
   - {fileID: 5804699625262640867, guid: 21105c75f64bc2e46aafc8a33f3c0573, type: 3}
   - {fileID: 5804699625262640867, guid: 21105c75f64bc2e46aafc8a33f3c0573, type: 3}
   canStartSong: 0
-  beatsShownInAdvance: 4
-  noteSpeed: 9.5
+  song1Active: 0
+  song2Active: 0
   songTimeTotal: 0
   songBeatsTotal: 0
   secPosition: 0
   beatsposition: 0
+  beatsShownInAdvance: 4
   bpm: 164
+  noteSpeed: 9.5
+  countOn: 0
+  failCount: 0
   notes:
   - 1
   - 5
@@ -2150,6 +2168,7 @@ MonoBehaviour:
   - 29
   - 29
   - 29
+  notes2: []
   nextIndex: 0
 --- !u!1 &731458948868999793
 GameObject:
@@ -2814,6 +2833,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea236e653aa333488bf097d23e484d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitParticle: {fileID: 0}
+  perfectParticle: {fileID: 0}
+  hit: 0
+  perfect: 0
 --- !u!1 &5199579986625789398
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,8 +14,6 @@ public class BonusLevelScript : MonoBehaviour
     private void Awake()
     {
         GameModeManager.StartLevelCountOver += ActivateLevel;
-
-
     }
 
     private void Start()
@@ -35,7 +33,7 @@ public class BonusLevelScript : MonoBehaviour
         GameModeManager.instance.StartLevelInvoke();
     }
     private void ActivateLevel()
-    { GameModeManager.instance.BonusLevelActive(); }
+    { GameModeManager.instance.BonusLevelActive(); GameModeManager.instance.InvokeBonusOneStart(); }
 
     private void OnDestroy()
     {
