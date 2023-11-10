@@ -2015,26 +2015,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7475598443264628686, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
-      propertyPath: levelIndex
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7475598443264628686, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
-      propertyPath: levelActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7475598443264628686, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
-      propertyPath: currentLevel
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7475598443264628686, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
-      propertyPath: activeGameMode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7475598443264628686, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
-      propertyPath: bonusLevelActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8097760874582612812, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -2082,10 +2062,6 @@ PrefabInstance:
     - target: {fileID: 8097760874582612814, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
       propertyPath: m_Name
       value: GameModeManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 8097760874582612814, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
@@ -2414,18 +2390,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 300375926617552207, guid: cde0bc226a13ce14488f041366ad0154, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 300375926617552207, guid: cde0bc226a13ce14488f041366ad0154, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 300375926617552207, guid: cde0bc226a13ce14488f041366ad0154, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6577216065897322112, guid: cde0bc226a13ce14488f041366ad0154, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2513,22 +2477,6 @@ PrefabInstance:
     - target: {fileID: 6577216065897322141, guid: cde0bc226a13ce14488f041366ad0154, type: 3}
       propertyPath: m_Name
       value: MenuManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 6943678943845940918, guid: cde0bc226a13ce14488f041366ad0154, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7702505062022422624, guid: cde0bc226a13ce14488f041366ad0154, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7702505062022422624, guid: cde0bc226a13ce14488f041366ad0154, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8960621227923719269, guid: cde0bc226a13ce14488f041366ad0154, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cde0bc226a13ce14488f041366ad0154, type: 3}
@@ -8869,25 +8817,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 921483885725485757, guid: 4cf04bb701032774298427d4ecb23238, type: 3}
-      propertyPath: Loop
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 921483885725485757, guid: 4cf04bb701032774298427d4ecb23238, type: 3}
-      propertyPath: m_Pitch
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 921483886097288749, guid: 4cf04bb701032774298427d4ecb23238, type: 3}
       propertyPath: m_Name
       value: AudioManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 921483886097288749, guid: 4cf04bb701032774298427d4ecb23238, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 921483886097288750, guid: 4cf04bb701032774298427d4ecb23238, type: 3}
-      propertyPath: levelBonusOneFX.Array.size
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 921483886097288751, guid: 4cf04bb701032774298427d4ecb23238, type: 3}
       propertyPath: m_RootOrder

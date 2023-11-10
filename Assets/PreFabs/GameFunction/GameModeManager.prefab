@@ -962,9 +962,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingScreenPrefab: {fileID: 2413979157351415043, guid: 7152a842434c13a498d429d441957bb2, type: 3}
-  activeGameMode: 0
-  currentLevel: 0
-  levelIndex: 0
+  activeGameMode: 3
+  currentLevel: 4
+  levelIndex: 1
   levelName:
   - MainMenu
   - Level1_1
@@ -975,12 +975,13 @@ MonoBehaviour:
   - Bonus1
   - Bonus2
   - Bonus3
-  rewardClaimed: 0
   cutsceneActive: 0
-  levelActive: 0
-  bonusLevelActive: 0
+  levelActive: 1
   isPaused: 0
   cannotResumeFromPause: 0
+  rewardClaimed: 0
+  bonusLevelActive: 0
+  bonusLevelEnd: 0
   timerLevel1: 120
   timerLevel2: 300
   timerLevel3: 300
@@ -1003,8 +1004,9 @@ MonoBehaviour:
   secretInLevel: a0860100000000000000000000000000
   secretMissedInLevel: a0860100000000000000000000000000
   levelScore: 0
-  bonuslevelScore: 0
   secretFoundTemp: 0
   secretMissedTemp: 0
   secretTotalTemp: 0
+  bonuslevelScoreTemp: 0
+  missedNotesTemp: 0
   mouseMovementCheck: {fileID: 1885015883476496722}
