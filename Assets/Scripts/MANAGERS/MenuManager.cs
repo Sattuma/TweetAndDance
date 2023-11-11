@@ -295,6 +295,8 @@ public class MenuManager : MonoBehaviour
     }
     public void FailedMenuOnBonus()
     {
+        AudioManager.instance.PlayBonusOneFX(0);
+        AudioManager.instance.musicSource.Stop();
         bonusOneSlider.gameObject.SetActive(false);
         gameOverMenuBonus.SetActive(true);
     }

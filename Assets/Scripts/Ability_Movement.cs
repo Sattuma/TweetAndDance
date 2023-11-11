@@ -38,10 +38,15 @@ public class Ability_Movement : MonoBehaviour
             {
                 Vector2 targetVelocity = new Vector2(value * playerSpeed, rb.velocity.y);
                 rb.velocity = Vector2.SmoothDamp(rb.velocity, targetVelocity, ref velocity, movementSmooth);
+                core.dustFX.gameObject.SetActive(true);
+                core.flyTrail.gameObject.SetActive(false);
+
             }
             else if(!core.isGrounded)
             {
                 rb.velocity = new Vector2(value * playerSpeed, rb.velocity.y);
+                core.dustFX.gameObject.SetActive(false);
+                core.flyTrail.gameObject.SetActive(true);
             }
 
             rb.velocity.Normalize();
@@ -51,6 +56,7 @@ public class Ability_Movement : MonoBehaviour
             {
                 playFootsteps = true;
                 ActivateFootstepsFX();
+                core.PLayDust();
             }
             else
             {
@@ -82,6 +88,7 @@ public class Ability_Movement : MonoBehaviour
     {
         facingRight = !facingRight;
         transform.Rotate(0, 180, 0);
+
     }
 
     public void ActivateFootstepsFX()
@@ -91,5 +98,7 @@ public class Ability_Movement : MonoBehaviour
         else
         { AudioManager.instance.movementFXSource.GetComponent<AudioSource>().enabled = false;}
     }
+
+
 
 }

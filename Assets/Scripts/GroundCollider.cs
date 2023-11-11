@@ -19,13 +19,13 @@ public class GroundCollider : MonoBehaviour
 
         // TRIGGERS FOR AUDIO EFFECTS ON LANDING
         if(collision.gameObject.CompareTag("GrassGround"))
-        { AudioManager.instance.PlaySoundFX(1);}
+        { AudioManager.instance.PlaySoundFX(1); core.PLayDustGrass(); }
 
         if (collision.gameObject.CompareTag("RockGround"))
-        { AudioManager.instance.PlaySoundFX(3);}
+        { AudioManager.instance.PlaySoundFX(3); core.PLayDustRock(); }
 
         if (collision.gameObject.CompareTag("WoodGround"))
-        { AudioManager.instance.PlaySoundFX(4);}
+        { AudioManager.instance.PlaySoundFX(4); core.PLayDustWood(); }
     }
 
     public IEnumerator ResetDelay()

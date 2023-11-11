@@ -15,7 +15,10 @@ public class Ability_Interact : MonoBehaviour
     public bool canCollect;
     public bool pickedUp;
 
+    [Header("Bonus Level 1  Actions")]
+    public float buttonTimer;
 
+        
     [Header("Bonus Level Buttons")]
     public GameObject[] bonusLevelButtons = new GameObject[3];
 
@@ -53,7 +56,7 @@ public class Ability_Interact : MonoBehaviour
     {
         core = GetComponent<PlayerCore>();
         collectableObj = null;
-
+        buttonTimer = 0.2f;
     }
 
     public void Collect()
@@ -91,64 +94,79 @@ public class Ability_Interact : MonoBehaviour
     {
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel && GameModeManager.instance.levelActive == true)
         {
-            bonusLevelButtons[0].SetActive(true);
+            bonusLevelButtons[0].GetComponent<Collider2D>().enabled = true;
             bonusLevelButtons[0].GetComponentInParent<Animator>().SetTrigger("Response");
-
+            StartCoroutine(OnePressFalse());
         }
     }
+    IEnumerator OnePressFalse()
+    {
+        yield return new WaitForSeconds(buttonTimer);
+        bonusLevelButtons[0].GetComponent<Collider2D>().enabled = false;
+    }
+
     public void InteractActionTwo()
     {
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel && GameModeManager.instance.levelActive == true)
         {
-            bonusLevelButtons[1].SetActive(true);
+            bonusLevelButtons[1].GetComponent<Collider2D>().enabled = true;
             bonusLevelButtons[1].GetComponentInParent<Animator>().SetTrigger("Response");
+            StartCoroutine(TwoPressFalse());
         }
     }
-
+    IEnumerator TwoPressFalse()
+    {
+        yield return new WaitForSeconds(buttonTimer);
+        bonusLevelButtons[1].GetComponent<Collider2D>().enabled = false;
+    }
     public void InteractActionThree()
     {
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel && GameModeManager.instance.levelActive == true)
         {
-            bonusLevelButtons[2].SetActive(true);
+            bonusLevelButtons[2].GetComponent<Collider2D>().enabled = true;
             bonusLevelButtons[2].GetComponentInParent<Animator>().SetTrigger("Response");
+            StartCoroutine(ThreePressFalse());
         }
+    }
+    IEnumerator ThreePressFalse()
+    {
+        yield return new WaitForSeconds(buttonTimer);
+        bonusLevelButtons[2].GetComponent<Collider2D>().enabled = false;
     }
     public void InteractActionFour()
     {
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel && GameModeManager.instance.levelActive == true)
         {
-            bonusLevelButtons[3].SetActive(true);
+            bonusLevelButtons[3].GetComponent<Collider2D>().enabled = true;
             bonusLevelButtons[3].GetComponentInParent<Animator>().SetTrigger("Response");
+            StartCoroutine(FourPressFalse());
         }
+    }
+    IEnumerator FourPressFalse()
+    {
+        yield return new WaitForSeconds(buttonTimer);
+        bonusLevelButtons[3].GetComponent<Collider2D>().enabled = false;
     }
 
     public void CancelOne()
     {
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel && GameModeManager.instance.levelActive == true)
-        {
-            bonusLevelButtons[0].SetActive(false);
-        }
+        { bonusLevelButtons[0].GetComponent<Collider2D>().enabled = false; StopCoroutine(OnePressFalse()); }
     }
     public void CancelTwo()
     {
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel && GameModeManager.instance.levelActive == true)
-        {
-            bonusLevelButtons[1].SetActive(false);
-        }
+        { bonusLevelButtons[1].GetComponent<Collider2D>().enabled = false; StopCoroutine(TwoPressFalse()); }
     }
     public void CancelThree()
     {
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel && GameModeManager.instance.levelActive == true)
-        {
-            bonusLevelButtons[2].SetActive(false);
-        }
+        { bonusLevelButtons[2].GetComponent<Collider2D>().enabled = false; StopCoroutine(ThreePressFalse()); }
     }
     public void CancelFour()
     {
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel && GameModeManager.instance.levelActive == true)
-        {
-            bonusLevelButtons[3].SetActive(false);
-        }
+        { bonusLevelButtons[3].GetComponent<Collider2D>().enabled = false; StopCoroutine(FourPressFalse()); }
     }
 
     public IEnumerator CollectDelay()

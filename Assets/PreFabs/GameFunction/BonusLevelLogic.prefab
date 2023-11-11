@@ -63,6 +63,14 @@ PrefabInstance:
       propertyPath: perfectParticle
       value: 
       objectReference: {fileID: 5558361762386731927, guid: 615cea591e8cecb47b3629fcdd439553, type: 3}
+    - target: {fileID: 706147103, guid: a741b0111e338964a97ba16a3cc4bd88, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 706147105, guid: a741b0111e338964a97ba16a3cc4bd88, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 706147107, guid: a741b0111e338964a97ba16a3cc4bd88, type: 3}
       propertyPath: hitParticle
       value: 
@@ -71,6 +79,14 @@ PrefabInstance:
       propertyPath: perfectParticle
       value: 
       objectReference: {fileID: 5558361762386731927, guid: 615cea591e8cecb47b3629fcdd439553, type: 3}
+    - target: {fileID: 1257951801, guid: a741b0111e338964a97ba16a3cc4bd88, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257951803, guid: a741b0111e338964a97ba16a3cc4bd88, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1257951805, guid: a741b0111e338964a97ba16a3cc4bd88, type: 3}
       propertyPath: hitParticle
       value: 
@@ -79,6 +95,14 @@ PrefabInstance:
       propertyPath: perfectParticle
       value: 
       objectReference: {fileID: 5558361762386731927, guid: 615cea591e8cecb47b3629fcdd439553, type: 3}
+    - target: {fileID: 1765334995, guid: a741b0111e338964a97ba16a3cc4bd88, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1765334997, guid: a741b0111e338964a97ba16a3cc4bd88, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1765334999, guid: a741b0111e338964a97ba16a3cc4bd88, type: 3}
       propertyPath: hitParticle
       value: 
@@ -959,6 +983,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5185224492696874987, guid: a741b0111e338964a97ba16a3cc4bd88, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5630723412522548158, guid: a741b0111e338964a97ba16a3cc4bd88, type: 3}
       propertyPath: m_TagString
       value: Goal
@@ -1009,6 +1037,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6450239695099007144, guid: a741b0111e338964a97ba16a3cc4bd88, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6563305692685119298, guid: a741b0111e338964a97ba16a3cc4bd88, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

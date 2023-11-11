@@ -9,6 +9,13 @@ using UnityEngine;
 public class PlayerCore : MonoBehaviour
 {
 
+    public ParticleSystem dustFX;
+    public ParticleSystem dustGrassFX;
+    public ParticleSystem dustRockFX;
+    public ParticleSystem dustWoodFX;
+
+    public TrailRenderer flyTrail;
+
     public Animator myAnim;
 
     public bool isGrounded;
@@ -89,5 +96,21 @@ public class PlayerCore : MonoBehaviour
     public void WrongNoteAnim()
     {//myAnim.SetTrigger("WrongNote");
     }
+    public void PLayDust()
+    {
+        dustFX.Play();
+    }
 
+    public void PLayDustGrass()
+    {
+        dustGrassFX.Play();
+    }
+    public void PLayDustRock()
+    {
+        dustRockFX.Play();
+    }
+    public void PLayDustWood()
+    {
+        dustWoodFX.Play();
+    }
 }

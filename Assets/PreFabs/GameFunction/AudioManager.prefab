@@ -459,7 +459,7 @@ MonoBehaviour:
   - {fileID: 0}
   mainLevelFX: []
   levelBonusOneFX:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 37af267dbc31b5c43937995a26690e38, type: 3}
   levelBonusTwoFX: []
   levelBonusThreeFX: []
   musicFX:

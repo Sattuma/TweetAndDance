@@ -73,19 +73,19 @@ public class AudioManager : MonoBehaviour
         mainLevelFXSource.clip = mainLevelFX[tracknumber];
         mainLevelFXSource.Play();
     }
-    public void PlayBopnusOneFX(int tracknumber)
+    public void PlayBonusOneFX(int tracknumber)
     {
-        bonusOneFXSource.clip = characterFX[tracknumber];
+        bonusOneFXSource.clip = levelBonusOneFX[tracknumber];
         bonusOneFXSource.Play();
     }
     public void PlayBonusTwoFX(int tracknumber)
     {
-        bonusTwoFXSource.clip = characterFX[tracknumber];
+        bonusTwoFXSource.clip = levelBonusTwoFX[tracknumber];
         bonusTwoFXSource.Play();
     }
     public void PlayBonusThreeFX(int tracknumber)
     {
-        bonusThreeFXSource.clip = characterFX[tracknumber];
+        bonusThreeFXSource.clip = levelBonusThreeFX[tracknumber];
         bonusThreeFXSource.Play();
     }
     public void PlaySoundFX(int tracknumber)

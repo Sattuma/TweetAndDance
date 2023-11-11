@@ -7,8 +7,7 @@ public class NoteScript : MonoBehaviour
     public float currentSpeed;
     public Rigidbody2D rb;
 
-    public bool hit;
-    public bool perfect;
+    public ParticleSystem deadZoneHitFX;
 
     private void Start()
     {
@@ -21,6 +20,8 @@ public class NoteScript : MonoBehaviour
 
         if(collision.gameObject.CompareTag("Goal"))
         {
+            Instantiate(deadZoneHitFX, transform.position, transform.rotation);
+            GameModeManager.instance.AddBonusScore(-50);
             Destroy(gameObject);
         }
     }

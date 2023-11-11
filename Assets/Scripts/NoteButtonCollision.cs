@@ -6,9 +6,8 @@ public class NoteButtonCollision : MonoBehaviour
 {
     public ParticleSystem hitParticle;
     public ParticleSystem perfectParticle;
+    public ParticleSystem missedParticle;
 
-    public bool hit;
-    public bool perfect;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -18,10 +17,7 @@ public class NoteButtonCollision : MonoBehaviour
             GameModeManager.instance.AddBonusScore(30);
             Instantiate(hitParticle, transform.position, transform.rotation);
         }
-        if (collision.gameObject.CompareTag("Perfect"))
-        {
-            GameModeManager.instance.AddBonusScore(100);
-        }
+
     }
 
 }

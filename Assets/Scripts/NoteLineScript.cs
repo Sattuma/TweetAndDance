@@ -174,7 +174,6 @@ public class NoteLineScript : MonoBehaviour
         if(GameModeManager.instance.bonuslevelScoreTemp <= 1800 && GameModeManager.instance.bonuslevelScoreTemp >= 0)
         {
 
-
             failCount -= Time.deltaTime;
             GameModeManager.instance.InvokeBonusMeterAnimOn();
 
@@ -188,7 +187,7 @@ public class NoteLineScript : MonoBehaviour
                 GameModeManager.instance.InvokeBonusFail();
             }
         }
-        else
+        else if(GameModeManager.instance.bonuslevelScoreTemp > 1800)
         {
             failCount = 10;
 
