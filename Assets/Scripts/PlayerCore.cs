@@ -31,6 +31,7 @@ public class PlayerCore : MonoBehaviour
         GameModeManager.Fail += LevelFailAnim;
 
         GameModeManager.BonusOneStart += BonusOneTransitionAnim;
+        GameModeManager.BonusOneEnd += BonusOneEndAnim;
         GameModeManager.BonusSuccess += SuccessAnim;
         GameModeManager.BonusFail += LevelFailAnim;
     }
@@ -55,6 +56,8 @@ public class PlayerCore : MonoBehaviour
 
     public void BonusOneTransitionAnim()
     { myAnim.SetTrigger("Bonus1"); }
+    public void BonusOneEndAnim()
+    { myAnim.SetTrigger("BonusEnd"); }
 
     //-------------------------------------
 

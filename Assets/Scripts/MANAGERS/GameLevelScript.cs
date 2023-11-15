@@ -67,15 +67,14 @@ public class GameLevelScript : MonoBehaviour
 
         if (GameModeManager.instance.rewardClaimed == true)
         {
-            Debug.Log("REWARD CLAIMED");
-            yield return new WaitForSecondsRealtime(2f);
-            Debug.Log("Start Level WITH reward claim");
-            GameModeManager.instance.rewardClaimed = false;
+            SpawnRewardItems();
             GameModeManager.instance.StartLevelInvoke();
+            yield return new WaitForSecondsRealtime(2f);
+            GameModeManager.instance.rewardClaimed = false;
+
         }
         else if(GameModeManager.instance.rewardClaimed == false)
         {
-            Debug.Log("Start level WITHOUT reward claim");
             GameModeManager.instance.StartLevelInvoke();
         }
                 
@@ -87,6 +86,10 @@ public class GameLevelScript : MonoBehaviour
     { GameModeManager.instance.LevelActive(); }
 
 
+    public void SpawnRewardItems()
+    {
+        Debug.Log("SPAWNAAN REWARDIN");
+    }
     public void GroundSpawnPickupLevel()
     {
         while(0 < pickUpCountVariation)

@@ -29,6 +29,7 @@ public class MenuManager : MonoBehaviour
     public GameObject[] cutSceneInfo;
 
     [Header("UI Texts")]
+    public TextMeshProUGUI rewardText;
     public GameObject[] beginning = new GameObject[2];
     public TextMeshProUGUI levelInfoText;
     public TextMeshProUGUI currentControlText;
@@ -90,6 +91,7 @@ public class MenuManager : MonoBehaviour
     }
     private void Start()
     {
+        GameModeManager.ControllerCheck += ControllerCheck;
         //LEVEL EVENT CALL FOR FUNCTIONS
         GameModeManager.StartLevel += ActivateLevel;
 
@@ -116,6 +118,8 @@ public class MenuManager : MonoBehaviour
         CheckCutSceneInfo(); // tsekataan mikä cutscene info tulee riippuen mikä kenttä on ja mitä tarvii
 
     }
+
+
 
     private void BonusAnimOn()
     { bonusAnim.SetBool("Danger", true);  }
@@ -177,8 +181,14 @@ public class MenuManager : MonoBehaviour
 
     IEnumerator ActivateLevelCoRoutine()
     {
+        if(GameModeManager.instance.rewardClaimed == true)
+        {
+            rewardText.gameObject.SetActive(true);
+        }
+
         yield return new WaitUntil(() => GameModeManager.instance.rewardClaimed == false);
         yield return new WaitForSecondsRealtime(1f);
+        rewardText.gameObject.SetActive(false);
         beginning[0].SetActive(true);
         yield return new WaitForSecondsRealtime(2f);
         beginning[0].SetActive(false);
@@ -501,6 +511,11 @@ public class MenuManager : MonoBehaviour
         Debug.Log("HUOM TÄÄLLÄ - testiä varten");
         //kommentoitu pois testiä varten, muuten päällä
         //DataManager.instance.GetLevelAudio();
+    }
+
+    private void ControllerCheck()
+    {
+        currentControlText.text = DataManager.instance.controls.ToString();
     }
     public void SetData()
     {

@@ -56,7 +56,7 @@ public class Ability_Interact : MonoBehaviour
     {
         core = GetComponent<PlayerCore>();
         collectableObj = null;
-        buttonTimer = 0.2f;
+        buttonTimer = 0.05f;
     }
 
     public void Collect()

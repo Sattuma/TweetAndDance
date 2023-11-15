@@ -2,12 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.IO;
 
 public class DataManager : MonoBehaviour
 {
 
     public static DataManager instance;
+
+    //controller connected bool
     public bool controllerConnected = false;
+
+    //Bonus one song sync data
+    public string[] bonusOneSong1Normal;
+    public string[] bonusOneSong1Hard;
+    public string[] bonusOneSong2Normal;
+    public string[] bonusOneSong2Hard;
 
     public enum ControlSystem
     {
@@ -24,19 +33,53 @@ public class DataManager : MonoBehaviour
         else
         { instance = this; DontDestroyOnLoad(instance); }
 
+        //tsek aktiivinen kontrolleri
         CheckControls();
-
-        //tsekkki tarvittaessa siihen onko vcontroller connected vai ei
+        //tsekki onko kontrolleri kytketty vai ei 
         StartCoroutine(CheckForControllers());
 
-     
+        //Bonus level one song infos and difficulties 
+        bonusOneSong1Normal = File.ReadAllLines(@"Assets/Scripts/Data/song1medium.txt");
+        bonusOneSong1Hard = File.ReadAllLines(@"Assets/Scripts/Data/song1hard.txt");
+        bonusOneSong2Normal = File.ReadAllLines(@"Assets/Scripts/Data/song2medium.txt");
+        bonusOneSong2Hard = File.ReadAllLines(@"Assets/Scripts/Data/song2hard.txt");
     }
+
+    /*
+    public void BonusOneSong1Normal(float[] values)
+    {
+        for (int i = 0; i < bonusOneSong1Normal.Length; i++)
+        {
+            values[i] = float.Parse(bonusOneSong1Normal[i]);
+        }
+    }
+    public void BonusOneSong1Hard(float[] values)
+    {
+        for (int i = 0; i < bonusOneSong1Hard.Length; i++)
+        {
+            values[i] = float.Parse(bonusOneSong1Hard[i]);
+        }
+    }
+    public void BonusOneSong2Normal(float[] values)
+    {
+        for (int i = 0; i < bonusOneSong2Normal.Length; i++)
+        {
+            values[i] = float.Parse(bonusOneSong2Normal[i]);
+        }
+    }
+    public void BonusOneSong2Hard(float[] values)
+    {
+        for (int i = 0; i < bonusOneSong2Hard.Length; i++)
+        {
+           values[i] = float.Parse(bonusOneSong2Hard[i]);
+        }
+    }
+    */
 
     IEnumerator CheckForControllers()
     {
         while (true)
         {
-
             string[] names = Input.GetJoystickNames();
 
             for (int x = 0; x < names.Length; x++)
@@ -49,13 +92,15 @@ public class DataManager : MonoBehaviour
                 if (!controllerConnected && names[x].Length > 0)
                 {
                     controllerConnected = true;
-                    //Debug.Log("Connected");
+                    CheckControls();
 
                 }
                 else if (controllerConnected && names[x].Length == 0)
                 {
                     controllerConnected = false;
-                    //Debug.Log("Disconnected");
+                    controls = DataManager.ControlSystem.Keyboard;
+                    CheckControls();
+                    GameModeManager.instance.ControllerCheckInvoke();
                 }
             }
 
@@ -64,6 +109,8 @@ public class DataManager : MonoBehaviour
         }
         
     }
+
+
 
     //LEVEL TIMERS DATA
     public void SetLevelTimers(float timer1,float timer2,float timer3)

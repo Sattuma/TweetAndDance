@@ -3005,6 +3005,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7475598443264628686, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
+      propertyPath: levelActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7475598443264628686, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
       propertyPath: rewardClaimed
       value: 0
       objectReference: {fileID: 0}
@@ -3858,6 +3862,26 @@ PrefabInstance:
     - target: {fileID: 5771237371224905228, guid: 2a5f7411d8f3a3f49aeea34272369db9, type: 3}
       propertyPath: m_Name
       value: DataManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771237371224905266, guid: 2a5f7411d8f3a3f49aeea34272369db9, type: 3}
+      propertyPath: test.Array.size
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771237371224905266, guid: 2a5f7411d8f3a3f49aeea34272369db9, type: 3}
+      propertyPath: test1.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771237371224905266, guid: 2a5f7411d8f3a3f49aeea34272369db9, type: 3}
+      propertyPath: bonusOneSong2Hard.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771237371224905266, guid: 2a5f7411d8f3a3f49aeea34272369db9, type: 3}
+      propertyPath: bonusOneSong1Medium.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771237371224905266, guid: 2a5f7411d8f3a3f49aeea34272369db9, type: 3}
+      propertyPath: bonusOneSong2Medium.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5771237371224905267, guid: 2a5f7411d8f3a3f49aeea34272369db9, type: 3}
       propertyPath: m_RootOrder

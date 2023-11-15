@@ -6,18 +6,39 @@ public class NoteButtonCollision : MonoBehaviour
 {
     public ParticleSystem hitParticle;
     public ParticleSystem perfectParticle;
-    public ParticleSystem missedParticle;
 
+    public bool isEarly;
+    public bool isPerfect;
+    public bool isLate;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Note"))
         {
-            Destroy(collision.gameObject.transform.parent.gameObject);
-            GameModeManager.instance.AddBonusScore(30);
-            Instantiate(hitParticle, transform.position, transform.rotation);
-        }
 
+
+            if (isEarly && !isPerfect && !isLate)
+            {
+                GameModeManager.instance.AddBonusScore(120);
+                Instantiate(hitParticle, transform.position, transform.rotation);
+                Destroy(collision.gameObject.transform.parent.gameObject);
+            }
+            if (isEarly && isPerfect && !isLate)
+            {
+                GameModeManager.instance.AddBonusScore(200);
+                Instantiate(perfectParticle, transform.position, transform.rotation);
+                Destroy(collision.gameObject.transform.parent.gameObject);
+            }
+            if(!isEarly && isPerfect && isLate)
+            {
+                GameModeManager.instance.AddBonusScore(120);
+                Instantiate(hitParticle, transform.position, transform.rotation);
+                Destroy(collision.gameObject.transform.parent.gameObject);
+            }
+
+
+
+        }
     }
 
 }

@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
+using System;
 
 public class MainMenu : MonoBehaviour
 {
@@ -50,6 +51,8 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        GameModeManager.ControllerCheck += ControllerCheck;
+
         AudioManager.instance.musicSource.loop = true;
         AudioManager.instance.masterVolumeValue = masterVolumeSlider.value;
         AudioManager.instance.effectsVolumeValue = effectsVolumeSlider.value;
@@ -63,6 +66,8 @@ public class MainMenu : MonoBehaviour
 
 
     }
+
+
 
     /*
     public void OnPointerEnter()
@@ -176,6 +181,10 @@ public class MainMenu : MonoBehaviour
         yield return new WaitForSecondsRealtime(1f);
         noGamepadDetectedText.gameObject.SetActive(false);
         gamepadDetection = false;
+    }
+    private void ControllerCheck()
+    {
+        currentControlText.text = DataManager.instance.controls.ToString();
     }
     public void OpenHowToPlay()
     {

@@ -33,12 +33,14 @@ public class BonusLevelScript : MonoBehaviour
         GameModeManager.instance.StartLevelInvoke();
     }
     private void ActivateLevel()
-    { GameModeManager.instance.BonusLevelActive(); GameModeManager.instance.InvokeBonusOneStart(); }
+    { 
+        GameModeManager.instance.BonusLevelActive(); 
+        GameModeManager.instance.InvokeBonusOneStart(); 
+    }
 
     private void OnDestroy()
     {
         GameModeManager.instance.bonuslevelScoreTemp = 0;
-        GameModeManager.instance.missedNotesTemp = 0;
         GameModeManager.instance.bonusLevelEnd = false;
     }
 }

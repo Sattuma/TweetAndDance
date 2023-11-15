@@ -8,6 +8,9 @@ public class GameModeManager : MonoBehaviour
 {
     //GAMEACTION EVENTS
     public delegate void GameAction();
+
+    public static event GameAction ControllerCheck;
+
     public static event GameAction StartLevel;
     public static event GameAction StartLevelCountOver;
     public static event GameAction PauseOn;
@@ -22,6 +25,7 @@ public class GameModeManager : MonoBehaviour
     //BONUSACTION EVENTS
     public delegate void BonusAction();
     public static event BonusAction BonusOneStart;
+    public static event BonusAction BonusOneEnd;
     public static event BonusAction BonusMeterAnimOn;
     public static event BonusAction BonusMeterAnimOff;
     public static event BonusAction BonusSuccess;
@@ -33,6 +37,9 @@ public class GameModeManager : MonoBehaviour
 
     //LOADING SCREEN PREFAB
     public GameObject loadingScreenPrefab;
+
+    [Header("Game Difficulty")]
+    public Difficulty difficulty;
 
     [Header("Active Gamemode")]
     public GameMode activeGameMode;
@@ -101,10 +108,18 @@ public class GameModeManager : MonoBehaviour
 
     //BONUS
     public float bonuslevelScoreTemp;
-    public int missedNotesTemp;
+    public float bonusOneSongTotal;
+    public float bonusOneSongPos;
+
 
     public GameObject mouseMovementCheck;
 
+
+    public enum Difficulty
+    {
+        Normal,
+        Hard
+    }
     //Handles functions as player movement, pause etc..
     public enum GameMode
     {
@@ -135,6 +150,7 @@ public class GameModeManager : MonoBehaviour
 
         //when game open - first scene
         activeGameMode = GameMode.mainMenu;
+        //difficulty = Difficulty.Normal;
 
     }
 
@@ -150,6 +166,8 @@ public class GameModeManager : MonoBehaviour
     }
 
     //INVOKE EVENTS FUNCTIONS
+    public void ControllerCheckInvoke()
+    { ControllerCheck?.Invoke(); }
     public void StartLevelInvoke()
     { StartLevel?.Invoke(); }
     public void StartCountOverInvoke()
@@ -166,12 +184,14 @@ public class GameModeManager : MonoBehaviour
     { Fail?.Invoke();}
     public void InvokeBonusOneStart()
     { BonusOneStart?.Invoke();  }
+    public void InvokeBonusOneEnd()
+    { BonusOneEnd?.Invoke(); }
     public void InvokeBonusMeterAnimOn()
     { BonusMeterAnimOn?.Invoke(); }
     public void InvokeBonusMeterAnimOff()
     { BonusMeterAnimOff?.Invoke(); }
     public void InvokeBonusSuccess()
-    { BonusSuccess?.Invoke(); }
+    { BonusSuccess?.Invoke(); rewardClaimed = true; }
     public void InvokeBonusFail()
     { BonusFail?.Invoke(); }
 
@@ -279,6 +299,7 @@ public class GameModeManager : MonoBehaviour
     public void ResetEvents()
     {
         //GAMEACTION RESET
+        ControllerCheck = null;
         StartLevel = null;
         StartLevelCountOver = null;
         PauseOn = null;
@@ -291,6 +312,7 @@ public class GameModeManager : MonoBehaviour
 
         //LEVELACTION RESET
         BonusOneStart = null;
+        BonusOneEnd = null;
         BonusMeterAnimOn = null;
         BonusMeterAnimOff = null;
         BonusSuccess = null;
