@@ -5,10 +5,13 @@ to rise your nest to get it high enough to complete the level. Game has two diff
 Throughout the game there is Bonus levels to help your way to complete the game
 Bonus level is a musical sync based level where you hi the notes in the right time.
 
-Developers:
+# Developers:
 
 Graphics/art & animation & game design
+
 Sattuma
 
 Programming & animation asssist & game design
+
+
 SirHenry001 (Henri Heikkilä)
