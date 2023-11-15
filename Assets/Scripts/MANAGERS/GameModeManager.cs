@@ -65,9 +65,8 @@ public class GameModeManager : MonoBehaviour
     public bool bonusLevelEnd;
 
     [Header("Level Timer")]
-    public float timerLevel1;
-    public float timerLevel2;
-    public float timerLevel3;
+    public float timerNormalMode;
+    public float timerHardMode;
 
     [Header("PickUp Amount")] // ei vielä käytössä - testing
     public int leafCount;
@@ -247,7 +246,7 @@ public class GameModeManager : MonoBehaviour
     }
     public void SetData()
     {
-        DataManager.instance.SetLevelTimers(timerLevel1, timerLevel2, timerLevel3);
+        DataManager.instance.SetLevelTimers(timerNormalMode, timerHardMode);
     }
 
     public void AddBonusScore(int score)

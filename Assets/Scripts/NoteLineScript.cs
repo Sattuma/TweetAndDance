@@ -72,14 +72,14 @@ public class NoteLineScript : MonoBehaviour
     {
         if(GameModeManager.instance.levelIndex == 1)
         {
+            Debug.Log("Normal level 1 bonus");
             songNotes = new float[DataManager.instance.bonusOneSong1Normal.Length];
-            //DataManager.instance.BonusOneSong1Normal(songNotes);
             GetNotesSyncForSong(songNotes, DataManager.instance.bonusOneSong1Normal);
         }
         if (GameModeManager.instance.levelIndex == 2)
         {
+            Debug.Log("Normal level 2 bonus");
             songNotes = new float[DataManager.instance.bonusOneSong2Normal.Length];
-            //DataManager.instance.BonusOneSong2Normal(songNotes);
             GetNotesSyncForSong(songNotes, DataManager.instance.bonusOneSong2Normal);
         }
     }
@@ -88,14 +88,14 @@ public class NoteLineScript : MonoBehaviour
     {
         if (GameModeManager.instance.levelIndex == 1)
         {
+            Debug.Log("HArd level 1 bonus");
             songNotes = new float[DataManager.instance.bonusOneSong1Hard.Length];
-            //DataManager.instance.BonusOneSong1Hard(songNotes);
             GetNotesSyncForSong(songNotes, DataManager.instance.bonusOneSong1Hard);
         }
         if (GameModeManager.instance.levelIndex == 2)
         {
+            Debug.Log("HArd level 2 bonus");
             songNotes = new float[DataManager.instance.bonusOneSong2Hard.Length];
-            //DataManager.instance.BonusOneSong2Hard(songNotes);
             GetNotesSyncForSong(songNotes, DataManager.instance.bonusOneSong2Hard);
         }
     }
@@ -127,8 +127,9 @@ public class NoteLineScript : MonoBehaviour
             //SONG 2 INFORMATION FORVARIABLES
             AudioManager.instance.PlayMusicFX(0);
             //valitaan viel musa
-            //bpm = 164;
-            //noteSpeed = 9.5f;
+            //bpm = ???;
+            //noteSpeed = ??f;
+            //songLastBeat = ??;
             secPerBeat = 60f / bpm;
             songTimeTotal = AudioManager.instance.musicFX[0].length;
             songBeatsTotal = songTimeTotal / secPerBeat;

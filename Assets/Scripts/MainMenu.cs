@@ -30,6 +30,8 @@ public class MainMenu : MonoBehaviour
     public GameObject settingWindow;
     public GameObject controlSettingsWindow;
     public GameObject audioSettingsWindow;
+    public GameObject difficultySettingsWindow;
+    public TextMeshProUGUI currentDifficultyText;
     public TextMeshProUGUI currentControlText;
     public TextMeshProUGUI noGamepadDetectedText;
     public Slider masterVolumeSlider;
@@ -63,8 +65,7 @@ public class MainMenu : MonoBehaviour
         SetData();
         AudioManager.instance.PlayMusicFX(0);
         currentControlText.text = DataManager.instance.controls.ToString();
-
-
+        currentDifficultyText.text = GameModeManager.instance.difficulty.ToString();
     }
 
 
@@ -143,7 +144,15 @@ public class MainMenu : MonoBehaviour
         settingWindow.SetActive(false);
         controlSettingsWindow.SetActive(true);
         GameObject.Find("SwitchControlsButton").GetComponent<Selectable>().Select();
-
+    }
+    public void OpenDifficultySettings()
+    {
+        AudioManager.instance.PlayMenuFX(0);
+        backButton.SetActive(false);
+        backButtonSpesific.SetActive(true);
+        settingWindow.SetActive(false);
+        difficultySettingsWindow.SetActive(true);
+        GameObject.Find("SwitchDifficultyButton").GetComponent<Selectable>().Select();
     }
     public void OpenBackSpesific()
     {
@@ -151,6 +160,7 @@ public class MainMenu : MonoBehaviour
         settingWindow.SetActive(true);
         controlSettingsWindow.SetActive(false);
         audioSettingsWindow.SetActive(false);
+        difficultySettingsWindow.SetActive(false);
         backButton.SetActive(true);
         backButtonSpesific.SetActive(false);
         GameObject.Find("AudioSettingsButton").GetComponent<Selectable>().Select();
@@ -159,19 +169,22 @@ public class MainMenu : MonoBehaviour
     {
         AudioManager.instance.PlayMenuFX(0);
         if (DataManager.instance.controls == DataManager.ControlSystem.Keyboard)
-        {
-            DataManager.instance.ActivateGamePad();
-        }
+        { DataManager.instance.ActivateGamePad(); }
         else if (DataManager.instance.controls == DataManager.ControlSystem.Gamepad)
-        {
-            DataManager.instance.ActivateKeyboard();
-        }
+        {DataManager.instance.ActivateKeyboard();}
         currentControlText.text = DataManager.instance.controls.ToString();
 
         if (!gamepadDetection && Gamepad.current?.IsActuated(0) == null)
-        {
-            StartCoroutine(NoConnect());
-        }
+        { StartCoroutine(NoConnect());}
+    }
+    public void SwitchDifficulty()
+    {
+        AudioManager.instance.PlayMenuFX(0);
+        if (GameModeManager.instance.difficulty == GameModeManager.Difficulty.Normal)
+        { GameModeManager.instance.difficulty = GameModeManager.Difficulty.Hard;}
+        else if (GameModeManager.instance.difficulty == GameModeManager.Difficulty.Hard)
+        { GameModeManager.instance.difficulty = GameModeManager.Difficulty.Normal;}
+        currentDifficultyText.text = GameModeManager.instance.difficulty.ToString();
     }
 
     IEnumerator NoConnect()

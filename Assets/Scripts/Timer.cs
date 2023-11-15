@@ -10,49 +10,36 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        if (GameModeManager.instance.currentLevel == GameModeManager.CurrentLevel.Level1_1)
+        if (GameModeManager.instance.difficulty == GameModeManager.Difficulty.Normal)
         { 
-            DisplayTime(GameModeManager.instance.timerLevel1);
+            DisplayTime(GameModeManager.instance.timerNormalMode);
 
-            if (GameModeManager.instance.timerLevel1 > 0 && GameModeManager.instance.levelActive == true && GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
-            { GameModeManager.instance.timerLevel1 -= Time.deltaTime; }
+            if (GameModeManager.instance.timerNormalMode > 0 && GameModeManager.instance.levelActive == true && GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
+            { GameModeManager.instance.timerNormalMode-= Time.deltaTime; }
 
-            if (GameModeManager.instance.timerLevel1 <= 0 && GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
+            if (GameModeManager.instance.timerNormalMode <= 0 && GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
             {
                 GameModeManager.instance.levelActive = false;
                 GameModeManager.instance.InvokeLevelFail();
-                GameModeManager.instance.timerLevel1 = 0.1f;
+                GameModeManager.instance.timerNormalMode = 0.1f;
             }
         }
 
-        if (GameModeManager.instance.currentLevel == GameModeManager.CurrentLevel.Level1_2)
+        if (GameModeManager.instance.difficulty == GameModeManager.Difficulty.Hard)
         {
-            DisplayTime(GameModeManager.instance.timerLevel2);
-            if (GameModeManager.instance.timerLevel2 > 0 && GameModeManager.instance.levelActive == true && GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
-            { GameModeManager.instance.timerLevel2 -= Time.deltaTime; }
+            DisplayTime(GameModeManager.instance.timerHardMode);
+            if (GameModeManager.instance.timerHardMode > 0 && GameModeManager.instance.levelActive == true && GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
+            { GameModeManager.instance.timerHardMode -= Time.deltaTime; }
 
-            if (GameModeManager.instance.timerLevel2 <= 0 && GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
+            if (GameModeManager.instance.timerHardMode <= 0 && GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
             {
                 GameModeManager.instance.levelActive = false;
                 GameModeManager.instance.InvokeLevelFail();
-                GameModeManager.instance.timerLevel2 = 0.1f;
+                GameModeManager.instance.timerHardMode = 0.1f;
             }
 
         }
 
-        if (GameModeManager.instance.currentLevel == GameModeManager.CurrentLevel.Level1_3)
-        {
-            DisplayTime(GameModeManager.instance.timerLevel3);
-            if (GameModeManager.instance.timerLevel3 > 0 && GameModeManager.instance.levelActive == true && GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
-            { GameModeManager.instance.timerLevel3-= Time.deltaTime; }
-
-            if (GameModeManager.instance.timerLevel3 <= 0 && GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
-            {
-                GameModeManager.instance.levelActive = false;
-                GameModeManager.instance.InvokeLevelFail();
-                GameModeManager.instance.timerLevel3 = 0.1f;
-            }
-        }
     }
 
 

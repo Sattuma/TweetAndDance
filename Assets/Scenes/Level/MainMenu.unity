@@ -3012,6 +3012,14 @@ PrefabInstance:
       propertyPath: rewardClaimed
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7475598443264628686, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
+      propertyPath: timerHardMode
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 7475598443264628686, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
+      propertyPath: timerNormalMode
+      value: 600
+      objectReference: {fileID: 0}
     - target: {fileID: 8097760874582612812, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -3754,10 +3762,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 350023146749260019, guid: 063194214bc7bb84e9aabddca407d8e4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5514999591815202984, guid: 063194214bc7bb84e9aabddca407d8e4, type: 3}
       propertyPath: eventSystem
       value: 

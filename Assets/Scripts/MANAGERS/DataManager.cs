@@ -45,37 +45,6 @@ public class DataManager : MonoBehaviour
         bonusOneSong2Hard = File.ReadAllLines(@"Assets/Scripts/Data/song2hard.txt");
     }
 
-    /*
-    public void BonusOneSong1Normal(float[] values)
-    {
-        for (int i = 0; i < bonusOneSong1Normal.Length; i++)
-        {
-            values[i] = float.Parse(bonusOneSong1Normal[i]);
-        }
-    }
-    public void BonusOneSong1Hard(float[] values)
-    {
-        for (int i = 0; i < bonusOneSong1Hard.Length; i++)
-        {
-            values[i] = float.Parse(bonusOneSong1Hard[i]);
-        }
-    }
-    public void BonusOneSong2Normal(float[] values)
-    {
-        for (int i = 0; i < bonusOneSong2Normal.Length; i++)
-        {
-            values[i] = float.Parse(bonusOneSong2Normal[i]);
-        }
-    }
-    public void BonusOneSong2Hard(float[] values)
-    {
-        for (int i = 0; i < bonusOneSong2Hard.Length; i++)
-        {
-           values[i] = float.Parse(bonusOneSong2Hard[i]);
-        }
-    }
-    */
-
     IEnumerator CheckForControllers()
     {
         while (true)
@@ -113,17 +82,15 @@ public class DataManager : MonoBehaviour
 
 
     //LEVEL TIMERS DATA
-    public void SetLevelTimers(float timer1,float timer2,float timer3)
+    public void SetLevelTimers(float timer1,float timer2)
     {
-        PlayerPrefs.SetFloat("Timer1_1", timer1);
-        PlayerPrefs.SetFloat("Timer1_2", timer2);
-        PlayerPrefs.SetFloat("Timer1_3", timer3);
+        PlayerPrefs.SetFloat("TimerNormal", timer1);
+        PlayerPrefs.SetFloat("TimerHard", timer2);
     }
     public void GetLevelTimers()
     {
-        GameModeManager.instance.timerLevel1 = PlayerPrefs.GetFloat("Timer1_1");
-        GameModeManager.instance.timerLevel2 = PlayerPrefs.GetFloat("Timer1_2");
-        GameModeManager.instance.timerLevel3 = PlayerPrefs.GetFloat("Timer1_3");
+        GameModeManager.instance.timerNormalMode = PlayerPrefs.GetFloat("TimerNormal");
+        GameModeManager.instance.timerHardMode = PlayerPrefs.GetFloat("TimerHard");
     }
     //-----------------
 
