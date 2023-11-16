@@ -20,8 +20,6 @@ public class MenuManager : MonoBehaviour
     public GameObject timerCountText;
 
     [Header("ONSCREEN UI BONUS")]
-    public GameObject pointsText;
-    public GameObject pointsCountText;
     public Slider bonusOneSlider;
 
     [Header("ACTIVE LEVEL HUDvariables")]
@@ -36,6 +34,7 @@ public class MenuManager : MonoBehaviour
     public TextMeshProUGUI noGamepadDetectedText;
     public TextMeshProUGUI foundSecretsText;
     public TextMeshProUGUI totalSecretsText;
+
 
     [Header("UI OnScreen CountDown")]
     public GameObject[] countDown = new GameObject[3];
@@ -67,6 +66,8 @@ public class MenuManager : MonoBehaviour
 
     [Header("UI BONUSLEVEL")]
     public GameObject bonusOneMeter;
+    public TextMeshProUGUI bonus1SongtimeText;
+    public TextMeshProUGUI bonus1SongtimeTotalText;
     public GameObject successMenuBonus;
     public GameObject gameOverMenuBonus;
 
@@ -116,7 +117,6 @@ public class MenuManager : MonoBehaviour
         pauseButton.SetActive(false);
 
         CheckCutSceneInfo(); // tsekataan mikä cutscene info tulee riippuen mikä kenttä on ja mitä tarvii
-
     }
 
 
@@ -129,7 +129,7 @@ public class MenuManager : MonoBehaviour
     private void FixedUpdate()
     {
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel && !GameModeManager.instance.bonusLevelEnd)
-        { UpdateScoreBonus(); }
+        { UpdateScoreBonus(); DisplayTime(GameModeManager.instance.bonusOneSongTimeTemp, bonus1SongtimeText); }
     }
 
     private void CheckCutSceneInfo()
@@ -205,7 +205,6 @@ public class MenuManager : MonoBehaviour
         { LevelHudActive(); }
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
         { BonusOneHudActive(); }
-
     }
 
     public void LevelHudActive()
@@ -222,6 +221,7 @@ public class MenuManager : MonoBehaviour
         currentStateHud[1].SetActive(false);
         currentStateHud[2].SetActive(true);
         currentStateHud[3].SetActive(true);
+        DisplayTime(GameModeManager.instance.bonusOneSongTimeTotalTemp, bonus1SongtimeTotalText);
     }
     public void BonusTwoHudActive()
     {
@@ -307,7 +307,6 @@ public class MenuManager : MonoBehaviour
     {
         AudioManager.instance.PlayBonusOneFX(0);
         AudioManager.instance.musicSource.Stop();
-        bonusOneSlider.gameObject.SetActive(false);
         gameOverMenuBonus.SetActive(true);
     }
     //------------------------------------------------
@@ -450,7 +449,7 @@ public class MenuManager : MonoBehaviour
     {
         if (GameModeManager.instance.levelIndex > 0 && GameModeManager.instance.levelIndex <= 3)
         {
-            bonusOneSlider.value = GameModeManager.instance.bonuslevelScoreTemp * 0.0001f;
+            bonusOneSlider.value = GameModeManager.instance.bonusOnelevelScoreTemp * 0.0001f;
 
         }
         if (GameModeManager.instance.levelIndex > 3 && GameModeManager.instance.levelIndex <= 6)
@@ -516,6 +515,17 @@ public class MenuManager : MonoBehaviour
     private void ControllerCheck()
     {
         currentControlText.text = DataManager.instance.controls.ToString();
+    }
+
+    public void DisplayTime(float timeToDisplay, TextMeshProUGUI text)
+    {
+        if (timeToDisplay >= GameModeManager.instance.bonusOneSongTimeTotalTemp)
+        { timeToDisplay = GameModeManager.instance.bonusOneSongTimeTotalTemp; }
+
+        float minutes = Mathf.FloorToInt(timeToDisplay / 60);
+        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+
+        text.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
     public void SetData()
     {

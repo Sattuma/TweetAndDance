@@ -51,7 +51,7 @@ public class NoteLineScript : MonoBehaviour
     }
     private void Start()
     {
-        GameModeManager.instance.bonuslevelScoreTemp = 4000;
+        GameModeManager.instance.bonusOnelevelScoreTemp = 4000;
         GameModeManager.instance.bonusLevelEnd = false;
 
 
@@ -120,6 +120,7 @@ public class NoteLineScript : MonoBehaviour
             songLastBeat = 441;
             songTimeTotal = AudioManager.instance.musicFX[2].length;
             songBeatsTotal = songTimeTotal / secPerBeat;
+            GameModeManager.instance.bonusOneSongTimeTotalTemp = songTimeTotal;
         }
         if (GameModeManager.instance.levelIndex == 2)
         {
@@ -133,6 +134,7 @@ public class NoteLineScript : MonoBehaviour
             secPerBeat = 60f / bpm;
             songTimeTotal = AudioManager.instance.musicFX[0].length;
             songBeatsTotal = songTimeTotal / secPerBeat;
+            GameModeManager.instance.bonusOneSongTimeTotalTemp = songTimeTotal;
         }
     }
 
@@ -154,8 +156,14 @@ public class NoteLineScript : MonoBehaviour
     {
         secPosition = AudioManager.instance.musicSource.time;
         beatsposition = secPosition / secPerBeat;
+
         if (beatsposition >= songBeatsTotal)
-        { beatsposition = songBeatsTotal; secPerBeat = songTimeTotal; }
+        { 
+            beatsposition = songBeatsTotal; 
+            secPerBeat = songTimeTotal; 
+        }
+
+        GameModeManager.instance.bonusOneSongTimeTemp = secPosition;
 
     }
 
@@ -181,11 +189,11 @@ public class NoteLineScript : MonoBehaviour
     public void CheckScoring() // tsekkaa aktiivisen pistem‰‰r‰n vaan ku song on aktiivinen
     {
 
-        GameModeManager.instance.bonuslevelScoreTemp -= pointlossCheck;
-        if (GameModeManager.instance.bonuslevelScoreTemp <= 0)
-        { GameModeManager.instance.bonuslevelScoreTemp = 0; }
-        if (GameModeManager.instance.bonuslevelScoreTemp >= 10000)
-        { GameModeManager.instance.bonuslevelScoreTemp = 10000; }
+        GameModeManager.instance.bonusOnelevelScoreTemp -= pointlossCheck;
+        if (GameModeManager.instance.bonusOnelevelScoreTemp <= 0)
+        { GameModeManager.instance.bonusOnelevelScoreTemp = 0; }
+        if (GameModeManager.instance.bonusOnelevelScoreTemp >= 10000)
+        { GameModeManager.instance.bonusOnelevelScoreTemp = 10000; }
     }
 
     public void CheckFail()
@@ -193,7 +201,7 @@ public class NoteLineScript : MonoBehaviour
 
         startCount -= Time.deltaTime;
 
-        if(GameModeManager.instance.bonuslevelScoreTemp <= 1800 && GameModeManager.instance.bonuslevelScoreTemp >= 0)
+        if(GameModeManager.instance.bonusOnelevelScoreTemp <= 1800 && GameModeManager.instance.bonusOnelevelScoreTemp >= 0)
         {
 
             failCount -= Time.deltaTime;
@@ -208,7 +216,7 @@ public class NoteLineScript : MonoBehaviour
                 GameModeManager.instance.InvokeBonusFail();
             }
         }
-        else if(GameModeManager.instance.bonuslevelScoreTemp > 1800)
+        else if(GameModeManager.instance.bonusOnelevelScoreTemp > 1800)
         {
             failCount = 10;
 
@@ -225,11 +233,11 @@ public class NoteLineScript : MonoBehaviour
     {
         GameModeManager.instance.bonusLevelEnd = true;
 
-        if(GameModeManager.instance.bonuslevelScoreTemp >= 8200)
+        if(GameModeManager.instance.bonusOnelevelScoreTemp >= 8200)
         {
             StartCoroutine(endSuccessDelay());
         }
-        else if(GameModeManager.instance.bonuslevelScoreTemp < 8200)
+        else if(GameModeManager.instance.bonusOnelevelScoreTemp < 8200)
         {
             StartCoroutine(endFailDelay());
         }

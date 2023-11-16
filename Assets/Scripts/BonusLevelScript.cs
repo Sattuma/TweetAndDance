@@ -40,7 +40,9 @@ public class BonusLevelScript : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameModeManager.instance.bonuslevelScoreTemp = 0;
+        GameModeManager.instance.bonusOnelevelScoreTemp = 0;
+        GameModeManager.instance.bonusOneSongTimeTemp = 0;
+        GameModeManager.instance.bonusOneSongTimeTotalTemp = 0;
         GameModeManager.instance.bonusLevelEnd = false;
     }
 }

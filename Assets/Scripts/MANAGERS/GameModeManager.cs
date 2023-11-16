@@ -94,21 +94,19 @@ public class GameModeManager : MonoBehaviour
     public int[] secretInLevel;
     public int[] secretMissedInLevel;
 
-    [Header("Variables on level")]
-
+    [Header("Variables on Main level")]
     // main level score which is saved
     public int levelScore; //?? tämä samalla tavalla kun secretit
-
     //tracking on level which is temporary and trigger functions - no high score or saving - reset with OnDestroy on levelscripts
     //MAIN LEVEL
     public int secretFoundTemp;
     public int secretMissedTemp;
     public int secretTotalTemp;
 
-    //BONUS
-    public float bonuslevelScoreTemp;
-    public float bonusOneSongTotal;
-    public float bonusOneSongPos;
+    [Header("Variables on bonus One")]
+    public float bonusOnelevelScoreTemp;
+    public float bonusOneSongTimeTotalTemp;
+    public float bonusOneSongTimeTemp;
 
 
     public GameObject mouseMovementCheck;
@@ -251,7 +249,7 @@ public class GameModeManager : MonoBehaviour
 
     public void AddBonusScore(int score)
     {
-        bonuslevelScoreTemp += score;
+        bonusOnelevelScoreTemp += score;
     }
     public void AddLevelScore(int score)
     {

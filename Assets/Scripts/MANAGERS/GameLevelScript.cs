@@ -46,9 +46,6 @@ public class GameLevelScript : MonoBehaviour
         { Debug.Log("musaa toiseen maailmaan puuttuu"); }
         if (GameModeManager.instance.levelIndex > 6 && GameModeManager.instance.levelIndex <= 9)
         { Debug.Log("musaa kolmanteen maailmaan puuttuu"); }
-
-
-
     }
 
 

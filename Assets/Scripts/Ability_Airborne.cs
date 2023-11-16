@@ -18,8 +18,9 @@ public class Ability_Airborne : MonoBehaviour
     public float flyPower = 80f;
     public float flyingGravityRising;
     public float flyingGravityFalling;
-    public float fallMultiplier = 80f;
-    public float lowJumpMultiplier = 80f;
+    public float fallMultiplier = 4f;
+    public float fallMultiplierFly = 2f;
+    public float lowJumpMultiplier = 3f;
     public float groundDetectRadius = 1f;
     public float y;
     public LayerMask groundMask;
@@ -50,9 +51,11 @@ public class Ability_Airborne : MonoBehaviour
         }
         if(core.isGrounded)
         {
+            core.isflying = false;
             rb.gravityScale = 1f;
             core.myAnim.SetBool("OnGround", true);
             landingCheckObj.GetComponent<BoxCollider2D>().enabled = true;
+            core.flyTrail.gameObject.SetActive(false);
         }
         if(!core.isGrounded)
         {
@@ -68,7 +71,10 @@ public class Ability_Airborne : MonoBehaviour
         // PLAYER GRAVITY MULTIPLIES DURING FALLING
         if (y < 0)
         {
-            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1f) * Time.deltaTime;
+            if(!core.isflying)
+            { rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1f) * Time.deltaTime; }
+            else if(core.isflying)
+            { rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplierFly - 1f) * Time.deltaTime; }
         }
         // IF JUMP BUTTON IS RELEASED DURING JUMP, PLAYER FALL DOWN FASTER AND GET SMALLER JUMP
         else if (y > 0 && !jumpIsPressed)
@@ -103,6 +109,8 @@ public class Ability_Airborne : MonoBehaviour
             
             if (core.isGrounded == false)
             {
+                core.isflying = true;
+                core.flyTrail.gameObject.SetActive(true);
                 rb.velocity = Vector2.up * flyPower;
                 //rb.AddForce(transform.up * flyPower);
                 core.FlyAnimOn();

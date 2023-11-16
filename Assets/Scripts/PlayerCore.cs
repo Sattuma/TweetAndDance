@@ -18,6 +18,7 @@ public class PlayerCore : MonoBehaviour
 
     public Animator myAnim;
 
+    public bool isflying;
     public bool isGrounded;
     public bool isCollecting;
     public bool isLanding;
