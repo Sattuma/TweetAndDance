@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4705956146676985152}
   - component: {fileID: 4024308365070117770}
-  - component: {fileID: 5803647790202982614}
   m_Layer: 7
   m_Name: HighLight
   m_TagString: Untagged
@@ -86,22 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &5803647790202982614
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 852293284257898978}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 759e412303c777444b5279c151e3d06d, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.000000052108142, y: 0.43711483}
-  m_Size: {x: 19.110004, y: 1.8904738}
-  m_Direction: 1
 --- !u!1 &7163180490800295477
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,7 +179,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 7163180490800295477}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 759e412303c777444b5279c151e3d06d, type: 2}
+  m_Material: {fileID: 6200000, guid: 3ed248cf775af8d4ab34bb4420a937d2, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -422,15 +405,15 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 25
-  m_LinearDrag: 0
+  m_Mass: 2
+  m_LinearDrag: 0.5
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3ed248cf775af8d4ab34bb4420a937d2, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 1
+  m_Constraints: 0
 --- !u!114 &7163180491361390617
 MonoBehaviour:
   m_ObjectHideFlags: 0

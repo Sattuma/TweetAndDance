@@ -145,9 +145,11 @@ public class GameModeManager : MonoBehaviour
         else
         { instance = this; DontDestroyOnLoad(instance); }
 
+        Debug.Log("HUOM TÄÄLLÄ - testiä varten");
+        //kommentoitu pois testiä varten, muuten päällä
         //when game open - first scene
         activeGameMode = GameMode.mainMenu;
-        //difficulty = Difficulty.Normal;
+        difficulty = Difficulty.Normal;
 
     }
 
@@ -155,8 +157,8 @@ public class GameModeManager : MonoBehaviour
     {
         Debug.Log("HUOM TÄÄLLÄ - testiä varten");
         //kommentoitu pois testiä varten, muuten päällä
-        //GetData();         //kommentoitu pois testiä varten, muuten päällä
-        //SetData();         //kommentoitu pois testiä varten, muuten päällä
+        GetData();         //kommentoitu pois testiä varten, muuten päällä
+        SetData();         //kommentoitu pois testiä varten, muuten päällä
 
         // kaikki GetData otetaan levelchangerisa jo valmiiksi josta info pisteistä etc gamemodemanageriin -
         // (ADD) why the fuck? hmm mietitätä vielä
