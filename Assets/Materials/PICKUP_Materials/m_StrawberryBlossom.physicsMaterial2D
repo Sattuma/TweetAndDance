@@ -6,6 +6,6 @@ PhysicsMaterial2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: m_Stick
+  m_Name: m_StrawberryBlossom
   friction: 3
   bounciness: 0

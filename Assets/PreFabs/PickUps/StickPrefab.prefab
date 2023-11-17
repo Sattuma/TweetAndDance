@@ -405,8 +405,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 2
-  m_LinearDrag: 0.5
+  m_Mass: 5
+  m_LinearDrag: 0.2
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: 3ed248cf775af8d4ab34bb4420a937d2, type: 2}
@@ -428,6 +428,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myModelParent: {fileID: 7163180490800295479}
   myModel: {fileID: 4024308365070117770}
+  landingFX: {fileID: 17059652855907001, guid: bf1feb8a495613546a792c80721bb56a, type: 3}
+  isLanded: 0
   childObject: {fileID: 7163180490835138983}
 --- !u!1 &8510051514014321905
 GameObject:

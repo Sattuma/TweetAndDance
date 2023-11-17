@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class AntiGracvityPickUp : MonoBehaviour
 {
+    public ParticleSystem objAppearFX;
+    public CollectableCollision col;
 
-    
-    // Start is called before the first frame update
-    void Start()
+
+
+    private void Awake()
     {
-        
+        if(!col.isLanded)
+        {
+            Instantiate(objAppearFX, transform.position, transform.rotation);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

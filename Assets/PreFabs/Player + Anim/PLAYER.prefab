@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   core: {fileID: 0}
-  landingTime: 0.2
+  landingTime: 0.1
 --- !u!61 &8302425892417471525
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -772,6 +772,7 @@ MonoBehaviour:
   dustWoodFX: {fileID: 813547308229665153}
   flyTrail: {fileID: 5864101339858528201}
   myAnim: {fileID: 0}
+  isflying: 0
   isGrounded: 0
   isCollecting: 0
   isLanding: 0
@@ -792,7 +793,7 @@ MonoBehaviour:
   facingRight: 0
   playFootsteps: 0
   playerSpeed: 0
-  movementSmooth: 0.3
+  movementSmooth: 0.2
   walkingSpeed: 8
   slowedSpeed: 1
   velocity: {x: 0, y: 0}
@@ -817,6 +818,7 @@ MonoBehaviour:
   flyingGravityRising: 0.1
   flyingGravityFalling: 0.15
   fallMultiplier: 4
+  fallMultiplierFly: 2
   lowJumpMultiplier: 3
   groundDetectRadius: 0.1
   y: 0
@@ -862,6 +864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   move: {fileID: 0}
+  grassAppearFX: {fileID: 5685597352742890443, guid: 2d4ac16b1c2fc7e49a055242d913bbe1, type: 3}
   imageAlpha: {fileID: 0}
   otherTrigger: {fileID: 1529831501155752897}
   fadeOutAlpha: 0.4

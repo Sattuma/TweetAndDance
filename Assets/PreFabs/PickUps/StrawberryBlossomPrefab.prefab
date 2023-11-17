@@ -285,8 +285,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 60
-  m_LinearDrag: 0
+  m_Mass: 0.5
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -308,6 +308,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myModelParent: {fileID: 6158153178137012184}
   myModel: {fileID: 1366344200029090001}
+  landingFX: {fileID: 17059652855907001, guid: bf1feb8a495613546a792c80721bb56a, type: 3}
+  isLanded: 0
   childObject: {fileID: 6158153177938065095}
 --- !u!1 &6158153177938065095
 GameObject:
@@ -506,7 +508,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 6158153178137012190}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 759e412303c777444b5279c151e3d06d, type: 2}
+  m_Material: {fileID: 6200000, guid: 076cef207d0722e44ae4d7ecb25a77b2, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

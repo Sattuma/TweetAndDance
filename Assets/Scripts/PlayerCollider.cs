@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerCollider : MonoBehaviour
 {
     public Ability_Movement move;
+    public ParticleSystem grassAppearFX;
 
     [Header("FADE object collision variables")]
     public SpriteRenderer imageAlpha;
@@ -30,6 +31,7 @@ public class PlayerCollider : MonoBehaviour
         if (collision.gameObject.CompareTag("Grass"))
         {
             AudioManager.instance.PlaySoundFX(0);
+            Instantiate(grassAppearFX, transform.position, transform.rotation);
         }
 
         if (collision.gameObject.CompareTag("LeftCamTrig"))
@@ -71,6 +73,7 @@ public class PlayerCollider : MonoBehaviour
         if(collision.gameObject.CompareTag("Grass"))
         {
             AudioManager.instance.PlaySoundFX(0);
+            Instantiate(grassAppearFX, transform.position, transform.rotation);
         }
     }
     private void Start()

@@ -293,7 +293,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 5
+  m_Constraints: 0
 --- !u!114 &9215853180304335108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,6 +308,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myModelParent: {fileID: 9215853180769949987}
   myModel: {fileID: 247543257288992891}
+  landingFX: {fileID: 17059652855907001, guid: bf1feb8a495613546a792c80721bb56a, type: 3}
+  isLanded: 0
   childObject: {fileID: 9215853180460019693}
 --- !u!1 &9215853180460019693
 GameObject:
@@ -506,7 +508,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 9215853180769949985}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 759e412303c777444b5279c151e3d06d, type: 2}
+  m_Material: {fileID: 6200000, guid: daefd9f1bce0de748a0118c5234009c4, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 7627667589758524911}
   - component: {fileID: 7627667589758524689}
   - component: {fileID: 7627667589758524690}
+  - component: {fileID: 1699011556}
   m_Layer: 7
   m_Name: LeafPrefab
   m_TagString: Collectable
@@ -111,15 +112,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7627667589758524691}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3823943, y: -4.9722004, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -1.3977392, y: -4.9921727, z: 0}
   m_LocalScale: {x: 0.7585526, y: 0.56164384, z: 1.4154}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7627667591022912153}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!212 &7627667589758524910
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -223,7 +224,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myModelParent: {fileID: 7627667590155864602}
   myModel: {fileID: 5401119700811195983}
+  landingFX: {fileID: 17059652855907001, guid: bf1feb8a495613546a792c80721bb56a, type: 3}
+  isLanded: 0
   childObject: {fileID: 7627667591022912156}
+--- !u!114 &1699011556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7627667589758524691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e56f23c66b90d1408c33763463856c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objAppearFX: {fileID: 5685597352742890443, guid: e2453ec76f3272847964dd714c91b4fc, type: 3}
+  col: {fileID: 7627667589758524690}
 --- !u!1 &7627667590155864604
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,13 +335,13 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 7627667590155864604}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 001120d626acbab4d89eaa3a75be126b, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.15285155, y: 0.08083064}
   m_Size: {x: 3.8172889, y: 6.262969}
-  m_Direction: 0
+  m_Direction: 1
 --- !u!1 &7627667591022912156
 GameObject:
   m_ObjectHideFlags: 0
