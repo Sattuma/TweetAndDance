@@ -32,6 +32,14 @@ public class GameLevelScript : MonoBehaviour
     public int Spawn2Max;
     public int Spawn3Max;
     public int Spawn4Max;
+    [Header("Pick up Spaw Range")]
+
+    public Transform spawnPos1;
+    public Transform spawnPos2;
+
+    public float groundMinX = -30;
+    public float groundMaxX = 30;
+    public float groundLevelY = -6.5f;
 
     [Header("Variables for pick ups in scene")]
     public GameObject[] pickupsInScene;
@@ -103,18 +111,16 @@ public class GameLevelScript : MonoBehaviour
         Instantiate(rewardItemPreFab, rewardSpawnPoints[0].transform.position, rewardSpawnPoints[0].transform.rotation);
         Instantiate(rewardItemPreFab, rewardSpawnPoints[1].transform.position, rewardSpawnPoints[1].transform.rotation);
         Instantiate(rewardItemPreFab, rewardSpawnPoints[2].transform.position, rewardSpawnPoints[2].transform.rotation);
-
         Instantiate(rewardSpawnFX, rewardSpawnPoints[0].transform.position, rewardSpawnPoints[0].transform.rotation);
         Instantiate(rewardSpawnFX, rewardSpawnPoints[1].transform.position, rewardSpawnPoints[1].transform.rotation);
         Instantiate(rewardSpawnFX, rewardSpawnPoints[2].transform.position, rewardSpawnPoints[2].transform.rotation);
-
-
     }
 
     private void ActivateLevel()
     {
         GameModeManager.instance.LevelActive();
-        InvokeRepeating("GroundPickUpSpawnRepeat", 0f, 2f);
+        InvokeRepeating("StarSpawnGroundOne", 0f, 2f);
+        InvokeRepeating("StarSpawnGroundTwo", 0f, 2f);
         //InvokeRepeating("AirPickUpSpawnRepeat", 0f, 2f);
         StartMusic();
     }
@@ -130,20 +136,39 @@ public class GameLevelScript : MonoBehaviour
         { Debug.Log("musaa kolmanteen maailmaan puuttuu"); }
     }
 
+    public void StarSpawnGroundOne()
+    {
+        Vector2 min = new Vector2(groundMinX, 0);
+        Vector2 max = new Vector2(groundMaxX, groundLevelY);
+        float x = Random.Range(min.x, max.x);
+        float y = max.y;
+
+        spawnPos1.transform.position = new Vector2(x, y);
+        GroundPickUpSpawnRepeat(spawnPos1);
+    }
+    public void StarSpawnGroundTwo()
+    {
+        Vector2 min = new Vector2(groundMinX, 0);
+        Vector2 max = new Vector2(groundMaxX, groundLevelY);
+        float x = Random.Range(min.x, max.x);
+        float y = max.y;
+
+        spawnPos2.transform.position = new Vector2(x, y);
+        GroundPickUpSpawnRepeat(spawnPos2);
+    }
+
     //maasta spawnautuu yksitellen maa pickupit
-    public void GroundPickUpSpawnRepeat()
+    public void GroundPickUpSpawnRepeat(Transform spawnPos)
     {
         GameObject clone = pickupPrefabGround[Random.Range(0, pickupPrefabGround.Length)];
 
-
         if (clone.gameObject.transform.GetChild(0).gameObject.transform.GetChild(0).CompareTag("Ground1PU"))
         { 
-
             if(pickUp1Spawn > Spawn1Max)
             { pickUp1Spawn = Spawn1Max; }
             else
             {
-                Instantiate(clone, pickupSpawnPointsGround[3].transform.position, pickupSpawnPointsGround[3].transform.rotation);
+                Instantiate(clone, spawnPos.transform.position, spawnPos.transform.rotation);
                 clone.GetComponent<CollectableCollision>().isAppeared = true;
                 pickUp1Spawn += 1;
             }
@@ -154,7 +179,7 @@ public class GameLevelScript : MonoBehaviour
             { pickUp2Spawn = Spawn2Max; }
             else
             {
-                Instantiate(clone, pickupSpawnPointsGround[3].transform.position, pickupSpawnPointsGround[3].transform.rotation);
+                Instantiate(clone, spawnPos.transform.position, spawnPos.transform.rotation);
                 clone.GetComponent<CollectableCollision>().isAppeared = true;
                 pickUp2Spawn += 1;
             }
@@ -165,7 +190,7 @@ public class GameLevelScript : MonoBehaviour
             { pickUp3Spawn = Spawn3Max; }
             else
             {
-                Instantiate(clone, pickupSpawnPointsGround[3].transform.position, pickupSpawnPointsGround[3].transform.rotation);
+                Instantiate(clone, spawnPos.transform.position, spawnPos.transform.rotation);
                 clone.GetComponent<CollectableCollision>().isAppeared = true;
                 pickUp3Spawn += 1;
             }
@@ -176,7 +201,7 @@ public class GameLevelScript : MonoBehaviour
             { pickUp4Spawn = Spawn4Max; }
             else
             {
-                Instantiate(clone, pickupSpawnPointsGround[3].transform.position, pickupSpawnPointsGround[3].transform.rotation);
+                Instantiate(clone, spawnPos.transform.position, spawnPos.transform.rotation);
                 clone.GetComponent<CollectableCollision>().isAppeared = true;
                 pickUp4Spawn += 1;
             }
