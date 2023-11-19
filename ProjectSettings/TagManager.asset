@@ -28,6 +28,10 @@ TagManager:
   - Secret
   - SecretFound
   - BonusLevelOne
+  - Ground1PU
+  - Ground2PU
+  - Ground3PU
+  - Ground4PU
   layers:
   - Default
   - TransparentFX

@@ -3010,7 +3010,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7475598443264628686, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
       propertyPath: rewardClaimed
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7475598443264628686, guid: 912c729ec5cabad4bbd1224d50b0f390, type: 3}
       propertyPath: timerHardMode

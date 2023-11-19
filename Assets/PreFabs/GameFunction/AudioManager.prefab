@@ -118,7 +118,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -216,7 +216,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.503
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -246,7 +246,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -374,7 +374,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -457,7 +457,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  mainLevelFX: []
+  mainLevelFX:
+  - {fileID: 0}
   levelBonusOneFX:
   - {fileID: 8300000, guid: 37af267dbc31b5c43937995a26690e38, type: 3}
   levelBonusTwoFX: []
@@ -467,6 +468,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c1aecdb3286e3bd46972f4544fb69b17, type: 3}
   - {fileID: 8300000, guid: b5f0dfe7c0cb4604884d989f5cacdd98, type: 3}
   - {fileID: 8300000, guid: 6699674d2ab65fe469bc2028684daf80, type: 3}
+  - {fileID: 8300000, guid: f5c623661d40b8b4eb61a853a8ba4921, type: 3}
   menuFXSource: {fileID: 0}
   characterFXSource: {fileID: 0}
   movementFXSource: {fileID: 0}
@@ -566,7 +568,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -694,7 +696,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1304,7 +1306,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.354
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1334,7 +1336,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0

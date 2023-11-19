@@ -11,6 +11,7 @@ public class GameModeManager : MonoBehaviour
 
     public static event GameAction ControllerCheck;
 
+    public static event GameAction RewardLevel;
     public static event GameAction StartLevel;
     public static event GameAction StartLevelCountOver;
     public static event GameAction PauseOn;
@@ -167,6 +168,8 @@ public class GameModeManager : MonoBehaviour
     //INVOKE EVENTS FUNCTIONS
     public void ControllerCheckInvoke()
     { ControllerCheck?.Invoke(); }
+    public void RewardLevelInvoke()
+    { RewardLevel?.Invoke(); }
     public void StartLevelInvoke()
     { StartLevel?.Invoke(); }
     public void StartCountOverInvoke()
@@ -299,6 +302,7 @@ public class GameModeManager : MonoBehaviour
     {
         //GAMEACTION RESET
         ControllerCheck = null;
+        RewardLevel = null;
         StartLevel = null;
         StartLevelCountOver = null;
         PauseOn = null;

@@ -27,7 +27,8 @@ public class MenuManager : MonoBehaviour
     public GameObject[] cutSceneInfo;
 
     [Header("UI Texts")]
-    public TextMeshProUGUI rewardText;
+    public GameObject rewardText;
+    public GameObject getReadyText;
     public GameObject[] beginning = new GameObject[2];
     public TextMeshProUGUI levelInfoText;
     public TextMeshProUGUI currentControlText;
@@ -93,10 +94,9 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         GameModeManager.ControllerCheck += ControllerCheck;
-        //LEVEL EVENT CALL FOR FUNCTIONS
+        GameModeManager.RewardLevel += ActivateReward;
         GameModeManager.StartLevel += ActivateLevel;
 
-        //GAME EVENT CALL FOR FUNCTIONS
         GameModeManager.PauseOn += PauseMenu;
         GameModeManager.Success += SuccessMenuOnLevel;
         GameModeManager.Fail += FailedMenuOnLevel;
@@ -175,20 +175,22 @@ public class MenuManager : MonoBehaviour
         currentStateHud[2].SetActive(false);
         currentStateHud[3].SetActive(false);
     }
-
+    void ActivateReward()
+    {
+        rewardText.SetActive(true);
+    }
     private void ActivateLevel()
-    { StartCoroutine(ActivateLevelCoRoutine()); }
+    {
+        StartCoroutine(ActivateLevelCoRoutine());
+    }
 
     IEnumerator ActivateLevelCoRoutine()
     {
-        if(GameModeManager.instance.rewardClaimed == true)
-        {
-            rewardText.gameObject.SetActive(true);
-        }
-
-        yield return new WaitUntil(() => GameModeManager.instance.rewardClaimed == false);
+        //rewardText.SetActive(true);
+        //yield return new WaitUntil(() => GameModeManager.instance.rewardClaimed == false);
+        rewardText.SetActive(false);
+        getReadyText.SetActive(true);
         yield return new WaitForSecondsRealtime(1f);
-        rewardText.gameObject.SetActive(false);
         beginning[0].SetActive(true);
         yield return new WaitForSecondsRealtime(2f);
         beginning[0].SetActive(false);
@@ -198,6 +200,9 @@ public class MenuManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.5f);
         beginning[1].SetActive(false);
         CheckCurrentLevelInfo();
+
+
+
     }
     private void CheckCurrentLevelInfo()
     {

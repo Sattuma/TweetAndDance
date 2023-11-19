@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class CollectableCollision : MonoBehaviour
 {
-
     [SerializeField] private Renderer myModelParent;
     [SerializeField] private Renderer myModel;
 
     public ParticleSystem landingFX;
+    public Animator anim;
+
     public bool isLanded;
+    public bool isAppeared;
 
     public GameObject childObject;
+
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -21,7 +25,6 @@ public class CollectableCollision : MonoBehaviour
         if (collision.gameObject.tag != "Collectable")
         {
             Instantiate(landingFX, transform.position, transform.rotation);
-            landingFX.Play();
         }
 
 
@@ -39,7 +42,16 @@ public class CollectableCollision : MonoBehaviour
         isLanded = false;
     }
     private void Awake()
-    { HighLightOff();}
+    {
+        anim = GetComponent<Animator>();
+        HighLightOff();
+    }
+
+    private void Start()
+    {
+        if (isAppeared)
+        { anim.SetBool("Appear", true);}
+    }
 
     public void HighLightOn()
     { myModel.gameObject.SetActive(true);}
