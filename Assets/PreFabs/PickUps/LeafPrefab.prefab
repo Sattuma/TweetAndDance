@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7627667589758524689}
   - component: {fileID: 7627667589758524690}
   - component: {fileID: 1699011556}
+  - component: {fileID: 5084481022596729410}
   m_Layer: 7
   m_Name: LeafPrefab
   m_TagString: Collectable
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 7627667589758524691}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -1.3977392, y: -4.9921727, z: 0}
-  m_LocalScale: {x: 0.7585526, y: 0.56164384, z: 1.4154}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7627667591022912153}
@@ -118,7 +119,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 2
+  m_LinearDrag: 3
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -138,11 +139,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8773d97faf7354a9f131272f85f5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj: {fileID: 0}
   myModelParent: {fileID: 7627667590155864602}
   myModel: {fileID: 5401119700811195983}
   landingFX: {fileID: 17059652855907001, guid: bf1feb8a495613546a792c80721bb56a, type: 3}
+  anim: {fileID: 0}
   isLanded: 0
+  isAppeared: 0
   childObject: {fileID: 7627667591022912156}
 --- !u!114 &1699011556
 MonoBehaviour:
@@ -156,8 +158,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e56f23c66b90d1408c33763463856c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objAppearFX: {fileID: 5685597352742890443, guid: e2453ec76f3272847964dd714c91b4fc, type: 3}
   col: {fileID: 7627667589758524690}
+  stopFalling: 0
+  radius: 2
+  groundCheckObj: {fileID: 7627667590155864604}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
+  anim: {fileID: 5084481022596729410}
+  rb: {fileID: 0}
+--- !u!95 &5084481022596729410
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7627667589758524691}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 25371ebbf8c10e941908d384a7c400e1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7627667590155864604
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,7 +201,7 @@ GameObject:
   - component: {fileID: 5285514857656114624}
   m_Layer: 7
   m_Name: IMAGE
-  m_TagString: Untagged
+  m_TagString: Air2PU
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -256,8 +286,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.54168636, y: 1.0107017}
-  m_Size: {x: 4.6461563, y: 8.23593}
+  m_Offset: {x: 0.5416863, y: 0.7092656}
+  m_Size: {x: 4.646149, y: 7.633056}
   m_Direction: 0
 --- !u!1 &7627667591022912156
 GameObject:
@@ -284,16 +314,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7627667591022912156}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.004664467, y: 0.0035281281, z: 0}
-  m_LocalScale: {x: 0.96664864, y: 0.934617, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.50503, y: 0.50503, z: 0.50503}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7627667590155864603}
   - {fileID: 6717660796006762080}
   m_Father: {fileID: 7627667589758524909}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!212 &7627667591022912154
 SpriteRenderer:
   m_ObjectHideFlags: 0

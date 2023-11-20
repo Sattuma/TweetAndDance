@@ -66,6 +66,9 @@ public class Ability_Interact : MonoBehaviour
             if (canCollect)
             {
                 collectableObj.GetComponent<CollectableCollision>().HighLightOff();
+
+                collectableObj.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+                //collectableObj.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 StartCoroutine(CollectDelay());
                 collectableObj.GetComponentInChildren<CapsuleCollider2D>().enabled = false;
                 collectableObj.gameObject.tag = "Untagged";
@@ -76,9 +79,12 @@ public class Ability_Interact : MonoBehaviour
                 collectableObj.transform.position = collectPoint.transform.position;
                 canCollect = false;
                 pickedUp = true;
+
             }
             else if (pickedUp)
             {
+                collectableObj.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                //collectableObj.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 collectableObj.gameObject.transform.parent = null; // if collectable is already picked up in Collect button is pressed again, player drops the collectable object
                 collectableObj.GetComponentInChildren<CapsuleCollider2D>().enabled = true;
                 collectableObj.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;

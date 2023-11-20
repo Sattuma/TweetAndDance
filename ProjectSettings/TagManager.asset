@@ -32,6 +32,9 @@ TagManager:
   - Ground2PU
   - Ground3PU
   - Ground4PU
+  - Attach
+  - Air1PU
+  - Air2PU
   layers:
   - Default
   - TransparentFX
@@ -42,7 +45,7 @@ TagManager:
   - Ground
   - Pickup
   - Glue
-  - 
+  - PickUp2
   - 
   - 
   - 

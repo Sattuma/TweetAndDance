@@ -27,8 +27,6 @@ public class CollectableCollision : MonoBehaviour
             Instantiate(landingFX, transform.position, transform.rotation);
         }
 
-
-
         if(collision.gameObject.tag != "Player")
         {
             gameObject.tag = "Collectable";

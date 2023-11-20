@@ -13,33 +13,34 @@ public class GameLevelScript : MonoBehaviour
     public GameObject rewardItemPreFab;
 
     [Header("SpawnPoints")]
-    public GameObject[] pickupSpawnPointsGround;
-    public GameObject[] pickupSpawnPointsAir;
+    public Transform spawnPos1;
+    public Transform spawnPos2;
+    public Transform spawnPos1Air;
+    public Transform spawnPos2Air;
     public GameObject[] rewardSpawnPoints;
-    public ParticleSystem rewardSpawnFX;
 
-    public List<GameObject> pickUpGroundList = new();
-    public int pickUpCountVariation;
-
-    [Header("Variables for Pick ups")]
-
+    [Header("PickUps CURRENT/MAX in level")]
     public int pickUp1Spawn;
     public int pickUp2Spawn;
     public int pickUp3Spawn;
     public int pickUp4Spawn;
-
     public int Spawn1Max;
     public int Spawn2Max;
     public int Spawn3Max;
     public int Spawn4Max;
-    [Header("Pick up Spaw Range")]
 
-    public Transform spawnPos1;
-    public Transform spawnPos2;
-
-    public float groundMinX = -30;
-    public float groundMaxX = 30;
+    [Header("spawn values pick up in level")]
+    public float groundMinX1 = -30;
+    public float groundMaxX1 = -4;
+    public float groundMinX2 = -4;
+    public float groundMaxX2 = 30;
+    public float airMinX1 = -30;
+    public float airMaxX1 = 4;
+    public float airMinX2 = -4;
+    public float airMaxX2 = 30;
     public float groundLevelY = -6.5f;
+    public float airLevelMinY = 4f;
+    public float airLevelMaxY = 8f;
 
     [Header("Variables for pick ups in scene")]
     public GameObject[] pickupsInScene;
@@ -50,6 +51,14 @@ public class GameLevelScript : MonoBehaviour
     public int secretsFound;
     public int secretsMissed;
 
+    [Header("FX VARIABLES")]
+    public ParticleSystem rewardSpawnFX;
+    public ParticleSystem airSpawnFX;
+
+    //public GameObject[] pickupSpawnPointsGround;
+    //public GameObject[] pickupSpawnPointsAir;
+    //public List<GameObject> pickUpGroundList = new();
+    //public int pickUpCountVariation;
 
 
     private void Awake()
@@ -63,9 +72,7 @@ public class GameLevelScript : MonoBehaviour
         GameModeManager.instance.levelIndex = SceneManager.GetActiveScene().buildIndex;
         string level = GameModeManager.instance.levelName[GameModeManager.instance.levelIndex];
         GameModeManager.instance.ActivateCurrentLevel(level);
-        GameModeManager.instance.CutSceneActive();
-        
-
+        GameModeManager.instance.CutSceneActive();       
     }
 
 
@@ -119,8 +126,10 @@ public class GameLevelScript : MonoBehaviour
     private void ActivateLevel()
     {
         GameModeManager.instance.LevelActive();
-        InvokeRepeating("StarSpawnGroundOne", 0f, 2f);
-        InvokeRepeating("StarSpawnGroundTwo", 0f, 2f);
+        InvokeRepeating("StartSpawnGroundOne", 0f, 4f);
+        InvokeRepeating("StartSpawnGroundTwo", 0f, 5);
+        InvokeRepeating("StartSpawnAirOne", 0f, 8f);
+        InvokeRepeating("StartSpawnAirTwo", 0f, 8f);
         //InvokeRepeating("AirPickUpSpawnRepeat", 0f, 2f);
         StartMusic();
     }
@@ -136,25 +145,45 @@ public class GameLevelScript : MonoBehaviour
         { Debug.Log("musaa kolmanteen maailmaan puuttuu"); }
     }
 
-    public void StarSpawnGroundOne()
+    public void StartSpawnGroundOne()
     {
-        Vector2 min = new Vector2(groundMinX, 0);
-        Vector2 max = new Vector2(groundMaxX, groundLevelY);
+        Vector2 min = new Vector2(groundMinX1, 0);
+        Vector2 max = new Vector2(groundMaxX1, groundLevelY);
         float x = Random.Range(min.x, max.x);
         float y = max.y;
 
         spawnPos1.transform.position = new Vector2(x, y);
         GroundPickUpSpawnRepeat(spawnPos1);
     }
-    public void StarSpawnGroundTwo()
+    public void StartSpawnGroundTwo()
     {
-        Vector2 min = new Vector2(groundMinX, 0);
-        Vector2 max = new Vector2(groundMaxX, groundLevelY);
+        Vector2 min = new Vector2(groundMinX2, 0);
+        Vector2 max = new Vector2(groundMaxX2, groundLevelY);
         float x = Random.Range(min.x, max.x);
         float y = max.y;
 
         spawnPos2.transform.position = new Vector2(x, y);
         GroundPickUpSpawnRepeat(spawnPos2);
+    }
+    public void StartSpawnAirOne()
+    {
+        Vector2 min = new Vector2(airMinX1, airLevelMinY);
+        Vector2 max = new Vector2(airMaxX1, airLevelMaxY);
+        float x = Random.Range(min.x, max.x);
+        float y = Random.Range(min.y, max.y);
+
+        spawnPos1Air.transform.position = new Vector2(x, y);
+        AirPickUpSpawnRepeat(spawnPos1Air);
+    }
+    public void StartSpawnAirTwo()
+    {
+        Vector2 min = new Vector2(airMinX2, airLevelMinY);
+        Vector2 max = new Vector2(airMaxX2, airLevelMaxY);
+        float x = Random.Range(min.x, max.x);
+        float y = Random.Range(min.y, max.y);
+
+        spawnPos2Air.transform.position = new Vector2(x, y);
+        AirPickUpSpawnRepeat(spawnPos2Air);
     }
 
     //maasta spawnautuu yksitellen maa pickupit
@@ -207,12 +236,12 @@ public class GameLevelScript : MonoBehaviour
             }
         }
     }
-
-    //Lehdille & koivunoksille?
-    public void AirPickupSpawnRepeat()
+    public void AirPickUpSpawnRepeat(Transform spawnPosAir)
     {
-        Instantiate(pickupPrefabGround[(5)], pickupSpawnPointsAir[Random.Range(0, 2)].transform.position, pickupSpawnPointsAir[Random.Range(0, 2)].transform.rotation);
-        Instantiate(pickupPrefabGround[(5)], pickupSpawnPointsAir[Random.Range(6, 7)].transform.position, pickupSpawnPointsAir[Random.Range(6, 7)].transform.rotation);
+        GameObject clone = pickupPrefabAir[Random.Range(0, pickupPrefabGround.Length)];
+
+        Instantiate(airSpawnFX, spawnPosAir.transform.position, spawnPosAir.transform.rotation);
+        Instantiate(clone, spawnPosAir.transform.position, spawnPosAir.transform.rotation);
 
     }
 
