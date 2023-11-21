@@ -95,7 +95,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1602401011688620345}
   - component: {fileID: 8209336660880522253}
-  - component: {fileID: 5290077081321194894}
   - component: {fileID: 2508703569513529254}
   m_Layer: 0
   m_Name: BushImage
@@ -171,27 +170,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 2
   m_SpriteSortPoint: 0
---- !u!95 &5290077081321194894
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6943455054524957814}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 318d3feb8b365ef4d9ab44728cd5d6fa, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!70 &2508703569513529254
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
