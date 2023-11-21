@@ -32,6 +32,10 @@ public class CollectableCollision : MonoBehaviour
             gameObject.tag = "Collectable";
             childObject.tag = "Placeable";
             childObject.GetComponent<CapsuleCollider2D>().enabled = true;
+            if(childObject.transform.GetChild(0).tag == "SecretFound")
+            {
+                childObject.transform.GetChild(0).tag = "Secret";
+            }
         }
     }
 

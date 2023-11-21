@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7627667589758524690}
   - component: {fileID: 1699011556}
   - component: {fileID: 5084481022596729410}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: LeafPrefab
   m_TagString: Collectable
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 3
+  m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -159,14 +159,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   col: {fileID: 7627667589758524690}
+  anim: {fileID: 5084481022596729410}
+  rb: {fileID: 7627667589758524689}
   stopFalling: 0
-  radius: 2
-  groundCheckObj: {fileID: 7627667590155864604}
   groundMask:
     serializedVersion: 2
     m_Bits: 64
-  anim: {fileID: 5084481022596729410}
-  rb: {fileID: 0}
+  pickUpMask:
+    serializedVersion: 2
+    m_Bits: 128
+  timer: 0
+  force: 200
+  rotate: 0.5
+  rayDetectRadius: 2
 --- !u!95 &5084481022596729410
 Animator:
   serializedVersion: 5
@@ -199,7 +204,7 @@ GameObject:
   - component: {fileID: 7627667590155864603}
   - component: {fileID: 7627667590155864602}
   - component: {fileID: 5285514857656114624}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: IMAGE
   m_TagString: Air2PU
   m_Icon: {fileID: 0}
@@ -300,7 +305,7 @@ GameObject:
   - component: {fileID: 7627667591022912153}
   - component: {fileID: 7627667591022912154}
   - component: {fileID: 5433395232552399257}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: PlacebleCol
   m_TagString: Placeable
   m_Icon: {fileID: 0}
@@ -402,7 +407,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6717660796006762080}
   - component: {fileID: 5401119700811195983}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: HighLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}

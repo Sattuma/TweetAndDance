@@ -22,7 +22,6 @@ public class PickUpGlue : MonoBehaviour
             if (glueObj[0] == null)
             {
                 glueObj[0] = collision.gameObject.transform;
-
             }
             else if (glueObj[0] != null)
             {

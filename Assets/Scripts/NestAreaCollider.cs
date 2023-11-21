@@ -35,9 +35,16 @@ public class NestAreaCollider : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+
         if (collision.gameObject.CompareTag("NestObject"))
         {
+
+            nestObj = collision.gameObject.transform;
+            childObj = nestObj.gameObject.transform.GetChild(0).gameObject.transform;
+            childOfChildObj = childObj.gameObject.transform.GetChild(0).gameObject.transform;
+
             collision.gameObject.tag = "Collectable";
+            childOfChildObj.tag = "Secret";
         }
     }
 }

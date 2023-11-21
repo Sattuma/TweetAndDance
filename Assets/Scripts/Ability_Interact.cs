@@ -66,7 +66,6 @@ public class Ability_Interact : MonoBehaviour
             if (canCollect)
             {
                 collectableObj.GetComponent<CollectableCollision>().HighLightOff();
-
                 collectableObj.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
                 //collectableObj.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 StartCoroutine(CollectDelay());
