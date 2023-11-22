@@ -148,11 +148,11 @@ MonoBehaviour:
   levelActive: 1
   isPaused: 0
   cannotResumeFromPause: 0
-  rewardClaimed: 0
+  rewardClaimed: 1
   bonusLevelActive: 0
   bonusLevelEnd: 0
-  timerNormalMode: 0
-  timerHardMode: 0
+  timerNormalMode: 600
+  timerHardMode: 300
   leafCount: 0
   stickCount: 0
   birchStickCount: 0
