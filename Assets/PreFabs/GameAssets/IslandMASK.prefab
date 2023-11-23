@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4482300370721530466}
   m_Layer: 0
   m_Name: IslandMASK
-  m_TagString: Untagged
+  m_TagString: Grass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -297,7 +297,6 @@ public class MainMenu : MonoBehaviour
         AudioManager.instance.PlayMenuFX(0);
         SetData();
         yield return new WaitForSecondsRealtime(0.2f);
-        AudioManager.instance.musicSource.Stop();
         GameModeManager.instance.ChangeLevel(levelName);
     }
 
