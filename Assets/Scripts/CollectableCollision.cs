@@ -15,12 +15,11 @@ public class CollectableCollision : MonoBehaviour
 
     public GameObject childObject;
 
-
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
         isLanded = true;
+        GetComponentInChildren<CapsuleCollider2D>().enabled = true;
 
         if (collision.gameObject.tag != "Collectable")
         {
@@ -32,10 +31,6 @@ public class CollectableCollision : MonoBehaviour
             gameObject.tag = "Collectable";
             childObject.tag = "Placeable";
             childObject.GetComponent<CapsuleCollider2D>().enabled = true;
-            if(childObject.transform.GetChild(0).tag == "SecretFound")
-            {
-                childObject.transform.GetChild(0).tag = "Secret";
-            }
         }
     }
 

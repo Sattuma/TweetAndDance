@@ -9,7 +9,6 @@ public class NestScript : MonoBehaviour
     public NestCollider2 nestCol2;
 
     [Header("Nest Completion Booleans")]
-    public bool completeLevelFinal;
     public bool partOneOn;
     public bool partTwoOn;
 }

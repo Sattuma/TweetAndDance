@@ -35,6 +35,7 @@ TagManager:
   - Attach
   - Air1PU
   - Air2PU
+  - NestArea
   layers:
   - Default
   - TransparentFX

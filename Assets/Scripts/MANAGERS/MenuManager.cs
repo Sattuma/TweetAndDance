@@ -18,6 +18,8 @@ public class MenuManager : MonoBehaviour
     [Header("ONSCREEN UI LEVEL")]
     public GameObject timerText;
     public GameObject timerCountText;
+    public TextMeshProUGUI secretCurrentText;
+    public TextMeshProUGUI secretTotalText;
 
     [Header("ONSCREEN UI BONUS")]
     public Slider bonusOneSlider;
@@ -94,6 +96,7 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         GameModeManager.ControllerCheck += ControllerCheck;
+        GameModeManager.SecretCountForMenu += DisplayStartSecrets;
         GameModeManager.RewardLevel += ActivateReward;
         GameModeManager.StartLevel += ActivateLevel;
 
@@ -119,7 +122,11 @@ public class MenuManager : MonoBehaviour
         CheckCutSceneInfo(); // tsekataan mikä cutscene info tulee riippuen mikä kenttä on ja mitä tarvii
     }
 
-
+    private void DisplayStartSecrets()
+    {
+        secretCurrentText.text = GameModeManager.instance.secretCurrentForMenu.ToString();
+        secretTotalText.text = "/ ".ToString() + GameModeManager.instance.secretTotalForMenu.ToString();
+    }
 
     private void BonusAnimOn()
     { bonusAnim.SetBool("Danger", true);  }

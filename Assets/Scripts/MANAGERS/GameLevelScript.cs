@@ -81,6 +81,8 @@ public class GameLevelScript : MonoBehaviour
     {
         GameModeManager.instance.bonusLevelActive = false;
         AudioManager.instance.musicSource.loop = true;
+        GameModeManager.instance.secretCurrentForMenu = 0;
+        CountStartSecretsInLevel();
 
         //GroundSpawnPickupLevel();
         //StartInvokeRepeating();
@@ -95,7 +97,7 @@ public class GameLevelScript : MonoBehaviour
 
         AudioManager.instance.PlayMusicFX(1);
         yield return new WaitUntil(() => GameModeManager.instance.cutsceneActive == false);
-        AudioManager.instance.musicSource.Stop();
+        GameModeManager.instance.InvokeSecretCountForMenu();
 
         if (GameModeManager.instance.rewardClaimed == true)
         {
@@ -112,6 +114,15 @@ public class GameLevelScript : MonoBehaviour
                
     }
 
+    public void CountStartSecretsInLevel()
+    {
+        GameObject[] total = GameObject.FindGameObjectsWithTag("Secret");
+        for (int i = 0; i < total.Length; i++)
+        {
+            i = total.Length;
+            GameModeManager.instance.secretTotalForMenu = i;
+        }
+    }
 
     public void SpawnRewardItems()
     {
@@ -238,7 +249,7 @@ public class GameLevelScript : MonoBehaviour
     }
     public void AirPickUpSpawnRepeat(Transform spawnPosAir)
     {
-        GameObject clone = pickupPrefabAir[Random.Range(0, pickupPrefabGround.Length)];
+        GameObject clone = pickupPrefabAir[Random.Range(0, pickupPrefabAir.Length)];
 
         Instantiate(airSpawnFX, spawnPosAir.transform.position, spawnPosAir.transform.rotation);
         Instantiate(clone, spawnPosAir.transform.position, spawnPosAir.transform.rotation);
@@ -318,6 +329,8 @@ public class GameLevelScript : MonoBehaviour
         //GameModeManager.instance.levelScore = 0;
         secretsFound = 0;
         secretsMissed = 0;
+        GameModeManager.instance.secretCurrentForMenu = 0;
+        GameModeManager.instance.secretTotalForMenu = 0;
         GameModeManager.instance.secretFoundTemp = 0;
         GameModeManager.instance.secretMissedTemp = 0;
         GameModeManager.instance.secretTotalTemp = 0;

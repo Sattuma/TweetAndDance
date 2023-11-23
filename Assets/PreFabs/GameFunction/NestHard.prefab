@@ -44,7 +44,6 @@ GameObject:
   - component: {fileID: 2595501371351243015}
   - component: {fileID: 2595501371351243014}
   - component: {fileID: 2595501371351243012}
-  - component: {fileID: 2595501371351243013}
   - component: {fileID: 2595501369749260509}
   m_Layer: 0
   m_Name: NestArea
@@ -141,22 +140,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!70 &2595501371351243013
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2595501371351243009}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.005483633, y: -0.7846644}
-  m_Size: {x: 4.3273883, y: 4.586092}
-  m_Direction: 0
 --- !u!114 &2595501369749260509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -654,6 +637,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nestCol: {fileID: 2758585238634147412}
   nestCol2: {fileID: 6789265739616478221}
-  completeLevelFinal: 0
   partOneOn: 0
   partTwoOn: 0

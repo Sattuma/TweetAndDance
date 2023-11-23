@@ -7,44 +7,24 @@ using UnityEngine;
 public class NestAreaCollider : MonoBehaviour
 {
 
-    public Transform nestObj;
-    public Transform childObj;
-    public Transform childOfChildObj;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Collectable"))
         {
-            //collision.gameObject.tag = "NestObject";
-            nestObj = collision.gameObject.transform;
-            childObj = nestObj.gameObject.transform.GetChild(0).gameObject.transform;
-            childOfChildObj = childObj.gameObject.transform.GetChild(0).gameObject.transform;
-            
+            collision.gameObject.tag = "NestObject";
 
-            if (childOfChildObj.CompareTag("Secret"))
-            {
-                childOfChildObj.tag = "SecretFound";
-            }
-            else
-            {
-                nestObj.tag = "NestObject";
-            }
         }
 
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-
         if (collision.gameObject.CompareTag("NestObject"))
         {
 
-            nestObj = collision.gameObject.transform;
-            childObj = nestObj.gameObject.transform.GetChild(0).gameObject.transform;
-            childOfChildObj = childObj.gameObject.transform.GetChild(0).gameObject.transform;
-
             collision.gameObject.tag = "Collectable";
-            childOfChildObj.tag = "Secret";
+
         }
     }
 }

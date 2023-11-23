@@ -14,6 +14,7 @@ public class GameModeManager : MonoBehaviour
     public static event GameAction RewardLevel;
     public static event GameAction StartLevel;
     public static event GameAction StartLevelCountOver;
+    public static event GameAction SecretCountForMenu;
     public static event GameAction PauseOn;
     public static event GameAction Success;
     public static event GameAction Fail;
@@ -100,6 +101,8 @@ public class GameModeManager : MonoBehaviour
     public int levelScore; //?? tämä samalla tavalla kun secretit
     //tracking on level which is temporary and trigger functions - no high score or saving - reset with OnDestroy on levelscripts
     //MAIN LEVEL
+    public int secretCurrentForMenu;
+    public int secretTotalForMenu;
     public int secretFoundTemp;
     public int secretMissedTemp;
     public int secretTotalTemp;
@@ -174,6 +177,8 @@ public class GameModeManager : MonoBehaviour
     { StartLevel?.Invoke(); }
     public void StartCountOverInvoke()
     { StartLevelCountOver?.Invoke(); }
+    public void InvokeSecretCountForMenu()
+    { SecretCountForMenu?.Invoke(); }
     public void InvokeLevelCountOn()
     { NestCount?.Invoke();}
     public void InvokeLevelCountOff()
@@ -305,6 +310,7 @@ public class GameModeManager : MonoBehaviour
         RewardLevel = null;
         StartLevel = null;
         StartLevelCountOver = null;
+        SecretCountForMenu = null;
         PauseOn = null;
         Success = null;
         Fail = null;

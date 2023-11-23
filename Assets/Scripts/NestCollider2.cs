@@ -9,18 +9,13 @@ public class NestCollider2 : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Placeable"))
-        {
-            nestBase.partTwoOn = true;
-            nestBase.completeLevelFinal = true;
-        }
+        {  nestBase.partTwoOn = true;}
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Placeable") && nestBase.partOneOn)
-        {
-            GameModeManager.instance.InvokeLevelCountOn();
-        }
+        { GameModeManager.instance.InvokeLevelCountOn(); }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -29,7 +24,6 @@ public class NestCollider2 : MonoBehaviour
         if (collision.gameObject.CompareTag("Placeable"))
         {
             nestBase.partTwoOn = false;
-            nestBase.completeLevelFinal = false;
             GameModeManager.instance.InvokeLevelCountOff();
         }
     }
