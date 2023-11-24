@@ -56,6 +56,17 @@ public class AudioManager : MonoBehaviour
         bonusTwoFXSource = GameObject.Find("BonusTwoFX").GetComponentInChildren<AudioSource>();
         bonusThreeFXSource = GameObject.Find("BonusThreeFX").GetComponentInChildren<AudioSource>();
         musicSource = GameObject.Find("Music").GetComponentInChildren<AudioSource>();
+        StartValues();
+
+    }
+
+    public void StartValues()
+    {
+        //WHEN GAME IS STARTED VALUES HERE
+        masterVolumeValue = 1;
+        effectsVolumeValue = 1;
+        musicVolumeValue = 1;
+        DataManager.instance.SetLevelAudio(masterVolumeValue, effectsVolumeValue, musicVolumeValue);
     }
 
     public void PlayMenuFX(int tracknumber)

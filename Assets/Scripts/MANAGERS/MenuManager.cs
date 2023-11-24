@@ -89,10 +89,6 @@ public class MenuManager : MonoBehaviour
 
     bool gamepadDetection;
 
-    private void Awake()
-    {
-        GetData();
-    }
     private void Start()
     {
         GameModeManager.ControllerCheck += ControllerCheck;
@@ -119,6 +115,7 @@ public class MenuManager : MonoBehaviour
         beginning[1].SetActive(false);
         pauseButton.SetActive(false);
 
+        GetAudioDataForUI();
         CheckCutSceneInfo(); // tsekataan mikä cutscene info tulee riippuen mikä kenttä on ja mitä tarvii
     }
 
@@ -407,6 +404,7 @@ public class MenuManager : MonoBehaviour
         audioSettingsWindow.SetActive(false);
         backButton.SetActive(true);
         backButtonSpesific.SetActive(false);
+        SetAndStoreAudioData();
         GameObject.Find("AudioSettingsButton").GetComponent<Selectable>().Select();
     }
     public void SwitchControls()
@@ -478,20 +476,17 @@ public class MenuManager : MonoBehaviour
     public void Continue()
     {
         AudioManager.instance.PlayMenuFX(0);
-        SetData();
         GameModeManager.instance.CheckBonusLevelAccess();
     }
     public void ContinueFromBonus()
     {
         AudioManager.instance.PlayMenuFX(0);
-        SetData();
         GameModeManager.instance.ActivateNextLevel();
     }
 
     public void Retry()
     {
         AudioManager.instance.PlayMenuFX(0);
-        SetData();
         string currentName = SceneManager.GetActiveScene().name;
         GameModeManager.instance.ChangeLevel(currentName);
     }
@@ -508,20 +503,17 @@ public class MenuManager : MonoBehaviour
     public void ToMainMenu()
     {
         AudioManager.instance.PlayMenuFX(0);
-        SetData();
         GameModeManager.instance.levelActive = false;
         GameModeManager.instance.ChangeLevel(GameModeManager.instance.levelName[0]);
     }
 
-    public void GetData()
+    public void GetAudioDataForUI()
     {
+        DataManager.instance.GetLevelAudio();
+
         masterVolumeSlider.value = AudioManager.instance.masterVolumeValue;
         effectsVolumeSlider.value = AudioManager.instance.effectsVolumeValue;
         musicVolumeSlider.value = AudioManager.instance.musicVolumeValue;
-
-        Debug.Log("HUOM TÄÄLLÄ - testiä varten");
-        //kommentoitu pois testiä varten, muuten päällä
-        //DataManager.instance.GetLevelAudio();
     }
 
     private void ControllerCheck()
@@ -539,12 +531,18 @@ public class MenuManager : MonoBehaviour
 
         text.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
-    public void SetData()
+    public void SetAndStoreAudioData()
     {
         AudioManager.instance.masterVolumeValue = masterVolumeSlider.value;
         AudioManager.instance.effectsVolumeValue = effectsVolumeSlider.value;
         AudioManager.instance.musicVolumeValue = musicVolumeSlider.value;
+
         DataManager.instance.SetLevelAudio(masterVolumeSlider.value, effectsVolumeSlider.value, musicVolumeSlider.value);
+
+    }
+    private void OnDestroy()
+    {
+        SetAndStoreAudioData();
     }
 
 }

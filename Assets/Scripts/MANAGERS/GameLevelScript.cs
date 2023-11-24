@@ -65,6 +65,7 @@ public class GameLevelScript : MonoBehaviour
     {
         GameModeManager.StartLevelCountOver += ActivateLevel;
         GameModeManager.Success += CountLevelSuccess;
+        GameModeManager.Fail += StopSpawningObjects;
 
         //Aktivoidaan Gamemodemanageriin oikea kenttä aktiiviseksi - INDEXIN VAIHTO RELEVANTTIA VAIN GAME LEVELISSÄ,
         //BONUS KENTTÄ TOIMII GAME LEVELIN INDEXIIN NOJAUTUEN. KAI :D
@@ -113,7 +114,6 @@ public class GameLevelScript : MonoBehaviour
         }
                
     }
-
     public void CountStartSecretsInLevel()
     {
         GameObject[] total = GameObject.FindGameObjectsWithTag("Secret");
@@ -123,7 +123,6 @@ public class GameLevelScript : MonoBehaviour
             GameModeManager.instance.secretTotalForMenu = i;
         }
     }
-
     public void SpawnRewardItems()
     {
         Instantiate(rewardItemPreFab, rewardSpawnPoints[0].transform.position, rewardSpawnPoints[0].transform.rotation);
@@ -271,24 +270,12 @@ public class GameLevelScript : MonoBehaviour
             pickUpCountVariation--;
         }
     }
-    
-    //NÄITÄ EI KÄYTETÄ MUTTA TARVITTAESSA JOO, JÄTETÄÄN VIELÄ
-    public void DestroyPickUpsWithTag()
-    {
-        pickupsInScene = GameObject.FindGameObjectsWithTag("Collectable");
-        for (int i = 0; i < pickupsInScene.Length; i++)
-        { Destroy(pickupsInScene[i]); }
-    }
-    public void DestroyPickUpsWithTag2()
-    {
-        pickupsInScene = GameObject.FindGameObjectsWithTag("NestObject");
-        for (int i = 0; i < pickupsInScene.Length; i++)
-        { Destroy(pickupsInScene[i]); }
-    }
     */
 
     public void CountLevelSuccess()
     {
+        StopSpawningObjects();
+        //DestroyPickUpsWithTag();
         SecretsCheck();
         PointsCheck(); 
     }
@@ -313,15 +300,30 @@ public class GameLevelScript : MonoBehaviour
     }
 
     public void PointsCheck()
-    { GameModeManager.instance.HighScoreCheck();}
-
-    public void LevelCleared()
-    {
-        StopInvoke();
-        //DestroyPickUpsWithTag();
+    { 
+        GameModeManager.instance.HighScoreCheck();
     }
-    public void StopInvoke()
-    { CancelInvoke(); }
+
+    /*
+    //NÄITÄ EI KÄYTETÄ MUTTA TARVITTAESSA JOO, JÄTETÄÄN VIELÄ, tuhoaa objectit esim pesän ympäriltä
+    public void DestroyPickUpsWithTag()
+    {
+        pickupsInScene = GameObject.FindGameObjectsWithTag("Collectable");
+        for (int i = 0; i < pickupsInScene.Length; i++)
+        { Destroy(pickupsInScene[i]); }
+    }
+    public void DestroyPickUpsWithTag2()
+    {
+        pickupsInScene = GameObject.FindGameObjectsWithTag("NestObject");
+        for (int i = 0; i < pickupsInScene.Length; i++)
+        { Destroy(pickupsInScene[i]); }
+    }
+    */
+
+    public void StopSpawningObjects()
+    { 
+        CancelInvoke(); 
+    }
 
     private void OnDestroy()
     {

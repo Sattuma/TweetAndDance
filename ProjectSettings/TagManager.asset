@@ -76,6 +76,9 @@ TagManager:
   - name: Background
     uniqueID: 1453082745
     locked: 0
+  - name: Assets
+    uniqueID: 3964204043
+    locked: 0
   - name: Game
     uniqueID: 3244062651
     locked: 0

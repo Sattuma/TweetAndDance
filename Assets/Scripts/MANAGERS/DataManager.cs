@@ -72,15 +72,9 @@ public class DataManager : MonoBehaviour
                     GameModeManager.instance.ControllerCheckInvoke();
                 }
             }
-
-            yield return new WaitForSeconds(1f);
-            
-        }
-        
+            yield return new WaitForSeconds(1f);   
+        }   
     }
-
-
-
     //LEVEL TIMERS DATA
     public void SetLevelTimers(float timer1,float timer2)
     {
@@ -204,11 +198,7 @@ public class DataManager : MonoBehaviour
             InputSystem.DisableDevice(Keyboard.current);
             controls = ControlSystem.Gamepad;
         }
-
-
     }
-
-
 
     public void CheckBonusLevelInfo(GameObject obj, GameObject obj2, GameObject obj3)
     {

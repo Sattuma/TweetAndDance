@@ -148,24 +148,18 @@ public class GameModeManager : MonoBehaviour
         { Destroy(gameObject); }
         else
         { instance = this; DontDestroyOnLoad(instance); }
+        StartValues();
 
-        Debug.Log("HUOM TÄÄLLÄ - testiä varten");
-        //kommentoitu pois testiä varten, muuten päällä
-        //when game open - first scene
-        //activeGameMode = GameMode.mainMenu;
-        //difficulty = Difficulty.Normal;
 
     }
 
-    private void Start()
+    public void StartValues()
     {
-        Debug.Log("HUOM TÄÄLLÄ - testiä varten");
-        //kommentoitu pois testiä varten, muuten päällä
-        //GetData();         //kommentoitu pois testiä varten, muuten päällä
-        //SetData();         //kommentoitu pois testiä varten, muuten päällä
-
-        // kaikki GetData otetaan levelchangerisa jo valmiiksi josta info pisteistä etc gamemodemanageriin -
-        // (ADD) why the fuck? hmm mietitätä vielä
+        //WHEN GAME IS STARTED VALUES HERE
+        activeGameMode = GameMode.mainMenu;
+        difficulty = Difficulty.Normal;
+        DataManager.instance.GetLevelSecrets();
+        DataManager.instance.SetLevelTimers(timerNormalMode, timerHardMode);
     }
 
     //INVOKE EVENTS FUNCTIONS
@@ -239,11 +233,11 @@ public class GameModeManager : MonoBehaviour
     }
     public void ActivateBonusLevel()
     {
-        if (levelIndex <= 3 && levelIndex > 0)
+        if (levelIndex <= 2 && levelIndex > 0)
         { ChangeLevel(bonusLevelName[1]);}
-        if (levelIndex <= 6 && levelIndex > 3)
+        if (levelIndex <= 5 && levelIndex > 3)
         { ChangeLevel(bonusLevelName[2]);}
-        if (levelIndex <= 9 && levelIndex > 6)
+        if (levelIndex <= 8 && levelIndex > 6)
         { ChangeLevel(bonusLevelName[3]);}
     }
 
@@ -251,10 +245,6 @@ public class GameModeManager : MonoBehaviour
     {
         Instantiate(loadingScreenPrefab);
         GameObject.Find("LevelChanger(Clone)").GetComponent<ASync>().LoadLevel(levelName);
-    }
-    public void SetData()
-    {
-        DataManager.instance.SetLevelTimers(timerNormalMode, timerHardMode);
     }
 
     public void AddBonusScore(int score)
@@ -326,11 +316,6 @@ public class GameModeManager : MonoBehaviour
         BonusMeterAnimOff = null;
         BonusSuccess = null;
         BonusFail = null;
-    }
-
-    public void GetData()
-    {
-        DataManager.instance.GetLevelSecrets();
     }
 
 }
