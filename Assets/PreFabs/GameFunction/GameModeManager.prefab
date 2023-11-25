@@ -148,7 +148,7 @@ MonoBehaviour:
   levelActive: 1
   isPaused: 0
   cannotResumeFromPause: 0
-  rewardClaimed: 1
+  rewardClaimed: 0
   bonusLevelActive: 0
   bonusLevelEnd: 0
   timerNormalMode: 600
@@ -172,6 +172,8 @@ MonoBehaviour:
   secretInLevel: a0860100000000000000000000000000
   secretMissedInLevel: a0860100000000000000000000000000
   levelScore: 0
+  secretCurrentForMenu: 0
+  secretTotalForMenu: 0
   secretFoundTemp: 0
   secretMissedTemp: 0
   secretTotalTemp: 0
