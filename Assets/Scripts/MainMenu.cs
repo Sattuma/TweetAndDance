@@ -56,16 +56,16 @@ public class MainMenu : MonoBehaviour
         GameModeManager.ControllerCheck += ControllerCheck;
 
         AudioManager.instance.musicSource.loop = true;
-        AudioManager.instance.masterVolumeValue = masterVolumeSlider.value;
-        AudioManager.instance.effectsVolumeValue = effectsVolumeSlider.value;
-        AudioManager.instance.musicVolumeValue = musicVolumeSlider.value;
+
 
         //DataManager.instance.CheckControllerNull(); // check ei toimi, pelin alussa herjaus jos gamepad ei ole kytketty. tee checki siitä että toimii myös kun vain toinen KEY/ GAMEPAD on kytketty
 
-        GetAudioDataForUI();
+
         AudioManager.instance.PlayMusicFX(0);
         currentControlText.text = DataManager.instance.controls.ToString();
         currentDifficultyText.text = GameModeManager.instance.difficulty.ToString();
+
+        GetAudioDataForUI();
     }
 
 
@@ -296,6 +296,7 @@ public class MainMenu : MonoBehaviour
     public IEnumerator StartButtonDelay(string levelName)
     {
         AudioManager.instance.PlayMenuFX(0);
+        SetAndStoreAudioData();
         yield return new WaitForSecondsRealtime(0.2f);
         GameModeManager.instance.ChangeLevel(levelName);
     }
@@ -314,13 +315,12 @@ public class MainMenu : MonoBehaviour
         AudioManager.instance.effectsVolumeValue = effectsVolumeSlider.value;
         AudioManager.instance.musicVolumeValue = musicVolumeSlider.value;
 
-        DataManager.instance.SetLevelAudio(masterVolumeSlider.value, effectsVolumeSlider.value, musicVolumeSlider.value);
-
+        DataManager.instance.SetLevelAudio(AudioManager.instance.masterVolumeValue, AudioManager.instance.effectsVolumeValue, AudioManager.instance.musicVolumeValue);
     }
 
     public void GetAudioDataForUI()
     {
-        DataManager.instance.GetLevelAudio();
+        DataManager.instance.GetLevelAudio(AudioManager.instance.masterVolumeValue, AudioManager.instance.effectsVolumeValue, AudioManager.instance.musicVolumeValue);
 
         masterVolumeSlider.value = AudioManager.instance.masterVolumeValue;
         effectsVolumeSlider.value = AudioManager.instance.effectsVolumeValue;
@@ -329,8 +329,6 @@ public class MainMenu : MonoBehaviour
 
     private void OnDestroy()
     {
-
-        SetAndStoreAudioData();
 
         if (lastSelectedGameObject = null)
         { lastSelectedGameObject = null; }

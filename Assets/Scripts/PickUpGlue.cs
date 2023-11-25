@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class PickUpGlue : MonoBehaviour
 {
-    public Transform[] glueObj;
-    public Transform[] attachPos;
 
-    //bool firstAttach;
-    //bool secondAttach;
-    //bool thirdAttach;
-
-    //public Transform glueChildObj;
+    public Transform attachedObj;
+    public Transform attachPos;
+    public ParticleSystem attachFX;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -19,38 +15,12 @@ public class PickUpGlue : MonoBehaviour
 
         if (collision.gameObject.tag == "Collectable" && col || collision.gameObject.tag == "NestObject" && col)
         {
-            if (glueObj[0] == null)
+            if (attachedObj == null && collision.gameObject.tag != "Attach")
             {
-                glueObj[0] = collision.gameObject.transform;
-            }
-            else if (glueObj[0] != null)
-            {
-                if (glueObj[1] == null)
-                {
-                    glueObj[1] = collision.gameObject.transform;
-                    glueObj[2] = null;
-                }
-                else if(glueObj[1] != null)
-                {
-                    if(glueObj[2] == null)
-                    {
-                        glueObj[2] = collision.gameObject.transform;
-                    }
-                }
+                attachedObj = collision.gameObject.transform;
+                attachPos.GetComponent<FixedJoint2D>().connectedBody = attachedObj.GetComponent<Rigidbody2D>();
+                Instantiate(attachFX, attachPos.position, attachPos.rotation);
             }
         }
     }
-
-    private void Start()
-    {
-        //turhia? ellei käytä apuna collisionissa siisteyden vuoksi
-        //firstAttach = false;
-        //secondAttach = false;
-        //thirdAttach = false;
-
-        //check if obj 1,2,3 is not null nii sit attach se teittyyn paikkaan?
-        //ja sille jotain paskee jo collisionissa on/off mitä tarvii?
-        //KESKEN
-    }
-
 }

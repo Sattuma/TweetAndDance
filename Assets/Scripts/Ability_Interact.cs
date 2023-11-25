@@ -79,6 +79,18 @@ public class Ability_Interact : MonoBehaviour
                 canCollect = false;
                 pickedUp = true;
 
+                //if collected blueberry - it becomes front of player when picked up
+                if (collectableChildObj.GetChild(0).tag == "Attach")
+                {
+                    GameObject glue = collectableChildObj.GetChild(0).gameObject;
+                    glue.GetComponent<Renderer>().sortingLayerName = "Pickups";
+                    glue.GetComponent<Collider2D>().enabled = true;
+                    GameObject highLight = collectableChildObj.GetChild(1).gameObject;
+                    highLight.GetComponent<Renderer>().sortingLayerName = "Pickups";
+
+
+                }
+
             }
             else if (pickedUp)
             {

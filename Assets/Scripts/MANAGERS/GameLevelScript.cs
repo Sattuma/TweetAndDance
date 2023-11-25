@@ -7,6 +7,11 @@ using UnityEngine.SceneManagement;
 //PURPOSE OF THIS SCRIPT IS COUNT TEMPORARILY INFO AND FUNCTIONS WHICH GOES TO GAME MANAGER IF NEEDED WERE STORED 
 public class GameLevelScript : MonoBehaviour
 {
+
+    [Header("GameObject Nest for Level")]
+    public GameObject nestObjNormal;
+    public GameObject nestObjHard;
+
     [Header("GameObejcts To SPawn In level")]
     public GameObject[] pickupPrefabGround;
     public GameObject[] pickupPrefabAir;
@@ -83,6 +88,9 @@ public class GameLevelScript : MonoBehaviour
         GameModeManager.instance.bonusLevelActive = false;
         AudioManager.instance.musicSource.loop = true;
         GameModeManager.instance.secretCurrentForMenu = 0;
+
+        CheckNestObjectForLevel();
+
         CountStartSecretsInLevel();
 
         //GroundSpawnPickupLevel();
@@ -114,6 +122,21 @@ public class GameLevelScript : MonoBehaviour
         }
                
     }
+
+    public void CheckNestObjectForLevel()
+    {
+        if (GameModeManager.instance.difficulty == GameModeManager.Difficulty.Normal)
+        {
+            nestObjNormal.SetActive(true);
+            nestObjHard.SetActive(false);
+        }
+        if (GameModeManager.instance.difficulty == GameModeManager.Difficulty.Hard)
+        {
+            nestObjNormal.SetActive(false);
+            nestObjHard.SetActive(true);
+        }
+    }
+
     public void CountStartSecretsInLevel()
     {
         GameObject[] total = GameObject.FindGameObjectsWithTag("Secret");

@@ -475,17 +475,20 @@ public class MenuManager : MonoBehaviour
     // BUTTON CALLS FOR NAVIGATION BETWEEN MENUS AND SCENES
     public void Continue()
     {
+        SetAndStoreAudioData();
         AudioManager.instance.PlayMenuFX(0);
         GameModeManager.instance.CheckBonusLevelAccess();
     }
     public void ContinueFromBonus()
     {
+        SetAndStoreAudioData();
         AudioManager.instance.PlayMenuFX(0);
         GameModeManager.instance.ActivateNextLevel();
     }
 
     public void Retry()
     {
+        SetAndStoreAudioData();
         AudioManager.instance.PlayMenuFX(0);
         string currentName = SceneManager.GetActiveScene().name;
         GameModeManager.instance.ChangeLevel(currentName);
@@ -502,14 +505,25 @@ public class MenuManager : MonoBehaviour
 
     public void ToMainMenu()
     {
+        SetAndStoreAudioData();
         AudioManager.instance.PlayMenuFX(0);
         GameModeManager.instance.levelActive = false;
         GameModeManager.instance.ChangeLevel(GameModeManager.instance.levelName[0]);
     }
 
+    public void SetAndStoreAudioData()
+    {
+
+        AudioManager.instance.masterVolumeValue = masterVolumeSlider.value;
+        AudioManager.instance.effectsVolumeValue = effectsVolumeSlider.value;
+        AudioManager.instance.musicVolumeValue = musicVolumeSlider.value;
+
+        DataManager.instance.SetLevelAudio(AudioManager.instance.masterVolumeValue, AudioManager.instance.effectsVolumeValue, AudioManager.instance.musicVolumeValue);
+    }
     public void GetAudioDataForUI()
     {
-        DataManager.instance.GetLevelAudio();
+
+        DataManager.instance.GetLevelAudio(AudioManager.instance.masterVolumeValue, AudioManager.instance.effectsVolumeValue, AudioManager.instance.musicVolumeValue);
 
         masterVolumeSlider.value = AudioManager.instance.masterVolumeValue;
         effectsVolumeSlider.value = AudioManager.instance.effectsVolumeValue;
@@ -531,19 +545,8 @@ public class MenuManager : MonoBehaviour
 
         text.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
-    public void SetAndStoreAudioData()
-    {
-        AudioManager.instance.masterVolumeValue = masterVolumeSlider.value;
-        AudioManager.instance.effectsVolumeValue = effectsVolumeSlider.value;
-        AudioManager.instance.musicVolumeValue = musicVolumeSlider.value;
 
-        DataManager.instance.SetLevelAudio(masterVolumeSlider.value, effectsVolumeSlider.value, musicVolumeSlider.value);
 
-    }
-    private void OnDestroy()
-    {
-        SetAndStoreAudioData();
-    }
 
 }
 
