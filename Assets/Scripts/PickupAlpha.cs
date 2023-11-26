@@ -4,35 +4,69 @@ using UnityEngine;
 
 public class PickupAlpha : MonoBehaviour
 {
-    [Header("FADE object collision variables")]
+
+    public Animator anim;
     public SpriteRenderer imageAlpha;
-    public GameObject otherTrigger;
-    public float fadeOutAlpha;
-    public float fadeInAlpha;
-    public float fadeSpeed;
 
-    public bool objectFading;
+    //public float fadeOutAlpha;
+    //public float fadeInAlpha;
+    //public float fadeSpeed;
 
-    private void FixedUpdate()
+    //public bool objectFading;
+    //public bool stopFadeAction;
+
+    private void Start()
     {
-        if(objectFading)
-        {
-            
-        }
-        else if(!objectFading)
-        {
-            
-        }
+        //stopFadeAction = false;
     }
 
+    public void FadeInAnim()
+    {
+        anim.SetTrigger("FadeIn");
+    }
+    public void FadeOutAnim()
+    {
+        anim.SetTrigger("FadeOut");
+    }
+
+    /*
+    private void Update()
+    {
+        if(objectFading && !stopFadeAction)
+        {
+            FadeIn();
+        }
+        else if(!objectFading && stopFadeAction)
+        {
+            FadeOut();
+        }
+    }
+    */
+
+
+
+    /*
     public void FadeIn()
     {
-        Debug.Log("FADE IN");
+        imageAlpha.gameObject.transform.GetComponent<SpriteRenderer>();
+        imageAlpha.color = new Color(1, 1, 1, fadeOutAlpha);
+        StartCoroutine(FadeDelay());
     }
     public void FadeOut()
     {
-        Debug.Log("FADE OUT");
+        imageAlpha.gameObject.transform.GetComponent<SpriteRenderer>();
+        imageAlpha.color = new Color(1, 1, 1, fadeInAlpha);
+        StartCoroutine(FadeDelay());
     }
 
+    IEnumerator FadeDelay()
+    {
+        yield return new WaitForSecondsRealtime(.7f);
+        objectFading = false;
+        stopFadeAction = false;
+
+
+    }
+    */
 
 }

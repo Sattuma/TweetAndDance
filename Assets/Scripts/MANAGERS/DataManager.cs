@@ -91,28 +91,20 @@ public class DataManager : MonoBehaviour
     //AUDIO LEVELS DATA
     public void SetLevelAudio(float value1,float value2,float value3)
     {
-        Debug.Log("SAVE ÄÄNI");
+
         PlayerPrefs.SetFloat("MasterVolume", value1);
         PlayerPrefs.SetFloat("EffectVolume", value2);
         PlayerPrefs.SetFloat("MusicVolume", value3);
 
 
-        Debug.Log(value1);
-        Debug.Log(value2);
-        Debug.Log(value3);
-
     }
     public void GetLevelAudio(float value1, float value2, float value3)
     {
-        Debug.Log("LOAD ÄÄNI");
+
         PlayerPrefs.GetFloat("MasterVolume",value1);
         PlayerPrefs.GetFloat("EffectVolume",value2);
         PlayerPrefs.GetFloat("MusicVolume",value3);
 
-
-        Debug.Log(value1);
-        Debug.Log(value2);
-        Debug.Log(value3);
     }
     //-----------------
 

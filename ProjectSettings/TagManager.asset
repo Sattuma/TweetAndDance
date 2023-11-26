@@ -36,6 +36,8 @@ TagManager:
   - Air1PU
   - Air2PU
   - NestArea
+  - FollowCamTrig
+  - TreeLeaves
   layers:
   - Default
   - TransparentFX

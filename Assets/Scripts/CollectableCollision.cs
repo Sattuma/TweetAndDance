@@ -12,12 +12,12 @@ public class CollectableCollision : MonoBehaviour
 
     public bool isLanded;
     public bool isAppeared;
+    public bool isGlued;
 
     public GameObject childObject;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
         isLanded = true;
         GetComponentInChildren<CapsuleCollider2D>().enabled = true;
 

@@ -71,20 +71,21 @@ public class GameLevelScript : MonoBehaviour
         GameModeManager.StartLevelCountOver += ActivateLevel;
         GameModeManager.Success += CountLevelSuccess;
         GameModeManager.Fail += StopSpawningObjects;
-
-        //Aktivoidaan Gamemodemanageriin oikea kenttä aktiiviseksi - INDEXIN VAIHTO RELEVANTTIA VAIN GAME LEVELISSÄ,
-        //BONUS KENTTÄ TOIMII GAME LEVELIN INDEXIIN NOJAUTUEN. KAI :D
-
-        GameModeManager.instance.levelIndex = SceneManager.GetActiveScene().buildIndex;
-        string level = GameModeManager.instance.levelName[GameModeManager.instance.levelIndex];
-        GameModeManager.instance.ActivateCurrentLevel(level);
-        GameModeManager.instance.CutSceneActive();       
     }
 
 
 
     private void Start()
     {
+        //Aktivoidaan Gamemodemanageriin oikea kenttä aktiiviseksi - INDEXIN VAIHTO RELEVANTTIA VAIN GAME LEVELISSÄ,
+        //BONUS KENTTÄ TOIMII GAME LEVELIN INDEXIIN NOJAUTUEN. KAI :D
+
+        //nämä siirretty startiin ja siirrä takas awakeen jos alkaa tökkii joskus?
+        GameModeManager.instance.levelIndex = SceneManager.GetActiveScene().buildIndex;
+        string level = GameModeManager.instance.levelName[GameModeManager.instance.levelIndex];
+        GameModeManager.instance.ActivateCurrentLevel(level);
+        GameModeManager.instance.CutSceneActive();
+
         GameModeManager.instance.bonusLevelActive = false;
         AudioManager.instance.musicSource.loop = true;
         GameModeManager.instance.secretCurrentForMenu = 0;

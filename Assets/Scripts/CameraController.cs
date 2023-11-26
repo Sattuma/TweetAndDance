@@ -12,6 +12,8 @@ public class CameraController : MonoBehaviour
     public Transform leftObj;
     public Transform rightObj;
 
+    public bool isUp;
+
     //VARIABLE FOR CAMERA POSITION VALUES
     public Vector2 movement;
     public float cameraOffsetY = 3;
@@ -39,21 +41,49 @@ public class CameraController : MonoBehaviour
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, minX, maxX), Mathf.Clamp(transform.position.y, minY, maxY), transform.position.z);
         movement = transform.position;
         movement.x = Mathf.Lerp(movement.x, target.position.x, cameraSpeed * Time.deltaTime);
+        if (isUp)
+        {
+            movement.y = Mathf.Lerp(movement.y, target.position.y, cameraSpeed * Time.deltaTime);
+        }
+        else if(!isUp)
+        {
+            movement.y = Mathf.Lerp(movement.y, minY, cameraSpeed * Time.deltaTime);
+           
+        }
+
         transform.position = movement;
 
     }
 
     public void ChangeCamStatic()
     {
+        isUp = false;
         target = staticObj;
         cameraSpeed = speedTransitionStatic;
-        //gameObject.GetComponentInChildren<Camera>().orthographicSize = 8;
+        minY = 0;
+        maxY = 25;
+
     }
-    public void ChangeCamFollow()
+    public void ChangeCamFollowGround()
     {
+        isUp = false;
         target = followObj;
         cameraSpeed = speedTransitionFollow;
-        //gameObject.GetComponentInChildren<Camera>().orthographicSize = 9;
+        minY = 0;
+        maxY = 25;
+
+    }
+
+    public void ChangeCamFollowUp()
+    {
+        isUp = true;
+        target = followObj;
+        cameraSpeed = speedTransitionFollow;
+        minY = 0;
+        maxY = 25;
+
+
+
     }
 
     public void UpdateCamera()

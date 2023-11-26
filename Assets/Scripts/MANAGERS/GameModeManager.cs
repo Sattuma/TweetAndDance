@@ -148,7 +148,10 @@ public class GameModeManager : MonoBehaviour
         { Destroy(gameObject); }
         else
         { instance = this; DontDestroyOnLoad(instance); }
-        StartValues();
+
+
+        Debug.Log("GAME MANAGERISSA STARTVALUESIT POISSA PÄÄLTÄ - TESTIN VUOKSI, LAITA PÄÄLLE KN OIKEA PELI");
+        //StartValues();
 
 
     }
@@ -157,6 +160,8 @@ public class GameModeManager : MonoBehaviour
     {
         //WHEN GAME IS STARTED VALUES HERE
         activeGameMode = GameMode.mainMenu;
+        currentLevel = CurrentLevel.MainMenu;
+        levelIndex = 0;
         difficulty = Difficulty.Normal;
         DataManager.instance.GetLevelSecrets();
         DataManager.instance.SetLevelTimers(timerNormalMode, timerHardMode);

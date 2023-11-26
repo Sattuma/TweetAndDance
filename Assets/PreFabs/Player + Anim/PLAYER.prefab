@@ -409,7 +409,7 @@ TrailRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1050904645
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Time: 0.2
   m_Parameters:
@@ -865,12 +865,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   move: {fileID: 0}
   grassAppearFX: {fileID: 5685597352742890443, guid: 2d4ac16b1c2fc7e49a055242d913bbe1, type: 3}
-  imageAlpha: {fileID: 0}
-  otherTrigger: {fileID: 1529831501155752897}
-  fadeOutAlpha: 0.4
-  fadeInAlpha: 1
-  fadeSpeed: 10
-  objectFading: 0
+  leafAppearFX: {fileID: 5685597352742890443, guid: e2453ec76f3272847964dd714c91b4fc, type: 3}
+  landingTrigger: {fileID: 1529831501155752897}
 --- !u!1001 &389662713937928301
 PrefabInstance:
   m_ObjectHideFlags: 0
