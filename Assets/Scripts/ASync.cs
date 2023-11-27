@@ -13,6 +13,10 @@ public class ASync : MonoBehaviour
     public bool canChange;
     public float staticTimeForScreen;
 
+    private void Start()
+    {
+        GameModeManager.instance.ResetEvents();
+    }
     public void LoadLevel(string sceneName)
     {
         StartCoroutine(LevelLoadDelay(sceneName));
@@ -30,7 +34,6 @@ public class ASync : MonoBehaviour
         while (!operation.isDone && !canChange)
         {
             GetData();
-            GameModeManager.instance.ResetEvents();
             Time.timeScale = 1;
             GameModeManager.instance.isPaused = false;
             float progress = Mathf.Clamp01(operation.progress / 0.9f);

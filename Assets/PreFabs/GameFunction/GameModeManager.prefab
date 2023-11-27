@@ -144,6 +144,8 @@ MonoBehaviour:
   - Bonus1
   - Bonus2
   - Bonus3
+  endScreenName:
+  - EndScreen_1
   cutsceneActive: 0
   levelActive: 1
   isPaused: 0

@@ -33,4 +33,9 @@ public class EventSoundFX : MonoBehaviour
         audioSource.clip = flySound[Random.Range(0, walkSound.Length)];
         audioSource.Play();
     }
+
+    public void MainMenuButton()
+    {
+        GameModeManager.instance.ChangeLevel(GameModeManager.instance.levelName[0]);
+    }
 }

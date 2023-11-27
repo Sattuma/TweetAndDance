@@ -202,7 +202,6 @@ public class MenuManager : MonoBehaviour
         GameModeManager.instance.StartCountOverInvoke();
         yield return new WaitForSecondsRealtime(0.5f);
         beginning[1].SetActive(false);
-        GameModeManager.instance.InvokeInfoCanvas();
         CheckCurrentLevelInfo();
 
 
@@ -211,7 +210,7 @@ public class MenuManager : MonoBehaviour
     private void CheckCurrentLevelInfo()
     {
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
-        { LevelHudActive(); }
+        { LevelHudActive(); GameModeManager.instance.InvokeInfoCanvas(); }
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
         { BonusOneHudActive(); }
     }
@@ -479,7 +478,24 @@ public class MenuManager : MonoBehaviour
     {
         SetAndStoreAudioData();
         AudioManager.instance.PlayMenuFX(0);
-        GameModeManager.instance.CheckBonusLevelAccess();
+
+        //--------------------------------------------------------------------------------
+        Debug.Log("TÄÄLLÄ EKAA BUILDIA VARTEN TOISEEN KENTTÄÄN LOPPUVA TEMP KOODI");
+        // if else on käytössä vain ekassa buildissa ku npeli loppuu kakkoskentän jälkeen
+
+        if(GameModeManager.instance.currentLevel == GameModeManager.CurrentLevel.Level1_2)
+        {
+            GameModeManager.instance.ChangeLevel(GameModeManager.instance.endScreenName[0]);
+        }
+        else
+        {
+            GameModeManager.instance.CheckBonusLevelAccess();
+        }
+        //--------------------------------------------------------------------------------
+
+        //tämä on oikea ja käytössä jatkossa kun eka buildi on buildattu
+        //GameModeManager.instance.CheckBonusLevelAccess();
+
     }
     public void ContinueFromBonus()
     {
@@ -548,7 +564,10 @@ public class MenuManager : MonoBehaviour
         text.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
-
+    private void OnDestroy()
+    {
+        GameModeManager.instance.ResetEvents();
+    }
 
 }
 

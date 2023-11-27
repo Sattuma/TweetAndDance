@@ -55,6 +55,7 @@ public class GameModeManager : MonoBehaviour
     [Header("Level Change String Array")]
     public string[] levelName;
     public string[] bonusLevelName;
+    public string[] endScreenName;
 
     [Header("Level State Booleans")]
     public bool cutsceneActive;

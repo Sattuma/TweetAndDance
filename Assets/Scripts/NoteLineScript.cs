@@ -113,7 +113,7 @@ public class NoteLineScript : MonoBehaviour
         {
             songActive = true;
             AudioManager.instance.PlayMusicFX(2); 
-            //SONG 1 INFORMATION FORVARIABLES
+            //SONG 1 INFORMATION FOR VARIABLES
             bpm = 164;
             noteSpeed = 7f;
             secPerBeat = 60f / bpm;
@@ -125,7 +125,7 @@ public class NoteLineScript : MonoBehaviour
         if (GameModeManager.instance.levelIndex == 2)
         {
             songActive = true;
-            //SONG 2 INFORMATION FORVARIABLES
+            //SONG 2 INFORMATION FOR VARIABLES
             AudioManager.instance.PlayMusicFX(0);
             //valitaan viel musa
             //bpm = ???;
