@@ -212,8 +212,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8850083912818141789}
   - component: {fileID: 8850083912818141760}
-  - component: {fileID: 6936915462565399285}
   - component: {fileID: 1624351522881054211}
+  - component: {fileID: 6936915462565399285}
   m_Layer: 0
   m_Name: BushALPHA
   m_TagString: Untagged
@@ -290,6 +290,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1624351522881054211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8850083912818141788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a59106138522b344b625fd3d061c98b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 6936915462565399285}
+  imageAlpha: {fileID: 4728763954293739602}
 --- !u!95 &6936915462565399285
 Animator:
   serializedVersion: 5
@@ -311,21 +325,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1624351522881054211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8850083912818141788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a59106138522b344b625fd3d061c98b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  imageAlpha: {fileID: 4728763954293739602}
-  fadeOutAlpha: 0.3
-  fadeInAlpha: 1
-  fadeSpeed: 220
-  objectFading: 0
-  stopFadeAction: 0

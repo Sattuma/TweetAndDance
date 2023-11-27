@@ -1366,10 +1366,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 840147193655474768, guid: a1e7f817c4171344b929acbfd3ad6d37, type: 3}
-      propertyPath: fadeOutAlpha
-      value: 0.3
-      objectReference: {fileID: 0}
     - target: {fileID: 7490548433018391774, guid: a1e7f817c4171344b929acbfd3ad6d37, type: 3}
       propertyPath: m_Name
       value: ENVIRONMENT_PREFAB

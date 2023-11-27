@@ -24,7 +24,7 @@ public class PlayerCollider : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Shader"))
         {
-            AudioManager.instance.PlaySoundFX(0);
+            //AudioManager.instance.PlaySoundFX(0);
             //Physics2D.IgnoreCollision(otherTrigger.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
             //imageAlpha = collision.gameObject.transform.GetComponent<SpriteRenderer>();
             //imageAlpha.color = new Color(1, 1, 1, fadeOutAlpha);
@@ -39,11 +39,13 @@ public class PlayerCollider : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Grass"))
         {
+            Physics2D.IgnoreCollision(landingTrigger.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
             AudioManager.instance.PlaySoundFX(0);
             Instantiate(grassAppearFX, transform.position, transform.rotation);
         }
         if (collision.gameObject.CompareTag("TreeLeaves"))
         {
+            Physics2D.IgnoreCollision(landingTrigger.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
             AudioManager.instance.PlaySoundFX(0);
             Instantiate(leafAppearFX, transform.position, transform.rotation);
         }
@@ -86,7 +88,7 @@ public class PlayerCollider : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Shader"))
         {
-            AudioManager.instance.PlaySoundFX(0);
+            //AudioManager.instance.PlaySoundFX(0);
 
             //imageAlpha = collision.gameObject.transform.GetComponent<SpriteRenderer>();
             //imageAlpha.color = new Color(1, 1, 1, fadeInAlpha);
@@ -101,11 +103,13 @@ public class PlayerCollider : MonoBehaviour
 
         if(collision.gameObject.CompareTag("Grass"))
         {
+            Physics2D.IgnoreCollision(landingTrigger.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
             AudioManager.instance.PlaySoundFX(0);
             Instantiate(grassAppearFX, transform.position, transform.rotation);
         }
         if (collision.gameObject.CompareTag("TreeLeaves"))
         {
+            Physics2D.IgnoreCollision(landingTrigger.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
             AudioManager.instance.PlaySoundFX(0);
             Instantiate(leafAppearFX, transform.position, transform.rotation);
         }
