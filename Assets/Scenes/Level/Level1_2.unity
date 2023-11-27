@@ -1029,10 +1029,6 @@ PrefabInstance:
       propertyPath: eventSystem
       value: 
       objectReference: {fileID: 391381608}
-    - target: {fileID: 1518580794, guid: cde0bc226a13ce14488f041366ad0154, type: 3}
-      propertyPath: m_TagString
-      value: InfoCanvas
-      objectReference: {fileID: 0}
     - target: {fileID: 6577216065897322112, guid: cde0bc226a13ce14488f041366ad0154, type: 3}
       propertyPath: m_Pivot.x
       value: 0
