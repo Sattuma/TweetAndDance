@@ -5,11 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerCollider : MonoBehaviour
 {
-    public Ability_Movement move;
     public ParticleSystem grassAppearFX;
     public ParticleSystem leafAppearFX;
-
-    [Header("FADE object collision variables")]
    // public SpriteRenderer imageAlpha;
     public GameObject landingTrigger;
     //public float fadeOutAlpha;
@@ -24,17 +21,8 @@ public class PlayerCollider : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Shader"))
         {
-            //AudioManager.instance.PlaySoundFX(0);
-            //Physics2D.IgnoreCollision(otherTrigger.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
-            //imageAlpha = collision.gameObject.transform.GetComponent<SpriteRenderer>();
-            //imageAlpha.color = new Color(1, 1, 1, fadeOutAlpha);
-            //objectFading = true;
-
             Physics2D.IgnoreCollision(landingTrigger.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
             collision.gameObject.GetComponentInParent<PickupAlpha>().FadeOutAnim();
-
-            //collision.gameObject.GetComponentInParent<PickupAlpha>().objectFading = true;
-            //collision.gameObject.GetComponentInParent<PickupAlpha>().stopFadeAction = false;
         }
 
         if (collision.gameObject.CompareTag("Grass"))
@@ -54,6 +42,8 @@ public class PlayerCollider : MonoBehaviour
         {
             Physics2D.IgnoreCollision(landingTrigger.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
             FindCameraStatic();
+
+            //old system where camera follows always player when level starts
             //StartCoroutine(SwitchCameraTarget());
         }
 
@@ -88,17 +78,8 @@ public class PlayerCollider : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Shader"))
         {
-            //AudioManager.instance.PlaySoundFX(0);
-
-            //imageAlpha = collision.gameObject.transform.GetComponent<SpriteRenderer>();
-            //imageAlpha.color = new Color(1, 1, 1, fadeInAlpha);
-            //objectFading = false;
-
             Physics2D.IgnoreCollision(landingTrigger.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
             collision.gameObject.GetComponentInParent<PickupAlpha>().FadeInAnim();
-
-            //collision.gameObject.GetComponentInParent<PickupAlpha>().objectFading = false;
-            //collision.gameObject.GetComponentInParent<PickupAlpha>().stopFadeAction = true;
         }
 
         if(collision.gameObject.CompareTag("Grass"))
@@ -114,43 +95,66 @@ public class PlayerCollider : MonoBehaviour
             Instantiate(leafAppearFX, transform.position, transform.rotation);
         }
     }
-    private void Start()
-    {
-        move = GetComponent<Ability_Movement>();
-    }
 
     public void FindCameraStatic()
     {
-
+        //Change Camera
         GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
         CameraController controller = camera.GetComponent<CameraController>();
         //controller.target = controller.staticObj;
         controller.ChangeCamStatic();
+
+        //Change InfoCanvas
+        GameObject infoUi = GameObject.FindGameObjectWithTag("InfoCanvas");
+        InfoCanvas infoCanvasScript = infoUi.GetComponent<InfoCanvas>();
+        infoCanvasScript.arrowLeft.SetActive(true);
+        infoCanvasScript.arrowRight.SetActive(true);
+        infoCanvasScript.arrowUp.SetActive(true);
     }
 
     public void FindCameraUp()
     {
+        //Change Camera
         GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
         CameraController controller = camera.GetComponent<CameraController>();
         //controller.target = controller.leftObj;
         controller.ChangeCamFollowUp();
+        //Change InfoCanvas
+        GameObject infoUi = GameObject.FindGameObjectWithTag("InfoCanvas");
+        InfoCanvas infoCanvasScript = infoUi.GetComponent<InfoCanvas>();
+        infoCanvasScript.arrowLeft.SetActive(false);
+        infoCanvasScript.arrowRight.SetActive(false);
+        infoCanvasScript.arrowUp.SetActive(false);
     }
+
     public void FindCameraLeft()
     {
+        //Change Camera 
         GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
         CameraController controller = camera.GetComponent<CameraController>();
         //controller.target = controller.leftObj;
         controller.ChangeCamFollowGround();
+
+        //Change InfoCanvas
+        GameObject infoUi = GameObject.FindGameObjectWithTag("InfoCanvas");
+        InfoCanvas infoCanvasScript = infoUi.GetComponent<InfoCanvas>();
+        infoCanvasScript.arrowLeft.SetActive(false);
     }
     public void FindCameraRight()
     {
+        //Change Camera
         GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
         CameraController controller = camera.GetComponent<CameraController>();
         //controller.target = controller.rightObj;
         controller.ChangeCamFollowGround();
+
+        //Change InfoCanvas
+        GameObject infoUi = GameObject.FindGameObjectWithTag("InfoCanvas");
+        InfoCanvas infoCanvasScript = infoUi.GetComponent<InfoCanvas>();
+        infoCanvasScript.arrowRight.SetActive(false);
     }
-    
-    
+
+
     IEnumerator SwitchCameraTarget()
     {
         yield return new WaitUntil(() => GameModeManager.instance.levelActive);

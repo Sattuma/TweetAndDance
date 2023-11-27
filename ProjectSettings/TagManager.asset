@@ -38,6 +38,7 @@ TagManager:
   - NestArea
   - FollowCamTrig
   - TreeLeaves
+  - InfoCanvas
   layers:
   - Default
   - TransparentFX

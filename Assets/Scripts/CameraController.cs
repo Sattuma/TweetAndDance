@@ -32,29 +32,22 @@ public class CameraController : MonoBehaviour
 
 
     private void Start()
-    {
-        target = staticObj;
-    }
+    { target = staticObj; }
 
     private void FixedUpdate()
     {
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, minX, maxX), Mathf.Clamp(transform.position.y, minY, maxY), transform.position.z);
+
         movement = transform.position;
+
         movement.x = Mathf.Lerp(movement.x, target.position.x, cameraSpeed * Time.deltaTime);
         if (isUp)
-        {
-            movement.y = Mathf.Lerp(movement.y, target.position.y, cameraSpeed * Time.deltaTime);
-        }
+        { movement.y = Mathf.Lerp(movement.y, target.position.y, cameraSpeed * Time.deltaTime);}
         else if(!isUp)
-        {
-            movement.y = Mathf.Lerp(movement.y, minY, cameraSpeed * Time.deltaTime);
-           
-        }
+        { movement.y = Mathf.Lerp(movement.y, minY, cameraSpeed * Time.deltaTime); }
 
         transform.position = movement;
-
     }
-
     public void ChangeCamStatic()
     {
         isUp = false;
@@ -62,7 +55,6 @@ public class CameraController : MonoBehaviour
         cameraSpeed = speedTransitionStatic;
         minY = 0;
         maxY = 25;
-
     }
     public void ChangeCamFollowGround()
     {
@@ -71,7 +63,6 @@ public class CameraController : MonoBehaviour
         cameraSpeed = speedTransitionFollow;
         minY = 0;
         maxY = 25;
-
     }
 
     public void ChangeCamFollowUp()
@@ -81,15 +72,10 @@ public class CameraController : MonoBehaviour
         cameraSpeed = speedTransitionFollow;
         minY = 0;
         maxY = 25;
-
-
-
     }
 
+    /*
     public void UpdateCamera()
-    {
-        float size = gameObject.GetComponentInChildren<Camera>().orthographicSize;
-        //size = new (Mathf.Clamp(size, 8,9), Mathf.Clamp(transform.position.y, minY, maxY), transform.position.z);
-
-    }
+    {  float size = gameObject.GetComponentInChildren<Camera>().orthographicSize;}
+    */
 }

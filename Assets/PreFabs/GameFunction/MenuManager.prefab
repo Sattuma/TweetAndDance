@@ -21285,6 +21285,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: INFOCANVAS
       objectReference: {fileID: 0}
+    - target: {fileID: 4631960340420105845, guid: 1de4a0ce29924124f888121695798d24, type: 3}
+      propertyPath: m_TagString
+      value: InfoCanvas
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1de4a0ce29924124f888121695798d24, type: 3}
 --- !u!224 &1518581702 stripped
