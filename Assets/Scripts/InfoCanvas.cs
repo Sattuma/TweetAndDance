@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InfoCanvas : MonoBehaviour
 {
-    public GameObject arrowLeft, arrowRight, arrowUp;
+    public GameObject arrowLeft, arrowRight, arrowUp,arrowDown;
 
     private void Start()
     {

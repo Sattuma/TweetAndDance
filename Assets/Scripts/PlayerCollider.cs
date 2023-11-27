@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class PlayerCollider : MonoBehaviour
 {
+    public GameObject infoCanvas;
+    public InfoCanvas infoScript;
+
     public ParticleSystem grassAppearFX;
     public ParticleSystem leafAppearFX;
    // public SpriteRenderer imageAlpha;
@@ -16,15 +19,22 @@ public class PlayerCollider : MonoBehaviour
     //public bool objectFading;
 
 
+    private void Start()
+    {
+        infoCanvas = GameObject.FindGameObjectWithTag("InfoCanvas");
+        infoScript = infoCanvas.GetComponent<InfoCanvas>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // COLLISION WHERE ASSETS TURNS TRANSPARENT WHEN PLAYER COLLIDES
         if (collision.gameObject.CompareTag("Shader"))
         {
             Physics2D.IgnoreCollision(landingTrigger.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
             collision.gameObject.GetComponentInParent<PickupAlpha>().FadeOutAnim();
         }
 
+        // GAME ASSETS WITH TAG ELEMNTS WHERE PLAYER COLLIDE
         if (collision.gameObject.CompareTag("Grass"))
         {
             Physics2D.IgnoreCollision(landingTrigger.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
@@ -38,6 +48,7 @@ public class PlayerCollider : MonoBehaviour
             Instantiate(leafAppearFX, transform.position, transform.rotation);
         }
 
+        //CAMERA TRIGGERS WHERE PLAYER COLLIDE
         if (collision.gameObject.CompareTag("StaticCamTrig"))
         {
             Physics2D.IgnoreCollision(landingTrigger.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
@@ -46,43 +57,81 @@ public class PlayerCollider : MonoBehaviour
             //old system where camera follows always player when level starts
             //StartCoroutine(SwitchCameraTarget());
         }
-
         if (collision.gameObject.CompareTag("FollowCamTrig"))
         {
             Physics2D.IgnoreCollision(landingTrigger.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
             FindCameraUp();
         }
-
         if (collision.gameObject.CompareTag("LeftCamTrig"))
         {
             Physics2D.IgnoreCollision(landingTrigger.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
             FindCameraLeft();
         }
-
         if (collision.gameObject.CompareTag("RightCamTrig"))
         {
             Physics2D.IgnoreCollision(landingTrigger.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
             FindCameraRight();
         }
 
-        /*
-        if(collision.gameObject.CompareTag("LevelTwo"))
+        //DIRECTIONAL ARROWN FOR UI TRIGGERS WHEN PLAYER COLLIDE
+
+        if (collision.gameObject.CompareTag("CenterGroundDir") && GameModeManager.instance.levelActive)
         {
-            collision.gameObject.SetActive(false);
-            //move.onMove = false;
+            infoScript.arrowLeft.SetActive(true);
+            infoScript.arrowRight.SetActive(true);
+            infoScript.arrowUp.SetActive(true);
+            infoScript.arrowDown.SetActive(false);
+
         }
-        */
+        if (collision.gameObject.CompareTag("LeftGroundDir"))
+        {
+            infoScript.arrowUp.SetActive(true);
+            infoScript.arrowDown.SetActive(false);
+            infoScript.arrowRight.SetActive(true);
+            infoScript.arrowLeft.SetActive(false);
+        }
+        if (collision.gameObject.CompareTag("RightGroundDir"))
+        {
+            infoScript.arrowUp.SetActive(true);
+            infoScript.arrowDown.SetActive(false);
+            infoScript.arrowLeft.SetActive(true);
+            infoScript.arrowRight.SetActive(false);
+        }
+        if (collision.gameObject.CompareTag("CenterAirDir"))
+        {
+            infoScript.arrowLeft.SetActive(true);
+            infoScript.arrowRight.SetActive(true);
+            infoScript.arrowDown.SetActive(true);
+            infoScript.arrowUp.SetActive(false);
+        }
+        if (collision.gameObject.CompareTag("LeftAirDir"))
+        {
+            infoScript.arrowLeft.SetActive(false);
+            infoScript.arrowRight.SetActive(true);
+            infoScript.arrowDown.SetActive(true);
+            infoScript.arrowUp.SetActive(false);
+        }
+        if (collision.gameObject.CompareTag("RightAirDir"))
+        {
+            infoScript.arrowLeft.SetActive(true);
+            infoScript.arrowRight.SetActive(false);
+            infoScript.arrowDown.SetActive(true);
+            infoScript.arrowUp.SetActive(false);
+        }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        // COLLISION WHERE ASSETS TURNS TRANSPARENT WHEN PLAYER EXITS
         if (collision.gameObject.CompareTag("Shader"))
         {
             Physics2D.IgnoreCollision(landingTrigger.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
             collision.gameObject.GetComponentInParent<PickupAlpha>().FadeInAnim();
         }
 
-        if(collision.gameObject.CompareTag("Grass"))
+        // GAME ASSETS WITH TAG ELEMNTS WHERE PLAYER EXITS
+        if (collision.gameObject.CompareTag("Grass"))
         {
             Physics2D.IgnoreCollision(landingTrigger.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
             AudioManager.instance.PlaySoundFX(0);
@@ -94,66 +143,69 @@ public class PlayerCollider : MonoBehaviour
             AudioManager.instance.PlaySoundFX(0);
             Instantiate(leafAppearFX, transform.position, transform.rotation);
         }
+
+        //DIRECTIONAL ARROWN FOR UI TRIGGERS WHEN PLAYER EXITS
+
+        if (collision.gameObject.CompareTag("CenterGroundDir"))
+        {
+
+        }
+        if (collision.gameObject.CompareTag("LeftGroundDir"))
+        {
+
+        }
+        if (collision.gameObject.CompareTag("RightGroundDir"))
+        {
+
+        }
+        if (collision.gameObject.CompareTag("CenterAirDir"))
+        {
+
+        }
+        if (collision.gameObject.CompareTag("LeftAirDir"))
+        {
+
+        }
+        if (collision.gameObject.CompareTag("RightAirDir"))
+        {
+
+        }
     }
 
     public void FindCameraStatic()
     {
-        //Change Camera
         GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
         CameraController controller = camera.GetComponent<CameraController>();
         //controller.target = controller.staticObj;
         controller.ChangeCamStatic();
 
-        //Change InfoCanvas
-        GameObject infoUi = GameObject.FindGameObjectWithTag("InfoCanvas");
-        InfoCanvas infoCanvasScript = infoUi.GetComponent<InfoCanvas>();
-        infoCanvasScript.arrowLeft.SetActive(true);
-        infoCanvasScript.arrowRight.SetActive(true);
-        infoCanvasScript.arrowUp.SetActive(true);
+
     }
 
     public void FindCameraUp()
     {
-        //Change Camera
         GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
         CameraController controller = camera.GetComponent<CameraController>();
         //controller.target = controller.leftObj;
         controller.ChangeCamFollowUp();
-        //Change InfoCanvas
-        GameObject infoUi = GameObject.FindGameObjectWithTag("InfoCanvas");
-        InfoCanvas infoCanvasScript = infoUi.GetComponent<InfoCanvas>();
-        infoCanvasScript.arrowLeft.SetActive(false);
-        infoCanvasScript.arrowRight.SetActive(false);
-        infoCanvasScript.arrowUp.SetActive(false);
+
     }
 
     public void FindCameraLeft()
     {
-        //Change Camera 
         GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
         CameraController controller = camera.GetComponent<CameraController>();
         //controller.target = controller.leftObj;
         controller.ChangeCamFollowGround();
 
-        //Change InfoCanvas
-        GameObject infoUi = GameObject.FindGameObjectWithTag("InfoCanvas");
-        InfoCanvas infoCanvasScript = infoUi.GetComponent<InfoCanvas>();
-        infoCanvasScript.arrowLeft.SetActive(false);
     }
     public void FindCameraRight()
     {
-        //Change Camera
         GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
         CameraController controller = camera.GetComponent<CameraController>();
         //controller.target = controller.rightObj;
         controller.ChangeCamFollowGround();
-
-        //Change InfoCanvas
-        GameObject infoUi = GameObject.FindGameObjectWithTag("InfoCanvas");
-        InfoCanvas infoCanvasScript = infoUi.GetComponent<InfoCanvas>();
-        infoCanvasScript.arrowRight.SetActive(false);
     }
-
 
     IEnumerator SwitchCameraTarget()
     {

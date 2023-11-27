@@ -39,6 +39,12 @@ TagManager:
   - FollowCamTrig
   - TreeLeaves
   - InfoCanvas
+  - CenterGroundDir
+  - LeftGroundDir
+  - RightGroundDir
+  - CenterAirDir
+  - LeftAirDir
+  - RightAirDir
   layers:
   - Default
   - TransparentFX

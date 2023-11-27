@@ -47,15 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba2bc142f3644914e894b1af9652c230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPosLevel2: {fileID: 0}
-  endPosLevel2: {fileID: 0}
-  startPosLevel3: {fileID: 0}
-  endPosLevel3: {fileID: 0}
-  endPos2Collider: {fileID: 0}
-  rb: {fileID: 0}
   anim: {fileID: 0}
-  transitionSpeed: 1
-  isFailed: 0
 --- !u!50 &1912807113
 Rigidbody2D:
   serializedVersion: 4
@@ -76,7 +68,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!58 &1912807114
 CircleCollider2D:
   m_ObjectHideFlags: 0
