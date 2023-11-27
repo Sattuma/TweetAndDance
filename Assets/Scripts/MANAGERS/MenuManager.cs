@@ -199,10 +199,10 @@ public class MenuManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(2f);
         beginning[0].SetActive(false);
         beginning[1].SetActive(true);
-        pauseButton.SetActive(true);
         GameModeManager.instance.StartCountOverInvoke();
         yield return new WaitForSecondsRealtime(0.5f);
         beginning[1].SetActive(false);
+        GameModeManager.instance.InvokeInfoCanvas();
         CheckCurrentLevelInfo();
 
 
@@ -222,6 +222,7 @@ public class MenuManager : MonoBehaviour
         currentStateHud[1].SetActive(true);
         currentStateHud[2].SetActive(false);
         currentStateHud[3].SetActive(true);
+        pauseButton.SetActive(true);
     }
 
     public void BonusOneHudActive()
@@ -230,6 +231,7 @@ public class MenuManager : MonoBehaviour
         currentStateHud[1].SetActive(false);
         currentStateHud[2].SetActive(true);
         currentStateHud[3].SetActive(true);
+        pauseButton.SetActive(true);
         DisplayTime(GameModeManager.instance.bonusOneSongTimeTotalTemp, bonus1SongtimeTotalText);
     }
     public void BonusTwoHudActive()
