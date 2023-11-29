@@ -473,10 +473,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1020798987, guid: 1ce9e73df32ec8c4baee87a9b380e2e0, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 557834982060666643, guid: 1ce9e73df32ec8c4baee87a9b380e2e0, type: 3}
       propertyPath: m_Name
       value: Blueberry
@@ -970,11 +966,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9215853180304335104, guid: 4d51b7f4fcc15254c840d887e2306f9b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.6131396
+      value: 4.18
       objectReference: {fileID: 0}
     - target: {fileID: 9215853180304335104, guid: 4d51b7f4fcc15254c840d887e2306f9b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.4061766
+      value: -5.26
       objectReference: {fileID: 0}
     - target: {fileID: 9215853180304335104, guid: 4d51b7f4fcc15254c840d887e2306f9b, type: 3}
       propertyPath: m_LocalPosition.z

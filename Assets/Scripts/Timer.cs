@@ -51,6 +51,9 @@ public class Timer : MonoBehaviour
         else if(timeToDisplay < 0.1f)
         { uiAnim.SetBool("CountOn", false);}
 
+        if (timeToDisplay > 11)
+        { uiAnim.SetBool("CountOn", false); }
+
         if (timeToDisplay <= 0)
         { timeToDisplay = 0;}
 

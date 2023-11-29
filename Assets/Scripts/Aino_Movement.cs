@@ -22,11 +22,12 @@ public class Aino_Movement : MonoBehaviour
         {
             WinAnim();
         }
-        if(GameModeManager.instance.currentLevel == GameModeManager.CurrentLevel.Bonus1)
+        if (activeLevelName == "Bonus1")
         {
             BonusAnim();
         }
-        
+
+
         GameModeManager.LevelActiveOn += MoveToPositionLevel;
 
         GameModeManager.Success += WinAnim;

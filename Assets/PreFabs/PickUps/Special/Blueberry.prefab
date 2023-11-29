@@ -383,7 +383,7 @@ MonoBehaviour:
   playerObj: {fileID: 0}
   attachedObj: {fileID: 0}
   attachPos: {fileID: 1913237973930844040}
-  attachFX: {fileID: 5685597352742890443, guid: ba9e635fff7966246bf8d7865696de2a, type: 3}
+  attachFX: {fileID: 5685597352742890443, guid: fcf55c45a4ccd504faa317b6752a645b, type: 3}
   isAttached: 0
 --- !u!70 &1020798987
 CapsuleCollider2D:
@@ -392,7 +392,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 557834982200064028}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 81cf760ab35486b49a431eee9b28f2d5, type: 2}
   m_IsTrigger: 0
