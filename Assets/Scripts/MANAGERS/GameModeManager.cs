@@ -15,7 +15,7 @@ public class GameModeManager : MonoBehaviour
     public static event GameAction StartLevel;
     public static event GameAction StartLevelCountOver;
     public static event GameAction SecretCountForMenu;
-    public static event GameAction InfoCanvasOn;
+    public static event GameAction LevelActiveOn;
     public static event GameAction PauseOn;
     public static event GameAction Success;
     public static event GameAction Fail;
@@ -180,8 +180,8 @@ public class GameModeManager : MonoBehaviour
     { StartLevelCountOver?.Invoke(); }
     public void InvokeSecretCountForMenu()
     { SecretCountForMenu?.Invoke(); }
-    public void InvokeInfoCanvas()
-    { InfoCanvasOn?.Invoke(); }
+    public void InvokeLevelActiveOn()
+    { LevelActiveOn?.Invoke(); }
     public void InvokeLevelCountOn()
     { NestCount?.Invoke();}
     public void InvokeLevelCountOff()
@@ -309,7 +309,7 @@ public class GameModeManager : MonoBehaviour
         RewardLevel = null;
         StartLevel = null;
         StartLevelCountOver = null;
-        InfoCanvasOn = null;
+        LevelActiveOn = null;
         SecretCountForMenu = null;
         PauseOn = null;
         Success = null;

@@ -153,8 +153,8 @@ MonoBehaviour:
   rewardClaimed: 0
   bonusLevelActive: 0
   bonusLevelEnd: 0
-  timerNormalMode: 600
-  timerHardMode: 300
+  timerNormalMode: 480
+  timerHardMode: 240
   leafCount: 0
   stickCount: 0
   birchStickCount: 0

@@ -18,7 +18,7 @@ public class NestScript : MonoBehaviour
     public bool partTwoOn;
 
     private void Awake()
-    { GameModeManager.InfoCanvasOn += StartAnim;}
+    { GameModeManager.LevelActiveOn += StartAnim;}
 
     private void StartAnim()
     { StartCoroutine(NestAnimDelay()); }

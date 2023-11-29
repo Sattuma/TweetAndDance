@@ -8,7 +8,7 @@ public class InfoCanvas : MonoBehaviour
 
     private void Start()
     {
-        GameModeManager.InfoCanvasOn += DirectionArrows;
+        GameModeManager.LevelActiveOn += DirectionArrows;
         GameModeManager.Success += CanvasOff;
         GameModeManager.Fail += CanvasOff;
 

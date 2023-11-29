@@ -115,7 +115,7 @@ public class GameLevelScript : MonoBehaviour
             GameModeManager.instance.RewardLevelInvoke();
             yield return new WaitForSecondsRealtime(1.2f);
             GameModeManager.instance.StartLevelInvoke();
-            GameModeManager.instance.rewardClaimed = false;
+            //GameModeManager.instance.rewardClaimed = false;
         }
         else if(GameModeManager.instance.rewardClaimed == false)
         {

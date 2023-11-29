@@ -53,7 +53,6 @@ public class PickUpGlue : MonoBehaviour
                 //Physics2D.IgnoreCollision(selfObj.GetComponent<Collider2D>(), colGlueChild.GetComponent<Collider2D>());
             }
         }
-
     }
 
     private void FixedUpdate()

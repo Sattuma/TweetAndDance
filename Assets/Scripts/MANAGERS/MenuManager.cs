@@ -210,7 +210,7 @@ public class MenuManager : MonoBehaviour
     private void CheckCurrentLevelInfo()
     {
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
-        { LevelHudActive(); GameModeManager.instance.InvokeInfoCanvas(); }
+        { LevelHudActive(); GameModeManager.instance.InvokeLevelActiveOn(); }
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
         { BonusOneHudActive(); }
     }
@@ -489,6 +489,7 @@ public class MenuManager : MonoBehaviour
         }
         else
         {
+            GameModeManager.instance.rewardClaimed = false;
             GameModeManager.instance.CheckBonusLevelAccess();
         }
         //--------------------------------------------------------------------------------
@@ -527,6 +528,7 @@ public class MenuManager : MonoBehaviour
         AudioManager.instance.PlayMenuFX(0);
         GameModeManager.instance.levelActive = false;
         GameModeManager.instance.ChangeLevel(GameModeManager.instance.levelName[0]);
+        GameModeManager.instance.rewardClaimed = false;
     }
 
     public void SetAndStoreAudioData()
