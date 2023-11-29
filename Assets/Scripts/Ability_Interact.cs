@@ -87,6 +87,8 @@ public class Ability_Interact : MonoBehaviour
                     glue.GetComponent<Collider2D>().enabled = true;
                     GameObject highLight = collectableChildObj.GetChild(1).gameObject;
                     highLight.GetComponent<Renderer>().sortingLayerName = "Pickups";
+
+
                 }
 
             }

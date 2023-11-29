@@ -24,6 +24,7 @@ public class InfoCanvas : MonoBehaviour
         {
             arrowLeft.SetActive(true);
             arrowRight.SetActive(true);
+            arrowUp.SetActive(false);
         }
         else if (mode == gameLevel && levelIndex > 1)
         {

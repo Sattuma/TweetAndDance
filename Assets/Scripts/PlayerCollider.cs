@@ -77,22 +77,34 @@ public class PlayerCollider : MonoBehaviour
 
         if (collision.gameObject.CompareTag("CenterGroundDir") && GameModeManager.instance.levelActive)
         {
+            if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel && GameModeManager.instance.levelIndex == 1)
+            { infoScript.arrowUp.SetActive(false); }
+            else
+            { infoScript.arrowUp.SetActive(true); }
+
             infoScript.arrowLeft.SetActive(true);
             infoScript.arrowRight.SetActive(true);
-            infoScript.arrowUp.SetActive(true);
             infoScript.arrowDown.SetActive(false);
 
         }
         if (collision.gameObject.CompareTag("LeftGroundDir"))
         {
-            infoScript.arrowUp.SetActive(true);
+            if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel && GameModeManager.instance.levelIndex == 1)
+            { infoScript.arrowUp.SetActive(false); }
+            else
+            { infoScript.arrowUp.SetActive(true); }
+
             infoScript.arrowDown.SetActive(false);
             infoScript.arrowRight.SetActive(true);
             infoScript.arrowLeft.SetActive(false);
         }
         if (collision.gameObject.CompareTag("RightGroundDir"))
         {
-            infoScript.arrowUp.SetActive(true);
+            if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel && GameModeManager.instance.levelIndex == 1)
+            { infoScript.arrowUp.SetActive(false); }
+            else
+            { infoScript.arrowUp.SetActive(true); }
+                
             infoScript.arrowDown.SetActive(false);
             infoScript.arrowLeft.SetActive(true);
             infoScript.arrowRight.SetActive(false);

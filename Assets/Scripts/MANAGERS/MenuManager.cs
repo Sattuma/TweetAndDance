@@ -566,7 +566,7 @@ public class MenuManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameModeManager.instance.ResetEvents();
+        //GameModeManager.instance.ResetEvents();
     }
 
 }

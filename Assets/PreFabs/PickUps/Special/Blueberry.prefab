@@ -291,8 +291,8 @@ GameObject:
   m_Component:
   - component: {fileID: 557834982200064027}
   - component: {fileID: 557834982200064026}
-  - component: {fileID: 6135829643912864709}
   - component: {fileID: 2110602575629726721}
+  - component: {fileID: 1020798987}
   m_Layer: 7
   m_Name: IMAGE
   m_TagString: Attach
@@ -367,22 +367,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &6135829643912864709
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 557834982200064028}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 81cf760ab35486b49a431eee9b28f2d5, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 2.295
 --- !u!114 &2110602575629726721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,9 +380,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfObj: {fileID: 557834982200064027}
+  playerObj: {fileID: 0}
   attachedObj: {fileID: 0}
   attachPos: {fileID: 1913237973930844040}
   attachFX: {fileID: 5685597352742890443, guid: ba9e635fff7966246bf8d7865696de2a, type: 3}
+  isAttached: 0
+--- !u!70 &1020798987
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557834982200064028}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 81cf760ab35486b49a431eee9b28f2d5, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.055424523, y: 0.20124319}
+  m_Size: {x: 6.1399093, y: 3.2262228}
+  m_Direction: 1
 --- !u!1 &1160305129504463261
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,8 +495,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1913237973930844040}
   - component: {fileID: 4927946346716749739}
-  - component: {fileID: 7784285188096880387}
-  - component: {fileID: 4573164854393161221}
+  - component: {fileID: 530474460}
   m_Layer: 0
   m_Name: Point1
   m_TagString: Untagged
@@ -510,7 +511,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5146956262574800165}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.003, y: 0.04, z: 0}
+  m_LocalPosition: {x: 0.61, y: -0.82, z: 0}
   m_LocalScale: {x: 0.19154415, y: 0.25869828, z: 0.10265387}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -569,42 +570,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &7784285188096880387
-Rigidbody2D:
-  serializedVersion: 4
+--- !u!58 &530474460
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5146956262574800165}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_Enabled: 0
+  m_Density: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!255 &4573164854393161221
-FixedJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5146956262574800165}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.65, y: 0}
-  m_DampingRatio: 0
-  m_Frequency: 0
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.0000019073486}
+  serializedVersion: 2
+  m_Radius: 0.5

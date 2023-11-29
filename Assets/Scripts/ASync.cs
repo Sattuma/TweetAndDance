@@ -15,7 +15,7 @@ public class ASync : MonoBehaviour
 
     private void Start()
     {
-        GameModeManager.instance.ResetEvents();
+        //GameModeManager.instance.ResetEvents();
     }
     public void LoadLevel(string sceneName)
     {
@@ -38,9 +38,18 @@ public class ASync : MonoBehaviour
             GameModeManager.instance.isPaused = false;
             float progress = Mathf.Clamp01(operation.progress / 0.9f);
             progressBar.value = progress;
-            percentText.text = progress * 100f + ("%");
+            percentText.text = (progress * 100f).ToString("F0") + ("%");
             if(progressBar.value == 100f)
-            { progressBar.value = 100f;}
+            { 
+                progressBar.value = 100f;
+                percentText.text = progress.ToString("F0") + ("%");
+            }
+
+            GameObject otherCanvas = GameObject.FindGameObjectWithTag("Canvas");
+            otherCanvas.SetActive(false);
+
+            GameModeManager.instance.ResetEvents();
+
             yield return null;
         }
     }
@@ -51,6 +60,7 @@ public class ASync : MonoBehaviour
         DataManager.instance.GetLevelPoints();
         DataManager.instance.GetLevelSecrets();
     }
+
 
 
 }
