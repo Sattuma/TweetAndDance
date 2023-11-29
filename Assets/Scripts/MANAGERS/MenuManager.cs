@@ -18,6 +18,8 @@ public class MenuManager : MonoBehaviour
     [Header("ONSCREEN UI LEVEL")]
     public GameObject timerText;
     public GameObject timerCountText;
+    public Image secretImageToShow;
+    public Sprite[] secretSpritesVariation; // linked to levelindex
     public TextMeshProUGUI secretCurrentText;
     public TextMeshProUGUI secretTotalText;
 
@@ -91,6 +93,7 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
+
         GameModeManager.ControllerCheck += ControllerCheck;
         GameModeManager.SecretCountForMenu += DisplayStartSecrets;
         GameModeManager.RewardLevel += ActivateReward;
@@ -109,6 +112,8 @@ public class MenuManager : MonoBehaviour
         GameModeManager.NestCount += StartLevelEndCount;
         GameModeManager.NestCountEnd += CancelLevelEndCount;
 
+        Cursor.visible = true;
+
         currentControlText.text = DataManager.instance.controls.ToString();
 
         beginning[0].SetActive(false);
@@ -121,6 +126,7 @@ public class MenuManager : MonoBehaviour
 
     private void DisplayStartSecrets()
     {
+        secretImageToShow.GetComponent<Image>().sprite = secretSpritesVariation[GameModeManager.instance.levelIndex];
         secretCurrentText.text = GameModeManager.instance.secretCurrentForMenu.ToString();
         secretTotalText.text = "/ ".ToString() + GameModeManager.instance.secretTotalForMenu.ToString();
     }

@@ -17,26 +17,8 @@ public class TimePickUp : MonoBehaviour
             Instantiate(secondsFx, gameObject.transform.position, gameObject.transform.rotation);
             Destroy(gameObject);
 
-            float normal = GameModeManager.instance.timerNormalMode;
-            float hard = GameModeManager.instance.timerHardMode;
+            GameModeManager.instance.AddTime(30);
 
-            normal += 50;
-            hard += 50;
-            Debug.Log(normal);
-
-            /*
-            float normalMax = PlayerPrefs.GetFloat("TimerNormal");
-            float hardMax = PlayerPrefs.GetFloat("TimerHard");
-
-            if(normal >= normalMax)
-            {
-                GameModeManager.instance.timerNormalMode = normalMax;
-            }
-            if (hard >= hardMax)
-            {
-                GameModeManager.instance.timerHardMode = hardMax;
-            }
-            */
         }
     }
 

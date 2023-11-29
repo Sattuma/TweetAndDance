@@ -301,6 +301,23 @@ public class GameModeManager : MonoBehaviour
     }
     //----------------------------------------
 
+    public void AddTime(int value)
+    {
+        timerNormalMode += value;
+        timerHardMode += value;
+
+        if(timerNormalMode >= PlayerPrefs.GetFloat("TimerNormal"))
+        {
+            timerNormalMode = PlayerPrefs.GetFloat("TimerNormal");
+        }
+        if(timerHardMode >= PlayerPrefs.GetFloat("TimerHard"))
+        {
+            timerHardMode = PlayerPrefs.GetFloat("TimerHard");
+        }
+
+
+    }
+
     //nämä restoidaan aina levelChangerissa eli Async scriptissä
     public void ResetEvents()
     {

@@ -30,6 +30,9 @@ public class Aino_Movement : MonoBehaviour
 
         GameModeManager.LevelActiveOn += MoveToPositionLevel;
 
+        GameModeManager.BonusSuccess += WinAnim;
+        GameModeManager.BonusFail += FailAnim;
+
         GameModeManager.Success += WinAnim;
         GameModeManager.Fail += FailAnim;
 

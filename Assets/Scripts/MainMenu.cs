@@ -60,6 +60,7 @@ public class MainMenu : MonoBehaviour
 
         //DataManager.instance.CheckControllerNull(); // check ei toimi, pelin alussa herjaus jos gamepad ei ole kytketty. tee checki siitä että toimii myös kun vain toinen KEY/ GAMEPAD on kytketty
 
+        Cursor.visible = true;
 
         AudioManager.instance.PlayMusicFX(0);
         currentControlText.text = DataManager.instance.controls.ToString();

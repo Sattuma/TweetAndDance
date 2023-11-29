@@ -179,7 +179,7 @@ public class NoteLineScript : MonoBehaviour
             nextIndex++;
         }
 
-        if(beatsposition >= songLastBeat)
+        if(beatsposition >= songBeatsTotal)
         {
             songActive = false;
             CheckSuccess();

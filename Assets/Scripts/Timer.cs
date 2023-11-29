@@ -45,17 +45,23 @@ public class Timer : MonoBehaviour
 
     public void DisplayTime(float timeToDisplay)
     {
+        if(timeToDisplay > 11)
+        {
+            uiAnim.SetBool("CountOn", false);
+        }
 
-        if(timeToDisplay <= 11 && timeToDisplay > 0.1f)
+        else if (timeToDisplay <= 11 && timeToDisplay > 0.1f)
         { uiAnim.SetBool("CountOn", true);}
-        else if(timeToDisplay < 0.1f)
-        { uiAnim.SetBool("CountOn", false);}
 
-        if (timeToDisplay > 11)
-        { uiAnim.SetBool("CountOn", false); }
+        if(timeToDisplay < 0.1f )
+        { uiAnim.SetTrigger("CountEnd");}
 
+
+
+        /*
         if (timeToDisplay <= 0)
         { timeToDisplay = 0;}
+        */
 
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
