@@ -10220,6 +10220,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BirchTree2
       objectReference: {fileID: 0}
+    - target: {fileID: 1675108455081618422, guid: 41741dfcc50d0fd49b15659c42347cd4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41741dfcc50d0fd49b15659c42347cd4, type: 3}
 --- !u!4 &8128126923139061786 stripped
@@ -10433,6 +10437,10 @@ PrefabInstance:
     - target: {fileID: 1675108454111871002, guid: 41741dfcc50d0fd49b15659c42347cd4, type: 3}
       propertyPath: m_Name
       value: BirchTree2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675108455081618422, guid: 41741dfcc50d0fd49b15659c42347cd4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41741dfcc50d0fd49b15659c42347cd4, type: 3}
@@ -11096,6 +11104,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BushBLUEBERRY
       objectReference: {fileID: 0}
+    - target: {fileID: 1241927076425821088, guid: 218d8d45483564043947f17e0845a418, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1241927077719187408, guid: 218d8d45483564043947f17e0845a418, type: 3}
       propertyPath: m_SortingLayer
       value: 2
@@ -11103,6 +11115,14 @@ PrefabInstance:
     - target: {fileID: 1241927077719187408, guid: 218d8d45483564043947f17e0845a418, type: 3}
       propertyPath: m_SortingLayerID
       value: -330763253
+      objectReference: {fileID: 0}
+    - target: {fileID: 6228950908240689739, guid: 218d8d45483564043947f17e0845a418, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6228950908564416220, guid: 218d8d45483564043947f17e0845a418, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 218d8d45483564043947f17e0845a418, type: 3}

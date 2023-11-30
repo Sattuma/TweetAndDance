@@ -49,4 +49,4 @@ MonoBehaviour:
   bonusOneSong1Hard: []
   bonusOneSong2Normal: []
   bonusOneSong2Hard: []
-  controls: 0
+  controls: 1

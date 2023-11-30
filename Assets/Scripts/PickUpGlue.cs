@@ -20,6 +20,7 @@ public class PickUpGlue : MonoBehaviour
 
         if (collision.gameObject.tag == "Collectable" && colPlayer || collision.gameObject.tag == "NestObject" && colPlayer)
         {
+
             var colGlue = collision.gameObject.transform.GetChild(0);
             var colGlueChild = colGlue.GetChild(0);
 

@@ -30,11 +30,14 @@ public class GroundCollider : MonoBehaviour
 
     public IEnumerator ResetDelay()
     {
+
         core.isLanding = true;
+        Debug.Log("isLanding is " + core.isLanding);
         core.LandingAnimOn();
         yield return new WaitForSecondsRealtime(landingTime);
         core.isLanding = false;
         core.JumpAnimOff();
         core.FlyAnimOff();
+        Debug.Log("isLanding is " + core.isLanding);
     }
 }

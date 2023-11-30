@@ -534,7 +534,7 @@ Transform:
   m_GameObject: {fileID: 7344619328296753453}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.005, y: -0.36299998, z: 0}
-  m_LocalScale: {x: 0.23756836, y: 0.05414062, z: 1}
+  m_LocalScale: {x: 0.28652975, y: 0.05414062, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7344619329279733090}
@@ -863,7 +863,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6631923d9efb3ed4eb45220cc1389b09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  move: {fileID: 0}
+  infoCanvas: {fileID: 0}
+  infoScript: {fileID: 0}
   grassAppearFX: {fileID: 5685597352742890443, guid: 2d4ac16b1c2fc7e49a055242d913bbe1, type: 3}
   leafAppearFX: {fileID: 5685597352742890443, guid: e2453ec76f3272847964dd714c91b4fc, type: 3}
   landingTrigger: {fileID: 1529831501155752897}

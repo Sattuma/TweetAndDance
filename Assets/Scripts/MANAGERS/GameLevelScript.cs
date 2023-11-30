@@ -8,23 +8,26 @@ using UnityEngine.SceneManagement;
 public class GameLevelScript : MonoBehaviour
 {
 
-    [Header("GameObject Nest for Level")]
+    [Header("NEST TO SPAWN AT START OBJECTS")]
     public GameObject nestObjNormal;
     public GameObject nestObjHard;
 
-    [Header("GameObejcts To SPawn In level")]
+    [Header("GAMEOBJECTS TO SPAWN IN LEVEL")]
     public GameObject[] pickupPrefabGround;
     public GameObject[] pickupPrefabAir;
+    public GameObject[] pickupPrefabStatic;
     public GameObject rewardItemPreFab;
 
-    [Header("SpawnPoints")]
-    public Transform spawnPos1;
-    public Transform spawnPos2;
-    public Transform spawnPos1Air;
-    public Transform spawnPos2Air;
-    public GameObject[] rewardSpawnPoints;
+    [Header("GOUND PICKUP SPAWN TIME INTERVALS")]
+    public float groundIntervalSeconds;
+    public float airIntervalSeconds;
 
-    [Header("PickUps CURRENT/MAX in level")]
+    public float tutorialTimeGround;
+    public float tutorialTimeAir;
+    public float levelTimeGround;
+    public float levelTimeAir;
+
+    [Header("GROUND PICKUPS CURRENT/MAX")]
     public int pickUp1Spawn;
     public int pickUp2Spawn;
     public int pickUp3Spawn;
@@ -34,7 +37,18 @@ public class GameLevelScript : MonoBehaviour
     public int Spawn3Max;
     public int Spawn4Max;
 
-    [Header("spawn values pick up in level")]
+    [Header("MOVEABLE SPAWN POINTS FOR PICKUPS")]
+    public Transform spawnPos1;
+    public Transform spawnPos2;
+    public Transform spawnPos1Air;
+    public Transform spawnPos2Air;
+    public GameObject[] rewardSpawnPoints;
+
+    public Transform[] pickupSpawnPointsStatic;
+    public List<GameObject> pickUpStaticList = new();
+    public int pickUpCountVariation;
+
+    [Header("SPAWN COORDINATES FOR PICKUPS")]
     public float groundMinX1 = -30;
     public float groundMaxX1 = -4;
     public float groundMinX2 = -4;
@@ -60,11 +74,6 @@ public class GameLevelScript : MonoBehaviour
     public ParticleSystem rewardSpawnFX;
     public ParticleSystem airSpawnFX;
 
-    //public GameObject[] pickupSpawnPointsGround;
-    //public GameObject[] pickupSpawnPointsAir;
-    //public List<GameObject> pickUpGroundList = new();
-    //public int pickUpCountVariation;
-
 
     private void Awake()
     {
@@ -72,8 +81,6 @@ public class GameLevelScript : MonoBehaviour
         GameModeManager.Success += CountLevelSuccess;
         GameModeManager.Fail += StopSpawningObjects;
     }
-
-
 
     private void Start()
     {
@@ -91,11 +98,38 @@ public class GameLevelScript : MonoBehaviour
         GameModeManager.instance.secretCurrentForMenu = 0;
 
         CheckNestObjectForLevel();
-
         CountStartSecretsInLevel();
 
-        //GroundSpawnPickupLevel();
-        //StartInvokeRepeating();
+        if(GameModeManager.instance.levelIndex == 1)//TUTORIAL LEVEL SPAWN INTERVAL
+        {
+            groundIntervalSeconds = tutorialTimeGround;
+            airIntervalSeconds = tutorialTimeAir;
+        }
+        else if(GameModeManager.instance.levelIndex != 1)//ALL OTHER LEVELS BESIDES TUTORIAL, SPAWN INTERVAL
+        {
+            groundIntervalSeconds = levelTimeGround;
+            airIntervalSeconds = levelTimeAir;
+
+            //Spawn static point pickups
+            StaticPickUpSpawn();
+        }
+
+        if(GameModeManager.instance.difficulty == GameModeManager.Difficulty.Normal)
+        {
+            Spawn1Max = 5;
+            Spawn2Max = 5;
+            Spawn3Max = 5;
+            Spawn4Max = 5;
+            pickUpCountVariation = 2;
+        }
+        if (GameModeManager.instance.difficulty == GameModeManager.Difficulty.Hard)
+        {
+            Spawn1Max = 3;
+            Spawn2Max = 3;
+            Spawn3Max = 3;
+            Spawn4Max = 3;
+            pickUpCountVariation = 1;
+        }
 
         //InvokeRepeating("GroundPickUpSpawnRepeat", 0f, 2f);
 
@@ -160,11 +194,18 @@ public class GameLevelScript : MonoBehaviour
     private void ActivateLevel()
     {
         GameModeManager.instance.LevelActive();
-        InvokeRepeating("StartSpawnGroundOne", 0f, 4f);
-        InvokeRepeating("StartSpawnGroundTwo", 0f, 5);
-        InvokeRepeating("StartSpawnAirOne", 0f, 8f);
-        InvokeRepeating("StartSpawnAirTwo", 0f, 8f);
+
+
+
+        //activate pick up spawning repeat and the time of the interval is seet up on start based on what level it is
+        InvokeRepeating("StartSpawnGroundOne", 1f, groundIntervalSeconds);
+        InvokeRepeating("StartSpawnGroundTwo", 1f, groundIntervalSeconds);
+        InvokeRepeating("StartSpawnAirOne", 1f, airIntervalSeconds);
+        InvokeRepeating("StartSpawnAirTwo", 1f, airIntervalSeconds);
+
+        //activate Spawn pick ups on static points based what level it is
         //InvokeRepeating("AirPickUpSpawnRepeat", 0f, 2f);
+
         StartMusic();
     }
 
@@ -178,7 +219,7 @@ public class GameLevelScript : MonoBehaviour
         if (GameModeManager.instance.levelIndex > 6 && GameModeManager.instance.levelIndex <= 9)
         { Debug.Log("musaa kolmanteen maailmaan puuttuu"); }
     }
-
+    //LEFT SIDE OF NEST GROUND SPAWN SET UP
     public void StartSpawnGroundOne()
     {
         Vector2 min = new Vector2(groundMinX1, 0);
@@ -189,6 +230,7 @@ public class GameLevelScript : MonoBehaviour
         spawnPos1.transform.position = new Vector2(x, y);
         GroundPickUpSpawnRepeat(spawnPos1);
     }
+    //RIGHT SIDE OF NEST GROUND SPAWN SET UP
     public void StartSpawnGroundTwo()
     {
         Vector2 min = new Vector2(groundMinX2, 0);
@@ -199,6 +241,7 @@ public class GameLevelScript : MonoBehaviour
         spawnPos2.transform.position = new Vector2(x, y);
         GroundPickUpSpawnRepeat(spawnPos2);
     }
+    //LEFT SIDE OF NEST AIR SPAWN SET UP
     public void StartSpawnAirOne()
     {
         Vector2 min = new Vector2(airMinX1, airLevelMinY);
@@ -209,6 +252,7 @@ public class GameLevelScript : MonoBehaviour
         spawnPos1Air.transform.position = new Vector2(x, y);
         AirPickUpSpawnRepeat(spawnPos1Air);
     }
+    //RIGHT SIDE OF NEST AIR SPAWN SET UP
     public void StartSpawnAirTwo()
     {
         Vector2 min = new Vector2(airMinX2, airLevelMinY);
@@ -220,7 +264,7 @@ public class GameLevelScript : MonoBehaviour
         AirPickUpSpawnRepeat(spawnPos2Air);
     }
 
-    //maasta spawnautuu yksitellen maa pickupit
+    //GROUND PICK UP SPAWNING REPEAT
     public void GroundPickUpSpawnRepeat(Transform spawnPos)
     {
         GameObject clone = pickupPrefabGround[Random.Range(0, pickupPrefabGround.Length)];
@@ -270,6 +314,7 @@ public class GameLevelScript : MonoBehaviour
             }
         }
     }
+    //AIR PICK UP SPAWNING REPEAT
     public void AirPickUpSpawnRepeat(Transform spawnPosAir)
     {
         GameObject clone = pickupPrefabAir[Random.Range(0, pickupPrefabAir.Length)];
@@ -279,22 +324,21 @@ public class GameLevelScript : MonoBehaviour
 
     }
 
-    /*
-    //Vanha systeemi alku spawn tiettyi8hin kohittin PUFF
-    public void GroundSpawnPickupLevel()
+    //Vanha systeemi alku spawn tiettyihin kohttiin PUFF
+    public void StaticPickUpSpawn()
     {
         while (0 < pickUpCountVariation)
         {
-            for (int i = 0; i < pickupSpawnPointsGround.Length; i++)
+            for (int i = 0; i < pickupSpawnPointsStatic.Length; i++)
             {
-                GameObject pickupRange = pickupPrefabGround[Random.Range(0, pickupPrefabGround.Length)];
-                Instantiate(pickupRange, pickupSpawnPointsGround[i].transform.position, pickupSpawnPointsGround[i].transform.rotation);
-                pickUpGroundList.Add(pickupRange);
+                GameObject pickupRange = pickupPrefabStatic[Random.Range(0, pickupPrefabStatic.Length)];
+                Instantiate(pickupRange, pickupSpawnPointsStatic[i].transform.position, pickupSpawnPointsStatic[i].transform.rotation);
+                pickUpStaticList.Add(pickupRange);
             }
             pickUpCountVariation--;
         }
     }
-    */
+
 
     public void CountLevelSuccess()
     {
