@@ -57,16 +57,10 @@ public class AudioManager : MonoBehaviour
         bonusThreeFXSource = GameObject.Find("BonusThreeFX").GetComponentInChildren<AudioSource>();
         musicSource = GameObject.Find("Music").GetComponentInChildren<AudioSource>();
 
-        Debug.Log("AUDIO MANAGERISSA STARTVALUESIT POISSA PÄÄLTÄ - TESTIN VUOKSI, LAITA PÄÄLLE KN OIKEA PELI");
-        //StartValues();
+        StartValues();
 
     }
 
-    public void Start()
-    {
-        Debug.Log("AUDIO MANAGERISSA startista awakeen kun testATTU KAKKOSKENTTÄ");
-        StartValues();// TÄMÄ TURHA VAIN TESTIÄ VARTEN
-    }
     public void StartValues()
     {
         //WHEN GAME IS STARTED VALUES HERE

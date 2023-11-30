@@ -152,8 +152,7 @@ public class GameModeManager : MonoBehaviour
         { instance = this; DontDestroyOnLoad(instance); }
 
 
-        Debug.Log("GAME MANAGERISSA STARTVALUESIT POISSA PÄÄLTÄ - TESTIN VUOKSI, LAITA PÄÄLLE KN OIKEA PELI");
-        //StartValues();
+        StartValues();
 
 
     }

@@ -32,7 +32,8 @@ public class DataManager : MonoBehaviour
         { Destroy(gameObject); }
         else
         { instance = this; DontDestroyOnLoad(instance); }
-
+        //aktivoidaan keyboard pelin alussa - tämä tarkoitus ainakin - jos bugaa ni mieti tätä
+        ActivateKeyboard();
         //tsek aktiivinen kontrolleri
         CheckControls();
         //tsekki onko kontrolleri kytketty vai ei 

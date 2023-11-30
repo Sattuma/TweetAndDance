@@ -3879,6 +3879,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DataManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5771237371224905266, guid: 2a5f7411d8f3a3f49aeea34272369db9, type: 3}
+      propertyPath: controls
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5771237371224905267, guid: 2a5f7411d8f3a3f49aeea34272369db9, type: 3}
       propertyPath: m_RootOrder
       value: 1
