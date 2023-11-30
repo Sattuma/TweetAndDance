@@ -2782,8 +2782,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4279366143
-  m_fontColor: {r: 1, g: 0.94509804, b: 0.06666667, a: 1}
+    rgba: 4281257438
+  m_fontColor: {r: 0.87058824, g: 0.8039216, b: 0.18039216, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3881,8 +3881,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278248395
-  m_fontColor: {r: 0.79607844, g: 0.8901961, b: 0, a: 1}
+    rgba: 4281257438
+  m_fontColor: {r: 0.87058824, g: 0.8039216, b: 0.18039216, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5515,7 +5515,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3913195995291332700
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8686,8 +8686,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4279366143
-  m_fontColor: {r: 1, g: 0.94509804, b: 0.06666667, a: 1}
+    rgba: 4281257438
+  m_fontColor: {r: 0.87058824, g: 0.8039216, b: 0.18039216, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -10167,8 +10167,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278248395
-  m_fontColor: {r: 0.79607844, g: 0.8901961, b: 0, a: 1}
+    rgba: 4281257438
+  m_fontColor: {r: 0.87058824, g: 0.8039216, b: 0.18039216, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -14261,8 +14261,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4279366143
-  m_fontColor: {r: 1, g: 0.94509804, b: 0.06666667, a: 1}
+    rgba: 4281257438
+  m_fontColor: {r: 0.87058824, g: 0.8039216, b: 0.18039216, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -20678,7 +20678,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &219796769210367468
 RectTransform:
   m_ObjectHideFlags: 0
