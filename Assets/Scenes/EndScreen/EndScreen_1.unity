@@ -2911,7 +2911,7 @@ MonoBehaviour:
   m_text: ' for playing this demo!
 
 
-    more to come!'
+    more to come soon!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 67a6722c283099f42a8e37b66d2ec7ea, type: 2}
   m_sharedMaterial: {fileID: 6847863560581165111, guid: 67a6722c283099f42a8e37b66d2ec7ea, type: 2}

@@ -15,6 +15,11 @@ public class EventSoundFX : MonoBehaviour
         audioSource = GetComponentInParent<AudioSource>();
         audioSource.enabled = false;
     }
+
+    private void Start()
+    {
+        Cursor.visible = true;
+    }
     public void PlayTimeSoundFX()
     {
         audioSource.enabled = true;
