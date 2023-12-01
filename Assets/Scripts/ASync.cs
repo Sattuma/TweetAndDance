@@ -24,6 +24,9 @@ public class ASync : MonoBehaviour
 
     IEnumerator LevelLoadDelay(string sceneName)
     {
+        GameObject otherCanvas = GameObject.FindGameObjectWithTag("Canvas");
+        otherCanvas.SetActive(false);
+
         yield return new WaitForSecondsRealtime(staticTimeForScreen);
         StartCoroutine(LoadAsynchronously(sceneName));
     }
@@ -44,9 +47,6 @@ public class ASync : MonoBehaviour
                 progressBar.value = 100f;
                 percentText.text = progress.ToString("F0") + ("%");
             }
-
-            GameObject otherCanvas = GameObject.FindGameObjectWithTag("Canvas");
-            otherCanvas.SetActive(false);
 
             GameModeManager.instance.ResetEvents();
 

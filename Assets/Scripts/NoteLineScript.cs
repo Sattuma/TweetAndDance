@@ -14,6 +14,7 @@ public class NoteLineScript : MonoBehaviour
 
     [Header("FUNCTION BOOLEAS")]
     public bool songActive;
+    public bool timeRunning;
 
     [Header("POSITION TRACKING")]
     private float songTimeTotal;
@@ -65,6 +66,7 @@ public class NoteLineScript : MonoBehaviour
         }
 
         songActive = false;
+        timeRunning = false;
         countOn = false;
     }
 
@@ -73,14 +75,14 @@ public class NoteLineScript : MonoBehaviour
         if(GameModeManager.instance.levelIndex == 1)
         {
             Debug.Log("Normal level 1 bonus");
-            songNotes = new float[DataManager.instance.bonusOneSong1Normal.Length];
-            GetNotesSyncForSong(songNotes, DataManager.instance.bonusOneSong1Normal);
+            songNotes = new float[DataManager.instance.bonusOneSong1Medium.Length];
+            GetNotesSyncForSong(songNotes, DataManager.instance.bonusOneSong1Medium);
         }
         if (GameModeManager.instance.levelIndex == 2)
         {
             Debug.Log("Normal level 2 bonus");
-            songNotes = new float[DataManager.instance.bonusOneSong2Normal.Length];
-            GetNotesSyncForSong(songNotes, DataManager.instance.bonusOneSong2Normal);
+            songNotes = new float[DataManager.instance.bonusOneSong2Medium.Length];
+            GetNotesSyncForSong(songNotes, DataManager.instance.bonusOneSong2Medium);
         }
     }
 
@@ -112,6 +114,7 @@ public class NoteLineScript : MonoBehaviour
         if (GameModeManager.instance.levelIndex == 1)
         {
             songActive = true;
+            timeRunning = true;
             AudioManager.instance.PlayMusicFX(2); 
             //SONG 1 INFORMATION FOR VARIABLES
             bpm = 164;
@@ -125,6 +128,7 @@ public class NoteLineScript : MonoBehaviour
         if (GameModeManager.instance.levelIndex == 2)
         {
             songActive = true;
+            timeRunning = true;
             //SONG 2 INFORMATION FOR VARIABLES
             AudioManager.instance.PlayMusicFX(0);
             //valitaan viel musa
@@ -146,10 +150,18 @@ public class NoteLineScript : MonoBehaviour
             if (!GameModeManager.instance.isPaused)
             {
                 SongRunning();
-                StartSongCount();
                 CheckScoring();
             }
         }
+        if(timeRunning)
+        {
+            if(!GameModeManager.instance.isPaused)
+            {
+                StartSongCount();
+            }
+        }
+
+
     }
 
     public void StartSongCount()
@@ -160,7 +172,8 @@ public class NoteLineScript : MonoBehaviour
         if (beatsposition >= songBeatsTotal)
         { 
             beatsposition = songBeatsTotal; 
-            secPerBeat = songTimeTotal; 
+            secPerBeat = songTimeTotal;
+            CheckSuccess();
         }
 
         GameModeManager.instance.bonusOneSongTimeTemp = secPosition;
@@ -180,10 +193,9 @@ public class NoteLineScript : MonoBehaviour
             nextIndex++;
         }
 
-        if (beatsposition >= songBeatsTotal)
+        if (beatsposition >= songLastBeat)
         {
             songActive = false;
-            CheckSuccess();
         }
     }
 
@@ -233,6 +245,7 @@ public class NoteLineScript : MonoBehaviour
     public void CheckSuccess()
     {
         GameModeManager.instance.bonusLevelEnd = true;
+        timeRunning = false;
 
         if(GameModeManager.instance.bonusOnelevelScoreTemp >= 8200)
         {

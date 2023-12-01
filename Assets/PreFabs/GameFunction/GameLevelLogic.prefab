@@ -1627,7 +1627,7 @@ MonoBehaviour:
   groundMinX2: 4
   groundMaxX2: 30
   airMinX1: -30
-  airMaxX1: -8
+  airMaxX1: -12
   airMinX2: 8
   airMaxX2: 30
   groundLevelY: -7

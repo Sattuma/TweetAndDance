@@ -12,9 +12,9 @@ using System;
 public class MainMenu : MonoBehaviour
 {
 
-    public EventSystem eventSystem;
-    public GameObject lastSelectedGameObject;
-    public GameObject currentSelectedGameObject_Recent;
+    [Header("Buttons to be autoactivated on menus")]
+    public GameObject firstButtonActiveUi;
+    public GameObject mouseSelButton;
 
     [Header("MainMenu Buttons")]
     public GameObject startButton;
@@ -84,28 +84,21 @@ public class MainMenu : MonoBehaviour
         }
     }
     */
-
-    // EI TOIMI TÄYSIN MUT OOKOO TÄHÄN TILANTEESEEN - FIX MYÖHEMMIN
     public void OnPointerEnter()
     {
+
         if (EventSystem.current.IsPointerOverGameObject())
         {
-            currentSelectedGameObject_Recent = eventSystem.currentSelectedGameObject;
-            EventSystem.current.SetSelectedGameObject(null);
-            lastSelectedGameObject = currentSelectedGameObject_Recent;
-        }
+            GameObject myEventSystem = GameObject.Find("EventSystem");
+            myEventSystem.GetComponent<EventSystem>().SetSelectedGameObject(null);
 
+        }
     }
+    // EI TOIMI TÄYSIN MUT OOKOO TÄHÄN TILANTEESEEN - FIX MYÖHEMMIN
+
     public void OnPointerExit()
     {
-        EventSystem.current.SetSelectedGameObject(currentSelectedGameObject_Recent);
-
-        if (lastSelectedGameObject == currentSelectedGameObject_Recent)
-        {
-            lastSelectedGameObject = currentSelectedGameObject_Recent;
-            currentSelectedGameObject_Recent = eventSystem.currentSelectedGameObject;
-        }
-
+        FindFirstButton(firstButtonActiveUi);
     }
 
     public void ContinueGame()
@@ -126,7 +119,7 @@ public class MainMenu : MonoBehaviour
         backButton.SetActive(true);
         settingWindow.SetActive(true);
         logo.SetActive(false);
-        GameObject.Find("AudioSettingsButton").GetComponent<Selectable>().Select();
+        FindFirstButton(firstButtonActiveUi);
     }
     public void OpenAudioSettings()
     {
@@ -135,7 +128,7 @@ public class MainMenu : MonoBehaviour
         backButtonSpesific.SetActive(true);
         settingWindow.SetActive(false);
         audioSettingsWindow.SetActive(true);
-        GameObject.Find("Master").GetComponent<Selectable>().Select();
+        FindFirstButton(firstButtonActiveUi);
     }
     public void OpenControlsSettings()
     {
@@ -144,7 +137,7 @@ public class MainMenu : MonoBehaviour
         backButtonSpesific.SetActive(true);
         settingWindow.SetActive(false);
         controlSettingsWindow.SetActive(true);
-        GameObject.Find("SwitchControlsButton").GetComponent<Selectable>().Select();
+        FindFirstButton(firstButtonActiveUi);
     }
     public void OpenDifficultySettings()
     {
@@ -153,7 +146,7 @@ public class MainMenu : MonoBehaviour
         backButtonSpesific.SetActive(true);
         settingWindow.SetActive(false);
         difficultySettingsWindow.SetActive(true);
-        GameObject.Find("SwitchDifficultyButton").GetComponent<Selectable>().Select();
+        FindFirstButton(firstButtonActiveUi);
     }
     public void OpenBackSpesific()
     {
@@ -165,7 +158,7 @@ public class MainMenu : MonoBehaviour
         backButton.SetActive(true);
         backButtonSpesific.SetActive(false);
         SetAndStoreAudioData();
-        GameObject.Find("AudioSettingsButton").GetComponent<Selectable>().Select();
+        FindFirstButton(firstButtonActiveUi);
     }
     public void SwitchControls()
     {
@@ -211,7 +204,8 @@ public class MainMenu : MonoBehaviour
         logo.SetActive(false);
         howToPlayNavigationButtonRight.SetActive(true);
         howToPlayNavigationButtonLeft.SetActive(false);
-        howToPlayNavigationButtonRight.GetComponent<Selectable>().Select();
+        //howToPlayNavigationButtonRight.GetComponent<Selectable>().Select();
+        FindFirstButton(firstButtonActiveUi);
 
         for (int i = 0; i < howToPlayImagesController.Length; i++)
         {
@@ -228,7 +222,8 @@ public class MainMenu : MonoBehaviour
         AudioManager.instance.PlayMenuFX(0);
         howToPlayNavigationButtonRight.SetActive(false);
         howToPlayNavigationButtonLeft.SetActive(true);
-        howToPlayNavigationButtonLeft.GetComponent<Selectable>().Select();
+        //howToPlayNavigationButtonLeft.GetComponent<Selectable>().Select();
+        FindFirstButton(firstButtonActiveUi);
 
         for (int i = 0; i < howToPlayImagesController.Length; i++)
         {
@@ -245,7 +240,8 @@ public class MainMenu : MonoBehaviour
         AudioManager.instance.PlayMenuFX(0);
         howToPlayNavigationButtonRight.SetActive(true);
         howToPlayNavigationButtonLeft.SetActive(false);
-        howToPlayNavigationButtonRight.GetComponent<Selectable>().Select();
+        //howToPlayNavigationButtonRight.GetComponent<Selectable>().Select();
+        FindFirstButton(firstButtonActiveUi);
 
         for (int i = 0; i < howToPlayImagesController.Length; i++)
         {
@@ -264,7 +260,7 @@ public class MainMenu : MonoBehaviour
         backButton.SetActive(true);
         creditsWindow.SetActive(true);
         logo.SetActive(false);
-        backButton.GetComponent<Selectable>().Select();
+        FindFirstButton(firstButtonActiveUi);
 
     }
     public void OpenBack()
@@ -277,7 +273,7 @@ public class MainMenu : MonoBehaviour
         howToPlayWindow.SetActive(false);
         creditsWindow.SetActive(false);
         logo.SetActive(true);
-        startButton.GetComponent<Selectable>().Select();
+        FindFirstButton(firstButtonActiveUi);
     }
 
     public void ActivateKeyboard()
@@ -328,13 +324,15 @@ public class MainMenu : MonoBehaviour
         musicVolumeSlider.value = AudioManager.instance.musicVolumeValue;
     }
 
+    void FindFirstButton(GameObject obj)
+    {
+        obj = GameObject.FindGameObjectWithTag("FirstButton");
+        obj.GetComponent<Selectable>().Select();
+    }
+
     private void OnDestroy()
     {
 
-        if (lastSelectedGameObject = null)
-        { lastSelectedGameObject = null; }
-        if(currentSelectedGameObject_Recent = null)
-        { currentSelectedGameObject_Recent = null; }
     }
 
 

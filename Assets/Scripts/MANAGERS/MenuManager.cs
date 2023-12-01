@@ -11,10 +11,6 @@ using UnityEngine.EventSystems;
 public class MenuManager : MonoBehaviour
 {
 
-    public EventSystem eventSystem;
-    public GameObject lastSelectedGameObject;
-    public GameObject currentSelectedGameObject_Recent;
-
     [Header("ONSCREEN UI LEVEL")]
     public GameObject timerText;
     public GameObject timerCountText;
@@ -50,13 +46,9 @@ public class MenuManager : MonoBehaviour
     public GameObject backButton;
     public GameObject backButtonSpesific;
 
+
     [Header("Buttons to be autoactivated on menus")]
-    public GameObject pauseFirstButton;
-    public GameObject successFirstButton;
-    public GameObject successBonusFirstButton;
-    public GameObject gameoverBonusFirstButton;
-    public GameObject gameoverFirstButton;
-    public GameObject settingsFirstButton;
+    public GameObject firstButtonActiveUi;
 
     [Header("UI Menus")]
     public GameObject pauseMenu;
@@ -181,7 +173,7 @@ public class MenuManager : MonoBehaviour
 
     public void CutsceneHudActive()
     {
-        successFirstButton.GetComponent<Selectable>().Select();
+        
         currentStateHud[0].SetActive(true);
         currentStateHud[1].SetActive(false);
         currentStateHud[2].SetActive(false);
@@ -250,6 +242,7 @@ public class MenuManager : MonoBehaviour
 
     }
 
+    /*
     public void OnPointerEnter()
     {
         if (EventSystem.current.IsPointerOverGameObject())
@@ -259,15 +252,19 @@ public class MenuManager : MonoBehaviour
             lastSelectedGameObject = currentSelectedGameObject_Recent;
         }
     }
+    */
+    public void OnPointerEnter()
+    {
+
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            GameObject myEventSystem = GameObject.Find("EventSystem");
+            myEventSystem.GetComponent<EventSystem>().SetSelectedGameObject(null);
+        }
+    }
     public void OnPointerExit()
     {
-        EventSystem.current.SetSelectedGameObject(currentSelectedGameObject_Recent);
-
-        if (lastSelectedGameObject == currentSelectedGameObject_Recent)
-        {
-            lastSelectedGameObject = currentSelectedGameObject_Recent;
-            currentSelectedGameObject_Recent = eventSystem.currentSelectedGameObject;
-        }
+        FindFirstButton(firstButtonActiveUi);
     }
 
 
@@ -306,13 +303,13 @@ public class MenuManager : MonoBehaviour
         successMenu.SetActive(true);
         foundSecretsText.text = GameModeManager.instance.secretFoundTemp.ToString();
         totalSecretsText.text = GameModeManager.instance.secretTotalTemp.ToString();
-        successFirstButton.GetComponent<Selectable>().Select();
+        FindFirstButton(firstButtonActiveUi);
     }
     public void FailedMenuOnLevel()
     {
         GameModeManager.instance.levelActive = false;
         gameOverMenu.SetActive(true);
-        gameoverFirstButton.GetComponent<Selectable>().Select();
+        FindFirstButton(firstButtonActiveUi);
     }
 
     //BONUS LEVEL ENDING WINDOWS
@@ -320,14 +317,14 @@ public class MenuManager : MonoBehaviour
     {
         bonusOneSlider.gameObject.SetActive(false);
         successMenuBonus.SetActive(true);
-        successBonusFirstButton.GetComponent<Selectable>().Select();
+        FindFirstButton(firstButtonActiveUi);
     }
     public void FailedMenuOnBonus()
     {
         AudioManager.instance.PlayBonusOneFX(0);
         AudioManager.instance.musicSource.Stop();
         gameOverMenuBonus.SetActive(true);
-        gameoverBonusFirstButton.GetComponent<Selectable>().Select();
+        FindFirstButton(firstButtonActiveUi);
     }
     //------------------------------------------------
     //PAUSE MENU WINDOW FUNCTIONS
@@ -341,14 +338,14 @@ public class MenuManager : MonoBehaviour
             {
                 //pauseMenu.SetActive(true);
                 PauseMenuOn();
-                pauseFirstButton.GetComponent<Selectable>().Select();
+                
                 Time.timeScale = 0;
             }
             if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
             {
                 //pauseMenuBonus.SetActive(true);
                 PauseMenuOn();
-                pauseFirstButton.GetComponent<Selectable>().Select();
+                
                 Time.timeScale = 0;
             }
         }
@@ -365,9 +362,9 @@ public class MenuManager : MonoBehaviour
         Cursor.visible = true;
 
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
-        { pauseMenu.SetActive(true);}
+        { pauseMenu.SetActive(true); FindFirstButton(firstButtonActiveUi); }
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
-        { pauseMenuBonus.SetActive(true); AudioManager.instance.musicSource.Pause(); }
+        { pauseMenuBonus.SetActive(true); FindFirstButton(firstButtonActiveUi); AudioManager.instance.musicSource.Pause(); }
     }
     void PauseMenuOff()
     {
@@ -385,7 +382,7 @@ public class MenuManager : MonoBehaviour
         settingsMenu.SetActive(true);
         PauseMenuOff();
         backButton.SetActive(true);
-        GameObject.Find("AudioSettingsButton").GetComponent<Selectable>().Select();
+        FindFirstButton(firstButtonActiveUi);
         backButton.SetActive(true);
 
     }
@@ -397,7 +394,7 @@ public class MenuManager : MonoBehaviour
         backButtonSpesific.SetActive(true);
         settingsMenu.SetActive(false);
         audioSettingsWindow.SetActive(true);
-        GameObject.Find("Master").GetComponent<Selectable>().Select();
+        FindFirstButton(firstButtonActiveUi);
     }
     public void OpenControlsSettings()
     {
@@ -407,7 +404,7 @@ public class MenuManager : MonoBehaviour
         backButtonSpesific.SetActive(true);
         settingsMenu.SetActive(false);
         controlSettingsWindow.SetActive(true);
-        GameObject.Find("SwitchControlsButton").GetComponent<Selectable>().Select();
+        FindFirstButton(firstButtonActiveUi);
     }
     public void OpenBackSpesific()
     {
@@ -418,7 +415,7 @@ public class MenuManager : MonoBehaviour
         backButton.SetActive(true);
         backButtonSpesific.SetActive(false);
         SetAndStoreAudioData();
-        GameObject.Find("AudioSettingsButton").GetComponent<Selectable>().Select();
+        FindFirstButton(firstButtonActiveUi);
     }
     public void SwitchControls()
     {
@@ -459,7 +456,7 @@ public class MenuManager : MonoBehaviour
         settingsMenu.SetActive(false);
         PauseMenuOn();
         backButton.SetActive(false);
-        pauseFirstButton.GetComponent<Selectable>().Select();
+        FindFirstButton(firstButtonActiveUi);
     }
     //------------------------------------------------
 
@@ -577,6 +574,12 @@ public class MenuManager : MonoBehaviour
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
         text.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    void FindFirstButton(GameObject obj)
+    {
+        obj = GameObject.FindGameObjectWithTag("FirstButton");
+        obj.GetComponent<Selectable>().Select();
     }
 
     private void OnDestroy()

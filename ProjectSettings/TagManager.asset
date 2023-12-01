@@ -45,6 +45,7 @@ TagManager:
   - CenterAirDir
   - LeftAirDir
   - RightAirDir
+  - FirstButton
   layers:
   - Default
   - TransparentFX

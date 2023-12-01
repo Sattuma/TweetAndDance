@@ -7,12 +7,18 @@ using System.Text;
 
 public class DataManager : MonoBehaviour
 {
+
     public static DataManager instance;
 
     [Header("BONUS 1 SYNC DATA ")]
-    public string[] bonusOneSong1Normal;
+    public TextAsset OneMedium;
+    public TextAsset OneHard;
+    public TextAsset TwoMedium;
+    public TextAsset TwoHard;
+
+    public string[] bonusOneSong1Medium;
     public string[] bonusOneSong1Hard;
-    public string[] bonusOneSong2Normal;
+    public string[] bonusOneSong2Medium;
     public string[] bonusOneSong2Hard;
 
 
@@ -39,24 +45,22 @@ public class DataManager : MonoBehaviour
         //tsekki onko kontrolleri kytketty vai ei 
         StartCoroutine(CheckForControllers());
 
-        //TextAsset song1Medium = (TextAsset)Resources.Load("song2medium.txt");
+        OneMedium = Resources.Load<TextAsset>("song1medium");
+        bonusOneSong1Medium = OneMedium.text.Split("\n");
 
-        //Debug.Log(song1Medium);
+        OneHard = Resources.Load<TextAsset>("song1hard");
+        bonusOneSong1Hard = OneHard.text.Split("\n");
+
+        TwoMedium = Resources.Load<TextAsset>("song2medium");
+        bonusOneSong2Medium = TwoMedium.text.Split("\n");
+
+        TwoHard = Resources.Load<TextAsset>("song2hard");
+        bonusOneSong2Hard = TwoHard.text.Split("\n");
 
 
 
-        //bonusOneSong1Normal = File.ReadAllLines(song1Medium.ToString());
-        //TextAsset song1Hard = (TextAsset)Resources.Load("song1hard");
-        //TextAsset song2Medium = (TextAsset)Resources.Load("song2medium");
-        //TextAsset song2Hard = (TextAsset)Resources.Load("song2hard");
 
 
-
-
-        //Bonus level one song infos and difficulties 
-        //bonusOneSong1Hard = File.ReadAllLines(song1Hard.text);
-        //bonusOneSong2Normal = File.ReadAllLines(song2Medium.text);
-        //bonusOneSong2Hard = File.ReadAllLines(song2Hard.text);
 
         /*
         bonusOneSong1Normal = File.ReadAllLines(@"Assets/Scripts/Data/song1medium.txt");

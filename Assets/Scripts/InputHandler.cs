@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 //[RequireComponent(typeof(PlayerInput))]
 public class InputHandler : MonoBehaviour
@@ -122,6 +123,17 @@ public class InputHandler : MonoBehaviour
             {
                 Cursor.visible = false;
                 cursorTimer = 0;
+                
+                GameObject firstButton =  GameObject.FindGameObjectWithTag("FirstButton");
+                if(firstButton != null)
+                {
+                    firstButton.GetComponent<Selectable>().Select();
+                }
+                else
+                {
+                    firstButton = null;
+                }
+
             }
         }
 
