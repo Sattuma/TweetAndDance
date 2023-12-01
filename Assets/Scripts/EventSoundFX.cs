@@ -41,6 +41,9 @@ public class EventSoundFX : MonoBehaviour
 
     public void MainMenuButton()
     {
+        GameModeManager.instance.levelActive = false;
+        GameModeManager.instance.rewardClaimed = false;
+        GameModeManager.instance.DefaultValues();
         GameModeManager.instance.ChangeLevel(GameModeManager.instance.levelName[0]);
     }
 }

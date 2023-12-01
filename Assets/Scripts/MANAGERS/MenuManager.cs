@@ -537,8 +537,10 @@ public class MenuManager : MonoBehaviour
         SetAndStoreAudioData();
         AudioManager.instance.PlayMenuFX(0);
         GameModeManager.instance.levelActive = false;
-        GameModeManager.instance.ChangeLevel(GameModeManager.instance.levelName[0]);
         GameModeManager.instance.rewardClaimed = false;
+        GameModeManager.instance.DefaultValues();
+        GameModeManager.instance.ChangeLevel(GameModeManager.instance.levelName[0]);
+
     }
 
     public void SetAndStoreAudioData()

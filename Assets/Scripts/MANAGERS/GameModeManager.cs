@@ -316,6 +316,13 @@ public class GameModeManager : MonoBehaviour
 
     }
 
+    public void DefaultValues()
+    {
+        activeGameMode = GameMode.mainMenu;
+        currentLevel = CurrentLevel.MainMenu;
+        levelIndex = 0;
+    }
+
     //nämä restoidaan aina levelChangerissa eli Async scriptissä
     public void ResetEvents()
     {
