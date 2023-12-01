@@ -579,7 +579,15 @@ public class MenuManager : MonoBehaviour
     void FindFirstButton(GameObject obj)
     {
         obj = GameObject.FindGameObjectWithTag("FirstButton");
-        obj.GetComponent<Selectable>().Select();
+        if (obj != null)
+        {
+            obj.GetComponent<Selectable>().Select();
+        }
+        else
+        {
+            obj = null;
+        }
+
     }
 
     private void OnDestroy()

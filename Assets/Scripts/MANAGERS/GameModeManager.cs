@@ -151,7 +151,6 @@ public class GameModeManager : MonoBehaviour
         else
         { instance = this; DontDestroyOnLoad(instance); }
 
-
         StartValues();
 
 

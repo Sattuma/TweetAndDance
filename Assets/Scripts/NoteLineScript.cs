@@ -169,10 +169,10 @@ public class NoteLineScript : MonoBehaviour
         secPosition = AudioManager.instance.musicSource.time;
         beatsposition = secPosition / secPerBeat;
 
-        if (beatsposition >= songBeatsTotal)
+        if (secPosition >= songTimeTotal)
         { 
             beatsposition = songBeatsTotal; 
-            secPerBeat = songTimeTotal;
+            secPosition = songTimeTotal;
             CheckSuccess();
         }
 
