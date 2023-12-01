@@ -75,7 +75,6 @@ public class PlayerCore : MonoBehaviour
         yield return new WaitUntil(() => isLanding);
         myAnim.SetTrigger("WinTrig");
         AudioManager.instance.characterFXSource.Stop();
-        AudioManager.instance.movementFXSource.Stop();
     }
     public void LevelFailAnim()
     {
@@ -89,7 +88,6 @@ public class PlayerCore : MonoBehaviour
         yield return new WaitUntil(() => isLanding);
         myAnim.SetTrigger("LoseTrig");
         AudioManager.instance.characterFXSource.Stop();
-        AudioManager.instance.movementFXSource.Stop();
     }
 
     //-------------------------------------

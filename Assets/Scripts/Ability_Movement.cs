@@ -75,6 +75,12 @@ public class Ability_Movement : MonoBehaviour
             else
             { playerSpeed = walkingSpeed; }
         }
+        else if(GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel && GameModeManager.instance.levelActive == false)
+        {
+            playFootsteps = false;
+            AudioManager.instance.movementFXSource.GetComponent<AudioSource>().enabled = false;
+        }
+
 
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel && GameModeManager.instance.levelActive != true)
         {
@@ -97,6 +103,7 @@ public class Ability_Movement : MonoBehaviour
         { AudioManager.instance.movementFXSource.GetComponent<AudioSource>().enabled = true;}
         else
         { AudioManager.instance.movementFXSource.GetComponent<AudioSource>().enabled = false;}
+
     }
 
 
