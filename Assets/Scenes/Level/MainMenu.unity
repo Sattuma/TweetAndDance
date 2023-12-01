@@ -3883,6 +3883,22 @@ PrefabInstance:
       propertyPath: controls
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5771237371224905266, guid: 2a5f7411d8f3a3f49aeea34272369db9, type: 3}
+      propertyPath: song1Hard
+      value: 
+      objectReference: {fileID: 4900000, guid: 6ae2aa70f47511641a415b95158d6566, type: 3}
+    - target: {fileID: 5771237371224905266, guid: 2a5f7411d8f3a3f49aeea34272369db9, type: 3}
+      propertyPath: song2Hard
+      value: 
+      objectReference: {fileID: 4900000, guid: d0f04c255eebe3e45a1dd4f5a67269ef, type: 3}
+    - target: {fileID: 5771237371224905266, guid: 2a5f7411d8f3a3f49aeea34272369db9, type: 3}
+      propertyPath: song1Medium
+      value: 
+      objectReference: {fileID: 4900000, guid: 84382097fa7a54a42afb72fc38516aea, type: 3}
+    - target: {fileID: 5771237371224905266, guid: 2a5f7411d8f3a3f49aeea34272369db9, type: 3}
+      propertyPath: song2Medium
+      value: 
+      objectReference: {fileID: 4900000, guid: 6d7ed7d907924ac4c9b1dc206390dd37, type: 3}
     - target: {fileID: 5771237371224905267, guid: 2a5f7411d8f3a3f49aeea34272369db9, type: 3}
       propertyPath: m_RootOrder
       value: 1

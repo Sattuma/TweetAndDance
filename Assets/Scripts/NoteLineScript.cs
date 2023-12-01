@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class NoteLineScript : MonoBehaviour
 {
-
     public BonusLevelScript bonusCore;
     public int pointlossCheck;
 
@@ -51,6 +50,7 @@ public class NoteLineScript : MonoBehaviour
     }
     private void Start()
     {
+
         GameModeManager.instance.bonusOnelevelScoreTemp = 4000;
         GameModeManager.instance.bonusLevelEnd = false;
 
@@ -176,10 +176,11 @@ public class NoteLineScript : MonoBehaviour
         {
             GameObject clone = Instantiate(notePrefab, startingPos[Random.Range(0, startingPos.Length)].transform.position, startingPos[0].transform.rotation);
             clone.GetComponent<NoteScript>().currentSpeed = noteSpeed;
+
             nextIndex++;
         }
 
-        if(beatsposition >= songBeatsTotal)
+        if (beatsposition >= songBeatsTotal)
         {
             songActive = false;
             CheckSuccess();

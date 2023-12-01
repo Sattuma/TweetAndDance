@@ -53,6 +53,8 @@ public class MenuManager : MonoBehaviour
     [Header("Buttons to be autoactivated on menus")]
     public GameObject pauseFirstButton;
     public GameObject successFirstButton;
+    public GameObject successBonusFirstButton;
+    public GameObject gameoverBonusFirstButton;
     public GameObject gameoverFirstButton;
     public GameObject settingsFirstButton;
 
@@ -318,12 +320,14 @@ public class MenuManager : MonoBehaviour
     {
         bonusOneSlider.gameObject.SetActive(false);
         successMenuBonus.SetActive(true);
+        successBonusFirstButton.GetComponent<Selectable>().Select();
     }
     public void FailedMenuOnBonus()
     {
         AudioManager.instance.PlayBonusOneFX(0);
         AudioManager.instance.musicSource.Stop();
         gameOverMenuBonus.SetActive(true);
+        gameoverBonusFirstButton.GetComponent<Selectable>().Select();
     }
     //------------------------------------------------
     //PAUSE MENU WINDOW FUNCTIONS
@@ -358,6 +362,8 @@ public class MenuManager : MonoBehaviour
 
     void PauseMenuOn()
     {
+        Cursor.visible = true;
+
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.gameLevel)
         { pauseMenu.SetActive(true);}
         if (GameModeManager.instance.activeGameMode == GameModeManager.GameMode.bonusLevel)
@@ -484,6 +490,7 @@ public class MenuManager : MonoBehaviour
     {
         SetAndStoreAudioData();
         AudioManager.instance.PlayMenuFX(0);
+
 
         //--------------------------------------------------------------------------------
         Debug.Log("TÄÄLLÄ EKAA BUILDIA VARTEN TOISEEN KENTTÄÄN LOPPUVA TEMP KOODI");

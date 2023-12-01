@@ -3,20 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.IO;
+using System.Text;
 
 public class DataManager : MonoBehaviour
 {
-
     public static DataManager instance;
 
-    //controller connected bool
-    public bool controllerConnected = false;
-
-    //Bonus one song sync data
+    [Header("BONUS 1 SYNC DATA ")]
     public string[] bonusOneSong1Normal;
     public string[] bonusOneSong1Hard;
     public string[] bonusOneSong2Normal;
     public string[] bonusOneSong2Hard;
+
 
     public enum ControlSystem
     {
@@ -24,7 +22,9 @@ public class DataManager : MonoBehaviour
         Gamepad
     }
 
+    [Header("Active Control System")]
     public ControlSystem controls;
+    public bool controllerConnected = false;
 
     private void Awake()
     {
@@ -39,11 +39,31 @@ public class DataManager : MonoBehaviour
         //tsekki onko kontrolleri kytketty vai ei 
         StartCoroutine(CheckForControllers());
 
+        //TextAsset song1Medium = (TextAsset)Resources.Load("song2medium.txt");
+
+        //Debug.Log(song1Medium);
+
+
+
+        //bonusOneSong1Normal = File.ReadAllLines(song1Medium.ToString());
+        //TextAsset song1Hard = (TextAsset)Resources.Load("song1hard");
+        //TextAsset song2Medium = (TextAsset)Resources.Load("song2medium");
+        //TextAsset song2Hard = (TextAsset)Resources.Load("song2hard");
+
+
+
+
         //Bonus level one song infos and difficulties 
+        //bonusOneSong1Hard = File.ReadAllLines(song1Hard.text);
+        //bonusOneSong2Normal = File.ReadAllLines(song2Medium.text);
+        //bonusOneSong2Hard = File.ReadAllLines(song2Hard.text);
+
+        /*
         bonusOneSong1Normal = File.ReadAllLines(@"Assets/Scripts/Data/song1medium.txt");
         bonusOneSong1Hard = File.ReadAllLines(@"Assets/Scripts/Data/song1hard.txt");
         bonusOneSong2Normal = File.ReadAllLines(@"Assets/Scripts/Data/song2medium.txt");
         bonusOneSong2Hard = File.ReadAllLines(@"Assets/Scripts/Data/song2hard.txt");
+        */
     }
 
     IEnumerator CheckForControllers()
